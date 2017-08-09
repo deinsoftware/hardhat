@@ -75,7 +75,7 @@ namespace HardHat
                 Response result = new Response();
                 result = $"git pull".Term();
                 
-                if (result.stdout.Contains("Please commit your changes or stash them before you merge."))
+                if (result.stderr.Contains("Please commit your changes or stash them before you merge."))
                 {
                     $"git stash".Term();
                     result = $"git pull".Term();
