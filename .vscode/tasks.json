@@ -1,0 +1,56 @@
+{
+    "version": "0.1.0",
+    "command": "dotnet",
+    "isShellCommand": true,
+    "args": [],
+    "tasks": [
+        {
+            "taskName": "build",
+            "args": [
+                "${workspaceRoot}/dev/HardHat.csproj"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "run",
+            "args": [
+                "${workspaceRoot}/dev/HardHat.csproj"
+            ],
+            "isBuildCommand": false,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "publish win",
+            "command": "dotnet",
+            "args": [
+                "publish",
+                "${workspaceRoot}/dev/HardHat.csproj",
+                "-o",
+                "${workspaceRoot}/dist/win/",
+                "-c",
+                "release",
+                "-r",
+                "win10-x64"
+            ],
+            "isBuildCommand": false,
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "publish mac",
+            "command": "dotnet",
+            "args": [
+                "publish",
+                "${workspaceRoot}/dev/HardHat.csproj",
+                "-o",
+                "${workspaceRoot}/dist/mac/",
+                "-c",
+                "release",
+                "-r",
+                "osx.10.12-x64"
+            ],
+            "isBuildCommand": false,
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
