@@ -1,4 +1,4 @@
-# HardHat [ for Win+Mac ] (WIP)
+# HardHat [ for Win+Mac ]
 
 I don't like repetitive tasks and make a build is one of them... yuck!
 

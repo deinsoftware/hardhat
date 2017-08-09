@@ -29,7 +29,7 @@ namespace HardHat
                         config.path.dir = "~/Developer";
                         break;
                 }
-                config.path.bsn = "Contoso";
+                config.path.bsn = "";
                 config.path.prj = "Projects";
                 config.path.flt = "_d*";
         
@@ -45,15 +45,44 @@ namespace HardHat
                 config.gulp.ext = ".json";
 
                 config.vpn = new VPNConfiguration();
+                config.vpn.snm = "";
 
                 config.personal = new PersonalConfiguration();
+                config.personal.hst = "";
+                config.personal.ipl = "";
+                config.personal.ipb = "";
+                config.personal.spr = "";
+                config.personal.sfl = "";
                 config.personal.gdl = new BuildConfiguration();
+                config.personal.gdl.mde = "";
+                config.personal.gdl.dmn = "";
+                config.personal.gdl.flv = "";
                 config.personal.gbs = new ServerConfiguration();
-                config.personal.gbs.ipt = "web";
+                config.personal.gbs.dmn = "";
+                config.personal.gbs.flv = "";
+                config.personal.gbs.srv = "";
                 config.personal.gbs.syn = false;
                 config.personal.gbs.ptc = "http";
+                config.personal.gbs.ipt = "";
                 config.personal.adb = new ADBConfiguration();
+                config.personal.adb.dvc = "";
+                config.personal.adb.wip = "";
+                config.personal.adb.wpr = "";
+                config.personal.adb.wst = false;
                 config.personal.mnu = new MenuConfiguration();
+                config.personal.mnu.sel = "";
+                config.personal.mnu.p_sel = false;
+                config.personal.mnu.f_sel = false;
+                config.personal.mnu.v_sel = false;
+                config.personal.mnu.v_bnc = "";
+                config.personal.mnu.g_cnf = "";
+                config.personal.mnu.g_env = false;
+                config.personal.mnu.g_sel = false;
+                config.personal.mnu.b_cnf = "";
+                config.personal.mnu.b_env = false;
+                config.personal.mnu.t_env = false;
+                config.personal.mnu.b_sel = false;
+                config.personal.mnu.v_env = false;
 
                 return config;
             } else {

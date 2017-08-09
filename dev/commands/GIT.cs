@@ -43,7 +43,7 @@ namespace HardHat
             try
             {
                 Response result = new Response();
-                result = $"git -C {path.Slash()} pull".Term();
+                result = $"git -C {path.Slash()} pull".Term(Output.Internal);
                 response = result.stdout
                     .Replace("\r","")
                     .Replace("\n","");

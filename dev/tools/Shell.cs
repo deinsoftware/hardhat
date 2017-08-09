@@ -80,6 +80,7 @@ namespace dein.tools
                 ProcessStartInfo startInfo = new ProcessStartInfo();
                 startInfo.FileName = fnm;
                 startInfo.Arguments = cmd;
+                startInfo.RedirectStandardInput = false;
                 startInfo.RedirectStandardOutput = !(output == Output.External);
                 startInfo.RedirectStandardError = !(output == Output.External);
                 startInfo.UseShellExecute = false;
@@ -87,7 +88,6 @@ namespace dein.tools
                 if (!String.IsNullOrEmpty(dir) && output != Output.External){
                     startInfo.WorkingDirectory = dir;
                 }
-                //TODO: Add Standar Input to Cancel process
 
                 using (Process process = Process.Start(startInfo))
                 {
@@ -113,9 +113,7 @@ namespace dein.tools
                             stderr.AppendLine(process.StandardError.ReadToEnd());
                             break;
                     }
-                    if (output == Output.External){
-                        //process.Kill();
-                    }
+                    
                     process.WaitForExit();
                     result.stdout = stdout.ToString();
                     result.stderr = stderr.ToString();

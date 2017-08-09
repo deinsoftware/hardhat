@@ -9,7 +9,18 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [3.0.0] - 2017-08-04
+## [3.0.1] - 2017-08-09
+
+### Fixed
+
+* Batch/Bash exit code 0 to external window command.
+* Auto update with stash validation.
+
+### Changed
+
+* Default setting file values at fresh start.
+
+## [3.0.0] - 2017-08-09
 
 One code to rule theme all... with .Net Core can share same code for multiple Operating Systems.
 
