@@ -2,7 +2,7 @@
 
 I don't like repetitive tasks and make a build is one of them... yuck!
 
-**HardHat** was created to simplify and automate tasks related to Android.
+**HardHat** was created to simplify and automate tasks related to Android development.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
@@ -155,7 +155,7 @@ Open **star menu** and over the Android section you will can see the link. Remem
 
 #### Star Menu for macOS
 
-Select `hardhat.command` file, then choose `File > Make Alias` or press `Command-L` and name it as **HardHat**.
+Select `mac.sh` file, then choose `File > Make Alias` or press `Command-L` and name it as **HardHat**.
 
 Copy the picture in `icon.png` file  to the Clipboard.
 
