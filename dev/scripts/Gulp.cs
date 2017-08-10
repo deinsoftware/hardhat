@@ -506,7 +506,7 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $" --> Uglifying...".txtInfo(ct.WriteLine);
-                CmdUglify(Env.Get("GULP_PROJECT"));
+                CmdUglify(Paths.Combine(Env.Get("GULP_PROJECT")));
 
                 //TODO: Ask process done correctly
 
@@ -583,7 +583,7 @@ namespace HardHat {
                 string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr); 
                 CmdServer(
                     dirPath, 
-                    Env.Get("GULP_PROJECT"),
+                    Paths.Combine(Env.Get("GULP_PROJECT")),
                     cp.gbs.ipt,
                     cp.gbs.dmn,
                     cp.gbs.flv,
