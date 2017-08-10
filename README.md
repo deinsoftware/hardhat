@@ -169,7 +169,7 @@ Just drag and drop **HardHat** (alias shortcut) to your Dock or Desktop.
 
 > **UPPERCASE** options means default choice in a question, feel free to continue quickly with <kbd>RETURN</kbd> key :wink:
 
-![HardHat Main Menu](https://raw.githubusercontent.com/equiman/hardhat/master/hardhat-main.png "HardHat Main Menu")
+[![HardHat Main Menu](hardhat-main.png "HardHat Main Menu")]
 
 #### Project
 
