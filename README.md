@@ -124,7 +124,7 @@ Choose desired letter combination and let **HardHat** work for you. No more tedi
 ### Permissions
 
 Before run **HardHat** macOS users need add execute permission to:
-`chmod -x mac.sh` and `chmod -x dist/cmd.mac.sh`
+`chmod -x mac.sh`, `chmod -x mac.command` and `chmod -x dist/cmd.mac.sh`
 
 ### Run
 
