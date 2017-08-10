@@ -1,1 +1,1 @@
-sh mac.sh
+sh "$(pwd)"/mac.sh
