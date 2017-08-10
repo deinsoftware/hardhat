@@ -16,3 +16,5 @@ EOF
 
 fi
 clear
+
+exit 0

@@ -72,6 +72,7 @@ namespace HardHat
             bool response = false;
             try
             {
+                $"git config --local core.filemode false".Term();
                 Response result = new Response();
                 result = $"git pull".Term();
                 

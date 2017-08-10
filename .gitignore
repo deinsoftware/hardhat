@@ -6,7 +6,8 @@
 !.vscode/extensions.json
 .history
 
+### HardHat Project ###
 **/bin
 **/obj
-
 **/config.*.json
+/HardHat

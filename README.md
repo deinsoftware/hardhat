@@ -124,7 +124,11 @@ Choose desired letter combination and let **HardHat** work for you. No more tedi
 ### Permissions
 
 Before run **HardHat** macOS users need add execute permission to:
-`chmod +x mac.sh`, `chmod +x mac.command`, `chmod +x dist/mac/HardHat` and `chmod +x dist/mac/cmd.mac.sh`
+
+* `chmod +x mac.sh`
+* `chmod +x mac.command`
+* `chmod +x dist/mac/cmd.mac.sh`
+* `chmod +x dist/mac/HardHat`
 
 ### Run
 
@@ -137,7 +141,7 @@ In order to run **HardHat** open a terminal and run this command:
 
 ### Start Menu Icon
 
-It's not mandatory but it's highly recommend create and Start Menu icon.
+It's not mandatory but it's highly recommend create and Start Menu icon. This instructions only works with *recommended* path.
 
 #### Star Menu for Windows
 

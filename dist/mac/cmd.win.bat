@@ -8,3 +8,5 @@ if defined dir (
 )
 start cmd /K %cmd%
 cls
+
+exit 0
