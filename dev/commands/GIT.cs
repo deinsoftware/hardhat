@@ -80,7 +80,7 @@ namespace HardHat
                 {
                     $"git stash".Term();
                     result = $"git pull".Term();
-                    $"git stash apply --index".Term();
+                    $"git stash clear".Term();
                 }
 
                 if (result.stdout.Contains("Already up-to-date."))
@@ -89,8 +89,6 @@ namespace HardHat
                 } else {
                     response = true;
                 }
-
-
             }
             catch (Exception Ex){
                 Message.Critical(
