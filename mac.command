@@ -1,1 +1,1 @@
-sh "$(pwd)"/Applications/HardHat/mac.sh
+sh "$(pwd)"/Applications/HardHat/mac.sh;

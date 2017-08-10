@@ -2,6 +2,7 @@
 clear
 resize -s 27 88
 clear
+cd ~/Applications/HardHat/
 if [ -n "$1" ]; then
     #Development
     cd dev
