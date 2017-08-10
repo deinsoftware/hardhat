@@ -97,7 +97,7 @@ Replace `user` with your windows user name and `ANDROID_BT_VERSION` with your An
 ```bash
 export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
-export ANDROID_BT_VERSION="25.0.3"
+export ANDROID_BT_VERSION="26.0.1"
 export ANDROID_TEMPLATE="~/Applications/Android/Studio"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export GULP_PROJECT="~/Applications/Gulp"
