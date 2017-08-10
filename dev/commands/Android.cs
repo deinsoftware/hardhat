@@ -52,7 +52,7 @@ namespace HardHat
                         );
                     }
                 }
-                cmd.Append($" -r {path} 2>&1");
+                cmd.Append($" install -r {path} 2>&1");
                 cmd.ToString().Term(Output.Internal);
             }
             catch (Exception Ex){
