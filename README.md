@@ -159,11 +159,9 @@ Open **star menu** and over the Android section you will can see the link. Remem
 
 #### Star Menu for macOS
 
-Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` and name it as **HardHat**.
+Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **HardHat** and add execute permission with `chmod +x HardHat` command.
 
-Copy the picture in `icon.png` file  to the Clipboard.
-
-One way to do this is to open the picture in Preview, choose `Edit > Select All`, then choose `Edit > Copy` or press `Command-C`.
+Copy the picture in `icon.png` file  to the Clipboard. One way to do this is to open the picture in Preview, choose `Edit > Select All`, then choose `Edit > Copy` or press `Command-C`.
 
 Select **HardHat** (alias shortcut) file, then choose `File > Get Info`. At the top of the Info window, click the picture of the icon to select it, then choose `Edit > Paste` or press `Command-V`.
 
