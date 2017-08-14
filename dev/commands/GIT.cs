@@ -76,7 +76,7 @@ namespace HardHat
                 Response result = new Response();
                 result = $"git pull".Term();
                 
-                if (!String.IsNullOrEmpty(result.stderr))
+                if (!(String.IsNullOrEmpty(result.stderr) || result.stderr == Environment.NewLine))
                 {
                     $"git reset --hard HEAD".Term();
                     $"git clean -f -d -x".Term();
