@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v1.1": {},
     ".NETCoreApp,Version=v1.1/osx.10.12-x64": {
-      "hardhat/3.0.1": {
+      "hardhat/3.0.2": {
         "dependencies": {
           "Microsoft.NETCore.App": "1.1.2",
           "Newtonsoft.Json": "10.0.3"
@@ -1946,7 +1946,7 @@
     }
   },
   "libraries": {
-    "hardhat/3.0.1": {
+    "hardhat/3.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
