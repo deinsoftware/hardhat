@@ -78,6 +78,7 @@ namespace HardHat
                 
                 if (!String.IsNullOrEmpty(result.stderr))
                 {
+                    $"git reset --hard HEAD".Term();
                     $"git clean -f -d -x".Term();
                     result = $"git pull".Term();
                 }
