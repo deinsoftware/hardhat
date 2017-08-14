@@ -271,6 +271,9 @@ If you have some pre-configured files to be copied to project path, add it on `A
 | <kbd>e</kbd> | Show information about environmental variables. |
 | <kbd>x</kbd> | Exit application, save progress and close terminal window. |
 
+> **How to auto close terminal on exit for macOS?**  
+> Open a terminal window, goto 'Preference > Profiles > Shell' and select "Close if the shell exited cleanly" on "When the shell exits" option.
+
 ### Setup
 
 Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
