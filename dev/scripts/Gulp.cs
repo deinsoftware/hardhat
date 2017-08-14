@@ -189,7 +189,7 @@ namespace HardHat {
                 }
 
                 $"".fmNewLine();
-                $" Write an internal path inside your project.".txtPrimary();
+                $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
