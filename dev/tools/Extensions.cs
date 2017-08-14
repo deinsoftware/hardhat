@@ -17,9 +17,14 @@ namespace dein.tools
         {
             string path = Path.Combine(paths);
             path = path.Slash();
-            if(OS.IsMacOS())
+            switch (OS.WhatIs())
             {
-                path = path.Replace("~",$"/Users/{Machine.User()}");
+                case "win":
+                    path = path.Replace("~",$"{Env.Get("USERPROFILE")}");
+                    break;
+                case "mac":
+                    path = path.Replace("~",$"/Users/{Machine.User()}");
+                    break;
             }
             return path.Slash();
         }

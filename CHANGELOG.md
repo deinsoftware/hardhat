@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.0.2] - 2017-08-14
+
+### Fixed
+
+* Auto update with total revert.
+
+### Changed
+
+* Config file path changed.
+
 ## [3.0.1] - 2017-08-09
 
 ### Fixed

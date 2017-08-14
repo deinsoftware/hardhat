@@ -76,11 +76,10 @@ namespace HardHat
                 Response result = new Response();
                 result = $"git pull".Term();
                 
-                if (result.stderr.Contains("Please commit your changes or stash them before you merge."))
+                if (!String.IsNullOrEmpty(result.stderr))
                 {
-                    $"git stash".Term();
+                    $"git clean -f -d -x".Term();
                     result = $"git pull".Term();
-                    $"git stash clear".Term();
                 }
 
                 if (result.stdout.Contains("Already up-to-date."))

@@ -8,11 +8,11 @@ namespace HardHat
     class Settings{
         public static void Save(Config config){
             string json = JsonConvert.SerializeObject(config);
-            File.WriteAllText($"config.{OS.WhatIs()}.json", json);
+            File.WriteAllText($"{Paths.Combine("~", $".hardhat.config.json")}", json);
         }
 
         public static Config Read(){
-            if (!File.Exists($"config.{OS.WhatIs()}.json")) {
+            if (!File.Exists($"{Paths.Combine("~", $".hardhat.config.json")}")) {
                 Config config = new Config();
 
                 config.window = new WindowConfiguration();
@@ -86,7 +86,7 @@ namespace HardHat
 
                 return config;
             } else {
-                string json = File.ReadAllText($"config.{OS.WhatIs()}.json");
+                string json = File.ReadAllText($"{Paths.Combine("~", $".hardhat.config.json")}");
                 return JsonConvert.DeserializeObject<Config>(json);
             }
         }
