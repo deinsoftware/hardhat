@@ -78,7 +78,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `ANDROID_NDK_HOME` | %ANDROID_HOME%\ndk-bundle |
 | `ANDROID_BT_VERSION` | 26.0.1 |
 | `ANDROID_TEMPLATE` | D:\Applications\Android\Studio |
-| `CODE_HOME` | C:\Program Files (x86)\Microsoft VS Code |
+| `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
 | `GRADLE_HOME` | D:\Applications\Android\Gradle |
 | `GULP_PROJECT` | D:\Applications\Gulp |
