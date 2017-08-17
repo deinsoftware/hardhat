@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.0.3] - 2017-08-17
+
+### Removed
+
+* Made a project copy to `bkp` folder is unnecessary on Gulp Uglify process, with `www` folder can be restored to original state.
+
+### Added
+
+* Launch app on device when installation was success.
+
 ## [3.0.2] - 2017-08-14
 
 ### Fixed

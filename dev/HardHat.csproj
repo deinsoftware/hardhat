@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-    <VersionPrefix>3.0.2</VersionPrefix>
+    <VersionPrefix>3.0.3</VersionPrefix>
     
     <Authors>Camilo Martinez</Authors>
     <Company>dein Software</Company>
