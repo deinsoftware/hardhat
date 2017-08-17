@@ -19,6 +19,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Launch app on device when installation was success.
 
+### Fixed
+
+* Auto update loop.
+
 ## [3.0.2] - 2017-08-14
 
 ### Fixed

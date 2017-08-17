@@ -83,7 +83,7 @@ namespace HardHat
                     result = $"git pull".Term();
                 }
 
-                if (result.stdout.Contains("Already up-to-date."))
+                if (result.stdout.Contains("Already up-to-date.") || result.stdout.Contains("Updating"))
                 {
                     response = false;
                 } else {
