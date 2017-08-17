@@ -22,6 +22,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Fixed
 
 * Auto update loop.
+* When no detect devices, clean selected device.
 
 ## [3.0.2] - 2017-08-14
 

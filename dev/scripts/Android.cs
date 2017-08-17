@@ -150,6 +150,7 @@ namespace HardHat {
                         cp.adb.dvc = sel;
                     }
                 } else {
+                    cp.adb.dvc = "";
                     Message.Alert(" No device found.");
                 }
                 
