@@ -30,7 +30,12 @@ namespace HardHat {
                 if (CmdDevices()){
                     $"".fmNewLine();
                     $" --> Installing...".txtInfo(ct.WriteLine);
-                    CmdInstall(dirPath, cp.adb.dvc);
+                    Response result = CmdInstall(dirPath, cp.adb.dvc);
+                    if (result.code == 0) {
+                        $"".fmNewLine();
+                        $" --> Launching...".txtInfo(ct.WriteLine);
+                        CmdLaunch(dirPath, cp.adb.dvc);
+                    }
 
                     $"".fmNewLine();
                     $"=".bgInfo(ct.Repeat);

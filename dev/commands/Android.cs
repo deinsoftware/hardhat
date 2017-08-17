@@ -35,14 +35,15 @@ namespace HardHat
             return dev;
         }
 
-        public static void CmdInstall(string path, string device){
+        public static Response CmdInstall(string path, string device){
+            Response result = new Response();
+            result.code = 1;
             try
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append("adb");
                 if (!String.IsNullOrEmpty(device))
                 {
-                    Response result = new Response();
                     result = $"adb -s {device} get-state".Term();
                     if (result.stdout.Contains("device")){
                         cmd.Append($" -s {device}");
@@ -53,7 +54,48 @@ namespace HardHat
                     }
                 }
                 cmd.Append($" install -r {path} 2>&1");
-                cmd.ToString().Term(Output.Internal);
+                result = cmd.ToString().Term(Output.Internal);
+                string status = Shell.ExtractLine(result.stdout, "Success");
+                if (status.Contains("Success")){
+                    result.code = 0;
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return result;
+        }
+
+        public static void CmdLaunch(string path, string device){
+            try
+            {
+                Response result = new Response();
+                result = $"aapt dump badging {path}".Term();
+                string packagename = Shell.ExtractLine(result.stdout, "package:");
+                if (!String.IsNullOrEmpty(packagename)){
+                    packagename = Shell.GetWord(packagename, 1);
+                    packagename = Strings.Remove(packagename, "name=", "'");
+                }
+
+                if (!String.IsNullOrEmpty(packagename)){
+                    StringBuilder cmd = new StringBuilder();
+                    cmd.Append("adb");
+                    if (!String.IsNullOrEmpty(device))
+                    {
+                        result = $"adb -s {device} get-state".Term();
+                        if (result.stdout.Contains("device")){
+                            cmd.Append($" -s {device}");
+                        } else {
+                            Message.Critical(
+                                msg: $" Device '{device}' not found."
+                            );
+                        }
+                    }
+                    cmd.Append($" shell monkey -p {packagename} 1");
+                    result = cmd.ToString().Term();
+                }
             }
             catch (Exception Ex){
                 Message.Critical(
