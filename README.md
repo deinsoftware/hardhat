@@ -210,9 +210,8 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 
 | folder | description |
 | --- | --- |
-| `bkp` | Backup files |
 | `bld` | Result from magic |
-| `www` | Project files |
+| `www` | Original project files |
 
 Gulp Browser process was created under `default` task and follow this command help:
 `gulp [default] --pth path_value [--int internalpath value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`

@@ -482,7 +482,6 @@ namespace HardHat {
                 
                 string[] dirs = new string[] { 
                     Paths.Combine(Env.Get("GULP_PROJECT"),"www"),
-                    Paths.Combine(Env.Get("GULP_PROJECT"),"bkp"),
                     Paths.Combine(Env.Get("GULP_PROJECT"),"bld"),
                 };
 
@@ -549,7 +548,7 @@ namespace HardHat {
                 $"{cp.spr}".txtDefault(ct.WriteLine);
 
                 string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.cmp); 
-                string dirSource = Paths.Combine(Env.Get("GULP_PROJECT"),"bkp");
+                string dirSource = Paths.Combine(Env.Get("GULP_PROJECT"),"www");
                 $"".fmNewLine();
                 $" --> Reverting...".txtInfo(ct.WriteLine);
                 List<string> exclude = new List<string>() {};
