@@ -174,7 +174,7 @@ namespace dein.tools
             return response;
         }
 
-        public static string RemoveLine(string request, string search, params string[] remove) {
+        public static string ExtractLine(string request, string search, params string[] remove) {
             string response = "";
             try
             {

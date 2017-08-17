@@ -13,7 +13,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"git -C {path.Slash()} branch".Term();
-                response = Shell.RemoveLine(result.stdout, "*", "* ");
+                response = Shell.ExtractLine(result.stdout, "*", "* ");
                 response = response
                     .Replace("\r","")
                     .Replace("\n","");

@@ -27,7 +27,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"gradle -v".Term();
-                string response = Shell.RemoveLine(result.stdout, "Gradle", "Gradle ");
+                string response = Shell.ExtractLine(result.stdout, "Gradle", "Gradle ");
                 Shell.Result(response);
             }
             catch (Exception Ex){
@@ -41,7 +41,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"java -version 2>&1".Term();
-                string response = Shell.RemoveLine(result.stdout, "java version", "java version ", "\"");
+                string response = Shell.ExtractLine(result.stdout, "java version", "java version ", "\"");
                 Shell.Result(response);
             }
             catch (Exception Ex){
