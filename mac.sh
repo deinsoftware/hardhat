@@ -33,6 +33,7 @@ function fxUpdate() {
 }
 
 function fxUpdate() {
+    clear
     git config --local core.filemode false
     git reset --hard HEAD
     git clean -f -d -x

@@ -15,6 +15,7 @@ git pull | findstr /c:"Already up-to-date"
 if %errorlevel% == 0 (
     goto start
 ) else (
+    cls
     call color E0
     git config --local core.filemode false
     git reset --hard HEAD
@@ -27,7 +28,7 @@ if %errorlevel% == 0 (
     echo  HardHat was updated please RESTART to continue.
     echo. 
     echo  Refer to CHANGELOG file for details
-    echo  or visit https://github.com/equiman/hardhatwin/
+    echo  or visit https://github.com/equiman/hardhat/
     echo. 
     echo ==========================================================================================
     echo.
