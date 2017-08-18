@@ -4,6 +4,7 @@ resize -s 27 88
 clear
 
 function fxUpdate() {
+    cd ~/Applications/HardHat/
     clear;
     echo "======================================================================================="
     echo " UPDATE "
@@ -12,7 +13,6 @@ function fxUpdate() {
 
     echo " --> Updating... "
     updated="$(git pull)"
-
     if [ "${updated}" != "Already up-to-date." ]; then 
         fxGit
         echo ""
@@ -41,7 +41,6 @@ function fxGit() {
 }
 
 function fxStart() {
-    cd ~/Applications/HardHat/
     if [ -n "$1" ]; then
         #Development
         cd dev
