@@ -27,6 +27,7 @@ Contributions or Beer :beers: will be appreciated :thumbsup:
   * [Run](#run)
   * [Keyboard Shortcuts](#keyboard-shortcuts)
   * [Setup](#setup)
+  * [Recommendations](#recommendations)
 * [About](#about)
   * [Built With](#built-with)
   * [Contributing](#contributing)
@@ -303,11 +304,79 @@ Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 | `srv` | Server folder name inside `GULP_PROJECT` |
 | `ext` | Filter extension name for server configuration |
 
-#### Gulp Variables
+#### VPN Variables
 
 | var | description |
 | --- | --- |
 | `snm` | Site name for `VPN_HOME` |
+
+### Recommendations
+
+Highly recommend this file and directory structure:
+
+```dir
+Developer
+│
+└───Business_1
+│   │
+│   └───Projects
+│       │
+│       └───_devProject_1
+│       │   │
+│       │   └───android
+│       │   │
+│       │   └───ios
+│       │   │
+│       │   └───web
+│       │
+│       └───_distProject_1
+│           │
+│           └───android
+│           │
+│           └───ios
+│           │
+│           └───web
+│       │
+│       └───_devProject_2
+│           \   ...
+│       │
+│       └───_distProject_2
+│           \   ...
+│       │
+│       └───_devProject_n
+│           \   ...
+│       │
+│       └───_distProject_n
+│           \   ...
+│
+└───Business_2
+│   \   ...
+│
+└───Business_n
+│   \   ...
+│
+Applications
+│
+└───Android
+│   │
+│   └───Keystore
+│   │   \   dev.jks
+│   │   \   prd.jks
+│   │
+│   └───SDK
+│   │
+│   └───Studio
+│       │   gradle.properties
+│       │   local.properties
+│       │
+|       └───Keystore
+│           \   development.properties
+│           \   production.properties
+│
+└───Gulp
+│
+└───HardHat
+```
 
 ⇧ [Back to menu](#menu)
 
