@@ -38,6 +38,8 @@ if %errorlevel% == 0 (
 )
 
 :start
+cls
+call color 07
 if defined dbg (
     cd dev
     dotnet restore
