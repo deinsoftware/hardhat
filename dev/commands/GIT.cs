@@ -67,35 +67,5 @@ namespace HardHat
                 );
             }
         }
-
-        public static bool CmdUpdate() {
-            bool response = false;
-            try
-            {
-                $"git config --local core.filemode false".Term();
-                Response result = new Response();
-                result = $"git pull".Term();
-                
-                if (!(String.IsNullOrEmpty(result.stderr) || result.stderr == Environment.NewLine))
-                {
-                    $"git reset --hard HEAD".Term();
-                    $"git clean -f -d -x".Term();
-                    result = $"git pull".Term();
-                }
-
-                if (result.stdout.Contains("Already up-to-date.") || result.stdout.Contains("Updating"))
-                {
-                    response = false;
-                } else {
-                    response = true;
-                }
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-            return response;
-        }
     }
 }

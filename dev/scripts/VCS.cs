@@ -63,39 +63,5 @@ namespace HardHat {
                 );
             }
         }
-
-        public static void Update(){
-            Colorify.Default();
-            Console.Clear();
-
-            var c = Program.config;
-            var cp = Program.config.personal;
-            try
-            {
-                bool response = GIT.CmdUpdate();
-                if(response)
-                {
-                    StringBuilder msg = new StringBuilder();
-                    msg.Append($" HardHat was updated please RESTART to continue.");
-                    msg.Append(Environment.NewLine);
-                    msg.Append(Environment.NewLine);
-                    msg.Append($" Refer to CHANGELOG file for details.");
-                    msg.Append($" or visit http://www.github.com/equiman/hardhat/");
-
-                    Message.Alert(
-                        msg: msg.ToString(),
-                        exit: true
-                    );
-                } else {
-                    Menu.Start();
-                }
-            }
-            catch (Exception Ex)
-            {
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
     }
 }
