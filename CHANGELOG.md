@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.0.4] - 2017-08-18
+
+### Removed
+
+* Auto update from c#.
+
+### Fixed
+
+* Duplicate file option.
+* Auto update moved to batch/bash files in order to avoid deadlock.
+
 ## [3.0.3] - 2017-08-17
 
 ### Removed

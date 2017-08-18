@@ -15,6 +15,7 @@ function fxUpdate() {
     updated="$(git pull)"
 
     if [ "${updated}" != "Already up-to-date." ]; then 
+        fxUpdate
         echo ""
         echo "===================================================================================================="
         echo ""
@@ -24,7 +25,6 @@ function fxUpdate() {
         echo "or visit http://www.github.com/equiman/hardhatmac/"
         echo ""
         echo "===================================================================================================="
-        fxUpdate
         pause "Press [Enter] key to continue..."
         fxExit
     else
@@ -37,6 +37,7 @@ function fxUpdate() {
     git reset --hard HEAD
     git clean -f -d -x
     git pull
+    clear
 }
 
 function fxStart() {
