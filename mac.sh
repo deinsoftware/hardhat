@@ -2,29 +2,28 @@
 clear
 resize -s 27 88
 clear
-fxUpdate
 
 function fxUpdate() {
+    cd ~/Applications/HardHat/
     clear;
-    echo "===================================================================================================="
+    echo "======================================================================================="
     echo " UPDATE "
-    echo "===================================================================================================="
+    echo "======================================================================================="
     echo "";
 
     echo " --> Updating... "
     updated="$(git pull)"
-
     if [ "${updated}" != "Already up-to-date." ]; then 
-        fxUpdate
+        fxGit
         echo ""
-        echo "===================================================================================================="
+        echo "======================================================================================="
         echo ""
         echo "HardHat was updated please RESTART to continue."
         echo ""
         echo "Refer to CHANGELOG file for details"
         echo "or visit http://www.github.com/equiman/hardhat/"
         echo ""
-        echo "===================================================================================================="
+        echo "======================================================================================="
         pause "Press [Enter] key to continue..."
         fxExit
     else
@@ -32,7 +31,7 @@ function fxUpdate() {
     fi
 }
 
-function fxUpdate() {
+function fxGit() {
     clear
     git config --local core.filemode false
     git reset --hard HEAD
@@ -42,7 +41,6 @@ function fxUpdate() {
 }
 
 function fxStart() {
-    cd ~/Applications/HardHat/
     if [ -n "$1" ]; then
         #Development
         cd dev
@@ -66,3 +64,4 @@ function pause() {
     read -p " $*"
 }
 
+fxUpdate
