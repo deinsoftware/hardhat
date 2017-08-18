@@ -22,7 +22,7 @@ function fxUpdate() {
         echo "HardHat was updated please RESTART to continue."
         echo ""
         echo "Refer to CHANGELOG file for details"
-        echo "or visit http://www.github.com/equiman/hardhatmac/"
+        echo "or visit http://www.github.com/equiman/hardhat/"
         echo ""
         echo "===================================================================================================="
         pause "Press [Enter] key to continue..."

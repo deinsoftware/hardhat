@@ -23,7 +23,9 @@ namespace HardHat
                 if (OS.IsWindows() && (config.window.width + config.window.height) > 0)
                 {
                     Console.SetWindowSize(config.window.width, config.window.height);
-                }                
+                }
+                
+                Menu.Start();
             }
             catch (Exception Ex)
             {

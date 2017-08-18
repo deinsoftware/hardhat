@@ -1,4 +1,5 @@
-echo off
+@echo off
+call refreshenv > nul
 cls
 set dbg=%1
 
