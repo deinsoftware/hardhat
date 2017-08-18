@@ -155,7 +155,7 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(Paths.Combine(dirPath, cp.sfl), Paths.Combine(dirPath, opt, c.android.ext));
+                    System.IO.File.Copy(Paths.Combine(dirPath, cp.sfl), Paths.Combine(dirPath, $"{opt}{c.android.ext}"));
                     cp.sfl = $"{opt}{c.android.ext}";
                 }
 
