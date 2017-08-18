@@ -366,8 +366,8 @@ Applications
 │   └───SDK
 │   │
 │   └───Studio
-│       │   gradle.properties
-│       │   local.properties
+│       │   \   gradle.properties
+│       │   \   local.properties
 │       │
 |       └───Keystore
 │           \   development.properties
