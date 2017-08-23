@@ -20,7 +20,6 @@ if %errorlevel% == 0 (
     call color E0
     git config --local core.filemode false
     git reset --hard HEAD
-    git clean -f -d -x
     git pull
     cls
     echo. 

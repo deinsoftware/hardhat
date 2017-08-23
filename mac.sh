@@ -35,7 +35,6 @@ function fxGit() {
     clear
     git config --local core.filemode false
     git reset --hard HEAD
-    git clean -f -d -x
     git pull
     clear
 }

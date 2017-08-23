@@ -15,6 +15,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Loop on device detection when ADB server is not running.
 * Path index on Uglify process.
+* Start menu on macOS.
 
 ## [3.0.4] - 2017-08-18
 
