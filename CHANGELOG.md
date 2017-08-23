@@ -14,6 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Fixed
 
 * Loop on device detection when ADB server is not running.
+* Path index on Uglify process.
 
 ## [3.0.4] - 2017-08-18
 

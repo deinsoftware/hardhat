@@ -507,13 +507,11 @@ namespace HardHat {
                 $" --> Uglifying...".txtInfo(ct.WriteLine);
                 CmdUglify(Paths.Combine(Env.Get("GULP_PROJECT")));
 
-                //TODO: Ask process done correctly
-
                 $"".fmNewLine();
                 $" --> Replacing...".txtInfo(ct.WriteLine);
-                $"{" From:", -8}".txtMuted(); $"{dirs[2]}".txtDefault(ct.WriteLine);
+                $"{" From:", -8}".txtMuted(); $"{dirs[1]}".txtDefault(ct.WriteLine);
                 $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
-                Paths.CopyAll(dirs[2], dirPath, true, true); 
+                Paths.CopyAll(dirs[1], dirPath, true, true); 
 
                 $"".fmNewLine();
                 $"=".bgInfo(ct.Repeat);
