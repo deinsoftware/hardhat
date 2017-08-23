@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.0.5] - 2017-08-23
+
+### Fixed
+
+* Loop on device detection when ADB server is not running.
+
 ## [3.0.4] - 2017-08-18
 
 ### Removed

@@ -10,22 +10,20 @@ namespace HardHat
     static partial class ADB{
         public static bool CmdDevices() {
             bool dev = false;
+            string response = "";
             try
             {
                 Response result = new Response();
-                switch (OS.WhatIs())
+                result = $"adb devices -l".Term();
+                response = Strings.Remove(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
+                
+                if (!String.IsNullOrEmpty(result.stdout))
                 {
-                    case "win":
-                        result = $"adb devices | findstr \"\\<device\\>\"".Term();
-                        break;
-                    case "mac":
-                        result = $"adb devices -l | egrep -i 'device usb:|device product:'".Term();
-                        break;
+                    if (response.Contains("device usb:") || response.Contains("device product:") || response.Contains("device"))
+                    {
+                        dev = true;
+                    }
                 }
-                result.stdout = result.stdout
-                    .Replace("\r","")
-                    .Replace("\n","");
-                dev = (result.code == 0) && (!String.IsNullOrEmpty(result.stdout));
             }
             catch (Exception Ex){
                 Message.Critical(

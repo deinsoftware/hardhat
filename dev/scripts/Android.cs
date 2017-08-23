@@ -26,7 +26,7 @@ namespace HardHat {
                 $"{cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
-                $" --> Cheking devices...".txtInfo(ct.WriteLine);
+                $" --> Checking devices...".txtInfo(ct.WriteLine);
                 if (CmdDevices()){
                     $"".fmNewLine();
                     $" --> Installing...".txtInfo(ct.WriteLine);
