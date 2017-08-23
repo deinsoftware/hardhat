@@ -121,11 +121,11 @@ export PATH="$ANDROID_NDK_HOME/:$PATH"
 
 ## Usage
 
-Choose desired letter combination and let **HardHat** work for you. No more tedious and repetitive tasks stealing your precious time.
+Keep calm, you are almost done. Review this final steps and enjoy the life, no more tedious and repetitive tasks stealing your precious time.
 
 ### Permissions
 
-Before run **HardHat** macOS users need add execute permission to:
+macOS users need add execute permission over some files. Open a terminal on installation path `~/Applications/HardHat/`*recommended* and run this commands:
 
 * `chmod +x mac.sh`
 * `chmod +x mac.command`
@@ -170,6 +170,8 @@ Select **HardHat** (alias shortcut) file, then choose `File > Get Info`. At the 
 Just drag and drop **HardHat** (alias shortcut) to your Dock or Desktop.
 
 ### Keyboard Shortcuts
+
+Choose desired letter combination and let **HardHat** work for you.
 
 > **UPPERCASE** options means default choice in a question, feel free to continue quickly with <kbd>RETURN</kbd> key :wink:
 
