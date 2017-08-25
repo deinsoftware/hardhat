@@ -62,6 +62,9 @@ namespace HardHat {
                     case "p":
                         g_cnf.Append("Prod");
                         break;
+                    case "d":
+                        g_cnf.Append("Desk");
+                        break;
                 }
                 g_cnf.Append(cp.gbs.srv);
                 g_cnf.Append(cp.gbs.syn ? "+Sync" : "");
@@ -84,6 +87,9 @@ namespace HardHat {
                         break;
                     case "p":
                         b_cnf.Append("Prod");
+                        break;
+                    case "d":
+                        b_cnf.Append("Desk");
                         break;
                 }
                 switch (cp.gdl.mde?.ToLower())

@@ -47,6 +47,9 @@ namespace HardHat {
                     case "p":
                         b_flv = "Prod";
                         break;
+                    case "d":
+                        b_flv = "Desk";
+                        break;
                 }
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
                 string b_mde = "";
@@ -178,6 +181,7 @@ namespace HardHat {
                 $" {"B", 2}] Beta".txtPrimary(ct.WriteLine);
                 $" {"S", 2}] Stag".txtPrimary(ct.WriteLine);
                 $" {"P", 2}] Prod".txtPrimary(ct.WriteLine);
+                $" {"D", 2}] Desk".txtPrimary(ct.WriteLine);
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
@@ -195,6 +199,7 @@ namespace HardHat {
                     case "b":
                     case "s":
                     case "p":
+                    case "d":
                         cp.gdl.flv = opt_flv;
                         break;
                     case "":

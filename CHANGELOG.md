@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.0.6] - 2017-08-25
+
+### Added
+
+* Desk flavor for Gradle and Gulp.
+
+### Changed
+
+* Upgrade from .Net Core 1.1 to 2.0.
+
 ## [3.0.5] - 2017-08-23
 
 ### Fixed

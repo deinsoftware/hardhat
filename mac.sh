@@ -43,7 +43,6 @@ function fxStart() {
     if [ -n "$1" ]; then
         #Development
         cd dev
-        dotnet restore
         dotnet run
     else
         #Release

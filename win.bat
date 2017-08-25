@@ -41,7 +41,6 @@ cls
 call color 07
 if defined dbg (
     cd dev
-    dotnet restore
     dotnet run
 ) else (
     cd dist/win

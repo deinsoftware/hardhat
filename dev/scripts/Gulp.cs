@@ -50,6 +50,9 @@ namespace HardHat {
                     case "p":
                         g_cnf = "Prod";
                         break;
+                    case "d":
+                        g_cnf = "Desk";
+                        break;
                 }
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
                 $"{" [N] Number:"       , -25}".txtPrimary();   $"{cp.gbs.srv}".txtDefault(ct.WriteLine);
@@ -313,6 +316,7 @@ namespace HardHat {
                 $" {"B", 2}] Beta".txtPrimary(ct.WriteLine);
                 $" {"S", 2}] Stag".txtPrimary(ct.WriteLine);
                 $" {"P", 2}] Prod".txtPrimary(ct.WriteLine);
+                $" {"D", 2}] Desk".txtPrimary(ct.WriteLine);
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
@@ -330,6 +334,7 @@ namespace HardHat {
                     case "b":
                     case "s":
                     case "p":
+                    case "d":
                         cp.gbs.flv = opt_flv;
                         break;
                     case "":

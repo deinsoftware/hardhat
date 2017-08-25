@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-    <VersionPrefix>3.0.5</VersionPrefix>
+    <VersionPrefix>3.1.0</VersionPrefix>
     
     <Authors>Camilo Martinez</Authors>
     <Company>dein Software</Company>
@@ -21,10 +21,10 @@
     <RepositoryUrl>https://github.com/equiman/hardhatnet</RepositoryUrl>
     
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <RuntimeIdentifiers>win10-x64;osx.10.12-x64</RuntimeIdentifiers>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp1.1'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
     <None Update="cmd.mac.sh" CopyToOutputDirectory="PreserveNewest" />
     <None Update="cmd.win.bat" CopyToOutputDirectory="PreserveNewest" />
     <None Update="mac.sh" CopyToOutputDirectory="PreserveNewest" />
