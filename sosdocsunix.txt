@@ -53,8 +53,8 @@ DumpSigElem
 Examining the GC history           Other
 -----------------------------      -----------------------------
 HistInit (histinit)                FAQ
-HistRoot (histroot)                Help (soshelp)
-HistObj  (histobj)
+HistRoot (histroot)                CreateDump (createdump)
+HistObj  (histobj)                 Help (soshelp)
 HistObjFind (histobjfind)
 HistClear (histclear)
 \\
@@ -618,6 +618,18 @@ should only need to execute "clrstack -i", and from there, click on the DML
 hyperlinks to inspect the different managed stack frames and managed variables.                             
 \\
 
+COMMAND: createdump.
+createdump [options] [dumpFileName]
+-n - create minidump.
+-h - create minidump with heap (default).
+-t - create triage minidump.
+-f - create full core dump (everything).
+-d - enable diagnostic messages.
+
+Creates a platform (ELF core on Linux, etc.) minidump. The pid can be placed in the dump 
+file name with %d. The default is '/tmp/coredump.%d'.
+\\
+
 COMMAND: ip2md.
 IP2MD <Code address>
 
@@ -844,6 +856,7 @@ corruption bug caused by invalid GCEncoding for a particular method.
 
 COMMAND: bpmd.
 bpmd [-nofuturemodule] <module name> <method name> [<il offset>]
+bpmd <source file name>:<line number>
 bpmd -md <MethodDesc>
 bpmd -list
 bpmd -clear <pending breakpoint number>
