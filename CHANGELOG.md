@@ -14,6 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Added
 
 * Desk flavor for Gradle and Gulp.
+* Auto execute permissions on macOS.
 
 ### Changed
 

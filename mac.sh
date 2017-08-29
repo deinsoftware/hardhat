@@ -40,6 +40,11 @@ function fxGit() {
 }
 
 function fxStart() {
+    #Permissions
+    chmod +x mac.sh
+    chmod +x mac.command
+    chmod +x dist/mac/cmd.mac.sh
+    chmod +x dist/mac/HardHat
     if [ -n "$1" ]; then
         #Development
         cd dev
