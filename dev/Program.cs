@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.Threading;
 using dein.tools;
 
 namespace HardHat
@@ -9,28 +11,42 @@ namespace HardHat
 
         static void Main(string[] args)
         {
-            try
-            {
-                //Config
-                config = Settings.Read();
-                var cp = config.personal;
-                cp.hst = System.Environment.MachineName;
-                
-                //Update Environment Variables
-                Env.CmdUpdate();
-                
-                //Window
-                if (OS.IsWindows() && (config.window.width + config.window.height) > 0)
+            bool createdMutex;
+            Mutex mutex = new Mutex(true, Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString(), out createdMutex);
+            if(mutex.WaitOne(TimeSpan.Zero, true)) {
+                try
                 {
-                    Console.SetWindowSize(config.window.width, config.window.height);
+                    //Config
+                    config = Settings.Read();
+                    var cp = config.personal;
+                    cp.hst = System.Environment.MachineName;
+                    
+                    //Update Environment Variables
+                    Env.CmdUpdate();
+                    
+                    //Window
+                    if (OS.IsWindows() && (config.window.width + config.window.height) > 0)
+                    {
+                        Console.SetWindowSize(config.window.width, config.window.height);
+                    }
+                    
+                    Menu.Start();
                 }
-                
-                Menu.Start();
-            }
-            catch (Exception Ex)
-            {
+                catch (Exception Ex)
+                {
+                    Message.Error(
+                        msg: Ex.Message, 
+                        replace: true, 
+                        exit: true);
+                    Exit();
+                }
+                finally
+                {
+                    mutex.ReleaseMutex();
+                }
+            } else {
                 Message.Error(
-                    msg: Ex.Message, 
+                    msg: "HardHat is already running", 
                     replace: true, 
                     exit: true);
                 Exit();
