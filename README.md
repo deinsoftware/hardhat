@@ -77,7 +77,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | --- | --- |
 | `ANDROID_HOME` | D:\Applications\Android\SDK |
 | `ANDROID_NDK_HOME` | %ANDROID_HOME%\ndk-bundle |
-| `ANDROID_BT_VERSION` | 26.0.1 |
+| `ANDROID_BT_VERSION` | 26.0.2 |
 | `ANDROID_TEMPLATE` | D:\Applications\Android\Studio |
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
@@ -98,7 +98,7 @@ Replace `user` with your windows user name and `ANDROID_BT_VERSION` with your An
 ```bash
 export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
-export ANDROID_BT_VERSION="26.0.1"
+export ANDROID_BT_VERSION="26.0.2"
 export ANDROID_TEMPLATE="~/Applications/Android/Studio"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export GIT_HOME="/usr/local/bin/git"
