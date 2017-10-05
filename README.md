@@ -342,10 +342,12 @@ Developer
 │   └── ...
 │
 Applications
+├── Gradle
 ├── Android
 │   ├── Keystore
 │   │   ├── dev.jks
 │   │   └── prd.jks
+│   ├── Playtore
 │   ├── SDK
 │   └── Studio
 │       ├── gradle.properties
