@@ -342,8 +342,8 @@ Developer
 │   └── ...
 │
 Applications
-├── Gradle
 ├── Android
+│   ├── Gradle
 │   ├── Keystore
 │   │   ├── dev.jks
 │   │   └── prd.jks
