@@ -6,6 +6,10 @@
 !.vscode/extensions.json
 .history
 
+### SonarQube ###
+.sonar/
+.scannerwork/
+
 ### HardHat Project ###
 **/bin
 **/obj
