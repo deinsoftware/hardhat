@@ -9,6 +9,7 @@
 ### SonarQube ###
 .sonar/
 .scannerwork/
+.sonarlint/
 
 ### HardHat Project ###
 **/bin
