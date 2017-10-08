@@ -84,11 +84,11 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `GRADLE_HOME` | D:\Applications\Android\Gradle |
 | `GULP_PROJECT` | D:\Applications\Gulp |
 | `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_74 |
-| `NPM_HOME` | C:\Users\\`user`\AppData\Roaming\npm |
+| `NPM_HOME` | C:\Users\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
-Replace `user` with your windows user name and `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
+Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
 
 > **Where are environment variables?**  
 > In the System Properties window, click on the Advanced tab, then click the Environment Variables button near the bottom of that tab. In the Environment Variables window, highlight the Path variable in the "System variables" section and click the Edit button.
