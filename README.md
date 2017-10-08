@@ -84,7 +84,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `GRADLE_HOME` | D:\Applications\Android\Gradle |
 | `GULP_PROJECT` | D:\Applications\Gulp |
 | `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_74 |
-| `NPM_HOME` | C:\Users\%username%\AppData\Roaming\npm |
+| `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
