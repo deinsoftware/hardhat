@@ -8,12 +8,11 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public partial class Gulp {
+    public static partial class Gulp {
         public static void Select() {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -109,7 +108,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -173,7 +171,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -239,7 +236,7 @@ namespace HardHat {
                 }
 
                 $"".fmNewLine();
-                string dirPath = Paths.Combine(Env.Get("GULP_PROJECT"), c.gulp.srv); 
+                string dirPath = Paths.Combine(dein.tools.Env.Get("GULP_PROJECT"), c.gulp.srv); 
                 dirPath.Exists("Please review your configuration file.");
                 List<string> files = dirPath.Files($"*{c.gulp.ext}");
                 
@@ -293,7 +290,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -359,7 +355,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -411,7 +406,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -485,9 +479,9 @@ namespace HardHat {
                 $"{" Selected Project:", -25}".txtMuted();
                 $"{cp.spr}".txtDefault(ct.WriteLine);
                 
-                string[] dirs = new string[] { 
-                    Paths.Combine(Env.Get("GULP_PROJECT"),"www"),
-                    Paths.Combine(Env.Get("GULP_PROJECT"),"bld"),
+                string[] dirs = new string[] {
+                    Paths.Combine(dein.tools.Env.Get("GULP_PROJECT"),"www"),
+                    Paths.Combine(dein.tools.Env.Get("GULP_PROJECT"),"bld"),
                 };
 
                 $"".fmNewLine();
@@ -510,7 +504,7 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $" --> Uglifying...".txtInfo(ct.WriteLine);
-                CmdUglify(Paths.Combine(Env.Get("GULP_PROJECT")));
+                CmdUglify(Paths.Combine(dein.tools.Env.Get("GULP_PROJECT")));
 
                 $"".fmNewLine();
                 $" --> Replacing...".txtInfo(ct.WriteLine);
@@ -551,10 +545,9 @@ namespace HardHat {
                 $"{cp.spr}".txtDefault(ct.WriteLine);
 
                 string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.cmp); 
-                string dirSource = Paths.Combine(Env.Get("GULP_PROJECT"),"www");
+                string dirSource = Paths.Combine(dein.tools.Env.Get("GULP_PROJECT"),"www");
                 $"".fmNewLine();
                 $" --> Reverting...".txtInfo(ct.WriteLine);
-                List<string> exclude = new List<string>() {};
                 $"{" From:", -8}".txtMuted(); $"{dirSource}".txtDefault(ct.WriteLine);
                 $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
                 Paths.CopyAll(dirSource, dirPath, true, true); 
@@ -582,10 +575,10 @@ namespace HardHat {
             var cp =  Program.config.personal;
             try
             {
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr); 
+                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr);
                 CmdServer(
-                    dirPath, 
-                    Paths.Combine(Env.Get("GULP_PROJECT")),
+                    dirPath,
+                    Paths.Combine(dein.tools.Env.Get("GULP_PROJECT")),
                     cp.gbs.ipt,
                     cp.gbs.dmn,
                     cp.gbs.flv,

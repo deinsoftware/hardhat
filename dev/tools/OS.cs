@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace dein.tools
 {
-    public static class OS
+    public static class Os
     {
         public static bool IsWindows() =>
             RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
@@ -15,10 +15,10 @@ namespace dein.tools
         public static bool IsLinux() =>
             RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
 
-        public static string WhatIs() {
-            var os = (OS.IsWindows() ? "win" : null) ??
-                    (OS.IsMacOS()    ? "mac" : null) ??
-                    (OS.IsLinux()    ? "gnu" : null) ;
+        public static string Platform() {
+            var os = (Os.IsWindows() ? "win" : null) ??
+                    (Os.IsMacOS()    ? "mac" : null) ??
+                    (Os.IsLinux()    ? "gnu" : null) ;
             return os;
         }
     }

@@ -17,7 +17,7 @@ namespace dein.tools
         {
             string path = Path.Combine(paths);
             path = path.Slash();
-            switch (OS.WhatIs())
+            switch (Os.Platform())
             {
                 case "win":
                     path = path.Replace("~",$"{Env.Get("USERPROFILE")}");

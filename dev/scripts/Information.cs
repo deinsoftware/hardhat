@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using dein.tools;
@@ -8,7 +9,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    class Information {
+    public static class Information {
         public static void Versions() {
             Colorify.Default();
             Console.Clear();
@@ -19,19 +20,21 @@ namespace HardHat {
             $"".fmNewLine();
             
             $" Required".txtInfo(ct.WriteLine);
-            $"{" Gradle", -25}".txtPrimary();       Version.CmdGradle();
-            $"{" Gulp", -25}".txtPrimary();         Version.CmdGulp();
-            $"{" Java", -25}".txtPrimary();         Version.CmdJava();
-            $"{" Node", -25}".txtPrimary();         Version.CmdNode();
-            $"{" NPM", -25}".txtPrimary();          Version.CmdNPM();
+            $"{" Gradle", -25}".txtPrimary();           Version.CmdGradle();
+            $"{" Gulp", -25}".txtPrimary();             Version.CmdGulp();
+            $"{" Java", -25}".txtPrimary();             Version.CmdJava();
+            $"{" Node", -25}".txtPrimary();             Version.CmdNode();
+            $"{" NPM", -25}".txtPrimary();              Version.CmdNPM();
 
             $"".fmNewLine();
             $" Optional".txtInfo(ct.WriteLine);
-            $"{" Cordova", -25}".txtPrimary();      Version.CmdCordova();
-            $"{" GIT", -25}".txtPrimary();          Version.CmdGit();
-            $"{" NativeScript", -25}".txtPrimary(); Version.CmdNativescript();
-            $"{" TypeScript", -25}".txtPrimary();   Version.CmdTypescript();
-
+            $"{" Cordova", -25}".txtPrimary();          Version.CmdCordova();
+            $"{" GIT", -25}".txtPrimary();              Version.CmdGit();
+            $"{" NativeScript", -25}".txtPrimary();     Version.CmdNativescript();
+            $"{" TypeScript", -25}".txtPrimary();       Version.CmdTypescript();
+            $"{" SonarLint", -25}".txtPrimary();        Version.CmdSonarLint();
+            $"{" Sonar Scanner", -25}".txtPrimary();    Version.CmdSonarScanner();
+            
             $"".fmNewLine();
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
@@ -42,52 +45,36 @@ namespace HardHat {
             Menu.Start();
         }
 
+        private static readonly Dictionary<string, string> Variables = new Dictionary<string, string>
+        {
+            {"ANDROID_SDK"          , "ANDROID_HOME"        },
+            {"ANDROID_NDK"          , "ANDROID_NDK_HOME"    },
+            {"ANDROID_BUILDTOOL"    , "ANDROID_BT_VERSION"  },
+            {"ANDROID_TEMPLATE"     , "ANDROID_TEMPLATE"    },
+            {"JAVA"                 , "JAVA_HOME"           },
+            {"GIT"                  , "GIT_HOME"            },
+            {"GRADLE"               , "GRADLE_HOME"         },
+            {"GULP"                 , "GULP_PROJECT"        },
+            {"SONAR_LINT"           , "SONAR_LINT_HOME"     },
+            {"SONAR_QUBE"           , "SONAR_QUBE_HOME"     },
+            {"SONAR_SCANNER"        , "SONAR_SCANNER_HOME"  },
+            {"VPN"                  , "VPN_HOME"            }
+        };
+
         public static void Environment() {
             Colorify.Default();
             Console.Clear();
-
-            var c =  Program.config;
 
             $"=".bgInfo(ct.Repeat);
             $" ENVIRONMENT VARIABLES".bgInfo(ct.PadLeft);
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
-            
-            string android = "ANDROID_HOME";
-            $"{$" {android}:", -25}".txtPrimary();
-            Env.Status(android);
 
-            string ndk = "ANDROID_NDK_HOME";
-            $"{$" {ndk}:", -25}".txtPrimary();
-            Env.Status(ndk);
-
-            string abt = "ANDROID_BT_VERSION";
-            $"{$" {abt}:", -25}".txtPrimary();
-            Env.Status(abt);
-
-            string ast = "ANDROID_TEMPLATE";
-            $"{$" {ast}:", -25}".txtPrimary();
-            Env.Status(ast);
-
-            string java = "JAVA_HOME";
-            $"{$" {java}:", -25}".txtPrimary();
-            Env.Status(java);
-
-            string git = "GIT_HOME";
-            $"{$" {git}:", -25}".txtPrimary();
-            Env.Status(git);
-
-            string gradle = "GRADLE_HOME";
-            $"{$" {gradle}:", -25}".txtPrimary();
-            Env.Status(gradle);
-
-            string gulp = "GULP_PROJECT";
-            $"{$" {gulp}:", -25}".txtPrimary();
-            Env.Status(gulp);
-
-            string vpn = "VPN_HOME";
-            $"{$" {vpn}:", -25}".txtPrimary();
-            Env.Status(vpn);
+            foreach (var variable in Variables)
+            {
+                $"{$" {variable.Value}:", -25}".txtPrimary();
+                Env.Status(variable.Value);
+            }
 
             $"".fmNewLine();
             $"=".bgInfo(ct.Repeat);

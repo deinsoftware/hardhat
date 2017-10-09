@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using System;
 using System.Diagnostics;
+using System.Text;
 
 namespace dein.tools
 {
@@ -8,15 +9,18 @@ namespace dein.tools
     {
         public static void Copy(string val)
         {
-            switch (OS.WhatIs())
+            StringBuilder cmd = new StringBuilder();
+            cmd.Append($"echo ");
+            switch (Os.Platform())
             {
                 case "win":
-                    $"echo {val} | clip".Term();
+                    cmd.Append($"{val} | clip");
                     break;
                 case "mac":
-                    $"echo \"{val}\" | pbcopy".Term();
+                    cmd.Append($"\"{val}\" | pbcopy");
                     break;
             }
+            cmd.ToString().Term();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace dein.tools
         public static void CmdUpdate() {
             try
             {
-                if (OS.IsWindows()){
+                if (Os.IsWindows()){
                     $"refreshenv".Term();
                 }
             }

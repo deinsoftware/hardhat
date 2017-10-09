@@ -1,26 +1,30 @@
 using System;
 using System.Runtime.InteropServices;
+using System.Text;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class VPN {
+    static partial class Vpn {
         public static bool CmdStatus(string sitename, string dir) {
             bool cnt = false;
             try
             {
                 Response result = new Response();
-                switch (OS.WhatIs())
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"trac info -s {sitename} -tr true | ");
+                switch (Os.Platform())
                 {
                     case "win":
-                        result = $"trac info -s {sitename} -tr true | findstr status".Term(Output.Hidden, dir);
+                        cmd.Append($"findstr status");
                         break;
                     case "mac":
-                        result = $"trac info -s {sitename} -tr true | egrep -i 'status:'".Term(Output.Hidden, dir);
+                        cmd.Append($"egrep -i 'status:'");
                         break;
                 }
+                result = cmd.ToString().Term(Output.Hidden, dir);
                 result.stdout = result.stdout
                     .Replace("\r","")
                     .Replace("\n","");

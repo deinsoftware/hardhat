@@ -8,7 +8,7 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    class Menu {
+    public static class Menu {
         public static void Status(string sel = null){
             var c = Program.config;
             var cp =  Program.config.personal;
@@ -36,7 +36,7 @@ namespace HardHat {
                 cp.mnu.f_sel = String.IsNullOrEmpty(cp.sfl);
                 // Version Control System
                 if (!cp.mnu.p_sel){
-                    cp.mnu.v_bnc = $"git:{GIT.CmdBranch(dirPath)}";
+                    cp.mnu.v_bnc = $"git:{Git.CmdBranch(dirPath)}";
                 } else {
                     cp.mnu.v_bnc = "";
                 }
@@ -69,7 +69,7 @@ namespace HardHat {
                 g_cnf.Append(cp.gbs.srv);
                 g_cnf.Append(cp.gbs.syn ? "+Sync" : "");
                 cp.mnu.g_cnf = g_cnf.ToString();
-                cp.mnu.g_env = Env.Check("GULP_PROJECT");
+                cp.mnu.g_env = dein.tools.Env.Check("GULP_PROJECT");
                 cp.mnu.g_sel = String.IsNullOrEmpty(cp.gbs.dmn) || String.IsNullOrEmpty(cp.mnu.g_cnf);
                 // Build
                 StringBuilder b_cnf = new StringBuilder();
@@ -102,11 +102,11 @@ namespace HardHat {
                         break;
                 }
                 cp.mnu.b_cnf = b_cnf.ToString();
-                cp.mnu.b_env = Env.Check("GRADLE_HOME");
-                cp.mnu.t_env = Env.Check("ANDROID_TEMPLATE");
+                cp.mnu.b_env = dein.tools.Env.Check("GRADLE_HOME");
+                cp.mnu.t_env = dein.tools.Env.Check("ANDROID_TEMPLATE");
                 cp.mnu.b_sel = String.IsNullOrEmpty(cp.gdl.mde) && String.IsNullOrEmpty(cp.gdl.flv) && String.IsNullOrEmpty(cp.mnu.b_cnf);
                 //VPN
-                cp.mnu.v_env = Env.Check("VPN_HOME");
+                cp.mnu.v_env = dein.tools.Env.Check("VPN_HOME");
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -255,7 +255,7 @@ namespace HardHat {
                     if (!cp.mnu.p_sel) Project.File();
                     break;
                 case "pi":
-                    if (!cp.mnu.p_sel && !cp.mnu.f_sel) ADB.Install();
+                    if (!cp.mnu.p_sel && !cp.mnu.f_sel) Adb.Install();
                     break;
                 case "pd":
                     if (!cp.mnu.p_sel && !cp.mnu.f_sel) Project.Duplicate();
@@ -271,19 +271,19 @@ namespace HardHat {
                     break;
                 // Version Control System
                 case "vd":
-                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) VCS.Actions(true, false, false);
+                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) Vcs.Actions(true, false, false);
                     break;
                 case "vp":
-                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) VCS.Actions(false, true, false);
+                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) Vcs.Actions(false, true, false);
                     break;
                 case "vr":
-                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) VCS.Actions(false, false, true);
+                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) Vcs.Actions(false, false, true);
                     break;
                 case "vd+p":
-                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) VCS.Actions(true, true, false);
+                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) Vcs.Actions(true, true, false);
                     break;
                 case "vr+p":
-                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) VCS.Actions(false, true, true);
+                    if (!cp.mnu.p_sel && !cp.mnu.v_sel) Vcs.Actions(false, true, true);
                     break;
                 //Gulp
                 case "g":
@@ -380,17 +380,17 @@ namespace HardHat {
                     break;
                 // ADB
                 case "ar":
-                    ADB.Restart();
+                    Adb.Restart();
                     break;
                 case "ad":
-                    ADB.Devices();
+                    Adb.Devices();
                     break;
                 case "aw":
                     if (!cp.adb.wst)
                     {
-                        ADB.Configuration();
+                        Adb.Configuration();
                     } else {
-                        ADB.Disconnect();
+                        Adb.Disconnect();
                     }
                     break;
                 // Information
@@ -408,7 +408,6 @@ namespace HardHat {
                     Menu.Start();
                     break;
                 default:
-                    //Color.Sample();
                     cp.mnu.sel = "m";
                     break;
             }

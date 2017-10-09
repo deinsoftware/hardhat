@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class Gulp {
+    public static partial class Gulp {
         public static void CmdUglify(string dir){
             try
             {
@@ -23,7 +23,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                if (OS.IsMacOS()){
+                if (Os.IsMacOS()){
                     cmd.Append($"sudo ");
                 }
                 cmd.Append($"gulp --pth {path.Slash()}/");
@@ -40,7 +40,7 @@ namespace HardHat
                 cmd.Append($" --sync {(syn ? "Y" : "N")}");
                 cmd.Append($" --host {lip}");
                 cmd.Append($" --ptc {ptc}");
-                cmd.Append($" --os {OS.WhatIs()}");
+                cmd.Append($" --os {Os.Platform()}");
                 cmd.ToString().Term(Output.External, dir);
             }
             catch (Exception Ex){

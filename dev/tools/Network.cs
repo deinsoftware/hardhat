@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace dein.tools
 {
-    class Network
+    public static class Network
     {
         public static string GetLocalIPAddress()
         {

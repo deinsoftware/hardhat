@@ -31,7 +31,7 @@ namespace dein.tools
                 {
                     dir.Exists("");
                 }
-                switch (OS.WhatIs())
+                switch (Os.Platform())
                 {
                     case "win":
                         fnm = "cmd.exe";
@@ -81,10 +81,10 @@ namespace dein.tools
                 startInfo.FileName = fnm;
                 startInfo.Arguments = cmd;
                 startInfo.RedirectStandardInput = false;
-                startInfo.RedirectStandardOutput = !(output == Output.External);
-                startInfo.RedirectStandardError = !(output == Output.External);
+                startInfo.RedirectStandardOutput = (output != Output.External);
+                startInfo.RedirectStandardError = (output != Output.External);
                 startInfo.UseShellExecute = false;
-                startInfo.CreateNoWindow = !(output == Output.External);
+                startInfo.CreateNoWindow = (output != Output.External);
                 if (!String.IsNullOrEmpty(dir) && output != Output.External){
                     startInfo.WorkingDirectory = dir;
                 }

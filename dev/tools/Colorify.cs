@@ -98,43 +98,43 @@ namespace dein.tools
                     Console.WriteLine(s.Split('|')[1].PadLeft(l - 0));
                     break;
                 case Type.Repeat:
-                    char c = ( String.IsNullOrEmpty(s) ? ' ' : s.ToCharArray()[0] );
+                    char c = ( String.IsNullOrEmpty(s) ? ' ' : s[0] );
                     s = new String(c, Console.WindowWidth - 1);
                     Console.WriteLine(s);
                     break;
                 case Type.Shell:
-                    string line = "";
+                    StringBuilder line = new StringBuilder();
+                    //string line = "";
                     string[] words = s.Split(' ');
+                    int chunkSize = (Console.WindowWidth - 3);
                     foreach (var item in words)
                     {
-                        int chunkSize = (Console.WindowWidth - 3);
                         if ( (line.Length + item.Length) >= chunkSize )
                         {
-                            Console.WriteLine($" {line.Trim()}");
-                            line = "";
+                            Console.WriteLine($" {line.ToString().Trim()}");
+                            line.Clear();
                         }
                         if ( item.Length >= chunkSize )
                         {
                             if (line.Length > 0){
-                                Console.WriteLine($" {line.Trim()}");
+                                Console.WriteLine($" {line.ToString().Trim()}");
+                                line.Clear();
                             }
-                            line = "";
                             for (int i = 0; i < item.Length ; i += chunkSize)
                             {
                                 if (i + chunkSize > item.Length) chunkSize = item.Length  - i;
                                 Console.WriteLine($" {item.Substring(i, chunkSize).Trim()}");
+                                line.Clear();
                             }
-                            line = "";
                         } else {
-                            line += $"{item} ";
+                            line.Append($"{item} ");
                         }
                     }
-                    if (!String.IsNullOrEmpty(line.Trim()))
+                    if (!String.IsNullOrEmpty(line.ToString().Trim()))
                     {
-                        Console.WriteLine($" {line.Trim()}");
+                        Console.WriteLine($" {line.ToString().Trim()}");
                     }
                     break;
-                case Type.Write:
                 default:
                     Console.Write(s);
                     break;

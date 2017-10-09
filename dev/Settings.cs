@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace HardHat
 {
-    class Settings{
+    static class Settings{
         public static void Save(Config config){
             string json = JsonConvert.SerializeObject(config);
             File.WriteAllText($"{Paths.Combine("~", $".hardhat.config.json")}", json);
@@ -20,7 +20,7 @@ namespace HardHat
                 config.window.width = 86;
 
                 config.path = new PathConfiguration();
-                switch (OS.WhatIs())
+                switch (Os.Platform())
                 {
                     case "win":
                         config.path.dir = "D:/Developer";
@@ -44,7 +44,7 @@ namespace HardHat
                 config.gulp.srv = "server";
                 config.gulp.ext = ".json";
 
-                config.vpn = new VPNConfiguration();
+                config.vpn = new VpnConfiguration();
                 config.vpn.snm = "";
 
                 config.personal = new PersonalConfiguration();
@@ -64,7 +64,7 @@ namespace HardHat
                 config.personal.gbs.syn = false;
                 config.personal.gbs.ptc = "http";
                 config.personal.gbs.ipt = "";
-                config.personal.adb = new ADBConfiguration();
+                config.personal.adb = new AdbConfiguration();
                 config.personal.adb.dvc = "";
                 config.personal.adb.wip = "";
                 config.personal.adb.wpr = "";
@@ -98,7 +98,7 @@ namespace HardHat
         public PathConfiguration path { get; set; }
         public AndroidConfiguration android { get; set; }
         public GulpConfiguration gulp { get; set; }
-        public VPNConfiguration vpn { get; set; }
+        public VpnConfiguration vpn { get; set; }
         public PersonalConfiguration personal { get; set; }
     }
 
@@ -129,7 +129,7 @@ namespace HardHat
         public string ext { get; set; }                     //Server Extension
     }
 
-    class VPNConfiguration {
+    class VpnConfiguration {
         public string snm { get; set; }                     //Sitename
     }
     
@@ -141,7 +141,7 @@ namespace HardHat
         public string sfl { get; set; }                     //Selected File
         public BuildConfiguration gdl { get; set; }         //Gradle Configuration
         public ServerConfiguration gbs { get; set; }        //Gradle Server
-        public ADBConfiguration adb { get; set; }           //ADB Configuration
+        public AdbConfiguration adb { get; set; }           //ADB Configuration
         public MenuConfiguration mnu { get; set; }          //Menu Configuration
     }
 
@@ -160,7 +160,7 @@ namespace HardHat
         public string ipt { get; set; }
     }
 
-    class ADBConfiguration {
+    class AdbConfiguration {
         public string dvc { get; set; }                     //Device Name
         public string wip { get; set; }                     //WiFi IP
         public string wpr { get; set; }                     //WiFi Port

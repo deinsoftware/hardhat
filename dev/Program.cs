@@ -5,7 +5,7 @@ using dein.tools;
 
 namespace HardHat
 {
-    class Program
+    static class Program
     {
         public static Config config  { get; set; }
 
@@ -20,12 +20,12 @@ namespace HardHat
                     config = Settings.Read();
                     var cp = config.personal;
                     cp.hst = System.Environment.MachineName;
-                    
+
                     //Update Environment Variables
-                    Env.CmdUpdate();
+                    dein.tools.Env.CmdUpdate();
                     
                     //Window
-                    if (OS.IsWindows() && (config.window.width + config.window.height) > 0)
+                    if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
                     {
                         Console.SetWindowSize(config.window.width, config.window.height);
                     }

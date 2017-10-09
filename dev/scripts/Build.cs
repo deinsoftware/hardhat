@@ -12,7 +12,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -106,7 +105,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -158,7 +156,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -224,7 +221,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -288,7 +284,7 @@ namespace HardHat {
             var cp =  Program.config.personal;
             try
             {
-                VPN.Verification();
+                Vpn.Verification();
 
                 string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
                 CmdGradle(dirPath, cp.mnu.b_cnf);
@@ -310,7 +306,7 @@ namespace HardHat {
             var cp =  Program.config.personal;
             try
             {
-                VPN.Verification();
+                Vpn.Verification();
 
                 string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
                 CmdClean(dirPath);
@@ -333,7 +329,7 @@ namespace HardHat {
             var cp = Program.config.personal;
             try
             {
-                string sourcePath = Paths.Combine(Env.Get("ANDROID_TEMPLATE"));
+                string sourcePath = Paths.Combine(dein.tools.Env.Get("ANDROID_TEMPLATE"));
                 string destinationPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
 
                 $"=".bgInfo(ct.Repeat);

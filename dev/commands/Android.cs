@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class ADB{
+    static partial class Adb{
         public static bool CmdDevices() {
             bool dev = false;
             string response = "";
@@ -17,12 +17,16 @@ namespace HardHat
                 result = $"adb devices -l".Term();
                 response = Strings.Remove(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
                 
-                if (!String.IsNullOrEmpty(result.stdout))
+                if (
+                    !String.IsNullOrEmpty(result.stdout) &&
+                    (
+                        response.Contains("device usb:") || 
+                        response.Contains("device product:") || 
+                        response.Contains("device")
+                    )
+                )
                 {
-                    if (response.Contains("device usb:") || response.Contains("device product:") || response.Contains("device"))
-                    {
-                        dev = true;
-                    }
+                    dev = true;
                 }
             }
             catch (Exception Ex){
@@ -128,7 +132,7 @@ namespace HardHat
             {
                 
                 Response result = new Response();
-                result = $"adb disconnect {ip}:{port}".Term(Output.Internal);;
+                result = $"adb disconnect {ip}:{port}".Term(Output.Internal);
                 if (result.stdout.StartsWith($"disconnected {ip}:{port}")){
                     connected = false;
                 } else {

@@ -6,7 +6,7 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    class VCS {
+    public static class Vcs {
         public static void Actions(bool discard, bool pull, bool reset)
         {
             Colorify.Default();
@@ -16,9 +16,6 @@ namespace HardHat {
             var cp = Program.config.personal;
             try
             {
-                string sourcePath = Paths.Combine(Env.Get("ANDROID_TEMPLATE"));
-                string destinationPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
-
                 $"=".bgInfo(ct.Repeat);
                 $" GIT".bgInfo(ct.PadLeft);
                 $"=".bgInfo(ct.Repeat);
@@ -32,19 +29,19 @@ namespace HardHat {
                 if (discard) {
                     $"".fmNewLine();
                     $" --> Discarding...".txtInfo(ct.WriteLine);
-                    GIT.CmdDiscard(dirPath);
+                    Git.CmdDiscard(dirPath);
                 }
 
                 if (reset){
                     $"".fmNewLine();
                     $" --> Reseting...".txtInfo(ct.WriteLine);
-                    GIT.CmdReset(dirPath);
+                    Git.CmdReset(dirPath);
                 }
                 
                 if (pull) {
                     $"".fmNewLine();
                     $" --> Updating...".txtInfo(ct.WriteLine);
-                    GIT.CmdPull(dirPath);
+                    Git.CmdPull(dirPath);
                 }
 
                 $"".fmNewLine();

@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    static partial class ADB {
+    static partial class Adb {
         public static void Install() {
             Colorify.Default();
             Console.Clear();
@@ -60,7 +60,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -106,7 +105,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -167,7 +165,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -231,7 +228,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -273,7 +269,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -316,7 +311,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {
@@ -348,7 +342,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             var cp =  Program.config.personal;
             try
             {

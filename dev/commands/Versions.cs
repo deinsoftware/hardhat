@@ -7,20 +7,8 @@ using ct = dein.tools.Colorify.Type;
 namespace HardHat 
 {
     static partial class Version {
-        public static void CmdGulp() {
-            try
-            {
-                Response result = new Response();
-                result = $"gulp --v".Term();
-                string response = Shell.GetWord(result.stdout, 3);
-                Shell.Result(response);
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
+        
+        #region Required
 
         public static void CmdGradle() {
             try
@@ -36,6 +24,22 @@ namespace HardHat
                 );
             }
         }
+
+        public static void CmdGulp() {
+            try
+            {
+                Response result = new Response();
+                result = $"gulp --v".Term();
+                string response = Shell.GetWord(result.stdout, 3);
+                Shell.Result(response);
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
+
         public static void CmdJava() {
             try
             {
@@ -80,13 +84,16 @@ namespace HardHat
             }
         }
 
-        public static void CmdGit() {
+        #endregion
+        
+        #region Optional
+
+        public static void CmdCordova() {
             try
             {
                 Response result = new Response();
-                result = $"git --version".Term();
-                string response = Shell.GetWord(result.stdout, 2);
-                Shell.Result(response);
+                result = $"cordova -v".Term();
+                Shell.Result(result.stdout);
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -95,12 +102,13 @@ namespace HardHat
             }
         }
 
-        public static void CmdCordova() {
+        public static void CmdGit() {
             try
             {
                 Response result = new Response();
-                result = $"cordova -v".Term();
-                Shell.Result(result.stdout);
+                result = $"git --version".Term();
+                string response = Shell.GetWord(result.stdout, 2);
+                Shell.Result(response);
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -137,5 +145,36 @@ namespace HardHat
                 );
             }
         }
+
+        public static void CmdSonarLint() {
+            try
+            {
+                Response result = new Response();
+                result = $"sonarlint -v".Term();
+                string response = Shell.ExtractLine(result.stdout, "INFO: ", "INFO: ");
+                Shell.Result(response);
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
+        public static void CmdSonarScanner() {
+            try
+            {
+                Response result = new Response();
+                result = $"sonar-scanner -v".Term();
+                string response = Shell.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
+                Shell.Result(response);
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
+
+        #endregion
     }
 }

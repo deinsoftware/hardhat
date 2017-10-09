@@ -6,20 +6,21 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class VPN {
+    static partial class Vpn {
+        
         public static void Verification() {
             var c = Program.config;
             var cp = Program.config.personal;
             try
             {
-                if (cp.mnu.v_env)
+                if (
+                    cp.mnu.v_env &&
+                    !Vpn.CmdStatus(c.vpn.snm, dein.tools.Env.Get("VPN_HOME"))
+                )
                 {
-                    if (!VPN.CmdStatus(c.vpn.snm, Env.Get("VPN_HOME")))
-                    {
-                        VPN.CmdDisconnect(Env.Get("VPN_HOME"));
-                        VPN.CmdConnect(c.vpn.snm, Env.Get("VPN_HOME"));
-                        Message.Alert(" Please connect your VPN and try again.");
-                    }
+                    Vpn.CmdDisconnect(dein.tools.Env.Get("VPN_HOME"));
+                    Vpn.CmdConnect(c.vpn.snm, dein.tools.Env.Get("VPN_HOME"));
+                    Message.Alert(" Please connect your VPN and try again.");
                 }
             }
             catch (Exception Ex){

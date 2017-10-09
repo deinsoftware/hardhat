@@ -10,7 +10,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    class Configuration {
+    static class Configuration {
         public static void Select() {
             Colorify.Default();
             Console.Clear();
@@ -113,7 +113,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -168,7 +167,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -251,7 +249,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -305,7 +302,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -349,7 +345,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -403,7 +398,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -444,7 +438,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -485,7 +478,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -526,7 +518,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -575,7 +566,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -616,7 +606,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -659,7 +648,6 @@ namespace HardHat {
             Console.Clear();
 
             var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);

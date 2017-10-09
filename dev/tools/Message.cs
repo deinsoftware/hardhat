@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace dein.tools
 {
-    class Message
+    public static class Message
     {
         public static void Critical(string msg = null){
             var cp =  Program.config.personal;

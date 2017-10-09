@@ -1,3 +1,6 @@
+### VisualStudio ###
+.vs/*
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
