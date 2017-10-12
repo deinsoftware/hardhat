@@ -6,13 +6,20 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    static partial class Adb {
+    partial class Adb {
+        public static Config _c { get; set; }
+        public static PersonalConfiguration _cp { get; set; }
+
+        static Adb()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+
         public static void Install() {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -20,21 +27,21 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld, cp.sfl); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"{" Selected File:", -25}".txtMuted();
-                $"{cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" --> Checking devices...".txtInfo(ct.WriteLine);
                 if (CmdDevices()){
                     $"".fmNewLine();
                     $" --> Installing...".txtInfo(ct.WriteLine);
-                    Response result = CmdInstall(dirPath, cp.adb.dvc);
+                    Response result = CmdInstall(dirPath, _cp.adb.dvc);
                     if (result.code == 0) {
                         $"".fmNewLine();
                         $" --> Launching...".txtInfo(ct.WriteLine);
-                        CmdLaunch(dirPath, cp.adb.dvc);
+                        CmdLaunch(dirPath, _cp.adb.dvc);
                     }
 
                     $"".fmNewLine();
@@ -60,7 +67,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -68,11 +74,11 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                if (cp.adb.wst)
+                if (_cp.adb.wst)
                 {
                     $" --> Disconnecting device...".txtInfo(ct.WriteLine);
-                    CmdDisconnect(cp.adb.wip, cp.adb.wpr);
-                    cp.adb.wst = false;
+                    CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
+                    _cp.adb.wst = false;
                     $"".fmNewLine();
                 }
                 
@@ -83,7 +89,7 @@ namespace HardHat {
                 $" --> Start Server...".txtInfo(ct.WriteLine);
                 CmdStartServer();
 
-                cp.adb.dvc = "";
+                _cp.adb.dvc = "";
 
                 $"".fmNewLine();
                 $"=".bgInfo(ct.Repeat);
@@ -105,7 +111,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -118,7 +123,7 @@ namespace HardHat {
                     string[] lines = Shell.SplitLines(list);
 
                     if (lines.Length < 1) {
-                        cp.adb.dvc = "";
+                        _cp.adb.dvc = "";
                     } else {
                         var i = 1;
                         foreach (string l in lines)
@@ -145,10 +150,10 @@ namespace HardHat {
                     {
                         Validation.Range(opt, 1, list.Length);
                         var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
-                        cp.adb.dvc = sel;
+                        _cp.adb.dvc = sel;
                     }
                 } else {
-                    cp.adb.dvc = "";
+                    _cp.adb.dvc = "";
                     Message.Alert(" No device found.");
                 }
                 
@@ -165,7 +170,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -173,16 +177,16 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                cp.ipl = Network.GetLocalIPAddress();
+                _cp.ipl = Network.GetLocalIPAddress();
                 $"{" Current IP:", -25}".txtMuted();
-                $"{cp.ipl}".txtDefault(ct.WriteLine);
+                $"{_cp.ipl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
-                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{cp.adb.wip}".txtDefault(ct.WriteLine);
-                $"{" [P] Port:"       , -25}".txtPrimary();   $"{cp.adb.wpr}".txtDefault(ct.WriteLine);
+                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{_cp.adb.wip}".txtDefault(ct.WriteLine);
+                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_cp.adb.wpr}".txtDefault(ct.WriteLine);
                 
                 $"".fmNewLine();
-                $"{" [C] Connect", -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(cp.adb.wip));
+                $"{" [C] Connect", -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
                 $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
 
                 $"".fmNewLine();
@@ -201,7 +205,7 @@ namespace HardHat {
                         Port();
                         break;
                     case "c":
-                        if (!String.IsNullOrEmpty(cp.adb.wip))
+                        if (!String.IsNullOrEmpty(_cp.adb.wip))
                         {
                             Connect();
                             Message.Error();
@@ -211,7 +215,7 @@ namespace HardHat {
                         Menu.Start();
                         break;
                     default:
-                        cp.mnu.sel = "aw";
+                        _cp.mnu.sel = "aw";
                         break;
                 }
 
@@ -228,7 +232,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -246,13 +249,13 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                cp.ipb = Network.GetLocalIPBase(cp.ipl);
-                $"{$" {cp.ipb} ", -25}".txtInfo();
+                _cp.ipb = Network.GetLocalIPBase(_cp.ipl);
+                $"{$" {_cp.ipb} ", -25}".txtInfo();
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
                     Validation.Range(opt, 1, 255);
-                    cp.adb.wip = $"{cp.ipb}{opt}";
+                    _cp.adb.wip = $"{_cp.ipb}{opt}";
                 }
 
                 Menu.Status();
@@ -269,7 +272,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -292,9 +294,9 @@ namespace HardHat {
                 
                 if (!String.IsNullOrEmpty(opt)){
                     Validation.Range(opt, 5555, 5585);
-                    cp.adb.wpr = opt;
+                    _cp.adb.wpr = opt;
                 } else {
-                    cp.adb.wpr = "5555";
+                    _cp.adb.wpr = "5555";
                 }
 
                 Menu.Status();
@@ -311,7 +313,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -320,8 +321,8 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $" --> Connecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdConnect(cp.adb.wip, cp.adb.wpr);
-                cp.adb.wst = connected;
+                bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
+                _cp.adb.wst = connected;
 
                 $"".fmNewLine();
                 $"=".bgInfo(ct.Repeat);
@@ -342,7 +343,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -351,11 +351,11 @@ namespace HardHat {
                 $"".fmNewLine();
                 
                 $" --> Disconnecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdDisconnect(cp.adb.wip, cp.adb.wpr);
-                cp.adb.wst = connected;
-                if (cp.adb.dvc == $"{cp.adb.wip}:{cp.adb.wpr}")
+                bool connected = CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
+                _cp.adb.wst = connected;
+                if (_cp.adb.dvc == $"{_cp.adb.wip}:{_cp.adb.wpr}")
                 {
-                    cp.adb.dvc = "";
+                    _cp.adb.dvc = "";
                 }
 
                 $"".fmNewLine();
@@ -374,13 +374,19 @@ namespace HardHat {
             }
         }
     }
-    static partial class BuildTools {
+    partial class BuildTools {
+        public static Config _c { get; set; }
+        public static PersonalConfiguration _cp { get; set; }
+
+        static BuildTools()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
         public static void SignerVerify() {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -388,13 +394,13 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld, cp.sfl); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"{" Selected File:", -25}".txtMuted();
-                $"{cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
-                $" --> Verifing...".txtInfo(ct.WriteLine);
+                $" --> Verifying...".txtInfo(ct.WriteLine);
                 CmdSignerVerify(dirPath);
 
                 $"".fmNewLine();
@@ -417,8 +423,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -426,10 +430,10 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld, cp.sfl); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"{" Selected File:", -25}".txtMuted();
-                $"{cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);

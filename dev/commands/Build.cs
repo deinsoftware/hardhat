@@ -29,5 +29,16 @@ namespace HardHat
                 );
             }
         }
+        public static void CmdRefresh(string path, string conf, string device = null){
+            try
+            {
+                $"gradle -p {path} --refresh-dependencies".Term(Output.External);
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
     }
 }
