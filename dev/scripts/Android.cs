@@ -137,7 +137,7 @@ namespace HardHat {
                     }
 
                     $"".fmNewLine();
-                    $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                    $"{"[EMPTY] None", 82}".txtDanger(ct.WriteLine);
                     
                     $"".fmNewLine();
                     $"=".bgInfo(ct.Repeat);
@@ -151,6 +151,8 @@ namespace HardHat {
                         Validation.Range(opt, 1, list.Length);
                         var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
                         _cp.adb.dvc = sel;
+                    } else {
+                        _cp.adb.dvc = "";
                     }
                 } else {
                     _cp.adb.dvc = "";
