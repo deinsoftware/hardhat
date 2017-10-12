@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    partial class Adb{
+    public partial class Adb{
         public static bool CmdDevices() {
             bool dev = false;
             string response = "";

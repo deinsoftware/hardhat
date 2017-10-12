@@ -7,12 +7,20 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    static partial class Build {
+    public partial class Build {
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
+
+        static Build()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+        
         public static void Select() {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -21,18 +29,18 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
 
-                if (!cp.mnu.b_sel)
+                if (!_cp.mnu.b_sel)
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();
-                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{cp.gdl.dmn}".txtDefault(ct.WriteLine);
+                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);
                 string b_flv = "";
-                switch (cp.gdl.flv?.ToLower())
+                switch (_cp.gdl.flv?.ToLower())
                 {
                     case "a":
                         b_flv = "Alfa";
@@ -52,7 +60,7 @@ namespace HardHat {
                 }
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
                 string b_mde = "";
-                switch (cp.gdl.mde?.ToLower())
+                switch (_cp.gdl.mde?.ToLower())
                 {
                     case "d":
                         b_mde = "Debug";
@@ -71,7 +79,7 @@ namespace HardHat {
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
-                cp.mnu.sel = $"b>{opt.ToLower()}";
+                _cp.mnu.sel = $"b>{opt.ToLower()}";
 
                 switch (opt.ToLower())
                 {
@@ -88,7 +96,7 @@ namespace HardHat {
                         Menu.Start();
                         break;
                     default:
-                        cp.mnu.sel = "b";
+                        _cp.mnu.sel = "b";
                         break;
                 }
 
@@ -105,7 +113,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -114,12 +121,12 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
 
-                if (!cp.mnu.b_sel)
+                if (!_cp.mnu.b_sel)
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();
@@ -137,9 +144,9 @@ namespace HardHat {
                 string opt_dmn = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt_dmn))
                 {
-                    cp.gdl.dmn = $"{opt_dmn}";
+                    _cp.gdl.dmn = $"{opt_dmn}";
                 } else {
-                    cp.gdl.dmn = $"";
+                    _cp.gdl.dmn = $"";
                 }
 
                 Menu.Status();
@@ -156,7 +163,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -165,12 +171,12 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
 
-                if (!cp.mnu.b_sel)
+                if (!_cp.mnu.b_sel)
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();
@@ -197,10 +203,10 @@ namespace HardHat {
                     case "s":
                     case "p":
                     case "d":
-                        cp.gdl.flv = opt_flv;
+                        _cp.gdl.flv = opt_flv;
                         break;
                     case "":
-                        cp.gdl.flv = "a";
+                        _cp.gdl.flv = "a";
                         break;
                     default:
                         Message.Error();
@@ -221,7 +227,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -230,12 +235,12 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
 
-                if (!cp.mnu.b_sel)
+                if (!_cp.mnu.b_sel)
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();
@@ -256,10 +261,10 @@ namespace HardHat {
                 {
                     case "d":
                     case "r":
-                        cp.gdl.mde = opt_mde;
+                        _cp.gdl.mde = opt_mde;
                         break;
                     case "":
-                        cp.gdl.mde = "d";
+                        _cp.gdl.mde = "d";
                         break;
                     default:
                         Message.Error();
@@ -280,14 +285,12 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 Vpn.Verification();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
-                CmdGradle(dirPath, cp.mnu.b_cnf);
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                CmdGradle(dirPath, _cp.mnu.b_cnf);
 
                 Menu.Start();
             }
@@ -302,13 +305,11 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 Vpn.Verification();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -325,12 +326,10 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c = Program.config;
-            var cp = Program.config.personal;
             try
             {
                 string sourcePath = Paths.Combine(dein.tools.Env.Get("ANDROID_TEMPLATE"));
-                string destinationPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj); 
+                string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
 
                 $"=".bgInfo(ct.Repeat);
                 $" BUILD CONFIGURATION > PROPERTIES".bgInfo(ct.PadLeft);
@@ -338,7 +337,7 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 List<string> filter = new List<string>() { 

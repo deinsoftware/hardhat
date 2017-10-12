@@ -47,18 +47,18 @@ namespace HardHat {
 
         private static readonly Dictionary<string, string> Variables = new Dictionary<string, string>
         {
-            {"ANDROID_SDK"          , "ANDROID_HOME"        },
-            {"ANDROID_NDK"          , "ANDROID_NDK_HOME"    },
-            {"ANDROID_BUILDTOOL"    , "ANDROID_BT_VERSION"  },
-            {"ANDROID_TEMPLATE"     , "ANDROID_TEMPLATE"    },
-            {"JAVA"                 , "JAVA_HOME"           },
-            {"GIT"                  , "GIT_HOME"            },
-            {"GRADLE"               , "GRADLE_HOME"         },
-            {"GULP"                 , "GULP_PROJECT"        },
-            {"SONAR_LINT"           , "SONAR_LINT_HOME"     },
-            {"SONAR_QUBE"           , "SONAR_QUBE_HOME"     },
-            {"SONAR_SCANNER"        , "SONAR_SCANNER_HOME"  },
-            {"VPN"                  , "VPN_HOME"            }
+            {"AndroidSDK"       , "ANDROID_HOME"        },
+            {"AndroidNDK"       , "ANDROID_NDK_HOME"    },
+            {"AndroidBuildTool" , "ANDROID_BT_VERSION"  },
+            {"AndroidTemplate"  , "ANDROID_TEMPLATE"    },
+            {"Java"             , "JAVA_HOME"           },
+            {"Git"              , "GIT_HOME"            },
+            {"Gradle"           , "GRADLE_HOME"         },
+            {"Gulp"             , "GULP_PROJECT"        },
+            {"SonarLint"        , "SONAR_LINT_HOME"     },
+            {"SonarQube"        , "SONAR_QUBE_HOME"     },
+            {"SonarScanner"     , "SONAR_SCANNER_HOME"  },
+            {"Vpn"              , "VPN_HOME"            }
         };
 
         public static void Environment() {

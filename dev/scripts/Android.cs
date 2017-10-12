@@ -6,9 +6,9 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    partial class Adb {
-        public static Config _c { get; set; }
-        public static PersonalConfiguration _cp { get; set; }
+    public partial class Adb {
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
 
         static Adb()
         {
@@ -375,14 +375,15 @@ namespace HardHat {
         }
     }
     partial class BuildTools {
-        public static Config _c { get; set; }
-        public static PersonalConfiguration _cp { get; set; }
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
 
         static BuildTools()
         {
             _c = Program.config;
             _cp = Program.config.personal;
         }
+        
         public static void SignerVerify() {
             Colorify.Default();
             Console.Clear();

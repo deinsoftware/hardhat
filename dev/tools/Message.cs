@@ -8,9 +8,17 @@ namespace dein.tools
 {
     public static class Message
     {
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
+
+        static Message()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+
         public static void Critical(string msg = null){
-            var cp =  Program.config.personal;
-            cp.mnu.sel = "m";
+            _cp.mnu.sel = "m";
             Error(msg, !String.IsNullOrEmpty(msg));
         }
 

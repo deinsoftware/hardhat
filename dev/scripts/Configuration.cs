@@ -10,13 +10,20 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    static class Configuration {
+    public class Configuration {
+
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
+
+        static Configuration()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+
         public static void Select() {
             Colorify.Default();
             Console.Clear();
-
-            var c =  Program.config;
-            var cp =  Program.config.personal;
 
             $"=".bgInfo(ct.Repeat);
             $" CONFIGURATION".bgInfo(ct.PadLeft);
@@ -24,27 +31,27 @@ namespace HardHat {
             $"".fmNewLine();
 
             $" [P] Paths".txtMuted(ct.WriteLine);
-            $"{"   [D] Development", -25}".txtPrimary();   $"{c.path.dir}".txtDefault(ct.WriteLine);
-            $"{"   [B] Business"   , -25}".txtPrimary();   $"{c.path.bsn}".txtDefault(ct.WriteLine);
-            $"{"   [P] Projects"   , -25}".txtPrimary();   $"{c.path.prj}".txtDefault(ct.WriteLine);
-            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{c.path.flt}".txtDefault(ct.WriteLine);
+            $"{"   [D] Development", -25}".txtPrimary();   $"{_c.path.dir}".txtDefault(ct.WriteLine);
+            $"{"   [B] Business"   , -25}".txtPrimary();   $"{_c.path.bsn}".txtDefault(ct.WriteLine);
+            $"{"   [P] Projects"   , -25}".txtPrimary();   $"{_c.path.prj}".txtDefault(ct.WriteLine);
+            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{_c.path.flt}".txtDefault(ct.WriteLine);
 
             $"".fmNewLine();
             $" [A] Android Path".txtMuted(ct.WriteLine);
-            $"{"   [P] Project"    , -25}".txtPrimary();   $"{c.android.prj}".txtDefault(ct.WriteLine);
-            $"{"   [B] Build"      , -25}".txtPrimary();   $"{c.android.bld}".txtDefault(ct.WriteLine);
-            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{c.android.ext}".txtDefault(ct.WriteLine);
-            $"{"   [C] Compact"    , -25}".txtPrimary();   $"{c.android.cmp}".txtDefault(ct.WriteLine);
-            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{string.Join(",", c.android.flt)}".txtDefault(ct.WriteLine);
+            $"{"   [P] Project"    , -25}".txtPrimary();   $"{_c.android.prj}".txtDefault(ct.WriteLine);
+            $"{"   [B] Build"      , -25}".txtPrimary();   $"{_c.android.bld}".txtDefault(ct.WriteLine);
+            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{_c.android.ext}".txtDefault(ct.WriteLine);
+            $"{"   [C] Compact"    , -25}".txtPrimary();   $"{_c.android.cmp}".txtDefault(ct.WriteLine);
+            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{string.Join(",", _c.android.flt)}".txtDefault(ct.WriteLine);
 
             $"".fmNewLine();
             $" [G] Gulp Path".txtMuted(ct.WriteLine);
-            $"{"   [S] Server"     , -25}".txtPrimary();   $"{c.gulp.srv}".txtDefault(ct.WriteLine);
-            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{c.gulp.ext}".txtDefault(ct.WriteLine);
+            $"{"   [S] Server"     , -25}".txtPrimary();   $"{_c.gulp.srv}".txtDefault(ct.WriteLine);
+            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{_c.gulp.ext}".txtDefault(ct.WriteLine);
 
             $"".fmNewLine();
             $" [V] VPN".txtMuted(ct.WriteLine);
-            $"{"   [S] Sitename"   , -25}".txtPrimary();   $"{c.vpn.snm}".txtDefault(ct.WriteLine);
+            $"{"   [S] Sitename"   , -25}".txtPrimary();   $"{_c.vpn.snm}".txtDefault(ct.WriteLine);
 
             $"".fmNewLine();
             $"{"[EMPTY] Save", 82}".txtSuccess(ct.WriteLine);
@@ -55,7 +62,7 @@ namespace HardHat {
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
-            cp.mnu.sel = $"c>{opt?.ToLower()}";
+            _cp.mnu.sel = $"c>{opt?.ToLower()}";
 
             switch (opt?.ToLower())
             {
@@ -96,11 +103,11 @@ namespace HardHat {
                     Configuration.SiteName();
                     break;
                 case "":
-                    Settings.Save(c);
+                    Settings.Save(_c);
                     Menu.Start();
                     break;
                 default:
-                    cp.mnu.sel = "c";
+                    _cp.mnu.sel = "c";
                     break;
             }
             
@@ -147,8 +154,8 @@ namespace HardHat {
                             replace: true
                         );
                     } else {
-                        c.path.dir = $"{opt}";
-                        c.path.bsn = "";
+                        _c.path.dir = $"{opt}";
+                        _c.path.bsn = "";
                     }
                 }
 
@@ -174,7 +181,7 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir);
+                string dirPath = Paths.Combine(_c.path.dir);
 
                 if (!Directory.Exists(dirPath)){
                     StringBuilder msg = new StringBuilder();
@@ -220,7 +227,7 @@ namespace HardHat {
                     Validation.Range(opt, 1, dirs.Count);
                     
                     var sel = dirs[Convert.ToInt32(opt) - 1].Slash();
-                    c.path.bsn = sel.Substring(sel.LastIndexOf("/") + 1);
+                    _c.path.bsn = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
                 Select();
@@ -271,7 +278,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    string dirPath = Paths.Combine(c.path.dir, c.path.bsn, opt);
+                    string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, opt);
                     if (!Directory.Exists(dirPath))
                     {
                         StringBuilder msg = new StringBuilder();
@@ -283,7 +290,7 @@ namespace HardHat {
                             replace: true
                         );
                     } else {
-                        c.path.prj = $"{opt}";
+                        _c.path.prj = $"{opt}";
                     }
                 }
 
@@ -325,7 +332,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.path.flt = $"{opt}";
+                    _c.path.flt = $"{opt}";
                 }
 
                 Menu.Status();
@@ -367,7 +374,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    string dirPath = Paths.Combine(c.path.dir, c.path.bsn, opt);
+                    string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, opt);
                     if (!Directory.Exists(dirPath))
                     {
                         StringBuilder msg = new StringBuilder();
@@ -379,7 +386,7 @@ namespace HardHat {
                             replace: true
                         );
                     } else {
-                        c.android.prj = $"{opt}";
+                        _c.android.prj = $"{opt}";
                     }
                 }
 
@@ -420,7 +427,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.android.bld = $"{opt}";
+                    _c.android.bld = $"{opt}";
                 }
 
                 Menu.Status();
@@ -460,7 +467,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.android.ext = $".{opt}";
+                    _c.android.ext = $".{opt}";
                 }
 
                 Menu.Status();
@@ -500,7 +507,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.android.cmp = $"{opt}";
+                    _c.android.cmp = $"{opt}";
                 }
 
                 Menu.Status();
@@ -546,7 +553,7 @@ namespace HardHat {
                     {
                         list[i] = $".{list[i]}";
                     }
-                    c.android.flt = list;
+                    _c.android.flt = list;
                 }
 
                 Menu.Status();
@@ -588,7 +595,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.gulp.srv = $"{opt}";
+                    _c.gulp.srv = $"{opt}";
                 }
 
                 Menu.Status();
@@ -628,7 +635,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.gulp.ext = $".{opt}";
+                    _c.gulp.ext = $".{opt}";
                 }
 
                 Menu.Status();
@@ -669,7 +676,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    c.vpn.snm = $"{opt}";
+                    _c.vpn.snm = $"{opt}";
                 }
 
                 Menu.Status();

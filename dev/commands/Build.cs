@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class Build {
+    public partial class Build {
         public static void CmdClean(string path, string device = null){
             try
             {

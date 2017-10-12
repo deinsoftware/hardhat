@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class Vpn {
+    public partial class Vpn {
         public static bool CmdStatus(string sitename, string dir) {
             bool cnt = false;
             try

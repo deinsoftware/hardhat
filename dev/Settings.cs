@@ -177,10 +177,10 @@ namespace HardHat
         public string g_cnf { get; set; }                     //Gulp Configuration
         public bool g_env { get; set; }                       //Gulp Environment
         public bool g_sel { get; set; }                       //Gulp
-        public string b_cnf { get; set; }                     //Buils Configuration
-        public bool b_env { get; set; }                       //Buils Environment
+        public string b_cnf { get; set; }                     //Build Configuration
+        public bool b_env { get; set; }                       //Build Environment
         public bool t_env { get; set; }                       //Template Environment
-        public bool b_sel { get; set; }                       //Buils
+        public bool b_sel { get; set; }                       //Build
         public bool v_env { get; set; }                       //VPN Environment
 
     }

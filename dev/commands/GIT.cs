@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class Git {
+    static class Git {
         public static string CmdBranch(string path) {
             string response = "";
             try

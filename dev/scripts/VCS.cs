@@ -6,14 +6,22 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    public static class Vcs {
+    public class Vcs {
+        
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
+
+        static Vcs()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+
         public static void Actions(bool discard, bool pull, bool reset)
         {
             Colorify.Default();
             Console.Clear();
 
-            var c = Program.config;
-            var cp = Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -22,9 +30,9 @@ namespace HardHat {
                 $"".fmNewLine();
 
                 $"{" Selected Project:", -25}".txtMuted();
-                $"{cp.spr}".txtDefault(ct.WriteLine);
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
                 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
 
                 if (discard) {
                     $"".fmNewLine();

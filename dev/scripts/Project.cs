@@ -10,13 +10,21 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    class Project {
+    public class Project {
+
+        private static Config _c { get; set; }
+        private static PersonalConfiguration _cp { get; set; }
+
+        static Project()
+        {
+            _c = Program.config;
+            _cp = Program.config.personal;
+        }
+
         public static void Select() {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -24,12 +32,12 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj);
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj);
                 dirPath.Exists("Please review your configuration file.");
-                List<string> dirs = dirPath.Directories(c.path.flt, "projects");
+                List<string> dirs = dirPath.Directories(_c.path.flt, "projects");
 
                 if (dirs.Count < 1) {
-                    cp.spr = "";
+                    _cp.spr = "";
                 } else {
                     var i = 1;
                     foreach (var dir in dirs)
@@ -55,7 +63,7 @@ namespace HardHat {
                     Validation.Range(opt, 1, dirs.Count);
                     
                     var sel = dirs[Convert.ToInt32(opt) - 1].Slash();
-                    cp.spr = sel.Substring(sel.LastIndexOf("/") + 1);
+                    _cp.spr = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
                 Menu.Start();
@@ -71,8 +79,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -80,13 +86,13 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld);
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld);
                 dirPath.Exists("Please review your configuration file or make a build first.");
-                List<string> files = dirPath.Files($"*{c.android.ext}", "Please make a build first.");
+                List<string> files = dirPath.Files($"*{_c.android.ext}", "Please make a build first.");
                 
                 if (files.Count < 1)
                 {
-                    cp.sfl = "";
+                    _cp.sfl = "";
                 } else {
                     var i = 1;
                     foreach (var file in files)
@@ -111,7 +117,7 @@ namespace HardHat {
                 {
                     Validation.Range(opt, 1, files.Count);
                     var sel = files[Convert.ToInt32(opt) - 1].Slash();
-                    cp.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
+                    _cp.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
                 Menu.Start();
@@ -126,8 +132,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -135,10 +139,10 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
 
                 $"{" Selected File:", -25}".txtMuted();
-                $"{cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" Write a new name, without include his extension.".txtPrimary(ct.WriteLine);
@@ -155,8 +159,8 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(Paths.Combine(dirPath, cp.sfl), Paths.Combine(dirPath, $"{opt}{c.android.ext}"));
-                    cp.sfl = $"{opt}{c.android.ext}";
+                    System.IO.File.Copy(Paths.Combine(dirPath, _cp.sfl), Paths.Combine(dirPath, $"{opt}{_c.android.ext}"));
+                    _cp.sfl = $"{opt}{_c.android.ext}";
                 }
 
                 Menu.Start();
@@ -172,8 +176,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
-            var cp =  Program.config.personal;
             try
             {
                 $"=".bgInfo(ct.Repeat);
@@ -181,13 +183,13 @@ namespace HardHat {
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();
 
-                string dirPath = Paths.Combine(c.path.dir, c.path.bsn, c.path.prj, cp.spr, c.android.prj, c.android.bld); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
 
                 $"{" Path:", -10}".txtMuted();
                 $"{dirPath}".txtDefault(ct.WriteLine);
 
                 $"{" File:", -10}".txtMuted();
-                $"{cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $"{" [P] Copy Path", -34}".txtInfo();
@@ -207,7 +209,7 @@ namespace HardHat {
                         Clipboard.Copy(dirPath);
                         break;
                     case "f":
-                        Clipboard.Copy(Paths.Combine(dirPath, cp.sfl));
+                        Clipboard.Copy(Paths.Combine(dirPath, _cp.sfl));
                         break;
                     case "":
                         //Cancel

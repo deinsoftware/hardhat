@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    static partial class Version {
+    static class Version {
         
         #region Required
 
