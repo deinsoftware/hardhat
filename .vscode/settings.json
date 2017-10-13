@@ -1,8 +1,14 @@
 {
     "cSpell.words": [
+        "Colorify",
         "egrep",
         "findstr",
         "qube",
-        "trac"
+        "trac",
+        "Sigcheck",
+        "aapt",
+        "apksigner",
+        "dein",
+        "shasum"
     ]
 }
