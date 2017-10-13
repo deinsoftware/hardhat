@@ -13,7 +13,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Added
 
-* SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
 * SignCheck for Windows and get SHA256 value from APK option. [\#13](https://github.com/equiman/hardhat/issues/13)
 
 ### Fixed
