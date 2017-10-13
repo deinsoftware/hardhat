@@ -199,7 +199,7 @@ namespace HardHat {
                 $"{" [B] Build:", -25}".txtStatus(ct.Write, !_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.b_env);
                 $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
             }
-            $"{"   [P] Properties" , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.t_env);
+            $"{"   [P] Properties" , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && _cp.mnu.t_env);
             $"{"[C] Clean"         , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.b_env);
             $"{"[G] Gradle"        , -17}".txtStatus(ct.WriteLine, !_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.b_env);
             $"".fmNewLine();
@@ -329,14 +329,14 @@ namespace HardHat {
                 case "b>m":
                     if (!_cp.mnu.p_sel && _cp.mnu.b_env) Build.Mode();
                     break;
-                case "bg":
-                    if (!_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.b_env) Build.Gradle();
+                case "bp":
+                    if (!_cp.mnu.p_sel && _cp.mnu.t_env) Build.Properties();
                     break;
                 case "bc":
                     if (!_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.t_env) Build.Clean();
                     break;
-                case "bp":
-                    if (!_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.t_env) Build.Properties();
+                case "bg":
+                    if (!_cp.mnu.p_sel && !_cp.mnu.b_sel && _cp.mnu.b_env) Build.Gradle();
                     break;
                 //Configuration
                 case "c":
