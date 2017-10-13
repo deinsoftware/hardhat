@@ -33,7 +33,7 @@ namespace HardHat {
             $"{" NativeScript", -25}".txtPrimary();     Version.CmdNativescript();
             $"{" TypeScript", -25}".txtPrimary();       Version.CmdTypescript();
             $"{" SonarLint", -25}".txtPrimary();        Version.CmdSonarLint();
-            $"{" Sonar Scanner", -25}".txtPrimary();    Version.CmdSonarScanner();
+            $"{" SonarScanner", -25}".txtPrimary();     Version.CmdSonarScanner();
             
             $"".fmNewLine();
             $"=".bgInfo(ct.Repeat);
@@ -55,8 +55,10 @@ namespace HardHat {
             {"Git"              , "GIT_HOME"            },
             {"Gradle"           , "GRADLE_HOME"         },
             {"Gulp"             , "GULP_PROJECT"        },
+            {"SignCheck"        , "SIGNCHECK_HOME"      },
             {"SonarLint"        , "SONAR_LINT_HOME"     },
             {"SonarQube"        , "SONAR_QUBE_HOME"     },
+            {"SonarPort"        , "SONAR_QUBE_PORT"     },
             {"SonarScanner"     , "SONAR_SCANNER_HOME"  },
             {"Vpn"              , "VPN_HOME"            }
         };
