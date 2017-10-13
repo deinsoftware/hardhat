@@ -22,7 +22,7 @@ namespace HardHat
                     cp.hst = System.Environment.MachineName;
 
                     //Update Environment Variables
-                    dein.tools.Env.CmdUpdate();
+                    Env.CmdUpdate();
                     
                     //Window
                     if (Os.IsWindows() && (config.window.width + config.window.height) > 0)

@@ -77,7 +77,7 @@ namespace HardHat {
                 g_cnf.Append(_cp.gbs.srv);
                 g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
                 _cp.mnu.g_cnf = g_cnf.ToString();
-                _cp.mnu.g_env = dein.tools.Env.Check("GULP_PROJECT");
+                _cp.mnu.g_env = Env.Check("GULP_PROJECT");
                 _cp.mnu.g_sel = String.IsNullOrEmpty(_cp.gbs.dmn) || String.IsNullOrEmpty(_cp.mnu.g_cnf);
                 // Build
                 StringBuilder b_cnf = new StringBuilder();
@@ -110,13 +110,13 @@ namespace HardHat {
                         break;
                 }
                 _cp.mnu.b_cnf = b_cnf.ToString();
-                _cp.mnu.b_env = dein.tools.Env.Check("GRADLE_HOME");
-                _cp.mnu.t_env = dein.tools.Env.Check("ANDROID_PROPERTIES");
+                _cp.mnu.b_env = Env.Check("GRADLE_HOME");
+                _cp.mnu.t_env = Env.Check("ANDROID_PROPERTIES");
                 _cp.mnu.b_sel = String.IsNullOrEmpty(_cp.gdl.mde) && String.IsNullOrEmpty(_cp.gdl.flv) && String.IsNullOrEmpty(_cp.mnu.b_cnf);
                 //VPN
-                _cp.mnu.v_env = dein.tools.Env.Check("VPN_HOME");
+                _cp.mnu.v_env = Env.Check("VPN_HOME");
                 //Sigcheck
-                _cp.mnu.s_env = dein.tools.Env.Check("SIGCHECK_HOME");
+                _cp.mnu.s_env = Env.Check("SIGCHECK_HOME");
             }
             catch (Exception Ex){
                 Message.Critical(
