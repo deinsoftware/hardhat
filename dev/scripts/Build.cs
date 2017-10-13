@@ -314,7 +314,7 @@ namespace HardHat {
 
             try
             {
-                string sourcePath = Paths.Combine(dein.tools.Env.Get("ANDROID_PROPERTIES"));
+                string sourcePath = Paths.Combine(Env.Get("ANDROID_PROPERTIES"), _c.path.bsn);
                 string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
 
                 $"=".bgInfo(ct.Repeat);
