@@ -442,6 +442,18 @@ namespace HardHat {
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);
                 CmdInformation(dirPath);
 
+                if ((Os.IsWindows() && _cp.mnu.s_env) || Os.IsMacOS()){
+                    Response result = CmdSha(dirPath);
+                    if (result.code == 0) {
+                        $"".fmNewLine();
+                        $" --> File Hash...".txtInfo(ct.WriteLine);
+                
+                        $"".fmNewLine();
+                        $" SHA256: ".txtMuted();
+                        $"{result.stdout}".txtDefault(ct.WriteLine);    
+                    }
+                }
+
                 $"".fmNewLine();
                 $"=".bgInfo(ct.Repeat);
                 $"".fmNewLine();

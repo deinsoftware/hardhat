@@ -182,6 +182,7 @@ namespace HardHat
         public bool t_env { get; set; }                       //Template Environment
         public bool b_sel { get; set; }                       //Build
         public bool v_env { get; set; }                       //VPN Environment
+        public bool s_env { get; set; }                       //Sigcheck Environment
 
     }
 }

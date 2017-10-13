@@ -212,5 +212,35 @@ namespace HardHat
                 );
             }
         }
+
+        public static Response CmdSha(string path) {
+            Response result = new Response();
+            try
+            {
+                switch (Os.Platform())
+                {
+                    case "win":
+                        result = $"sigcheck -h {path}".Term();
+                        result.stdout = Shell.ExtractLine(result.stdout, "SHA256:", "\tSHA256:\t");
+                        break;
+                    case "mac":
+                        result = $"shasum -a 256 {path}".Term();
+                        result.stdout = Shell.GetWord(result.stdout, 0);
+                        break;
+                }
+                result.stdout = result.stdout
+                    .Replace("\r","")
+                    .Replace("\n","");
+                if (!String.IsNullOrEmpty(result.stdout)){
+                    result.code = 0;
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return result;
+        }
     }
 }

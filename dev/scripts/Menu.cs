@@ -115,6 +115,8 @@ namespace HardHat {
                 _cp.mnu.b_sel = String.IsNullOrEmpty(_cp.gdl.mde) && String.IsNullOrEmpty(_cp.gdl.flv) && String.IsNullOrEmpty(_cp.mnu.b_cnf);
                 //VPN
                 _cp.mnu.v_env = dein.tools.Env.Check("VPN_HOME");
+                //Sigcheck
+                _cp.mnu.s_env = dein.tools.Env.Check("SIGCHECK_HOME");
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -221,19 +223,21 @@ namespace HardHat {
                 $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
             }
             $"{"[R] Restart"        , -17}".txtPrimary(ct.WriteLine);
+            $"".fmNewLine();
             #endregion
-
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
 
             #region Footer
             $"{" [C] Config", -17}".txtInfo();
             $"{"[I] Info", -17}".txtInfo();
             $"{"[E] Environment", -34}".txtInfo();
             $"{"[X] Exit", -17}".txtDanger(ct.WriteLine);
-            $"".fmNewLine();
             #endregion
+
+            $"".fmNewLine();
+            $"=".bgInfo(ct.Repeat);
+            $"".fmNewLine();
+
+            
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
