@@ -79,27 +79,13 @@ namespace HardHat {
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
-                _cp.mnu.sel = $"b>{opt.ToLower()}";
 
-                switch (opt.ToLower())
+                if(String.IsNullOrEmpty(opt?.ToLower()))
                 {
-                    case "d":
-                        Dimension();
-                        break;
-                    case "f":
-                        Flavor();
-                        break;
-                    case "m":
-                        Mode();
-                        break;
-                    case "":
-                        Menu.Start();
-                        break;
-                    default:
-                        _cp.mnu.sel = "b";
-                        break;
+                    Menu.Start();
+                } else {
+                    Menu.Route($"b>{opt?.ToLower()}", "b");
                 }
-
                 Message.Error();
             }
             catch (Exception Ex){
