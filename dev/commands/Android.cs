@@ -112,7 +112,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"adb connect {ip}:{port}".Term(Output.Internal);
-                if (result.stdout.StartsWith($"connected to {ip}:{port}")){
+                if (result.stdout.Contains($"connected to {ip}:{port}")){
                     connected = true;
                 } else {
                     connected = false;

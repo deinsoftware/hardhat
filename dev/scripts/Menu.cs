@@ -206,24 +206,21 @@ namespace HardHat {
             #endregion
 
             #region ADB
-            $" [A] Android Debug Bridge".txtMuted(ct.WriteLine);
-            $"{"   [R] Restart"}".txtPrimary(ct.WriteLine);
-
             if (String.IsNullOrEmpty(_cp.adb.dvc))
             {
-                $"{"   [D] Devices"}".txtPrimary(ct.WriteLine);
+                $" [A] ADB".txtMuted(ct.WriteLine);
             } else {
-                $"{"   [D] Device:", -25}".txtPrimary();
+                $"{" [A] ADB:", -25}".txtMuted();
                 $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
             }
-
+            $"{"   [D] Devices"     , -34}".txtPrimary(ct.Write);
             if (!_cp.adb.wst)
             {
-                $"{"   [W] WiFi Connect"}".txtPrimary(ct.WriteLine);
+                $"{"[W] WiFi Connect"   , -34}".txtPrimary(ct.Write);
             } else {
-                $"{"   [W] WiFi Disconnect:", -25}".txtPrimary();
-                $"{_cp.adb.wip + (!String.IsNullOrEmpty(_cp.adb.wpr) ? ":" + _cp.adb.wpr : "")}".txtDefault(ct.WriteLine);
+                $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
             }
+            $"{"[R] Restart"        , -17}".txtPrimary(ct.WriteLine);
 
             $"".fmNewLine();
             #endregion
