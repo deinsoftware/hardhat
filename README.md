@@ -361,15 +361,21 @@ Applications
 │   ├── PlayStore
 │   ├── SDK
 │   └── Properties
-│       ├── gradle.properties
-│       ├── local.properties
-|       └── Keystore
-│           ├── development.properties
-│           └── production.properties
+│       ├── Business_1
+│       │   ├── gradle.properties
+│       │   ├── local.properties
+|       │   └── Keystore
+│       │       ├── development.properties
+│       │       └── production.properties
+│       ├── Business_2
+│       │   └── ...
+│       └── Business_n
+│           └── ...
 ├── Gulp
 ├── Sonar
+│   ├── Lint
 │   ├── Qube
-│   └── Runner
+│   └── Scanner
 └── HardHat
 ```
 
