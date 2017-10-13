@@ -58,7 +58,7 @@ namespace HardHat {
             {"Sigcheck"         , "SIGCHECK_HOME"       },
             {"SonarLint"        , "SONAR_LINT_HOME"     },
             {"SonarQube"        , "SONAR_QUBE_HOME"     },
-            {"SonarPort"        , "SONAR_QUBE_PORT"     },
+            {"SonarServer"      , "SONAR_QUBE_SERVER"   },
             {"SonarScanner"     , "SONAR_SCANNER_HOME"  },
             {"Vpn"              , "VPN_HOME"            }
         };
