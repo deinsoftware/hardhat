@@ -1,14 +1,25 @@
 {
     "cSpell.words": [
         "Colorify",
-        "egrep",
-        "findstr",
-        "qube",
-        "trac",
+        "Equiman",
+        "Loaiza",
         "Sigcheck",
         "aapt",
         "apksigner",
+        "chmod",
         "dein",
-        "shasum"
+        "egrep",
+        "findstr",
+        "javapath",
+        "keystore",
+        "libexec",
+        "macos",
+        "qube",
+        "sbin",
+        "shasum",
+        "thumbsup",
+        "trac",
+        "unversioned",
+        "xcopy"
     ]
 }
