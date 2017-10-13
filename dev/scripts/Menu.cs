@@ -185,8 +185,8 @@ namespace HardHat {
                 $"{" [G] Gulp:", -25}".txtStatus(ct.Write, !_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env);
                 $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);    
             }
-            $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env);
-            $"{"[R] Revert"    , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env);
+            $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && _cp.mnu.g_env);
+            $"{"[R] Revert"    , -34}".txtStatus(ct.Write,     !_cp.mnu.p_sel && _cp.mnu.g_env);
             $"{"[S] Server"    , -17}".txtStatus(ct.WriteLine, !_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env);
             $"".fmNewLine();
             #endregion
@@ -221,21 +221,20 @@ namespace HardHat {
                 $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
             }
             $"{"[R] Restart"        , -17}".txtPrimary(ct.WriteLine);
+            #endregion
 
             $"".fmNewLine();
-            #endregion
+            $"=".bgInfo(ct.Repeat);
+            $"".fmNewLine();
 
             #region Footer
             $"{" [C] Config", -17}".txtInfo();
             $"{"[I] Info", -17}".txtInfo();
             $"{"[E] Environment", -34}".txtInfo();
             $"{"[X] Exit", -17}".txtDanger(ct.WriteLine);
+            $"".fmNewLine();
             #endregion
 
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
-            
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
             Route(opt);
@@ -309,10 +308,10 @@ namespace HardHat {
                     if (!_cp.mnu.p_sel && _cp.mnu.g_env) Gulp.Protocol();
                     break;
                 case "gu":
-                    if (!_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env) Gulp.Uglify();
+                    if (!_cp.mnu.p_sel && _cp.mnu.g_env) Gulp.Uglify();
                     break;
                 case "gr":
-                    if (!_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env) Gulp.Revert();
+                    if (!_cp.mnu.p_sel && _cp.mnu.g_env) Gulp.Revert();
                     break;
                 case "gs":
                     if (!_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env) Gulp.Server();
