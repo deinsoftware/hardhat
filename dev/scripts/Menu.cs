@@ -111,7 +111,7 @@ namespace HardHat {
                 }
                 _cp.mnu.b_cnf = b_cnf.ToString();
                 _cp.mnu.b_env = dein.tools.Env.Check("GRADLE_HOME");
-                _cp.mnu.t_env = dein.tools.Env.Check("ANDROID_TEMPLATE");
+                _cp.mnu.t_env = dein.tools.Env.Check("ANDROID_PROPERTIES");
                 _cp.mnu.b_sel = String.IsNullOrEmpty(_cp.gdl.mde) && String.IsNullOrEmpty(_cp.gdl.flv) && String.IsNullOrEmpty(_cp.mnu.b_cnf);
                 //VPN
                 _cp.mnu.v_env = dein.tools.Env.Check("VPN_HOME");

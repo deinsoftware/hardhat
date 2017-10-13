@@ -50,7 +50,7 @@ namespace HardHat {
             {"AndroidSDK"       , "ANDROID_HOME"        },
             {"AndroidNDK"       , "ANDROID_NDK_HOME"    },
             {"AndroidBuildTool" , "ANDROID_BT_VERSION"  },
-            {"AndroidTemplate"  , "ANDROID_TEMPLATE"    },
+            {"AndroidTemplate"  , "ANDROID_PROPERTIES"  },
             {"Java"             , "JAVA_HOME"           },
             {"Git"              , "GIT_HOME"            },
             {"Gradle"           , "GRADLE_HOME"         },

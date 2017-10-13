@@ -78,7 +78,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `ANDROID_HOME` | D:\Applications\Android\SDK |
 | `ANDROID_NDK_HOME` | %ANDROID_HOME%\ndk-bundle |
 | `ANDROID_BT_VERSION` | 26.0.2 |
-| `ANDROID_TEMPLATE` | D:\Applications\Android\Studio |
+| `ANDROID_PROPERTIES` | D:\Applications\Android\Properties |
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
 | `GRADLE_HOME` | D:\Applications\Android\Gradle |
@@ -99,7 +99,7 @@ Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommend
 export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
 export ANDROID_BT_VERSION="26.0.2"
-export ANDROID_TEMPLATE="~/Applications/Android/Studio"
+export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
@@ -182,32 +182,38 @@ Choose desired letter combination and let **HardHat** work for you.
 | combination | action |
 | --- | --- |
 | <kbd>p</kbd> | Select a project inside `path.dir/bsn/prd` path (_see [Setup > Path Variables](#path-variables) section_) that starts with `flt` folder name. This project required to have an `android.prj` folder inside. |
-| <kbd>p</kbd>+<kbd>f</kbd> | Select an APK file generated inside selected project on `android.bld` path  with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
-| <kbd>p</kbd>+<kbd>i</kbd> | Install selected file on an Android device. |
-| <kbd>p</kbd>+<kbd>d</kbd> | Make a copy of selected file and choose a new name. |
-| <kbd>p</kbd>+<kbd>p</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
-| <kbd>p</kbd>+<kbd>s</kbd> | Show signature information about selected file. |
-| <kbd>p</kbd>+<kbd>v</kbd> | Show full information and values about selected file. |
+| <kbd>pf</kbd> | Select an APK file generated inside selected project on `android.bld` path  with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
+| <kbd>pi</kbd> | Install selected file on an Android device. |
+| <kbd>pd</kbd> | Make a copy of selected file and choose a new name. |
+| <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
+| <kbd>ps</kbd> | Show signature information about selected file. |
+| <kbd>pv</kbd> | Show full information and values about selected file. |
 
 #### Version Control System
 
 | combination | action |
 | --- | --- |
 | <kbd>v</kbd> | Show current GIT branch. |
-| <kbd>v</kbd>+<kbd>d</kbd> | Launch `reset` command over selected project. |
-| <kbd>v</kbd>+<kbd>p</kbd> | Launch `pull` command over selected project. |
-| <kbd>v</kbd>+<kbd>c</kbd> | Launch `clean` command over selected project and delete unversioned files over selected project. |
-| <kbd>r</kbd>+<kbd>d+p</kbd> | Launch `reset` and `pull` command over selected project. |
-| <kbd>r</kbd>+<kbd>c+p</kbd> | Launch `clean` and `pull` command over selected project. |
+| <kbd>vd</kbd> | Discard files. Launch `reset` command over selected project. |
+| <kbd>vp</kbd> | Pull files. Launch `pull` command over selected project. |
+| <kbd>vc</kbd> | Clean files. Launch `clean` command over selected project and delete unversioned files over selected project. |
+| <kbd>vd+p</kbd> | Discard and Pull files over selected project. |
+| <kbd>vr+p</kbd> | Clean and Pull files over selected project. |
 
 #### Gulp
 
 | combination | action |
 | --- | --- |
-| <kbd>g</kbd> | Select and show BrowserSync development server configuration. |
-| <kbd>g</kbd>+<kbd>u</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>g</kbd>+<kbd>r</kbd> | Revert original files to selected project. |
-| <kbd>g</kbd>+<kbd>s</kbd> | Start server according to previous configuration. |
+| <kbd>g</kbd> | Select and show development server configuration. |
+| <kbd>g>i</kbd> | Internal Path shortcut inside server configuration. |
+| <kbd>g>d</kbd> | Dimension shortcut inside server configuration. |
+| <kbd>g>f</kbd> | Flavor shortcut inside server configuration. |
+| <kbd>g>n</kbd> | Number shortcut inside server configuration. |
+| <kbd>g>s</kbd> | Sync shortcut inside server configuration. |
+| <kbd>g>p</kbd> | Protocol shortcut inside server configuration. |
+| <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>gr</kbd> | Revert original files to selected project. |
+| <kbd>gs</kbd> | Start server according to previous configuration. |
 
 Gulp Uglify process was create under `build` task and configured to use some folders. We recommend follow the same structure.
 
@@ -244,12 +250,15 @@ Gulp Browser process was created under `default` task and follow this command he
 
 | combination | action |
 | --- | --- |
-| <kbd>b</kbd> | Configure your build type, flavor and dimensions. Dimensions can be empty. |
-| <kbd>b</kbd>+<kbd>p</kbd> | Copy pre-configured files inside `ANDROID_TEMPLATE` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
-| <kbd>b</kbd>+<kbd>c</kbd> | Make `clean` project with gradle command line. |
-| <kbd>b</kbd>+<kbd>g</kbd> | Make `clean` and `build` project with gradle command line. |
+| <kbd>b</kbd> | Configure your build type, flavor and dimensions. |
+| <kbd>g>s</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
+| <kbd>g>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
+| <kbd>g>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
+| <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
+| <kbd>bc</kbd> | Make `clean` project with gradle command line. |
+| <kbd>bg</kbd> | Make `clean` and `build` project with gradle command line. |
 
-If you have some pre-configured files to be copied to project path, add it on `ANDROID_TEMPLATE` path (_see [Environment Variables](#environment-variables) section_). Files like:
+If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_). Files like:
 
 * local.properties
 * gradle.properties
@@ -260,9 +269,9 @@ If you have some pre-configured files to be copied to project path, add it on `A
 
 | combination | action |
 | --- | --- |
-| <kbd>a</kbd>+<kbd>r</kbd> | Kill and Restart ADB server. |
-| <kbd>a</kbd>+<kbd>d</kbd> | Show device/emulator list. |
-| <kbd>a</kbd>+<kbd>w</kbd> | Make a ADB device dis/connection over Wifi. |
+| <kbd>ar</kbd> | Kill and Restart ADB server. |
+| <kbd>ad</kbd> | Show device/emulator list. |
+| <kbd>aw</kbd> | Make a ADB device dis/connection over Wifi. |
 
 #### Extra
 
@@ -349,7 +358,7 @@ Applications
 │   │   └── prd.jks
 │   ├── Playtore
 │   ├── SDK
-│   └── Studio
+│   └── Properties
 │       ├── gradle.properties
 │       ├── local.properties
 |       └── Keystore
