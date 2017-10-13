@@ -62,55 +62,14 @@ namespace HardHat {
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
-            _cp.mnu.sel = $"c>{opt?.ToLower()}";
 
-            switch (opt?.ToLower())
+            if(String.IsNullOrEmpty(opt?.ToLower()))
             {
-                case "pd":
-                    Configuration.PathDevelopment();
-                    break;
-                case "pb":
-                    Configuration.PathBusiness();
-                    break;
-                case "pp":
-                    Configuration.PathProjects();
-                    break;
-                case "pf":
-                    Configuration.PathFilter();
-                    break;
-                case "ap":
-                    Configuration.AndroidProject();
-                    break;
-                case "ab":
-                    Configuration.AndroidBuild();
-                    break;
-                case "ae":
-                    Configuration.AndroidExtension();
-                    break;
-                case "ac":
-                    Configuration.AndroidCompact();
-                    break;
-                case "af":
-                    Configuration.AndroidFilter();
-                    break;
-                case "gs":
-                    Configuration.GulpServer();
-                    break;
-                case "ge":
-                    Configuration.GulpExtension();
-                    break;
-                case "vs":
-                    Configuration.SiteName();
-                    break;
-                case "":
-                    Settings.Save(_c);
-                    Menu.Start();
-                    break;
-                default:
-                    _cp.mnu.sel = "c";
-                    break;
+                Settings.Save(_c);
+                Menu.Start();
+            } else {
+                Menu.Route($"c>{opt?.ToLower()}", "c");
             }
-            
             Message.Error();
         }
 

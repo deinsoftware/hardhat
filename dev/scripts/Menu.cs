@@ -18,7 +18,7 @@ namespace HardHat {
             _c = Program.config;
             _cp = Program.config.personal;
         }
-        
+
         public static void Status(string sel = null){
             try
             {
@@ -241,11 +241,11 @@ namespace HardHat {
             
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
-            _cp.mnu.sel = opt?.ToLower();
-            Route();
+            Route(opt);
         }
 
-        public static void Route() {
+        public static void Route(string sel = "m", string dfl = "m") {
+            _cp.mnu.sel = sel?.ToLower();
             switch (_cp.mnu.sel)
             {
                 case "m":
@@ -412,7 +412,7 @@ namespace HardHat {
                     Menu.Start();
                     break;
                 default:
-                    _cp.mnu.sel = "m";
+                    _cp.mnu.sel = dfl;
                     break;
             }
             
