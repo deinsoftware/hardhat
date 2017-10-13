@@ -55,7 +55,7 @@ namespace HardHat {
             {"Git"              , "GIT_HOME"            },
             {"Gradle"           , "GRADLE_HOME"         },
             {"Gulp"             , "GULP_PROJECT"        },
-            {"SignCheck"        , "SIGNCHECK_HOME"      },
+            {"Sigcheck"         , "SIGCHECK_HOME"       },
             {"SonarLint"        , "SONAR_LINT_HOME"     },
             {"SonarQube"        , "SONAR_QUBE_HOME"     },
             {"SonarPort"        , "SONAR_QUBE_PORT"     },
