@@ -53,6 +53,7 @@ What things you need to install?
 * [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [.Net Core](https://www.microsoft.com/net/download/core#/runtime) (optional)
 * [Node.js](https://nodejs.org/en/download/) (with NPM)
+* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (Windows only)
 
 ### Installing
 
@@ -86,7 +87,8 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_74 |
 | `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
-| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
+| `SIGCHECK_HOME` | D:\Applications\Sigcheck |
+| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
 Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
 
@@ -223,7 +225,7 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 | `www` | Original project files |
 
 Gulp Browser process was created under `default` task and follow this command help:
-`gulp [default] --pth path_value [--int internalpath value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
+`gulp [default] --pth path_value [--int internalPath value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
 
 | parameter | description |
 | --- | --- |
@@ -269,9 +271,9 @@ If you have some pre-configured files to be copied to project path, add it on `A
 
 | combination | action |
 | --- | --- |
-| <kbd>ar</kbd> | Kill and Restart ADB server. |
 | <kbd>ad</kbd> | Show device/emulator list. |
 | <kbd>aw</kbd> | Make a ADB device dis/connection over Wifi. |
+| <kbd>ar</kbd> | Kill and Restart ADB server. |
 
 #### Extra
 
@@ -356,7 +358,7 @@ Applications
 │   ├── Keystore
 │   │   ├── dev.jks
 │   │   └── prd.jks
-│   ├── Playtore
+│   ├── PlayStore
 │   ├── SDK
 │   └── Properties
 │       ├── gradle.properties

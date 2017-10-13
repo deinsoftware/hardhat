@@ -9,6 +9,24 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [3.2.0] - 2017-11-01
+
+### Added
+
+* SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+* SignCheck for Windows and get SHA256 value from APK option. [\#13](https://github.com/equiman/hardhat/issues/13)
+
+### Fixed
+
+* Option to remove selected device. [\#12](https://github.com/equiman/hardhat/issues/12)
+* Better code quality and fixes, due SonarQube analysis.
+
+### Changed
+
+* Environment variable from `ANDROID_TEMPLATE` to `ANDROID_PROPERTIES`.
+* Path from `Applications/Android/Studio` to `Applications/Android/Properties`.
+* Reorder Android Debug Bridge menu.
+
 ## [3.1.0] - 2017-08-25
 
 ### Added
