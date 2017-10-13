@@ -227,6 +227,7 @@ namespace HardHat {
             #endregion
 
             #region Footer
+            $"".fmNewLine();
             $"{" [C] Config", -17}".txtInfo();
             $"{"[I] Info", -17}".txtInfo();
             $"{"[E] Environment", -34}".txtInfo();
