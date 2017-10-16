@@ -9,7 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [3.2.0] - 2017-11-01
+## [3.3.0] - 2017-10-18
+
+### Added
+
+* SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+
+## [3.2.0] - 2017-10-13
 
 ### Added
 

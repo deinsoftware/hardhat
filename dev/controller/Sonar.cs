@@ -38,7 +38,7 @@ namespace HardHat
             }
             return cnt;
         }
-        public static void CmdStart(){
+        public static void CmdQube(){
             try
             {
                 StringBuilder cmd = new StringBuilder();

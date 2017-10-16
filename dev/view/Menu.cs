@@ -178,6 +178,20 @@ namespace HardHat {
             $"{"[R] Reset"      , -17}".txtStatus(ct.WriteLine, !_cp.mnu.p_sel && !_cp.mnu.v_sel);
             $"".fmNewLine();
             #endregion
+
+            #region Sonar
+            if (_cp.mnu.g_sel)
+            {
+                $" [S] Sonar".txtStatus(ct.WriteLine, !_cp.mnu.s_sel && _cp.mnu.g_env);
+            } else {
+                $"{" [G] Sonar:", -25}".txtStatus(ct.Write, !_cp.mnu.p_sel && !_cp.mnu.g_sel && _cp.mnu.g_env);
+                $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);    
+            }
+            $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,     !_cp.mnu.s_sel && _cp.mnu.sq_env);
+            $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,     !_cp.mnu.s_sel && _cp.mnu.ss_env);
+            $"{"[B] Browse"    , -17}".txtStatus(ct.WriteLine, !_cp.mnu.s_sel && _cp.mnu.sq_env);
+            $"".fmNewLine();
+            #endregion
             
             #region Gulp
             if (_cp.mnu.g_sel)

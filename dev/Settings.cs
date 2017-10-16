@@ -53,10 +53,11 @@ namespace HardHat
                 config.personal.ipb = "";
                 config.personal.spr = "";
                 config.personal.sfl = "";
-                config.personal.gdl = new BuildConfiguration();
-                config.personal.gdl.mde = "";
-                config.personal.gdl.dmn = "";
-                config.personal.gdl.flv = "";
+                config.personal.snr = new SonarConfiguration();
+                config.personal.snr.ptc = "http";
+                config.personal.snr.srv = "";
+                config.personal.snr.prt = "";
+                config.personal.snr.ipt = "";
                 config.personal.gbs = new ServerConfiguration();
                 config.personal.gbs.dmn = "";
                 config.personal.gbs.flv = "";
@@ -64,6 +65,10 @@ namespace HardHat
                 config.personal.gbs.syn = false;
                 config.personal.gbs.ptc = "http";
                 config.personal.gbs.ipt = "";
+                config.personal.gdl = new BuildConfiguration();
+                config.personal.gdl.mde = "";
+                config.personal.gdl.dmn = "";
+                config.personal.gdl.flv = "";
                 config.personal.adb = new AdbConfiguration();
                 config.personal.adb.dvc = "";
                 config.personal.adb.wip = "";
@@ -75,6 +80,11 @@ namespace HardHat
                 config.personal.mnu.f_sel = false;
                 config.personal.mnu.v_sel = false;
                 config.personal.mnu.v_bnc = "";
+                config.personal.mnu.s_cnf = "";
+                config.personal.mnu.sl_env = false;
+                config.personal.mnu.sq_env = false;
+                config.personal.mnu.ss_env = false;
+                config.personal.mnu.s_sel = false; 
                 config.personal.mnu.g_cnf = "";
                 config.personal.mnu.g_env = false;
                 config.personal.mnu.g_sel = false;
@@ -94,95 +104,107 @@ namespace HardHat
 
     class Config
     {
-        public WindowConfiguration window { get; set; }
-        public PathConfiguration path { get; set; }
-        public AndroidConfiguration android { get; set; }
-        public GulpConfiguration gulp { get; set; }
-        public VpnConfiguration vpn { get; set; }
-        public PersonalConfiguration personal { get; set; }
+        public WindowConfiguration      window      { get; set; }
+        public PathConfiguration        path        { get; set; }
+        public AndroidConfiguration     android     { get; set; }
+        public GulpConfiguration        gulp        { get; set; }
+        public VpnConfiguration         vpn         { get; set; }
+        public PersonalConfiguration    personal    { get; set; }
     }
 
     class WindowConfiguration 
     {
-        public int height { get; set; }
-        public int width { get; set; }
+        public int      height  { get; set; }
+        public int      width   { get; set; }
     }
 
     class PathConfiguration
     {
-        public string dir { get; set; }                     //Development
-        public string bsn { get; set; }                     //Bussiness Name
-        public string prj { get; set; }                     //Projects
-        public string flt { get; set; }                     //Filter
+        public string   dir     { get; set; }               //Development
+        public string   bsn     { get; set; }               //Bussiness Name
+        public string   prj     { get; set; }               //Projects
+        public string   flt     { get; set; }               //Filter
     }
 
     class AndroidConfiguration {
-        public string prj { get; set; }                     //Android Project Folder
-        public string bld { get; set; }                     //Build Path
-        public string ext { get; set; }                     //Build Extension
-        public string cmp { get; set; }                     //Path to process with Gulp
-        public string[] flt { get; set; }                   //Filter files to Process
+        public string   prj     { get; set; }               //Android Project Folder
+        public string   bld     { get; set; }               //Build Path
+        public string   ext     { get; set; }               //Build Extension
+        public string   cmp     { get; set; }               //Path to process with Gulp
+        public string[] flt     { get; set; }               //Filter files to Process
     }
 
     class GulpConfiguration {
-        public string srv { get; set; }                     //Server Folder
-        public string ext { get; set; }                     //Server Extension
+        public string   srv     { get; set; }               //Server Folder
+        public string   ext     { get; set; }               //Server Extension
     }
 
     class VpnConfiguration {
-        public string snm { get; set; }                     //Sitename
+        public string   snm     { get; set; }               //Sitename
     }
     
     class PersonalConfiguration {
-        public string hst { get; set; }                     //Hostname
-        public string ipl { get; set; }                     //Local IP Address
-        public string ipb { get; set; }                     //Local IP Address base
-        public string spr { get; set; }                     //Selected Project
-        public string sfl { get; set; }                     //Selected File
-        public BuildConfiguration gdl { get; set; }         //Gradle Configuration
-        public ServerConfiguration gbs { get; set; }        //Gradle Server
-        public AdbConfiguration adb { get; set; }           //ADB Configuration
-        public MenuConfiguration mnu { get; set; }          //Menu Configuration
+        public string               hst     { get; set; }   //Hostname
+        public string               ipl     { get; set; }   //Local IP Address
+        public string               ipb     { get; set; }   //Local IP Address base
+        public string               spr     { get; set; }   //Selected Project
+        public string               sfl     { get; set; }   //Selected File
+        public SonarConfiguration   snr     { get; set; }   //Sonar
+        public ServerConfiguration  gbs     { get; set; }   //Gradle Server
+        public BuildConfiguration   gdl     { get; set; }   //Gradle Configuration
+        public AdbConfiguration     adb     { get; set; }   //ADB Configuration
+        public MenuConfiguration    mnu     { get; set; }   //Menu Configuration
     }
 
-    class BuildConfiguration {
-        public string mde { get; set; }                     //Mode
-        public string dmn { get; set; }                     //Dimension
-        public string flv { get; set; }                     //Flavor
+    class SonarConfiguration {
+        public string   ptc     { get; set; }               //Protocol
+        public string   srv     { get; set; }               //Server
+        public string   prt     { get; set; }               //Port
+        public string   ipt     { get; set; }               //Internal Path
     }
 
     class ServerConfiguration {
-        public string dmn { get; set; }                     //Dimension
-        public string flv { get; set; }                     //Flavor
-        public string srv { get; set; }                     //Server
-        public bool syn { get; set; }                       //Sync
-        public string ptc { get; set; }                       //Protocol
-        public string ipt { get; set; }
+        public string   dmn     { get; set; }               //Dimension
+        public string   flv     { get; set; }               //Flavor
+        public string   srv     { get; set; }               //Server
+        public bool     syn     { get; set; }               //Sync
+        public string   ptc     { get; set; }               //Protocol
+        public string   ipt     { get; set; }               //Internal Path
+    }
+
+    class BuildConfiguration {
+        public string   mde     { get; set; }               //Mode
+        public string   dmn     { get; set; }               //Dimension
+        public string   flv     { get; set; }               //Flavor
     }
 
     class AdbConfiguration {
-        public string dvc { get; set; }                     //Device Name
-        public string wip { get; set; }                     //WiFi IP
-        public string wpr { get; set; }                     //WiFi Port
-        public bool wst { get; set; }                       //WiFi Status
+        public string   dvc     { get; set; }               //Device Name
+        public string   wip     { get; set; }               //WiFi IP
+        public string   wpr     { get; set; }               //WiFi Port
+        public bool     wst     { get; set; }               //WiFi Status
     }
 
     public class MenuConfiguration
     {
-        public string sel { get; set; }                       //Option
-        public bool p_sel { get; set; }                       //Project
-        public bool f_sel { get; set; }                       //File
-        public bool v_sel { get; set; }                       //Version Control System
-        public string v_bnc { get; set; }                     //Current Branch
-        public string g_cnf { get; set; }                     //Gulp Configuration
-        public bool g_env { get; set; }                       //Gulp Environment
-        public bool g_sel { get; set; }                       //Gulp
-        public string b_cnf { get; set; }                     //Build Configuration
-        public bool b_env { get; set; }                       //Build Environment
-        public bool t_env { get; set; }                       //Template Environment
-        public bool b_sel { get; set; }                       //Build
-        public bool v_env { get; set; }                       //VPN Environment
-        public bool s_env { get; set; }                       //Sigcheck Environment
-
+        public string   sel     { get; set; }               //Option
+        public bool     p_sel   { get; set; }               //Project
+        public bool     f_sel   { get; set; }               //File
+        public bool     v_sel   { get; set; }               //Version Control System
+        public string   v_bnc   { get; set; }               //Current Branch
+        public string   s_cnf   { get; set; }               //Sonar Configuration
+        public bool     sl_env  { get; set; }               //SonarLint Environment
+        public bool     sq_env  { get; set; }               //SonarQube Environment
+        public bool     ss_env  { get; set; }               //SonarScanner Environment
+        public bool     s_sel   { get; set; }               //Sonar Selection
+        public string   g_cnf   { get; set; }               //Gulp Configuration
+        public bool     g_env   { get; set; }               //Gulp Environment
+        public bool     g_sel   { get; set; }               //Gulp Selection
+        public string   b_cnf   { get; set; }               //Build Configuration
+        public bool     b_env   { get; set; }               //Build Environment
+        public bool     t_env   { get; set; }               //Template Environment
+        public bool     b_sel   { get; set; }               //Build Selection
+        public bool     v_env   { get; set; }               //VPN Environment
+        public bool     s_env   { get; set; }               //Sigcheck Environment
     }
 }
