@@ -1,13 +1,13 @@
 # HardHat [ for Win+Mac ]
 
-I don't like repetitive tasks and make a build is one of them... yuck!
 
 **HardHat** was created to simplify and automate tasks related to Android development.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
-[![Working Man - Rush](rush-workingman.png)](https://www.youtube.com/watch?v=_-4YOOMqKgk)  
-*Rush - Working Man*
+I don't like repetitive tasks and make a build is one of them... yuck!
+
+![Why we need automation?](automation.png "Be a Geek!")
 
 Contributions or Beer :beers: will be appreciated :thumbsup:
 
@@ -189,8 +189,6 @@ Choose desired letter combination and let **HardHat** work for you.
 
 > **UPPERCASE** options means default choice in a question, feel free to continue quickly with <kbd>RETURN</kbd> key :wink:
 
-![HardHat Main Menu](hardhat-main.png "HardHat Main Menu")
-
 #### Project
 
 | combination | action |
@@ -201,7 +199,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pd</kbd> | Make a copy of selected file and choose a new name. |
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
 | <kbd>ps</kbd> | Show signature information about selected file. |
-| <kbd>pv</kbd> | Show full information and values about selected file. |
+| <kbd>pv</kbd> | Show full information, values and hash about selected file. |
 
 #### Version Control System
 
@@ -422,6 +420,7 @@ This project is licensed under the GNU GPLv3 License - see the [LICENSE](LICENSE
 ### Acknowledgments
 
 * Beta testers: [Ricardo Mesa](https://github.com/rmesaf) and [Sebastian Loaiza](https://github.com/slmartinez).
-* [StackOverflow](http://stackoverflow.com) - The largest online community for programmers.
+* [StackOverflow](http://stackoverflow.com): The largest online community for programmers.
+* [XKCD](https://xkcd.com/): A web comic of romance, sarcasm, math and language... for making his [font](https://github.com/ipython/xkcd-font) available.
 
 ⇧ [Back to menu](#menu)
