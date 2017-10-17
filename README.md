@@ -235,7 +235,7 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 | `www` | Original project files |
 
 Gulp Browser process was created under `default` task and follow this command help:
-`gulp [default] --pth path_value [--int internalPath value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
+`gulp [default] --pth path_value [--int internal_path_value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
 
 | parameter | description |
 | --- | --- |
