@@ -19,3 +19,11 @@
 **/obj
 **/config.*.json
 /HardHat
+
+### win Distribution ###
+/dis/win/cmd.mac.sh
+/dis/win/mac.sh
+
+### macOS Distribution ###
+/dis/win/cmd.win.bat
+/dis/win/win.bat
