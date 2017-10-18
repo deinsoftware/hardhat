@@ -1,0 +1,18 @@
+### Development ###
+dev/*
+
+### VisualStudio ###
+.vs/*
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+### Remove macOS files ###
+cmd.mac.sh
+mac.command
+mac.sh
