@@ -21,7 +21,6 @@ if %errorlevel% == 0 (
     git config --local core.filemode false
     git reset --hard HEAD
     git pull
-    cls
     echo. 
     echo ==========================================================================================
     echo. 
@@ -40,7 +39,6 @@ if %errorlevel% == 0 (
 cls
 call color 07
 if defined dbg (
-    cd dev
     dotnet run
 ) else (
     HardHat.exe

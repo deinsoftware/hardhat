@@ -36,26 +36,18 @@ function fxGit() {
     git config --local core.filemode false
     git reset --hard HEAD
     git pull
-    clear
 }
 
 function fxStart() {
     #Permissions
     chmod +x mac.sh
     chmod +x mac.command
+    chmod +x cmd.mac.sh
     if [ -n "$1" ]; then
-        #Permissions
-        chmod +x dist/mac/cmd.mac.sh
-        chmod +x dist/mac/HardHat
         #Development
-        cd dev
         dotnet run
     else
-        #Permissions
-        chmod +x cmd.mac.sh
         chmod +x HardHat
-        #Release
-        cd dist/mac
         ./HardHat
     fi
     clear
