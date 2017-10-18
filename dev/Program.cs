@@ -49,7 +49,6 @@ namespace HardHat
                     msg: "HardHat is already running", 
                     replace: true, 
                     exit: true);
-                Exit();
             }
         }
 
