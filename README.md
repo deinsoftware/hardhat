@@ -66,8 +66,8 @@ Clone **HardHat** from GitHub on *recommended* path. Using this command on termi
 
 | OS | Command |
 | --- | --- |
-| win | `git clone https://github.com/equiman/hardhat.git "D:\Applications\HardHat"` |
-| mac | `git clone https://github.com/equiman/hardhat.git ~/Applications/HardHat/` |
+| win | `git clone -b win https://github.com/equiman/hardhat.git "D:\Applications\HardHat"` |
+| mac | `git clone -b mac https://github.com/equiman/hardhat.git ~/Applications/HardHat/` |
 
 ## Environment Variables
 
