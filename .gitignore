@@ -17,13 +17,5 @@
 ### HardHat Project ###
 **/bin
 **/obj
-**/config.*.json
+**/dist
 /HardHat
-
-### win Distribution ###
-/dis/win/cmd.mac.sh
-/dis/win/mac.sh
-
-### macOS Distribution ###
-/dis/win/cmd.win.bat
-/dis/win/win.bat

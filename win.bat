@@ -43,7 +43,6 @@ if defined dbg (
     cd dev
     dotnet run
 ) else (
-    cd dist/win
     HardHat.exe
 )
 cls

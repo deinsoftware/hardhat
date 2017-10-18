@@ -9,11 +9,15 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [3.3.0] - 2017-10-18
+## [4.0.0] - 2017-10-18
 
 ### Added
 
 * SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+
+### Change
+
+Clone command by Operative System.
 
 ## [3.2.0] - 2017-10-13
 
