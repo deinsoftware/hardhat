@@ -24,14 +24,9 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GIT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.Header("GIT");
+                Section.SelectedProject();
 
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
-                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
 
                 if (discard) {

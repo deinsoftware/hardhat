@@ -24,13 +24,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -95,13 +90,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > PROTOCOL".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > PROTOCOL");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -157,13 +147,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > INTERNAL PATH".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > INTERNAL PATH");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -202,13 +187,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > DIMENSION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > DIMENSION");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -273,13 +253,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > FLAVOR".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > FLAVOR");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -337,13 +312,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > NUMBER".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > NUMBER");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -387,13 +357,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP SERVER CONFIGURATION > SYNC".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP SERVER CONFIGURATION > SYNC");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.g_sel)
                 {
@@ -445,16 +410,11 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP UGLIFY".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.Header("GULP UGLIFY");
+                Section.SelectedProject();
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
 
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
-                
                 string[] dirs = new string[] {
                     Paths.Combine(Env.Get("GULP_PROJECT"),"www"),
                     Paths.Combine(Env.Get("GULP_PROJECT"),"bld"),
@@ -510,13 +470,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" GULP REVERT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("GULP REVERT");
+                Section.SelectedProject();
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
                 string dirSource = Paths.Combine(Env.Get("GULP_PROJECT"),"www");

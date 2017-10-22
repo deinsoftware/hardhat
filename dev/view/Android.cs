@@ -22,15 +22,10 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" INSTALL FILE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.Header("INSTALL FILE");
+                Section.SelectedFile();
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
-
-                $"{" Selected File:", -25}".txtMuted();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" --> Checking devices...".txtInfo(ct.WriteLine);
@@ -392,15 +387,10 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" SIGNER VERIFY".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("SIGNER VERIFY");
+                Section.SelectedFile();
+                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
-
-                $"{" Selected File:", -25}".txtMuted();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" --> Verifying...".txtInfo(ct.WriteLine);
@@ -428,15 +418,10 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" INFORMATION VALUES".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("INFORMATION VALUES");
+                Section.SelectedFile();
+                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
-
-                $"{" Selected File:", -25}".txtMuted();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);

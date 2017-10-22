@@ -134,15 +134,10 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" DUPLICATE FILE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.Header("DUPLICATE FILE");
+                Section.SelectedFile();
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
-
-                $"{" Selected File:", -25}".txtMuted();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $" Write a new name, without include his extension.".txtPrimary(ct.WriteLine);

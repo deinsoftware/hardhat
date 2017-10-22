@@ -23,14 +23,9 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" BUILD CONFIGURATION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
-
+                Section.Header("BUILD CONFIGURATION");
+                Section.SelectedProject();
+                
                 if (!_cp.mnu.b_sel)
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
@@ -101,13 +96,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" BUILD CONFIGURATION > DIMENSION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("BUILD CONFIGURATION > DIMENSION");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.b_sel)
                 {
@@ -151,13 +141,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" BUILD CONFIGURATION > FLAVOR".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("BUILD CONFIGURATION > FLAVOR");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.b_sel)
                 {
@@ -215,13 +200,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" BUILD CONFIGURATION > MODE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                Section.Header("BUILD CONFIGURATION > MODE");
+                Section.SelectedProject();
 
                 if (!_cp.mnu.b_sel)
                 {
@@ -314,17 +294,12 @@ namespace HardHat {
 
             try
             {
+                Section.Header("BUILD CONFIGURATION > PROPERTIES");
+                Section.SelectedProject();
+
                 string sourcePath = Paths.Combine(Env.Get("ANDROID_PROPERTIES"), _c.path.bsn);
                 string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
-
-                $"=".bgInfo(ct.Repeat);
-                $" BUILD CONFIGURATION > PROPERTIES".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"{" Selected Project:", -25}".txtMuted();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
-
+                
                 $"".fmNewLine();
                 List<string> filter = new List<string>() { 
                     ".properties"
