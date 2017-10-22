@@ -104,7 +104,6 @@ namespace dein.tools
                     break;
                 case Type.Shell:
                     StringBuilder line = new StringBuilder();
-                    //string line = "";
                     string[] words = s.Split(' ');
                     int chunkSize = (Console.WindowWidth - 3);
                     foreach (var item in words)
