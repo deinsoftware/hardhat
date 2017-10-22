@@ -132,10 +132,7 @@ namespace HardHat {
             string name = Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString();
             string version = Assembly.GetEntryAssembly().GetName().Version.ToString();
 
-            $"=".bgInfo(ct.Repeat);
-            $" {name} # {version}|{_cp.hst} : {_cp.ipl} ".bgInfo(ct.Justify);
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            Section.Header($" {name} # {version}|{_cp.hst} : {_cp.ipl} ");
 
             Status("m");
 

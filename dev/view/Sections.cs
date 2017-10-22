@@ -27,7 +27,7 @@ namespace HardHat {
             {
                 text.Append($" > {s}");
             } 
-            $" {text.ToString()}".bgInfo(ct.PadLeft);
+            $" {text.ToString()}".bgInfo((title.Contains("|") ? ct.Justify : ct.PadLeft));
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
         }
