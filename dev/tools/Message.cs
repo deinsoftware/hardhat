@@ -43,9 +43,7 @@ namespace dein.tools
                     $" {msg}".txtDefault(ct.Shell);
                 }
 
-                $"".fmNewLine();
-                $"=".bgDanger(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtDanger();
                 Console.ReadKey();

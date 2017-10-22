@@ -68,9 +68,7 @@ namespace HardHat {
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -112,9 +110,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_dmn = Console.ReadLine();
@@ -159,9 +155,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_flv = Console.ReadLine();
@@ -215,9 +209,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_mde = Console.ReadLine();
@@ -311,9 +303,7 @@ namespace HardHat {
                 $"{" To:"  , -8}".txtMuted(); $"{destinationPath}".txtDefault(ct.WriteLine);
                 Paths.CopyAll(sourcePath, destinationPath, true, true, filter);     
             
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();

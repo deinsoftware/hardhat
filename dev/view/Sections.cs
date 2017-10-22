@@ -19,9 +19,15 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
-        public static void Header(string title){
+        public static void Header(string title, params string[] sections){
             $"=".bgInfo(ct.Repeat);
-            $" {title}".bgInfo(ct.PadLeft);
+            StringBuilder text = new StringBuilder();
+            text.Append(title);
+            foreach (var s in sections)
+            {
+                text.Append($" > {s}");
+            } 
+            $" {text.ToString()}".bgInfo(ct.PadLeft);
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
         }
@@ -34,6 +40,12 @@ namespace HardHat {
         public static void SelectedFile(){
             $"{" Selected File:"    , -25}".txtMuted();
             $"{_cp.sfl}".txtDefault(ct.WriteLine);
+        }
+
+        public static void HorizontalRule() {
+            $"".fmNewLine();
+            $"=".bgInfo(ct.Repeat);
+            $"".fmNewLine();
         }
     }
 }

@@ -39,10 +39,8 @@ namespace HardHat {
                         CmdLaunch(dirPath, _cp.adb.dvc);
                     }
 
-                    $"".fmNewLine();
-                    $"=".bgInfo(ct.Repeat);
-                    $"".fmNewLine();
-
+                    Section.HorizontalRule();
+                    
                     $" Press [Any] key to continue...".txtInfo();
                     Console.ReadKey();
                 } else {
@@ -64,11 +62,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" ADB KILL/RESTART".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("ADB KILL/RESTART");
+                
                 if (_cp.adb.wst)
                 {
                     $" --> Disconnecting device...".txtInfo(ct.WriteLine);
@@ -86,9 +81,7 @@ namespace HardHat {
 
                 _cp.adb.dvc = "";
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
@@ -108,11 +101,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" DEVICE LIST".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("DEVICE LIST");
+                
                 if (CmdDevices()){
                     string list = CmdList();
                     string[] lines = Shell.SplitLines(list);
@@ -134,9 +124,7 @@ namespace HardHat {
                     $"".fmNewLine();
                     $"{"[EMPTY] None", 82}".txtDanger(ct.WriteLine);
                     
-                    $"".fmNewLine();
-                    $"=".bgInfo(ct.Repeat);
-                    $"".fmNewLine();
+                    Section.HorizontalRule();
 
                     $"{" Make your choice:", -25}".txtInfo();
                     string opt = Console.ReadLine();
@@ -169,11 +157,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONNECT DEVICE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("CONNECT DEVICE");
+                
                 _cp.ipl = Network.GetLocalIPAddress();
                 $"{" Current IP:", -25}".txtMuted();
                 $"{_cp.ipl}".txtDefault(ct.WriteLine);
@@ -186,9 +171,7 @@ namespace HardHat {
                 $"{" [C] Connect", -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
                 $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -231,9 +214,7 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONNECT DEVICE > IP ADDRESS".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
+                Section.Header("CONNECT DEVICE", "IP ADDRESS");
                 
                 $"".fmNewLine();
                 $" Write last mobile device IP octet.".txtPrimary(ct.WriteLine);
@@ -242,9 +223,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 _cp.ipb = Network.GetLocalIPBase(_cp.ipl);
                 $"{$" {_cp.ipb} ", -25}".txtInfo();
@@ -271,20 +250,15 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONNECT DEVICE > PORT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("CONNECT DEVICE", "PORT");
+                
                 $" Write mobile device port.".txtPrimary(ct.WriteLine);
                 $" Between 5555".txtPrimary(); $" (Default)".txtInfo(); $" and 5585".txtPrimary(ct.WriteLine); 
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -312,18 +286,13 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONNECT DEVICE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("CONNECT DEVICE");
+                
                 $" --> Connecting...".txtInfo(ct.WriteLine);
                 bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
                 _cp.adb.wst = connected;
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
@@ -342,10 +311,7 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" DISCONNECT DEVICE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.Header("DISCONNECT DEVICE");
                 
                 $" --> Disconnecting...".txtInfo(ct.WriteLine);
                 bool connected = CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
@@ -355,9 +321,7 @@ namespace HardHat {
                     _cp.adb.dvc = "";
                 }
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
@@ -396,9 +360,7 @@ namespace HardHat {
                 $" --> Verifying...".txtInfo(ct.WriteLine);
                 CmdSignerVerify(dirPath);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
@@ -439,9 +401,7 @@ namespace HardHat {
                     }
                 }
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();

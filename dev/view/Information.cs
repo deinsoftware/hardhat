@@ -14,30 +14,25 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            $"=".bgInfo(ct.Repeat);
-            $" COMMANDS".bgInfo(ct.PadLeft);
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            Section.Header("COMMANDS");
             
             $" Required".txtInfo(ct.WriteLine);
-            $"{" Gradle", -25}".txtPrimary();           Version.CmdGradle();
-            $"{" Gulp", -25}".txtPrimary();             Version.CmdGulp();
-            $"{" Java", -25}".txtPrimary();             Version.CmdJava();
-            $"{" Node", -25}".txtPrimary();             Version.CmdNode();
-            $"{" NPM", -25}".txtPrimary();              Version.CmdNPM();
+            $"{" Gradle",           -25}".txtPrimary();           Version.CmdGradle();
+            $"{" Gulp",             -25}".txtPrimary();             Version.CmdGulp();
+            $"{" Java",             -25}".txtPrimary();             Version.CmdJava();
+            $"{" Node",             -25}".txtPrimary();             Version.CmdNode();
+            $"{" NPM",              -25}".txtPrimary();              Version.CmdNPM();
 
             $"".fmNewLine();
             $" Optional".txtInfo(ct.WriteLine);
-            $"{" Cordova", -25}".txtPrimary();          Version.CmdCordova();
-            $"{" GIT", -25}".txtPrimary();              Version.CmdGit();
-            $"{" NativeScript", -25}".txtPrimary();     Version.CmdNativescript();
-            $"{" TypeScript", -25}".txtPrimary();       Version.CmdTypescript();
-            $"{" SonarLint", -25}".txtPrimary();        Version.CmdSonarLint();
-            $"{" SonarScanner", -25}".txtPrimary();     Version.CmdSonarScanner();
+            $"{" Cordova",          -25}".txtPrimary();          Version.CmdCordova();
+            $"{" GIT",              -25}".txtPrimary();              Version.CmdGit();
+            $"{" NativeScript",     -25}".txtPrimary();     Version.CmdNativescript();
+            $"{" TypeScript",       -25}".txtPrimary();       Version.CmdTypescript();
+            $"{" SonarLint",        -25}".txtPrimary();        Version.CmdSonarLint();
+            $"{" SonarScanner",     -25}".txtPrimary();     Version.CmdSonarScanner();
             
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            Section.HorizontalRule();
 
             $" Press [Any] key to continue...".txtInfo();
             Console.ReadKey();
@@ -67,20 +62,15 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            $"=".bgInfo(ct.Repeat);
-            $" ENVIRONMENT VARIABLES".bgInfo(ct.PadLeft);
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
-
+            Section.Header("ENVIRONMENT VARIABLES");
+            
             foreach (var variable in Variables)
             {
                 $"{$" {variable.Value}:", -25}".txtPrimary();
                 Env.Status(variable.Value);
             }
 
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            Section.HorizontalRule();
 
             $" Press [Any] key to continue...".txtInfo();
             Console.ReadKey();

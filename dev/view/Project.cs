@@ -27,11 +27,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" SELECT PROJECT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("SELECT PROJECT");
+                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj);
                 dirPath.Exists("Please review your configuration file.");
                 List<string> dirs = dirPath.Directories(_c.path.flt, "projects");
@@ -51,9 +48,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -81,11 +76,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" SELECT FILE".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("SELECT FILE");
+                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld);
                 dirPath.Exists("Please review your configuration file or make a build first.");
                 List<string> files = dirPath.Files($"*{_c.android.ext}", "Please make a build first.");
@@ -106,9 +98,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -145,9 +135,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -173,11 +161,8 @@ namespace HardHat {
 
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" FILE PATH".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("FILE PATH");
+                
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
 
                 $"{" Path:", -10}".txtMuted();
@@ -191,9 +176,7 @@ namespace HardHat {
                 $"{"[F] Copy Full Path", -34}".txtInfo();
                 $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();

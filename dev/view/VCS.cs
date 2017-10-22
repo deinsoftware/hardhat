@@ -47,9 +47,7 @@ namespace HardHat {
                     Git.CmdPull(dirPath);
                 }
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();

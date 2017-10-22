@@ -248,11 +248,7 @@ namespace HardHat {
             $"{"[X] Exit", -17}".txtDanger(ct.WriteLine);
             #endregion
 
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
-
-            
+            Section.HorizontalRule();
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();

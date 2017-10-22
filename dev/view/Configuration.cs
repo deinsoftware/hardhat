@@ -25,11 +25,8 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            $"=".bgInfo(ct.Repeat);
-            $" CONFIGURATION".bgInfo(ct.PadLeft);
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
-
+            Section.Header("CONFIGURATION");
+            
             $" [P] Paths".txtMuted(ct.WriteLine);
             $"{"   [D] Development", -25}".txtPrimary();   $"{_c.path.dir}".txtDefault(ct.WriteLine);
             $"{"   [B] Business"   , -25}".txtPrimary();   $"{_c.path.bsn}".txtDefault(ct.WriteLine);
@@ -56,9 +53,7 @@ namespace HardHat {
             $"".fmNewLine();
             $"{"[EMPTY] Save", 82}".txtSuccess(ct.WriteLine);
             
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            Section.HorizontalRule();
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
@@ -81,21 +76,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > PATH DEVELOPMENT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "PATH DEVELOPMENT");
+                
                 $" Write main Development path.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -135,11 +124,8 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > PATH BUSINESS".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
+                Section.Header("CONFIGURATION", "PATH BUSINESS");
+                
                 string dirPath = Paths.Combine(_c.path.dir);
 
                 if (!Directory.Exists(dirPath)){
@@ -174,9 +160,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -217,21 +201,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > PATH PROJECTS".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "PATH PROJECTS");
+                
                 $" Projects folder inside Business path.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -270,12 +248,8 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > PATH FILTER".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "PATH FILTER");
+                
                 $" Filter for folders inside Projects path.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 $" Can use wildcard.".txtPrimary(ct.WriteLine);
@@ -283,9 +257,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -313,21 +285,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > ANDROID PROJECT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "ANDROID PROJECT");
+                
                 $" Android folder inside selected project path.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -366,21 +332,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > ANDROID BUILD".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "ANDROID BUILD");
+                
                 $" Build path inside Android Project folder.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -406,21 +366,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > ANDROID EXTENSION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "ANDROID EXTENSION");
+                
                 $" File extension inside Build folder.".txtPrimary(ct.WriteLine);
                 $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -446,21 +400,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > ANDROID COMPACT".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION > ANDROID COMPACT");
+                
                 $" Files path inside Selected Project to be compacted with gulp.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -486,12 +434,8 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > ANDROID FILTER".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "ANDROID FILTER");
+                
                 $" Filter extension name to be proccessed with gulp.".txtPrimary(ct.WriteLine);
                 $" List separated by , (comma character).".txtPrimary(ct.WriteLine);
                 $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
@@ -499,9 +443,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -534,21 +476,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > GULP SERVER".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "GULP SERVER");
+                
                 $" Server path inside Gulp path.".txtPrimary(ct.WriteLine);
                 $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -574,21 +510,15 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > GULP EXTENSION".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "GULP EXTENSION");
+                
                 $" File extension inside Server folder.".txtPrimary(ct.WriteLine);
                 $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -616,20 +546,14 @@ namespace HardHat {
             var c =  Program.config;
             try
             {
-                $"=".bgInfo(ct.Repeat);
-                $" CONFIGURATION > VPN SITE NAME".bgInfo(ct.PadLeft);
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
-
-                $"".fmNewLine();
+                Section.Header("CONFIGURATION", "VPN SITE NAME");
+                
                 $" Site name for VPN connection.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();

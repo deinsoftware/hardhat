@@ -62,9 +62,7 @@ namespace HardHat {
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice:", -25}".txtInfo();
                 string opt = Console.ReadLine();
@@ -105,9 +103,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ptc = Console.ReadLine();
@@ -163,9 +159,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ipt = Console.ReadLine();
@@ -218,9 +212,7 @@ namespace HardHat {
                         $"{"[EMPTY] Current", 82}".txtInfo(ct.WriteLine);
                     }
 
-                    $"".fmNewLine();
-                    $"=".bgInfo(ct.Repeat);
-                    $"".fmNewLine();
+                    Section.HorizontalRule();
                 
                     $"{" Make your choice: ", -25}".txtInfo();
                     string opt_dmn = Console.ReadLine();
@@ -271,9 +263,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_flv = Console.ReadLine();
@@ -328,9 +318,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_srv = Console.ReadLine();
@@ -372,9 +360,7 @@ namespace HardHat {
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_syn = Console.ReadLine();
@@ -448,9 +434,7 @@ namespace HardHat {
                 $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
                 Paths.CopyAll(dirs[1], dirPath, true, true); 
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
@@ -481,9 +465,7 @@ namespace HardHat {
                 $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
                 Paths.CopyAll(dirSource, dirPath, true, true); 
 
-                $"".fmNewLine();
-                $"=".bgInfo(ct.Repeat);
-                $"".fmNewLine();
+                Section.HorizontalRule();
 
                 $" Press [Any] key to continue...".txtInfo();
                 Console.ReadKey();
