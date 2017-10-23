@@ -39,6 +39,11 @@ namespace HardHat {
                 list.Add(new Option{opt="vr"  , stt=false, act=Vcs.Reset                        });
                 list.Add(new Option{opt="vd+p", stt=false, act=Vcs.DiscardPull                  });
                 list.Add(new Option{opt="vr+p", stt=false, act=Vcs.ResetPull                    });
+                // Sonar
+                // list.Add(new Option{opt="s"   , stt=true , act=Sonar.Select                     });
+                // list.Add(new Option{opt="sq"  , stt=false, act=Sonar.Qube                       });
+                // list.Add(new Option{opt="ss"  , stt=false, act=Sonar.Scanner                    });
+                // list.Add(new Option{opt="sb"  , stt=false, act=Sonar.Browse                     });
                 // Gulp
                 list.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
                 list.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
