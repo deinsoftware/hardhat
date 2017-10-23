@@ -3,6 +3,16 @@ call refreshenv > nul
 cls
 set dbg=%1
 
+:start
+cls
+call color 07
+if defined dbg (
+    goto debug
+) else (
+    goto update
+)
+cls
+
 :update
 call color 06
 cls
@@ -14,7 +24,7 @@ echo ==^> Updating...
 cd /d %~dp0
 git pull | findstr /c:"Already up-to-date"
 if %errorlevel% == 0 (
-    goto start
+    goto run
 ) else (
     cls
     call color E0
@@ -35,15 +45,13 @@ if %errorlevel% == 0 (
     goto end
 )
 
-:start
-cls
-call color 07
-if defined dbg (
-    dotnet run
-) else (
-    HardHat.exe
-)
-cls
+:debug
+dotnet run
+goto end
+
+:run
+HardHat.exe
+goto end
 
 :end
 cls

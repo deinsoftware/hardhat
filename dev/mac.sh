@@ -3,6 +3,20 @@ clear
 resize -s 27 88
 clear
 
+function fxStart() {
+    #Permissions
+    chmod +x mac.sh
+    chmod +x mac.command
+    chmod +x cmd.mac.sh
+    if [ -n "$1" ]; then
+        #Development
+        fxDebug
+    else
+        fxUpdate
+    fi
+    clear
+}
+
 function fxUpdate() {
     cd ~/Applications/HardHat/
     clear;
@@ -27,7 +41,7 @@ function fxUpdate() {
         pause "Press [Enter] key to continue..."
         fxExit
     else
-        fxStart
+        fxRun
     fi
 }
 
@@ -38,19 +52,14 @@ function fxGit() {
     git pull
 }
 
-function fxStart() {
-    #Permissions
-    chmod +x mac.sh
-    chmod +x mac.command
-    chmod +x cmd.mac.sh
-    if [ -n "$1" ]; then
-        #Development
-        dotnet run
-    else
-        chmod +x HardHat
-        ./HardHat
-    fi
-    clear
+function fxDebug() {
+    dotnet run
+    fxExit()
+}
+
+function fxRun() {
+    chmod +x HardHat
+    ./HardHat
 }
 
 function fxExit() {
@@ -63,4 +72,4 @@ function pause() {
     read -p " $*"
 }
 
-fxUpdate
+fxStart
