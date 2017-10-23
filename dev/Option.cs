@@ -24,7 +24,7 @@ namespace HardHat {
             var list = new List<Option>();
             try
             {
-                list.Add(new Option{opt="m"   , stt=false, act=Menu.Start});
+                list.Add(new Option{opt="m"   , stt=true , act=Menu.Start});
                 list.Add(new Option{opt="p"   , stt=false, act=Project.Select});
                 list.Add(new Option{opt="pf"  , stt=false, act=Project.File});
                 list.Add(new Option{opt="pi"  , stt=false, act=Adb.Install});
@@ -54,25 +54,25 @@ namespace HardHat {
                 list.Add(new Option{opt="bp"  , stt=false, act=Build.Properties});
                 list.Add(new Option{opt="bc"  , stt=false, act=Build.Clean});
                 list.Add(new Option{opt="bg"  , stt=false, act=Build.Gradle});
-                list.Add(new Option{opt="c"   , stt=false, act=Configuration.Select});
-                list.Add(new Option{opt="c>pd", stt=false, act=Configuration.PathDevelopment});
-                list.Add(new Option{opt="c>pb", stt=false, act=Configuration.PathBusiness});
-                list.Add(new Option{opt="c>pp", stt=false, act=Configuration.PathProjects});
-                list.Add(new Option{opt="c>pf", stt=false, act=Configuration.PathFilter});
-                list.Add(new Option{opt="c>ap", stt=false, act=Configuration.AndroidProject});
-                list.Add(new Option{opt="c>ab", stt=false, act=Configuration.AndroidBuild});
-                list.Add(new Option{opt="c>ae", stt=false, act=Configuration.AndroidExtension});
-                list.Add(new Option{opt="c>ac", stt=false, act=Configuration.AndroidCompact});
-                list.Add(new Option{opt="c>af", stt=false, act=Configuration.AndroidFilter});
-                list.Add(new Option{opt="c>gs", stt=false, act=Configuration.GulpServer});
-                list.Add(new Option{opt="c>ge", stt=false, act=Configuration.GulpExtension});
-                list.Add(new Option{opt="c>vs", stt=false, act=Configuration.SiteName});
-                list.Add(new Option{opt="ar"  , stt=false, act=Adb.Restart});
-                list.Add(new Option{opt="ad"  , stt=false, act=Adb.Devices});
-                list.Add(new Option{opt="aw"  , stt=false, act=Adb.Wireless});
-                list.Add(new Option{opt="i"   , stt=false, act=Information.Versions});
-                list.Add(new Option{opt="e"   , stt=false, act=Information.Environment});
-                list.Add(new Option{opt="x"   , stt=false, act=Program.Exit});
+                list.Add(new Option{opt="c"   , stt=true , act=Configuration.Select});
+                list.Add(new Option{opt="c>pd", stt=true , act=Configuration.PathDevelopment});
+                list.Add(new Option{opt="c>pb", stt=true , act=Configuration.PathBusiness});
+                list.Add(new Option{opt="c>pp", stt=true , act=Configuration.PathProjects});
+                list.Add(new Option{opt="c>pf", stt=true , act=Configuration.PathFilter});
+                list.Add(new Option{opt="c>ap", stt=true , act=Configuration.AndroidProject});
+                list.Add(new Option{opt="c>ab", stt=true , act=Configuration.AndroidBuild});
+                list.Add(new Option{opt="c>ae", stt=true , act=Configuration.AndroidExtension});
+                list.Add(new Option{opt="c>ac", stt=true , act=Configuration.AndroidCompact});
+                list.Add(new Option{opt="c>af", stt=true , act=Configuration.AndroidFilter});
+                list.Add(new Option{opt="c>gs", stt=true , act=Configuration.GulpServer});
+                list.Add(new Option{opt="c>ge", stt=true , act=Configuration.GulpExtension});
+                list.Add(new Option{opt="c>vs", stt=true , act=Configuration.SiteName});
+                list.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart});
+                list.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices});
+                list.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless});
+                list.Add(new Option{opt="i"   , stt=true , act=Information.Versions});
+                list.Add(new Option{opt="e"   , stt=true , act=Information.Environment});
+                list.Add(new Option{opt="x"   , stt=true , act=Program.Exit});
 
                 Options.list = list;
             }
@@ -117,6 +117,27 @@ namespace HardHat {
                     msg: $" {Ex.Message}"
                 );
             }
+        }
+
+        public static Action Action(string opt, string dfl = "m")
+        {
+            Action response = Menu.Start;
+            try
+            {
+                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                if (option != null)
+                {
+                    response = option.act;
+                } else {
+                    Message.Critical();
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return response;
         }
     }
 }
