@@ -11,9 +11,9 @@ using dein.tools;
 namespace HardHat {
     
     public class Option {
-        public string opt { get; set; }
-        public bool stt { get; set; }
-        public Action act { get; set; }
+        public string   opt { get; set; }       //Key Combination
+        public bool     stt { get; set; }       //Status (Dis/Enable)
+        public Action   act { get; set; }       //Class.Method
     }
 
     public class Options
@@ -26,7 +26,7 @@ namespace HardHat {
             {
                 list.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
                 // Project
-                list.Add(new Option{opt="p"   , stt=false, act=Project.Select                   });
+                list.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
                 list.Add(new Option{opt="pf"  , stt=false, act=Project.File                     });
                 list.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
                 list.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
