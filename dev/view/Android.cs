@@ -151,6 +151,14 @@ namespace HardHat {
             }
         }
 
+        public static void Wireless(){
+            if (!_cp.adb.wst) { 
+                Adb.Configuration(); 
+            } else { 
+                Adb.Disconnect(); 
+            }
+        }
+
         public static void Configuration() {
             Colorify.Default();
             Console.Clear();

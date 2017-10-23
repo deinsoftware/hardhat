@@ -17,6 +17,26 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void Discard(){
+            Vcs.Actions(true, false, false);
+        }
+
+        public static void Pull(){
+            Vcs.Actions(false, true, false);
+        }
+
+        public static void Reset(){
+            Vcs.Actions(false, false, true);
+        }
+
+        public static void DiscardPull(){
+            Vcs.Actions(true, true, false);
+        }
+
+        public static void ResetPull(){
+            Vcs.Actions(false, true, true);
+        }
+
         public static void Actions(bool discard, bool pull, bool reset)
         {
             Colorify.Default();
