@@ -90,7 +90,7 @@ namespace HardHat {
                 Options.Valid("s" , _cp.mnu.sq_env);
                 Options.Valid("sq", _cp.mnu.sq_env);
                 Options.Valid("ss", _cp.mnu.ss_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("sb", _cp.mnu.sq_env && !Strings.SomeNullOrEmpty(_cp.mnu.s_cnf));
+                Options.Valid("sb", _cp.mnu.sq_env && !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf));
                 // Gulp
                 StringBuilder g_cnf = new StringBuilder();
                 g_cnf.Append($"{_cp.gbs.ptc}://");
@@ -280,13 +280,17 @@ namespace HardHat {
 
         public static void Route(string sel = "m", string dfl = "m") {
             _cp.mnu.sel = sel?.ToLower();
-            if (Options.Valid(_cp.mnu.sel))
-            {
-                Action act = Options.Action(_cp.mnu.sel, dfl);
-                _cp.mnu.sel = dfl;
-                act.Invoke();
+            if (!String.IsNullOrEmpty(_cp.mnu.sel)){
+                if (Options.Valid(_cp.mnu.sel))
+                {
+                    Action act = Options.Action(_cp.mnu.sel, dfl);
+                    _cp.mnu.sel = dfl;
+                    act.Invoke();
+                } else {
+                    Message.Critical();
+                }
             } else {
-                Message.Critical();
+                Menu.Start();
             }
         }
     }
