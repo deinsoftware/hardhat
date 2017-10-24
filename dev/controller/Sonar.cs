@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    public partial class Sonar {
+    public static partial class Sonar {
 
         public static bool CmdStatus(string sitename, string dir) {
             bool cnt = false;

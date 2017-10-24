@@ -8,7 +8,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public partial class Gulp {
+    public static partial class Gulp {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 
@@ -37,25 +37,7 @@ namespace HardHat {
                 $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.gbs.ptc}".txtDefault(ct.WriteLine);
                 $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.gbs.ipt}".txtDefault(ct.WriteLine);
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gbs.dmn}".txtDefault(ct.WriteLine);
-                string g_cnf = "";
-                switch (_cp.gbs.flv?.ToLower())
-                {
-                    case "a":
-                        g_cnf = "Alfa";
-                        break;
-                    case "b":
-                        g_cnf = "Beta";
-                        break;
-                    case "s":
-                        g_cnf = "Stag";
-                        break;
-                    case "p":
-                        g_cnf = "Prod";
-                        break;
-                    case "d":
-                        g_cnf = "Desk";
-                        break;
-                }
+                string g_cnf = Section.FlavorName(_cp.gbs.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
                 $"{" [N] Number:"       , -25}".txtPrimary();   $"{_cp.gbs.srv}".txtDefault(ct.WriteLine);
                 $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_cp.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);

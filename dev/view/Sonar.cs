@@ -8,7 +8,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public partial class Sonar {
+    public static partial class Sonar {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 

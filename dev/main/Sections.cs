@@ -8,7 +8,7 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    public class Section {
+    public static class Section {
 
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
@@ -46,6 +46,55 @@ namespace HardHat {
             $"".fmNewLine();
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
+        }
+
+        public static string FlavorName(string flv){
+            try {
+                switch (flv?.ToLower())
+                {
+                    case "a":
+                        flv = "Alfa";
+                        break;
+                    case "b":
+                        flv = "Beta";
+                        break;
+                    case "s":
+                        flv = "Stag";
+                        break;
+                    case "p":
+                        flv = "Prod";
+                        break;
+                    case "d":
+                        flv = "Desk";
+                        break;
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return flv;
+        }
+
+        public static string ModeName(string mde){
+            try {
+                switch (mde?.ToLower())
+                {
+                    case "d":
+                        mde = "Debug";
+                        break;
+                    case "r":
+                        mde = "Release";
+                        break;
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return mde;
         }
     }
 }

@@ -7,7 +7,7 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    public partial class Build {
+    public static partial class Build {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 
@@ -34,36 +34,9 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);
-                string b_flv = "";
-                switch (_cp.gdl.flv?.ToLower())
-                {
-                    case "a":
-                        b_flv = "Alfa";
-                        break;
-                    case "b":
-                        b_flv = "Beta";
-                        break;
-                    case "s":
-                        b_flv = "Stag";
-                        break;
-                    case "p":
-                        b_flv = "Prod";
-                        break;
-                    case "d":
-                        b_flv = "Desk";
-                        break;
-                }
+                string b_flv = Section.FlavorName(_cp.gdl.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
-                string b_mde = "";
-                switch (_cp.gdl.mde?.ToLower())
-                {
-                    case "d":
-                        b_mde = "Debug";
-                        break;
-                    case "r":
-                        b_mde = "Release";
-                        break;
-                }
+                string b_mde = Section.ModeName(_cp.gdl.mde);
                 $"{" [M] Mode:"         , -25}".txtPrimary();   $"{b_mde}".txtDefault(ct.WriteLine);
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);

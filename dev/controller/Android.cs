@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    public partial class Adb{
+    public static partial class Adb{
         public static bool CmdDevices() {
             bool dev = false;
             string response = "";
@@ -188,7 +188,7 @@ namespace HardHat
         }
     }
 
-    partial class BuildTools {
+    public static partial class BuildTools {
         public static void CmdSignerVerify(string path){
             try
             {

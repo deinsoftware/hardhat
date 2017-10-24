@@ -6,7 +6,7 @@ using dein.tools;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
-    public class Vcs {
+    public static class Vcs {
         
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }

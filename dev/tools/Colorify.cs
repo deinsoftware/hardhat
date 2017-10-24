@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -20,7 +21,7 @@ namespace dein.tools
             }
         }
 
-        public static readonly Dictionary<string, Color> Theme = new Dictionary<string, Color>
+        public static readonly IReadOnlyDictionary<string, Color> Theme = new Dictionary<string, Color>
         {
             {"text-default", new Color(null                  , null                  )},
             {"text-muted"  , new Color(null                  , ConsoleColor.DarkGray )},

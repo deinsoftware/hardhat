@@ -10,7 +10,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public class Project {
+    public static class Project {
 
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }

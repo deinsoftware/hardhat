@@ -10,7 +10,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     
-    public class Menu {
+    public static class Menu {
 
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
@@ -21,55 +21,6 @@ namespace HardHat {
             _c  = Program.config;
             _cp = Program.config.personal;
             _m  = Options.list;
-        }
-
-        private static string FlavorName(string flv){
-            try {
-                switch (flv?.ToLower())
-                {
-                    case "a":
-                        flv = "Alfa";
-                        break;
-                    case "b":
-                        flv = "Beta";
-                        break;
-                    case "s":
-                        flv = "Stag";
-                        break;
-                    case "p":
-                        flv = "Prod";
-                        break;
-                    case "d":
-                        flv = "Desk";
-                        break;
-                }
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-            return flv;
-        }
-
-        private static string ModeName(string mde){
-            try {
-                switch (mde?.ToLower())
-                {
-                    case "d":
-                        mde = "Debug";
-                        break;
-                    case "r":
-                        mde = "Release";
-                        break;
-                }
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-            return mde;
         }
 
         public static void Status(string sel = null){
@@ -145,7 +96,7 @@ namespace HardHat {
                 {
                     g_cnf.Append(_cp.gbs.dmn);
                 }
-                g_cnf.Append(FlavorName(_cp.gbs.flv));
+                g_cnf.Append(Section.FlavorName(_cp.gbs.flv));
                 g_cnf.Append(_cp.gbs.srv);
                 g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
                 _cp.mnu.g_cnf = g_cnf.ToString();
@@ -154,8 +105,8 @@ namespace HardHat {
                 // Build
                 StringBuilder b_cnf = new StringBuilder();
                 b_cnf.Append(_cp.gdl.dmn ?? "");
-                b_cnf.Append(FlavorName(_cp.gdl.flv));
-                b_cnf.Append(ModeName(_cp.gdl.mde));
+                b_cnf.Append(Section.FlavorName(_cp.gdl.flv));
+                b_cnf.Append(Section.ModeName(_cp.gdl.mde));
                 _cp.mnu.b_cnf = b_cnf.ToString();
                 _cp.mnu.b_env = Env.Check("GRADLE_HOME");
                 _cp.mnu.t_env = Env.Check("ANDROID_PROPERTIES");
@@ -182,7 +133,22 @@ namespace HardHat {
 
             Status("m");
 
-            #region Project
+            Project();
+            Vcs();
+            Sonar();
+            Gulp();
+            Build();
+            Adb();
+            Footer();
+
+            Section.HorizontalRule();
+
+            $"{" Make your choice:", -25}".txtInfo();
+            string opt = Console.ReadLine();
+            Route(opt);
+        }
+
+        public static void Project() {
             if (!Options.Valid("p"))
             {
                 $" [P] Select Project".txtPrimary(ct.WriteLine);
@@ -206,9 +172,9 @@ namespace HardHat {
             $"{"[V] Values"     , -17}".txtStatus(ct.WriteLine, Options.Valid("pv"));
 
             $"".fmNewLine();
-            #endregion
+        }
 
-            #region VCS
+        public static void Vcs() {
             if (Options.Valid("v"))
             {
                 $" [V] VCS".txtMuted(ct.WriteLine);
@@ -220,9 +186,9 @@ namespace HardHat {
             $"{"[P] Pull"       , -34}".txtStatus(ct.Write,     Options.Valid("vp"));
             $"{"[R] Reset"      , -17}".txtStatus(ct.WriteLine, Options.Valid("vr"));
             $"".fmNewLine();
-            #endregion
+        }
 
-            #region Sonar
+        public static void Sonar() {
             if (!Options.Valid("s"))
             {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
@@ -234,9 +200,9 @@ namespace HardHat {
             $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,      Options.Valid("ss"));
             $"{"[B] Browse"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("sb"));
             $"".fmNewLine();
-            #endregion
-            
-            #region Gulp
+        }
+
+        public static void Gulp() {
             if (!_cp.mnu.g_opt)
             {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
@@ -248,9 +214,9 @@ namespace HardHat {
             $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));
             $"{"[S] Server"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("gs"));
             $"".fmNewLine();
-            #endregion
+        }
 
-            #region Build
+        public static void Build(){
             if (!_cp.mnu.b_opt)
             {
                 $" [B] Build".txtStatus(ct.WriteLine,               Options.Valid("b"));
@@ -262,9 +228,9 @@ namespace HardHat {
             $"{"[C] Clean"         , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
             $"{"[G] Gradle"        , -17}".txtStatus(ct.WriteLine,  Options.Valid("bg"));
             $"".fmNewLine();
-            #endregion
+        }
 
-            #region ADB
+        public static void Adb(){
             if (String.IsNullOrEmpty(_cp.adb.dvc))
             {
                 $" [A] ADB".txtMuted(ct.WriteLine);
@@ -281,21 +247,14 @@ namespace HardHat {
             }
             $"{"[R] Restart"        , -17}".txtPrimary(ct.WriteLine);
             $"".fmNewLine();
-            #endregion
+        }
 
-            #region Footer
+        public static void Footer(){
             $"".fmNewLine();
             $"{" [C] Config", -17}".txtInfo();
             $"{"[I] Info", -17}".txtInfo();
             $"{"[E] Environment", -34}".txtInfo();
             $"{"[X] Exit", -17}".txtDanger(ct.WriteLine);
-            #endregion
-
-            Section.HorizontalRule();
-
-            $"{" Make your choice:", -25}".txtInfo();
-            string opt = Console.ReadLine();
-            Route(opt);
         }
 
         public static void Route(string sel = "m", string dfl = "m") {

@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public partial class Adb {
+    public static partial class Adb {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 
@@ -343,7 +343,8 @@ namespace HardHat {
             }
         }
     }
-    partial class BuildTools {
+
+    public static partial class BuildTools {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 

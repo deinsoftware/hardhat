@@ -16,77 +16,78 @@ namespace HardHat {
         public Action   act { get; set; }       //Class.Method
     }
 
-    public class Options
+    public static class Options
     {
         public static IEnumerable<Option> list { get; set; }
+        
         static Options()
         {
-            var list = new List<Option>();
+            var opts = new List<Option>();
             try
             {
-                list.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
+                opts.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
                 // Project
-                list.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
-                list.Add(new Option{opt="pf"  , stt=false, act=Project.File                     });
-                list.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
-                list.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
-                list.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
-                list.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
-                list.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
+                opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
+                opts.Add(new Option{opt="pf"  , stt=false, act=Project.File                     });
+                opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
+                opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
+                opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
+                opts.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
+                opts.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
                 // Version Control System
-                list.Add(new Option{opt="vd"  , stt=false, act=Vcs.Discard                      });
-                list.Add(new Option{opt="vp"  , stt=false, act=Vcs.Pull                         });
-                list.Add(new Option{opt="vr"  , stt=false, act=Vcs.Reset                        });
-                list.Add(new Option{opt="vd+p", stt=false, act=Vcs.DiscardPull                  });
-                list.Add(new Option{opt="vr+p", stt=false, act=Vcs.ResetPull                    });
+                opts.Add(new Option{opt="vd"  , stt=false, act=Vcs.Discard                      });
+                opts.Add(new Option{opt="vp"  , stt=false, act=Vcs.Pull                         });
+                opts.Add(new Option{opt="vr"  , stt=false, act=Vcs.Reset                        });
+                opts.Add(new Option{opt="vd+p", stt=false, act=Vcs.DiscardPull                  });
+                opts.Add(new Option{opt="vr+p", stt=false, act=Vcs.ResetPull                    });
                 // Sonar
-                list.Add(new Option{opt="s"   , stt=true , act=Sonar.Select                     });
-                list.Add(new Option{opt="sq"  , stt=false, act=Sonar.Qube                       });
-                list.Add(new Option{opt="ss"  , stt=false, act=Sonar.Scanner                    });
-                list.Add(new Option{opt="sb"  , stt=false, act=Sonar.Browse                     });
+                opts.Add(new Option{opt="s"   , stt=true , act=Sonar.Select                     });
+                opts.Add(new Option{opt="sq"  , stt=false, act=Sonar.Qube                       });
+                opts.Add(new Option{opt="ss"  , stt=false, act=Sonar.Scanner                    });
+                opts.Add(new Option{opt="sb"  , stt=false, act=Sonar.Browse                     });
                 // Gulp
-                list.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
-                list.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
-                list.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
-                list.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
-                list.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
-                list.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
-                list.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
-                list.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
-                list.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
-                list.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
+                opts.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
+                opts.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
+                opts.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
+                opts.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
+                opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
+                opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
+                opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
+                opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
+                opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
+                opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
                 // Build
-                list.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
-                list.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
-                list.Add(new Option{opt="b>f" , stt=false, act=Build.Flavor                     });
-                list.Add(new Option{opt="b>m" , stt=false, act=Build.Mode                       });
-                list.Add(new Option{opt="bp"  , stt=false, act=Build.Properties                 });
-                list.Add(new Option{opt="bc"  , stt=false, act=Build.Clean                      });
-                list.Add(new Option{opt="bg"  , stt=false, act=Build.Gradle                     });
-                // ADB
-                list.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
-                list.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices                      });
-                list.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless                     });
+                opts.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
+                opts.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
+                opts.Add(new Option{opt="b>f" , stt=false, act=Build.Flavor                     });
+                opts.Add(new Option{opt="b>m" , stt=false, act=Build.Mode                       });
+                opts.Add(new Option{opt="bp"  , stt=false, act=Build.Properties                 });
+                opts.Add(new Option{opt="bc"  , stt=false, act=Build.Clean                      });
+                opts.Add(new Option{opt="bg"  , stt=false, act=Build.Gradle                     });
+                // Adb
+                opts.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
+                opts.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices                      });
+                opts.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless                     });
                 // Config
-                list.Add(new Option{opt="c"   , stt=true , act=Configuration.Select             });
-                list.Add(new Option{opt="c>pd", stt=true , act=Configuration.PathDevelopment    });
-                list.Add(new Option{opt="c>pb", stt=true , act=Configuration.PathBusiness       });
-                list.Add(new Option{opt="c>pp", stt=true , act=Configuration.PathProjects       });
-                list.Add(new Option{opt="c>pf", stt=true , act=Configuration.PathFilter         });
-                list.Add(new Option{opt="c>ap", stt=true , act=Configuration.AndroidProject     });
-                list.Add(new Option{opt="c>ab", stt=true , act=Configuration.AndroidBuild       });
-                list.Add(new Option{opt="c>ae", stt=true , act=Configuration.AndroidExtension   });
-                list.Add(new Option{opt="c>ac", stt=true , act=Configuration.AndroidCompact     });
-                list.Add(new Option{opt="c>af", stt=true , act=Configuration.AndroidFilter      });
-                list.Add(new Option{opt="c>gs", stt=true , act=Configuration.GulpServer         });
-                list.Add(new Option{opt="c>ge", stt=true , act=Configuration.GulpExtension      });
-                list.Add(new Option{opt="c>vs", stt=true , act=Configuration.SiteName           });
+                opts.Add(new Option{opt="c"   , stt=true , act=Configuration.Select             });
+                opts.Add(new Option{opt="c>pd", stt=true , act=Configuration.PathDevelopment    });
+                opts.Add(new Option{opt="c>pb", stt=true , act=Configuration.PathBusiness       });
+                opts.Add(new Option{opt="c>pp", stt=true , act=Configuration.PathProjects       });
+                opts.Add(new Option{opt="c>pf", stt=true , act=Configuration.PathFilter         });
+                opts.Add(new Option{opt="c>ap", stt=true , act=Configuration.AndroidProject     });
+                opts.Add(new Option{opt="c>ab", stt=true , act=Configuration.AndroidBuild       });
+                opts.Add(new Option{opt="c>ae", stt=true , act=Configuration.AndroidExtension   });
+                opts.Add(new Option{opt="c>ac", stt=true , act=Configuration.AndroidCompact     });
+                opts.Add(new Option{opt="c>af", stt=true , act=Configuration.AndroidFilter      });
+                opts.Add(new Option{opt="c>gs", stt=true , act=Configuration.GulpServer         });
+                opts.Add(new Option{opt="c>ge", stt=true , act=Configuration.GulpExtension      });
+                opts.Add(new Option{opt="c>vs", stt=true , act=Configuration.SiteName           });
                 // Extras
-                list.Add(new Option{opt="i"   , stt=true , act=Information.Versions             });
-                list.Add(new Option{opt="e"   , stt=true , act=Information.Environment          });
-                list.Add(new Option{opt="x"   , stt=true , act=Program.Exit                     });
+                opts.Add(new Option{opt="i"   , stt=true , act=Information.Versions             });
+                opts.Add(new Option{opt="e"   , stt=true , act=Information.Environment          });
+                opts.Add(new Option{opt="x"   , stt=true , act=Program.Exit                     });
 
-                Options.list = list;
+                Options.list = opts;
             }
             catch (Exception Ex){
                 Message.Critical(

@@ -7,7 +7,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {
-    public partial class Gulp {
+    public static partial class Gulp {
         public static void CmdUglify(string dir){
             try
             {

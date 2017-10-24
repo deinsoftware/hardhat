@@ -10,7 +10,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public class Configuration {
+    public static class Configuration {
 
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
@@ -73,7 +73,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "PATH DEVELOPMENT");
@@ -121,7 +120,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "PATH BUSINESS");
@@ -198,7 +196,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "PATH PROJECTS");
@@ -245,7 +242,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "PATH FILTER");
@@ -282,7 +278,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID PROJECT");
@@ -329,7 +324,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID BUILD");
@@ -363,7 +357,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID EXTENSION");
@@ -397,7 +390,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION > ANDROID COMPACT");
@@ -431,7 +423,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID FILTER");
@@ -473,7 +464,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "GULP SERVER");
@@ -507,7 +497,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "GULP EXTENSION");
@@ -543,7 +532,6 @@ namespace HardHat {
             Colorify.Default();
             Console.Clear();
 
-            var c =  Program.config;
             try
             {
                 Section.Header("CONFIGURATION", "VPN SITE NAME");
