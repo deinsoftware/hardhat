@@ -131,7 +131,7 @@ namespace HardHat {
                 Options.Valid("b>m", _cp.mnu.b_env);
                 Options.Valid("bp" , _cp.mnu.p_env && !Strings.SomeNullOrEmpty(_cp.spr));
                 Options.Valid("bc" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("bd" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
+                Options.Valid("bg" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
                 //VPN
                 _cp.mnu.cv_env = Env.Check("VPN_HOME");
             }
