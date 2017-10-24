@@ -14,10 +14,10 @@ namespace dein.tools
             switch (Os.Platform())
             {
                 case "win":
-                    cmd.Append($"{val} | clip");
+                    cmd.Append($"{val.BackSlash()}|clip");
                     break;
                 case "mac":
-                    cmd.Append($"\"{val}\" | pbcopy");
+                    cmd.Append($"\"{val.Slash()}\" | pbcopy");
                     break;
             }
             cmd.ToString().Term();
