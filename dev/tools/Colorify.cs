@@ -38,7 +38,13 @@ namespace dein.tools
             {"bg-danger"   , new Color(ConsoleColor.Red      , ConsoleColor.White    )},
         };
 
-        public static void txtStatus   (this string s, Type? type = Type.Write, bool status = false) { 
+        public static void txtStatus   (this string s, Type? type = Type.Write, params bool[] values) { 
+            bool status = true;
+            foreach (var v in values)
+            {
+                status = status && v;
+            }
+            
             if (status)
             {
                 s.txtPrimary(type);

@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using dein.tools;
 
@@ -6,87 +8,51 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
 
-    public partial class Adb {
+    public partial class Sonar {
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
 
-        static Adb()
+        static Sonar()
         {
             _c = Program.config;
             _cp = Program.config.personal;
         }
-
-        public static void Install() {
+        
+        public static void Select() {
             Colorify.Default();
             Console.Clear();
 
             try
             {
-                Section.Header("INSTALL FILE");
-                Section.SelectedFile();
+                Section.Header("SONAR SERVER CONFIGURATION");
+                Section.SelectedProject();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
-
-                $"".fmNewLine();
-                $" --> Checking devices...".txtInfo(ct.WriteLine);
-                if (CmdDevices()){
-                    $"".fmNewLine();
-                    $" --> Installing...".txtInfo(ct.WriteLine);
-                    Response result = CmdInstall(dirPath, _cp.adb.dvc);
-                    if (result.code == 0) {
-                        $"".fmNewLine();
-                        $" --> Launching...".txtInfo(ct.WriteLine);
-                        CmdLaunch(dirPath, _cp.adb.dvc);
-                    }
-
-                    Section.HorizontalRule();
-                    
-                    $" Press [Any] key to continue...".txtInfo();
-                    Console.ReadKey();
-                } else {
-                    Message.Alert(" No device/emulators found");
-                }
-
-                Menu.Start();
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
-
-        public static void Restart() {
-            Colorify.Default();
-            Console.Clear();
-
-            try
-            {
-                Section.Header("ADB KILL/RESTART");
-                
-                if (_cp.adb.wst)
+                if (Options.Valid("s"))
                 {
-                    $" --> Disconnecting device...".txtInfo(ct.WriteLine);
-                    CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
-                    _cp.adb.wst = false;
-                    $"".fmNewLine();
+                    $"{" Current Configuration:", -25}".txtMuted();
+                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
                 }
-                
-                $" --> Kill Server...".txtInfo(ct.WriteLine);
-                CmdKillServer();
 
                 $"".fmNewLine();
-                $" --> Start Server...".txtInfo(ct.WriteLine);
-                CmdStartServer();
+                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.snr.ptc}".txtDefault(ct.WriteLine);
+                $"{" [D] Domain:"       , -25}".txtPrimary();   $"{_cp.snr.dmn}".txtDefault(ct.WriteLine);
+                $"{" [P] Port:"         , -25}".txtPrimary();   $"{_cp.snr.prt}".txtDefault(ct.WriteLine);
+                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.snr.ipt}".txtDefault(ct.WriteLine);
 
-                _cp.adb.dvc = "";
+                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
 
                 Section.HorizontalRule();
 
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
-
-                Menu.Start();
+                $"{" Make your choice:", -25}".txtInfo();
+                string opt = Console.ReadLine();
+                
+                if(String.IsNullOrEmpty(opt?.ToLower()))
+                {
+                    Menu.Start();
+                } else {
+                    Menu.Route($"s>{opt?.ToLower()}", "s");
+                }
+                Message.Error();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -95,54 +61,53 @@ namespace HardHat {
             }
         }
 
-        public static void Devices() {
+        public static void Protocol() {
             Colorify.Default();
             Console.Clear();
 
             try
             {
-                Section.Header("DEVICE LIST");
+                Section.Header("SONAR SERVER CONFIGURATION", "PROTOCOL");
+                Section.SelectedProject();
+
+                if (!_cp.mnu.g_opt)
+                {
+                    $"{" Current Configuration:", -25}".txtMuted();
+                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
+                }
+
+                $"".fmNewLine();
+                $" {"1", 2}] http".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
+                $" {"2", 2}] https".txtPrimary(ct.WriteLine);
+                $"".fmNewLine();
+                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
                 
-                if (CmdDevices()){
-                    string list = CmdList();
-                    string[] lines = Shell.SplitLines(list);
+                Section.HorizontalRule();
+            
+                $"{" Make your choice: ", -25}".txtInfo();
+                string opt_ptc = Console.ReadLine();
+                opt_ptc = opt_ptc?.ToLower();
 
-                    if (lines.Length < 1) {
-                        _cp.adb.dvc = "";
-                    } else {
-                        var i = 1;
-                        foreach (string l in lines)
-                        {
-                            if (!String.IsNullOrEmpty(l))
-                            {
-                                $" {i, 2}] {Shell.GetWord(l, 0)}".txtPrimary(ct.WriteLine);
-                                i++;
-                            }
-                        }
-                    }
-
-                    $"".fmNewLine();
-                    $"{"[EMPTY] None", 82}".txtDanger(ct.WriteLine);
-                    
-                    Section.HorizontalRule();
-
-                    $"{" Make your choice:", -25}".txtInfo();
-                    string opt = Console.ReadLine();
-
-                    if (!String.IsNullOrEmpty(opt))
+                if (!String.IsNullOrEmpty(opt_ptc)){
+                    Validation.Range(opt_ptc, 1, 2);
+                    switch (opt_ptc)
                     {
-                        Validation.Range(opt, 1, list.Length);
-                        var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
-                        _cp.adb.dvc = sel;
-                    } else {
-                        _cp.adb.dvc = "";
+                        case "1":
+                            _cp.gbs.ptc = "http";
+                            break;
+                        case "2":
+                            _cp.gbs.ptc = "https";
+                            break;
+                        default:
+                            Message.Error();
+                            break;
                     }
                 } else {
-                    _cp.adb.dvc = "";
-                    Message.Alert(" No device found.");
+                    _cp.gbs.ptc = "http";
                 }
-                
-                Menu.Start();
+
+                Menu.Status();
+                Select();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -151,15 +116,7 @@ namespace HardHat {
             }
         }
 
-        public static void Wireless(){
-            if (!_cp.adb.wst) { 
-                Adb.Configuration(); 
-            } else { 
-                Adb.Disconnect(); 
-            }
-        }
-
-        public static void Configuration() {
+        public static void Server() {
             Colorify.Default();
             Console.Clear();
 
@@ -243,7 +200,7 @@ namespace HardHat {
                 }
 
                 Menu.Status();
-                Configuration();
+                //Configuration();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -260,6 +217,7 @@ namespace HardHat {
             {
                 Section.Header("CONNECT DEVICE", "PORT");
                 
+                $"".fmNewLine();
                 $" Write mobile device port.".txtPrimary(ct.WriteLine);
                 $" Between 5555".txtPrimary(); $" (Default)".txtInfo(); $" and 5585".txtPrimary(ct.WriteLine); 
                 
@@ -279,7 +237,7 @@ namespace HardHat {
                 }
 
                 Menu.Status();
-                Configuration();
+                //Configuration();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -297,8 +255,8 @@ namespace HardHat {
                 Section.Header("CONNECT DEVICE");
                 
                 $" --> Connecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
-                _cp.adb.wst = connected;
+                //bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
+                //_cp.adb.wst = connected;
 
                 Section.HorizontalRule();
 
@@ -312,67 +270,67 @@ namespace HardHat {
                     msg: $" {Ex.Message}"
                 );
             }
-        }
-        public static void Disconnect() {
-            Colorify.Default();
-            Console.Clear();
-
-            try
-            {
-                Section.Header("DISCONNECT DEVICE");
-                
-                $" --> Disconnecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
-                _cp.adb.wst = connected;
-                if (_cp.adb.dvc == $"{_cp.adb.wip}:{_cp.adb.wpr}")
-                {
-                    _cp.adb.dvc = "";
-                }
-
-                Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
-
-                Menu.Start();
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
-    }
-    partial class BuildTools {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static BuildTools()
-        {
-            _c = Program.config;
-            _cp = Program.config.personal;
         }
         
-        public static void SignerVerify() {
+        public static void InternalPath() {
             Colorify.Default();
             Console.Clear();
 
             try
             {
-                Section.Header("SIGNER VERIFY");
-                Section.SelectedFile();
-                
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                Section.Header("GULP SERVER CONFIGURATION", "INTERNAL PATH");
+                Section.SelectedProject();
+
+                if (!_cp.mnu.g_opt)
+                {
+                    $"{" Current Configuration:", -25}".txtMuted();
+                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
+                }
 
                 $"".fmNewLine();
-                $" --> Verifying...".txtInfo(ct.WriteLine);
-                CmdSignerVerify(dirPath);
-
+                $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
+                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                
+                $"".fmNewLine();
+                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                
                 Section.HorizontalRule();
+            
+                $"{" Make your choice: ", -25}".txtInfo();
+                string opt_ipt = Console.ReadLine();
+                _cp.gbs.ipt = $"{opt_ipt}";
+                
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
 
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+        
+        
+        
+        public static void Qube() {
+            Colorify.Default();
+            Console.Clear();
 
+            try
+            {
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
+                // CmdServer(
+                //     dirPath,
+                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     _cp.gbs.ipt,
+                //     _cp.gbs.dmn,
+                //     _cp.gbs.flv,
+                //     _cp.gbs.srv,
+                //     _cp.gbs.syn,
+                //     _cp.ipl,
+                //     _cp.gbs.ptc
+                // );
                 Menu.Start();
             }
             catch (Exception Ex){
@@ -382,38 +340,51 @@ namespace HardHat {
             }
         }
 
-        public static void Information() {
+        public static void Scanner() {
             Colorify.Default();
             Console.Clear();
 
             try
             {
-                Section.Header("INFORMATION VALUES");
-                Section.SelectedFile();
-                
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
+                // CmdServer(
+                //     dirPath,
+                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     _cp.gbs.ipt,
+                //     _cp.gbs.dmn,
+                //     _cp.gbs.flv,
+                //     _cp.gbs.srv,
+                //     _cp.gbs.syn,
+                //     _cp.ipl,
+                //     _cp.gbs.ptc
+                // );
+                Menu.Start();
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
 
-                $"".fmNewLine();
-                $" --> Dump Badging...".txtInfo(ct.WriteLine);
-                CmdInformation(dirPath);
+        public static void Browse() {
+            Colorify.Default();
+            Console.Clear();
 
-                if ((Os.IsWindows() && _cp.mnu.ps_env) || Os.IsMacOS()){
-                    Response result = CmdSha(dirPath);
-                    if (result.code == 0) {
-                        $"".fmNewLine();
-                        $" --> File Hash...".txtInfo(ct.WriteLine);
-                
-                        $"".fmNewLine();
-                        $" SHA256: ".txtMuted();
-                        $"{result.stdout}".txtDefault(ct.WriteLine);    
-                    }
-                }
-
-                Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
-
+            try
+            {
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
+                // CmdServer(
+                //     dirPath,
+                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     _cp.gbs.ipt,
+                //     _cp.gbs.dmn,
+                //     _cp.gbs.flv,
+                //     _cp.gbs.srv,
+                //     _cp.gbs.syn,
+                //     _cp.ipl,
+                //     _cp.gbs.ptc
+                // );
                 Menu.Start();
             }
             catch (Exception Ex){

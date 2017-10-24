@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using dein.tools;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace HardHat
 {
@@ -12,95 +13,101 @@ namespace HardHat
         }
 
         public static Config Read(){
+            Config config = new Config();
+
+            config.window = new WindowConfiguration();
+            config.window.height = 30;
+            config.window.width = 86;
+
+            config.path = new PathConfiguration();
+            switch (Os.Platform())
+            {
+                case "win":
+                    config.path.dir = "D:/Developer";
+                    break;
+                case "mac":
+                    config.path.dir = "~/Developer";
+                    break;
+            }
+            config.path.bsn = "";
+            config.path.prj = "Projects";
+            config.path.flt = "_d*";
+    
+            config.android = new AndroidConfiguration();
+            config.android.prj = "android";
+            config.android.bld = "build/outputs/apk";
+            config.android.ext = ".apk";
+            config.android.cmp = "assets/www";
+            config.android.flt = new string[] {".js",".css"};
+
+            config.gulp = new GulpConfiguration();
+            config.gulp.srv = "server";
+            config.gulp.ext = ".json";
+
+            config.vpn = new VpnConfiguration();
+            config.vpn.snm = "";
+
+            config.personal = new PersonalConfiguration();
+            config.personal.hst = "";
+            config.personal.ipl = "";
+            config.personal.ipb = "";
+            config.personal.spr = "";
+            config.personal.sfl = "";
+            config.personal.snr = new SonarConfiguration();
+            config.personal.snr.ptc = "http";
+            config.personal.snr.dmn = "";
+            config.personal.snr.prt = "";
+            config.personal.snr.ipt = "";
+            config.personal.gbs = new ServerConfiguration();
+            config.personal.gbs.dmn = "";
+            config.personal.gbs.flv = "";
+            config.personal.gbs.srv = "";
+            config.personal.gbs.syn = false;
+            config.personal.gbs.ptc = "http";
+            config.personal.gbs.ipt = "";
+            config.personal.gdl = new BuildConfiguration();
+            config.personal.gdl.mde = "";
+            config.personal.gdl.dmn = "";
+            config.personal.gdl.flv = "";
+            config.personal.adb = new AdbConfiguration();
+            config.personal.adb.dvc = "";
+            config.personal.adb.wip = "";
+            config.personal.adb.wpr = "";
+            config.personal.adb.wst = false;
+            config.personal.mnu = new MenuConfiguration();
+            config.personal.mnu.sel = "";
+            config.personal.mnu.v_bnc = "";
+            config.personal.mnu.s_cnf = "";
+            config.personal.mnu.sl_env = false;
+            config.personal.mnu.sq_env = false;
+            config.personal.mnu.ss_env = false;
+            config.personal.mnu.g_cnf = "";
+            config.personal.mnu.g_env = false;
+            config.personal.mnu.b_cnf = "";
+            config.personal.mnu.b_env = false;
+            config.personal.mnu.t_env = false;
+            config.personal.mnu.cv_env = false;
+            config.personal.mnu.ps_env = false;
+            
             if (!File.Exists($"{Paths.Combine("~", $".hardhat.config.json")}")) {
-                Config config = new Config();
-
-                config.window = new WindowConfiguration();
-                config.window.height = 30;
-                config.window.width = 86;
-
-                config.path = new PathConfiguration();
-                switch (Os.Platform())
-                {
-                    case "win":
-                        config.path.dir = "D:/Developer";
-                        break;
-                    case "mac":
-                        config.path.dir = "~/Developer";
-                        break;
-                }
-                config.path.bsn = "";
-                config.path.prj = "Projects";
-                config.path.flt = "_d*";
-        
-                config.android = new AndroidConfiguration();
-                config.android.prj = "android";
-                config.android.bld = "build/outputs/apk";
-                config.android.ext = ".apk";
-                config.android.cmp = "assets/www";
-                config.android.flt = new string[] {".js",".css"};
-
-                config.gulp = new GulpConfiguration();
-                config.gulp.srv = "server";
-                config.gulp.ext = ".json";
-
-                config.vpn = new VpnConfiguration();
-                config.vpn.snm = "";
-
-                config.personal = new PersonalConfiguration();
-                config.personal.hst = "";
-                config.personal.ipl = "";
-                config.personal.ipb = "";
-                config.personal.spr = "";
-                config.personal.sfl = "";
-                config.personal.snr = new SonarConfiguration();
-                config.personal.snr.ptc = "http";
-                config.personal.snr.srv = "";
-                config.personal.snr.prt = "";
-                config.personal.snr.ipt = "";
-                config.personal.gbs = new ServerConfiguration();
-                config.personal.gbs.dmn = "";
-                config.personal.gbs.flv = "";
-                config.personal.gbs.srv = "";
-                config.personal.gbs.syn = false;
-                config.personal.gbs.ptc = "http";
-                config.personal.gbs.ipt = "";
-                config.personal.gdl = new BuildConfiguration();
-                config.personal.gdl.mde = "";
-                config.personal.gdl.dmn = "";
-                config.personal.gdl.flv = "";
-                config.personal.adb = new AdbConfiguration();
-                config.personal.adb.dvc = "";
-                config.personal.adb.wip = "";
-                config.personal.adb.wpr = "";
-                config.personal.adb.wst = false;
-                config.personal.mnu = new MenuConfiguration();
-                config.personal.mnu.sel = "";
-                config.personal.mnu.p_sel = false;
-                config.personal.mnu.f_sel = false;
-                config.personal.mnu.v_sel = false;
-                config.personal.mnu.v_bnc = "";
-                config.personal.mnu.s_cnf = "";
-                config.personal.mnu.sl_env = false;
-                config.personal.mnu.sq_env = false;
-                config.personal.mnu.ss_env = false;
-                config.personal.mnu.s_sel = false; 
-                config.personal.mnu.g_cnf = "";
-                config.personal.mnu.g_env = false;
-                config.personal.mnu.g_sel = false;
-                config.personal.mnu.b_cnf = "";
-                config.personal.mnu.b_env = false;
-                config.personal.mnu.t_env = false;
-                config.personal.mnu.b_sel = false;
-                config.personal.mnu.v_env = false;
-
                 return config;
             } else {
+                string file = JsonConvert.SerializeObject(config);
                 string json = File.ReadAllText($"{Paths.Combine("~", $".hardhat.config.json")}");
-                return JsonConvert.DeserializeObject<Config>(json);
+
+                JObject oFile = JObject.Parse(file);
+                JObject oJson = JObject.Parse(json);
+
+                oFile.Merge(oJson, new JsonMergeSettings
+                {
+                    MergeArrayHandling = MergeArrayHandling.Union
+                });
+
+                config = JsonConvert.DeserializeObject<Config>(oFile.ToString());
+                return config;
             }
         }
-    } 
+    }
 
     class Config
     {
@@ -158,18 +165,18 @@ namespace HardHat
 
     class SonarConfiguration {
         public string   ptc     { get; set; }               //Protocol
-        public string   srv     { get; set; }               //Server
+        public string   dmn     { get; set; }               //Domain
         public string   prt     { get; set; }               //Port
         public string   ipt     { get; set; }               //Internal Path
     }
 
     class ServerConfiguration {
+        public string   ptc     { get; set; }               //Protocol
+        public string   ipt     { get; set; }               //Internal Path
         public string   dmn     { get; set; }               //Dimension
         public string   flv     { get; set; }               //Flavor
         public string   srv     { get; set; }               //Server
         public bool     syn     { get; set; }               //Sync
-        public string   ptc     { get; set; }               //Protocol
-        public string   ipt     { get; set; }               //Internal Path
     }
 
     class BuildConfiguration {
@@ -187,24 +194,29 @@ namespace HardHat
 
     public class MenuConfiguration
     {
-        public string   sel     { get; set; }               //Option
-        public bool     p_sel   { get; set; }               //Project
-        public bool     f_sel   { get; set; }               //File
-        public bool     v_sel   { get; set; }               //Version Control System
+        public string                   sel { get; set; }   //Option
+        public bool     ps_env   { get; set; }              //Sigcheck Environment
         public string   v_bnc   { get; set; }               //Current Branch
+        public bool     v_env   { get; set; }               //VCS Environment
         public string   s_cnf   { get; set; }               //Sonar Configuration
         public bool     sl_env  { get; set; }               //SonarLint Environment
         public bool     sq_env  { get; set; }               //SonarQube Environment
         public bool     ss_env  { get; set; }               //SonarScanner Environment
-        public bool     s_sel   { get; set; }               //Sonar Selection
         public string   g_cnf   { get; set; }               //Gulp Configuration
         public bool     g_env   { get; set; }               //Gulp Environment
-        public bool     g_sel   { get; set; }               //Gulp Selection
+        public bool     g_opt   { get; set; }               //Gulp Selection
+        public bool     gu_opt  { get; set; }               //Gulp Uglify
+        public bool     gr_opt  { get; set; }               //Gulp Revert
+        public bool     gs_opt  { get; set; }               //Gulp Server
         public string   b_cnf   { get; set; }               //Build Configuration
         public bool     b_env   { get; set; }               //Build Environment
         public bool     t_env   { get; set; }               //Template Environment
-        public bool     b_sel   { get; set; }               //Build Selection
-        public bool     v_env   { get; set; }               //VPN Environment
-        public bool     s_env   { get; set; }               //Sigcheck Environment
+        public bool     b_opt   { get; set; }               //Build Selection
+        public bool     bp_opt  { get; set; }               //Build Properties
+        public bool     bc_opt  { get; set; }               //Build Clean
+        public bool     bg_opt  { get; set; }               //Build Gradle
+        public bool     cv_env   { get; set; }              //Config VPN Environment
+        public bool     awc_opt { get; set; }               //ADB WiFi Connect
     }
+
 }

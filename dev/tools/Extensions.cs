@@ -248,5 +248,14 @@ namespace dein.tools
             }
             return response;
         }
+
+        public static bool SomeNullOrEmpty(params string[] values){
+            bool result = false;
+            foreach (var v in values)
+            {
+                result = result || String.IsNullOrEmpty(v);
+            }
+            return result;
+        }
     }
 }

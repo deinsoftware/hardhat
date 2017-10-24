@@ -21,7 +21,7 @@ namespace HardHat
             try
             {
                 if (
-                    _cp.mnu.v_env &&
+                    _cp.mnu.cv_env &&
                     !Vpn.CmdStatus(_c.vpn.snm, Env.Get("VPN_HOME"))
                 )
                 {
