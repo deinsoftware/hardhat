@@ -22,11 +22,11 @@ namespace HardHat
             {
                 if (
                     Variables.Valid("bv") &&
-                    !Vpn.CmdStatus(_c.vpn.snm, Env.Get("VPN_HOME"))
+                    !Vpn.CmdStatus(_c.vpn.snm, Variables.Value("bv"))
                 )
                 {
-                    Vpn.CmdDisconnect(Env.Get("VPN_HOME"));
-                    Vpn.CmdConnect(_c.vpn.snm, Env.Get("VPN_HOME"));
+                    Vpn.CmdDisconnect(Variables.Value("bv"));
+                    Vpn.CmdConnect(_c.vpn.snm, Variables.Value("bv"));
                     Message.Alert(" Please connect your VPN and try again.");
                 }
             }

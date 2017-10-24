@@ -252,7 +252,7 @@ namespace HardHat {
                 Section.Header("BUILD CONFIGURATION > PROPERTIES");
                 Section.SelectedProject();
 
-                string sourcePath = Paths.Combine(Env.Get("ANDROID_PROPERTIES"), _c.path.bsn);
+                string sourcePath = Paths.Combine(Variables.Value("bp"), _c.path.bsn);
                 string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
                 
                 $"".fmNewLine();

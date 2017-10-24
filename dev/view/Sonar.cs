@@ -322,7 +322,7 @@ namespace HardHat {
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
                 // CmdServer(
                 //     dirPath,
-                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     Paths.Combine(Variables.Value("gp")),
                 //     _cp.gbs.ipt,
                 //     _cp.gbs.dmn,
                 //     _cp.gbs.flv,
@@ -349,7 +349,7 @@ namespace HardHat {
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
                 // CmdServer(
                 //     dirPath,
-                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     Paths.Combine(Variables.Value("gp")),
                 //     _cp.gbs.ipt,
                 //     _cp.gbs.dmn,
                 //     _cp.gbs.flv,
@@ -376,7 +376,7 @@ namespace HardHat {
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
                 // CmdServer(
                 //     dirPath,
-                //     Paths.Combine(Env.Get("GULP_PROJECT")),
+                //     Paths.Combine(Variables.Value("gp")),
                 //     _cp.gbs.ipt,
                 //     _cp.gbs.dmn,
                 //     _cp.gbs.flv,

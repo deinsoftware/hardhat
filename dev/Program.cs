@@ -23,6 +23,7 @@ namespace HardHat
 
                     //Update Environment Variables
                     Env.CmdUpdate();
+                    Variables.Update();
                     
                     //Window
                     if (Os.IsWindows() && (config.window.width + config.window.height) > 0)

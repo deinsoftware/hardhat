@@ -81,17 +81,9 @@ namespace HardHat {
                 var option = list.Where(x => x.opt == opt).FirstOrDefault();
                 if (option != null)
                 {
-                    if (agn){
+                    if (agn || !option.chk){
                         Check(option);
                     }
-                    
-                    if (option.chk)
-                    {
-                        response = option.stt;
-                    } else {
-                        Check(option);
-                    }
-                    
                     response = option.stt;
                 }
             }
@@ -120,6 +112,29 @@ namespace HardHat {
                     msg: $" {Ex.Message}"
                 );
             }
+        }
+
+        public static string Value(string opt)
+        {
+            var response = "";
+            try
+            {
+                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                if (option != null)
+                {
+                    if (!option.chk)
+                    {
+                        Check(option);
+                    }
+                    response = option.vlu;
+                }
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+            return response;
         }
     }
 }

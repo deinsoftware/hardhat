@@ -173,7 +173,7 @@ namespace HardHat {
                 }
 
                 $"".fmNewLine();
-                string dirPath = Paths.Combine(Env.Get("GULP_PROJECT"), _c.gulp.srv); 
+                string dirPath = Paths.Combine(Variables.Value("gp"), _c.gulp.srv); 
                 dirPath.Exists("Please review your configuration file.");
                 List<string> files = dirPath.Files($"*{_c.gulp.ext}");
                 
@@ -374,8 +374,8 @@ namespace HardHat {
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
 
                 string[] dirs = new string[] {
-                    Paths.Combine(Env.Get("GULP_PROJECT"),"www"),
-                    Paths.Combine(Env.Get("GULP_PROJECT"),"bld"),
+                    Paths.Combine(Variables.Value("gp"),"www"),
+                    Paths.Combine(Variables.Value("gp"),"bld"),
                 };
 
                 $"".fmNewLine();
@@ -398,7 +398,7 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $" --> Uglifying...".txtInfo(ct.WriteLine);
-                CmdUglify(Paths.Combine(Env.Get("GULP_PROJECT")));
+                CmdUglify(Paths.Combine(Variables.Value("gp")));
 
                 $"".fmNewLine();
                 $" --> Replacing...".txtInfo(ct.WriteLine);
@@ -430,7 +430,7 @@ namespace HardHat {
                 Section.SelectedProject();
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
-                string dirSource = Paths.Combine(Env.Get("GULP_PROJECT"),"www");
+                string dirSource = Paths.Combine(Variables.Value("gp"),"www");
                 $"".fmNewLine();
                 $" --> Reverting...".txtInfo(ct.WriteLine);
                 $"{" From:", -8}".txtMuted(); $"{dirSource}".txtDefault(ct.WriteLine);
@@ -459,7 +459,7 @@ namespace HardHat {
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
                 CmdServer(
                     dirPath,
-                    Paths.Combine(Env.Get("GULP_PROJECT")),
+                    Paths.Combine(Variables.Value("gp")),
                     _cp.gbs.ipt,
                     _cp.gbs.dmn,
                     _cp.gbs.flv,

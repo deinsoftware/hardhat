@@ -17,7 +17,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Change
 
-Clone command by Operative System.
+Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
+
+### Fixed
+
+* Copy path and full path on Windows. [\#16](https://github.com/equiman/hardhat/issues/16)
 
 ## [3.2.0] - 2017-10-13
 
