@@ -87,7 +87,7 @@ namespace HardHat {
                 opts.Add(new Option{opt="e"   , stt=true , act=Information.Environment          });
                 opts.Add(new Option{opt="x"   , stt=true , act=Program.Exit                     });
 
-                Options.list = opts;
+                list = opts;
             }
             catch (Exception Ex){
                 Message.Critical(

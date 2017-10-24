@@ -398,7 +398,7 @@ namespace HardHat {
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);
                 CmdInformation(dirPath);
 
-                if ((Os.IsWindows() && _cp.mnu.ps_env) || Os.IsMacOS()){
+                if ((Os.IsWindows() && Variables.Valid("sh")) || Os.IsMacOS()){
                     Response result = CmdSha(dirPath);
                     if (result.code == 0) {
                         $"".fmNewLine();

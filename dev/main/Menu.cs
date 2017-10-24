@@ -51,9 +51,7 @@ namespace HardHat {
                 Options.Valid("pp", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
                 Options.Valid("ps", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
                 Options.Valid("pv", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
-                _cp.mnu.ps_env = Env.Check("SIGCHECK_HOME");
                 // Version Control System
-                _cp.mnu.v_env = Env.Check("GIT_HOME");
                 _cp.mnu.v_bnc = "";
                 if (!String.IsNullOrEmpty(_cp.spr)){
                     string bnc = Git.CmdBranch(dirPath);
@@ -62,12 +60,12 @@ namespace HardHat {
                         _cp.mnu.v_bnc = $"git:{Git.CmdBranch(dirPath)}";
                     } 
                 }
-                Options.Valid("v"   , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vd"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vp"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vr"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vd+p", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vr+p", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("v"   , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vd"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vp"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vr"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
                 // Sonar
                 StringBuilder s_cnf = new StringBuilder();
                 s_cnf.Append($"{_cp.snr.ptc}://");
@@ -84,13 +82,10 @@ namespace HardHat {
                     s_cnf.Append($"/{_cp.snr.ipt}");
                 }
                 _cp.mnu.s_cnf = s_cnf.ToString();
-                _cp.mnu.sl_env = Env.Check("SONAR_LINT_HOME");
-                _cp.mnu.sq_env = Env.Check("SONAR_QUBE_HOME");
-                _cp.mnu.ss_env = Env.Check("SONAR_SCANNER_HOME");
-                Options.Valid("s" , _cp.mnu.sq_env);
-                Options.Valid("sq", _cp.mnu.sq_env);
-                Options.Valid("ss", _cp.mnu.ss_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("sb", _cp.mnu.sq_env && !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf));
+                Options.Valid("s" , Variables.Valid("sq"));
+                Options.Valid("sq", Variables.Valid("sq"));
+                Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("sb", Variables.Valid("sb") && !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf));
                 // Gulp
                 StringBuilder g_cnf = new StringBuilder();
                 g_cnf.Append($"{_cp.gbs.ptc}://");
@@ -106,34 +101,29 @@ namespace HardHat {
                 }
                 g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
                 _cp.mnu.g_cnf = g_cnf.ToString();
-                _cp.mnu.g_env = Env.Check("GULP_PROJECT");
-                Options.Valid("g"  , _cp.mnu.g_env);
-                Options.Valid("g>i", _cp.mnu.g_env);
-                Options.Valid("g>d", _cp.mnu.g_env);
-                Options.Valid("g>f", _cp.mnu.g_env);
-                Options.Valid("g>n", _cp.mnu.g_env);
-                Options.Valid("g>s", _cp.mnu.g_env);
-                Options.Valid("g>p", _cp.mnu.g_env);
-                Options.Valid("gu" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("gr" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("gs" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf));
+                Options.Valid("g"  , Variables.Valid("gp"));
+                Options.Valid("g>i", Variables.Valid("gp"));
+                Options.Valid("g>d", Variables.Valid("gp"));
+                Options.Valid("g>f", Variables.Valid("gp"));
+                Options.Valid("g>n", Variables.Valid("gp"));
+                Options.Valid("g>s", Variables.Valid("gp"));
+                Options.Valid("g>p", Variables.Valid("gp"));
+                Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("gs" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf));
                 // Build
                 StringBuilder b_cnf = new StringBuilder();
                 b_cnf.Append(_cp.gdl.dmn ?? "");
                 b_cnf.Append(Section.FlavorName(_cp.gdl.flv));
                 b_cnf.Append(Section.ModeName(_cp.gdl.mde));
                 _cp.mnu.b_cnf = b_cnf.ToString();
-                _cp.mnu.b_env = Env.Check("GRADLE_HOME");
-                _cp.mnu.p_env = Env.Check("ANDROID_PROPERTIES");
-                Options.Valid("b"  , _cp.mnu.b_env);
-                Options.Valid("b>d", _cp.mnu.b_env);
-                Options.Valid("b>f", _cp.mnu.b_env);
-                Options.Valid("b>m", _cp.mnu.b_env);
-                Options.Valid("bp" , _cp.mnu.p_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("bc" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr));
-                Options.Valid("bg" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
-                //VPN
-                _cp.mnu.cv_env = Env.Check("VPN_HOME");
+                Options.Valid("b"  , Variables.Valid("gh"));
+                Options.Valid("b>d", Variables.Valid("gh"));
+                Options.Valid("b>f", Variables.Valid("gh"));
+                Options.Valid("b>m", Variables.Valid("gh"));
+                Options.Valid("bp" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("bc" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("bg" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
             }
             catch (Exception Ex){
                 Message.Critical(

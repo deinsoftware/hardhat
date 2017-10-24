@@ -40,34 +40,21 @@ namespace HardHat {
             Menu.Start();
         }
 
-        private static readonly Dictionary<string, string> Variables = new Dictionary<string, string>
-        {
-            {"AndroidSDK"       , "ANDROID_HOME"        },
-            {"AndroidNDK"       , "ANDROID_NDK_HOME"    },
-            {"AndroidBuildTool" , "ANDROID_BT_VERSION"  },
-            {"AndroidTemplate"  , "ANDROID_PROPERTIES"  },
-            {"Java"             , "JAVA_HOME"           },
-            {"Git"              , "GIT_HOME"            },
-            {"Gradle"           , "GRADLE_HOME"         },
-            {"Gulp"             , "GULP_PROJECT"        },
-            {"Sigcheck"         , "SIGCHECK_HOME"       },
-            {"SonarLint"        , "SONAR_LINT_HOME"     },
-            {"SonarQube"        , "SONAR_QUBE_HOME"     },
-            {"SonarServer"      , "SONAR_QUBE_SERVER"   },
-            {"SonarScanner"     , "SONAR_SCANNER_HOME"  },
-            {"Vpn"              , "VPN_HOME"            }
-        };
-
         public static void Environment() {
             Colorify.Default();
             Console.Clear();
 
             Section.Header("ENVIRONMENT VARIABLES");
-            
-            foreach (var variable in Variables)
+
+            Variables.Update();
+            foreach (var v in Variables.list)
             {
-                $"{$" {variable.Value}:", -25}".txtPrimary();
-                Env.Status(variable.Value);
+                $"{$" {v.nme}:", -25}".txtPrimary();
+                if (v.stt) {
+                    $"{v.vlu.Slash()}".txtDefault(ct.WriteLine);
+                } else {
+                    $"is not defined".txtWarning(ct.WriteLine);
+                }
             }
 
             Section.HorizontalRule();
