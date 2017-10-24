@@ -176,8 +176,8 @@ namespace HardHat {
                 $"{" [P] Port:"       , -25}".txtPrimary();   $"{_cp.adb.wpr}".txtDefault(ct.WriteLine);
                 
                 $"".fmNewLine();
-                $"{" [C] Connect", -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
-                $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
+                $"{" [C] Connect"     , -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
+                $"{"[EMPTY] Cancel"   , -17}".txtDanger(ct.WriteLine);
 
                 Section.HorizontalRule();
 

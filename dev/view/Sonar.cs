@@ -27,7 +27,7 @@ namespace HardHat {
                 Section.Header("SONAR SERVER CONFIGURATION");
                 Section.SelectedProject();
 
-                if (Options.Valid("s"))
+                if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
@@ -70,10 +70,10 @@ namespace HardHat {
                 Section.Header("SONAR SERVER CONFIGURATION", "PROTOCOL");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();
@@ -281,10 +281,10 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION", "INTERNAL PATH");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
                 }
 
                 $"".fmNewLine();

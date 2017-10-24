@@ -85,7 +85,7 @@ namespace HardHat
             config.personal.mnu.g_env = false;
             config.personal.mnu.b_cnf = "";
             config.personal.mnu.b_env = false;
-            config.personal.mnu.t_env = false;
+            config.personal.mnu.p_env = false;
             config.personal.mnu.cv_env = false;
             config.personal.mnu.ps_env = false;
             
@@ -194,8 +194,8 @@ namespace HardHat
 
     public class MenuConfiguration
     {
-        public string                   sel { get; set; }   //Option
-        public bool     ps_env   { get; set; }              //Sigcheck Environment
+        public string   sel { get; set; }                   //Option
+        public bool     ps_env  { get; set; }               //Sigcheck Environment
         public string   v_bnc   { get; set; }               //Current Branch
         public bool     v_env   { get; set; }               //VCS Environment
         public string   s_cnf   { get; set; }               //Sonar Configuration
@@ -204,19 +204,9 @@ namespace HardHat
         public bool     ss_env  { get; set; }               //SonarScanner Environment
         public string   g_cnf   { get; set; }               //Gulp Configuration
         public bool     g_env   { get; set; }               //Gulp Environment
-        public bool     g_opt   { get; set; }               //Gulp Selection
-        public bool     gu_opt  { get; set; }               //Gulp Uglify
-        public bool     gr_opt  { get; set; }               //Gulp Revert
-        public bool     gs_opt  { get; set; }               //Gulp Server
         public string   b_cnf   { get; set; }               //Build Configuration
         public bool     b_env   { get; set; }               //Build Environment
-        public bool     t_env   { get; set; }               //Template Environment
-        public bool     b_opt   { get; set; }               //Build Selection
-        public bool     bp_opt  { get; set; }               //Build Properties
-        public bool     bc_opt  { get; set; }               //Build Clean
-        public bool     bg_opt  { get; set; }               //Build Gradle
-        public bool     cv_env   { get; set; }              //Config VPN Environment
-        public bool     awc_opt { get; set; }               //ADB WiFi Connect
+        public bool     p_env   { get; set; }               //Properties Environment
+        public bool     cv_env  { get; set; }               //Config VPN Environment
     }
-
 }

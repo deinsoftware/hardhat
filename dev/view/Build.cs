@@ -26,7 +26,7 @@ namespace HardHat {
                 Section.Header("BUILD CONFIGURATION");
                 Section.SelectedProject();
                 
-                if (!_cp.mnu.b_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
@@ -70,7 +70,7 @@ namespace HardHat {
                 Section.Header("BUILD CONFIGURATION > DIMENSION");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.b_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
@@ -113,7 +113,7 @@ namespace HardHat {
                 Section.Header("BUILD CONFIGURATION > FLAVOR");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.b_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
@@ -170,7 +170,7 @@ namespace HardHat {
                 Section.Header("BUILD CONFIGURATION > MODE");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.b_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);

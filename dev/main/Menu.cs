@@ -62,13 +62,15 @@ namespace HardHat {
                         _cp.mnu.v_bnc = $"git:{Git.CmdBranch(dirPath)}";
                     } 
                 }
-                Options.Valid("v" , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vd", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vp", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-                Options.Valid("vr", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("v"   , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vd"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vp"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vr"  , !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vd+p", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+                Options.Valid("vr+p", !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
                 // Sonar
                 StringBuilder s_cnf = new StringBuilder();
-                s_cnf.Append($"{_cp.snr.ptc}/");
+                s_cnf.Append($"{_cp.snr.ptc}://");
                 if (!String.IsNullOrEmpty(_cp.snr.dmn))
                 {
                     s_cnf.Append($"{_cp.snr.dmn}");
@@ -85,23 +87,36 @@ namespace HardHat {
                 _cp.mnu.sl_env = Env.Check("SONAR_LINT_HOME");
                 _cp.mnu.sq_env = Env.Check("SONAR_QUBE_HOME");
                 _cp.mnu.ss_env = Env.Check("SONAR_SCANNER_HOME");
-                Options.Valid("s" , true);
+                Options.Valid("s" , _cp.mnu.sq_env);
                 Options.Valid("sq", _cp.mnu.sq_env);
                 Options.Valid("ss", _cp.mnu.ss_env && !Strings.SomeNullOrEmpty(_cp.spr));
                 Options.Valid("sb", _cp.mnu.sq_env && !Strings.SomeNullOrEmpty(_cp.mnu.s_cnf));
                 // Gulp
                 StringBuilder g_cnf = new StringBuilder();
-                g_cnf.Append($"{_cp.gbs.ptc}/");
+                g_cnf.Append($"{_cp.gbs.ptc}://");
                 if (!String.IsNullOrEmpty(_cp.gbs.dmn))
                 {
                     g_cnf.Append(_cp.gbs.dmn);
                 }
                 g_cnf.Append(Section.FlavorName(_cp.gbs.flv));
                 g_cnf.Append(_cp.gbs.srv);
+                if (!String.IsNullOrEmpty(_cp.gbs.ipt))
+                {
+                    g_cnf.Append($"/{_cp.gbs.ipt}");
+                }
                 g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
                 _cp.mnu.g_cnf = g_cnf.ToString();
                 _cp.mnu.g_env = Env.Check("GULP_PROJECT");
-                _cp.mnu.g_opt = !Strings.SomeNullOrEmpty(_cp.gbs.dmn, _cp.mnu.g_cnf);
+                Options.Valid("g"  , _cp.mnu.g_env);
+                Options.Valid("g>i", _cp.mnu.g_env);
+                Options.Valid("g>d", _cp.mnu.g_env);
+                Options.Valid("g>f", _cp.mnu.g_env);
+                Options.Valid("g>n", _cp.mnu.g_env);
+                Options.Valid("g>s", _cp.mnu.g_env);
+                Options.Valid("g>p", _cp.mnu.g_env);
+                Options.Valid("gu" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("gr" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("gs" , _cp.mnu.g_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf));
                 // Build
                 StringBuilder b_cnf = new StringBuilder();
                 b_cnf.Append(_cp.gdl.dmn ?? "");
@@ -109,11 +124,16 @@ namespace HardHat {
                 b_cnf.Append(Section.ModeName(_cp.gdl.mde));
                 _cp.mnu.b_cnf = b_cnf.ToString();
                 _cp.mnu.b_env = Env.Check("GRADLE_HOME");
-                _cp.mnu.t_env = Env.Check("ANDROID_PROPERTIES");
-                _cp.mnu.b_opt = !Strings.SomeNullOrEmpty(_cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf);
+                _cp.mnu.p_env = Env.Check("ANDROID_PROPERTIES");
+                Options.Valid("b"  , _cp.mnu.b_env);
+                Options.Valid("b>d", _cp.mnu.b_env);
+                Options.Valid("b>f", _cp.mnu.b_env);
+                Options.Valid("b>m", _cp.mnu.b_env);
+                Options.Valid("bp" , _cp.mnu.p_env && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("bc" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr));
+                Options.Valid("bd" , _cp.mnu.b_env && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
                 //VPN
                 _cp.mnu.cv_env = Env.Check("VPN_HOME");
-                
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -149,7 +169,7 @@ namespace HardHat {
         }
 
         public static void Project() {
-            if (!Options.Valid("p"))
+            if (String.IsNullOrEmpty(_cp.spr))
             {
                 $" [P] Select Project".txtPrimary(ct.WriteLine);
             } else {
@@ -157,7 +177,7 @@ namespace HardHat {
                 $"{_cp.spr}".txtDefault(ct.WriteLine);
             }
             
-            if (!Options.Valid("pf"))
+            if (String.IsNullOrEmpty(_cp.spr))
             {
                 $"   [F] Select File".txtStatus(ct.WriteLine,   Options.Valid("pf"));
             } else {
@@ -189,7 +209,8 @@ namespace HardHat {
         }
 
         public static void Sonar() {
-            if (!Options.Valid("s"))
+            
+            if (String.IsNullOrEmpty(_cp.mnu.s_cnf))
             {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
@@ -203,7 +224,7 @@ namespace HardHat {
         }
 
         public static void Gulp() {
-            if (!_cp.mnu.g_opt)
+            if (String.IsNullOrEmpty(_cp.mnu.g_cnf))
             {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
@@ -217,16 +238,16 @@ namespace HardHat {
         }
 
         public static void Build(){
-            if (!_cp.mnu.b_opt)
+            if (String.IsNullOrEmpty(_cp.mnu.b_cnf))
             {
                 $" [B] Build".txtStatus(ct.WriteLine,               Options.Valid("b"));
             } else {
-                $"{" [B] Build:", -25}".txtStatus(ct.Write,         Options.Valid("b"));
+                $"{" [B] Build:"    , -25}".txtStatus(ct.Write,         Options.Valid("b"));
                 $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
             }
-            $"{"   [P] Properties" , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
-            $"{"[C] Clean"         , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
-            $"{"[G] Gradle"        , -17}".txtStatus(ct.WriteLine,  Options.Valid("bg"));
+            $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
+            $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
+            $"{"[G] Gradle"         , -17}".txtStatus(ct.WriteLine,  Options.Valid("bg"));
             $"".fmNewLine();
         }
 
@@ -235,26 +256,26 @@ namespace HardHat {
             {
                 $" [A] ADB".txtMuted(ct.WriteLine);
             } else {
-                $"{" [A] ADB:", -25}".txtMuted();
+                $"{" [A] ADB:"          , -25}".txtMuted();
                 $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
             }
-            $"{"   [D] Devices"     , -34}".txtPrimary(ct.Write);
+            $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
             if (!_cp.adb.wst)
             {
                 $"{"[W] WiFi Connect"   , -34}".txtPrimary(ct.Write);
             } else {
                 $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
             }
-            $"{"[R] Restart"        , -17}".txtPrimary(ct.WriteLine);
+            $"{"[R] Restart"            , -17}".txtPrimary(ct.WriteLine);
             $"".fmNewLine();
         }
 
         public static void Footer(){
             $"".fmNewLine();
-            $"{" [C] Config", -17}".txtInfo();
-            $"{"[I] Info", -17}".txtInfo();
-            $"{"[E] Environment", -34}".txtInfo();
-            $"{"[X] Exit", -17}".txtDanger(ct.WriteLine);
+            $"{" [C] Config"        , -17}".txtInfo();
+            $"{"[I] Info"           , -17}".txtInfo();
+            $"{"[E] Environment"    , -34}".txtInfo();
+            $"{"[X] Exit"           , -17}".txtDanger(ct.WriteLine);
         }
 
         public static void Route(string sel = "m", string dfl = "m") {

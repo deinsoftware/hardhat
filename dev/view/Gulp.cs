@@ -27,7 +27,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -73,7 +73,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > PROTOCOL");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -128,7 +128,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > INTERNAL PATH");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -166,7 +166,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > DIMENSION");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -230,7 +230,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > FLAVOR");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -287,7 +287,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > NUMBER");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
@@ -330,7 +330,7 @@ namespace HardHat {
                 Section.Header("GULP SERVER CONFIGURATION > SYNC");
                 Section.SelectedProject();
 
-                if (!_cp.mnu.g_opt)
+                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
