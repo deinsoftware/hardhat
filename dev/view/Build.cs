@@ -119,18 +119,8 @@ namespace HardHat {
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
-                $"".fmNewLine();
-                $" {"A", 2}] Alfa".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
-                $" {"B", 2}] Beta".txtPrimary(ct.WriteLine);
-                $" {"S", 2}] Stag".txtPrimary(ct.WriteLine);
-                $" {"P", 2}] Prod".txtPrimary(ct.WriteLine);
-                $" {"D", 2}] Desk".txtPrimary(ct.WriteLine);
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                Section.FlavorOptions();
                 
-                Section.HorizontalRule();
-            
-                $"{" Make your choice: ", -25}".txtInfo();
                 string opt_flv = Console.ReadLine();
                 opt_flv = opt_flv.ToLower();
                 
