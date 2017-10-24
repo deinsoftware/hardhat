@@ -78,16 +78,8 @@ namespace HardHat
             config.personal.mnu.sel = "";
             config.personal.mnu.v_bnc = "";
             config.personal.mnu.s_cnf = "";
-            config.personal.mnu.sl_env = false;
-            config.personal.mnu.sq_env = false;
-            config.personal.mnu.ss_env = false;
             config.personal.mnu.g_cnf = "";
-            config.personal.mnu.g_env = false;
             config.personal.mnu.b_cnf = "";
-            config.personal.mnu.b_env = false;
-            config.personal.mnu.p_env = false;
-            config.personal.mnu.cv_env = false;
-            config.personal.mnu.ps_env = false;
             
             if (!File.Exists($"{Paths.Combine("~", $".hardhat.config.json")}")) {
                 return config;
@@ -195,18 +187,9 @@ namespace HardHat
     public class MenuConfiguration
     {
         public string   sel { get; set; }                   //Option
-        public bool     ps_env  { get; set; }               //Sigcheck Environment
         public string   v_bnc   { get; set; }               //Current Branch
-        public bool     v_env   { get; set; }               //VCS Environment
         public string   s_cnf   { get; set; }               //Sonar Configuration
-        public bool     sl_env  { get; set; }               //SonarLint Environment
-        public bool     sq_env  { get; set; }               //SonarQube Environment
-        public bool     ss_env  { get; set; }               //SonarScanner Environment
         public string   g_cnf   { get; set; }               //Gulp Configuration
-        public bool     g_env   { get; set; }               //Gulp Environment
         public string   b_cnf   { get; set; }               //Build Configuration
-        public bool     b_env   { get; set; }               //Build Environment
-        public bool     p_env   { get; set; }               //Properties Environment
-        public bool     cv_env  { get; set; }               //Config VPN Environment
     }
 }
