@@ -55,8 +55,8 @@ namespace HardHat
             config.personal.sfl = "";
             config.personal.snr = new SonarConfiguration();
             config.personal.snr.ptc = "http";
-            config.personal.snr.dmn = "";
-            config.personal.snr.prt = "";
+            config.personal.snr.dmn = "localhost";
+            config.personal.snr.prt = "9000";
             config.personal.snr.ipt = "";
             config.personal.gbs = new ServerConfiguration();
             config.personal.gbs.dmn = "";
@@ -190,7 +190,6 @@ namespace HardHat
         public string   v_bnc   { get; set; }               //Current Branch
         public string   s_cnf   { get; set; }               //Sonar Configuration
         public bool     s_val   { get; set; }               //Sonar Validation
-        public string   s_url   { get; set; }               //Sonar URL
         public string   g_cnf   { get; set; }               //Gulp Configuration
         public bool     g_val   { get; set; }               //Gulp Validation
         public string   b_cnf   { get; set; }               //Build Configuration

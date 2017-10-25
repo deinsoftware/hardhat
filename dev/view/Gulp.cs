@@ -123,22 +123,10 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > PROTOCOL");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Protocols.Start();
 
-                $"".fmNewLine();
-                $" {"1", 2}] http".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
-                $" {"2", 2}] https".txtPrimary(ct.WriteLine);
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
-                
-                Section.HorizontalRule();
-            
-                $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ptc = Console.ReadLine();
                 opt_ptc = opt_ptc?.ToLower();
 
@@ -178,12 +166,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > INTERNAL PATH");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
@@ -216,12 +199,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > DIMENSION");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
                 string dirPath = Paths.Combine(Variables.Value("gp"), _c.gulp.srv); 
@@ -280,12 +258,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > FLAVOR");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 Flavors.Start();
                 
@@ -327,12 +300,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > NUMBER");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $" Write a server number:".txtPrimary(ct.WriteLine);
@@ -370,12 +338,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION > SYNC");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $" {"Y", 2}] Yes".txtPrimary(ct.WriteLine);
@@ -421,6 +384,7 @@ namespace HardHat {
             {
                 Section.Header("GULP UGLIFY");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
 
@@ -477,6 +441,7 @@ namespace HardHat {
             {
                 Section.Header("GULP REVERT");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
                 string dirSource = Paths.Combine(Variables.Value("gp"),"www");

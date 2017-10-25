@@ -9,7 +9,7 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [4.0.0] - 2017-10-18
+## [4.0.0] - 2017-10-25
 
 ### Added
 
@@ -19,6 +19,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Change
 
 * Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
+* Whole configuration file, menu and his status validations.
 
 ### Fixed
 

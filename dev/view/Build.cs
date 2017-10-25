@@ -105,12 +105,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > DIMENSION");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
                 $"".fmNewLine();
                 $" Write a project dimension:".txtPrimary(ct.WriteLine);
@@ -148,12 +143,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > FLAVOR");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
                 Flavors.Start();
                 
@@ -195,12 +185,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > MODE");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
                 $"".fmNewLine();
                 $" {"D", 2}] Debug".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
@@ -287,6 +272,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > PROPERTIES");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
                 string sourcePath = Paths.Combine(Variables.Value("bp"), _c.path.bsn);
                 string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 

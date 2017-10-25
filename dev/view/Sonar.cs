@@ -23,6 +23,8 @@ namespace HardHat {
             opts.Add(new Option{opt="s"   , stt=true , act=Sonar.Select                     });
             opts.Add(new Option{opt="s>p" , stt=true , act=Sonar.Protocol                   });
             opts.Add(new Option{opt="s>s" , stt=true , act=Sonar.Server                     });
+            opts.Add(new Option{opt="s>sd", stt=true , act=Sonar.Domain                     });
+            opts.Add(new Option{opt="s>sp", stt=true , act=Sonar.Port                       });
             opts.Add(new Option{opt="s>i" , stt=true , act=Sonar.InternalPath               });
             opts.Add(new Option{opt="sq"  , stt=false, act=Sonar.Qube                       });
             opts.Add(new Option{opt="ss"  , stt=false, act=Sonar.Scanner                    });
@@ -39,11 +41,6 @@ namespace HardHat {
             if (!String.IsNullOrEmpty(_cp.snr.prt))
             {
                 s_cnf.Append($":{_cp.snr.prt}");
-            }
-            _cp.mnu.s_url = s_cnf.ToString();
-            if (!String.IsNullOrEmpty(_cp.snr.ipt))
-            {
-                s_cnf.Append($"/{_cp.snr.ipt}");
             }
             _cp.mnu.s_cnf = s_cnf.ToString();
 
@@ -64,7 +61,13 @@ namespace HardHat {
                 Section.Configuration(_cp.mnu.s_val, _cp.mnu.s_cnf);
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
-            $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,      Options.Valid("ss"));
+            if (String.IsNullOrEmpty(_cp.snr.ipt))
+            {
+                $"{"[S] Scanner" , -34}".txtStatus(ct.Write,    Options.Valid("ss"));
+            } else {
+                $"{"[S] Scanner: ", -13}".txtStatus(ct.Write,    Options.Valid("ss"));
+                $"{_cp.snr.ipt    , -21}".txtDefault(ct.Write);
+            }
             $"{"[B] Browse"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("sb"));
             $"".fmNewLine();
         }
@@ -75,44 +78,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("SONAR SERVER CONFIGURATION");
-                Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
-
-                $"".fmNewLine();
-                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.snr.ptc}".txtDefault(ct.WriteLine);
-                $"{" [S] Server:"       , -25}".txtPrimary();   $"{_cp.snr.dmn}{(!String.IsNullOrEmpty(_cp.snr.prt) ? ":"+_cp.snr.prt : "")}".txtDefault(ct.WriteLine);
-                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.snr.ipt}".txtDefault(ct.WriteLine);
-
-                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
-
-                Section.HorizontalRule();
-
-                $"{" Make your choice:", -25}".txtInfo();
-                string opt = Console.ReadLine();
-                
-                if(String.IsNullOrEmpty(opt?.ToLower()))
-                {
-                    Menu.Start();
-                } else {
-                    Menu.Route($"s>{opt?.ToLower()}", "s");
-                }
-                Message.Error();
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
-
-        public static void Server() {
-            Colorify.Default();
-            Console.Clear();
-
-            try
-            {
-                Section.Header("SONAR SERVER CONFIGURATION");
+                Section.Header("SONAR CONFIGURATION");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
 
@@ -149,8 +115,9 @@ namespace HardHat {
 
             try
             {
-                Section.Header("SONAR SERVER CONFIGURATION", "PROTOCOL");
+                Section.Header("SONAR CONFIGURATION", "PROTOCOL");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
 
                 if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
                 {
@@ -158,15 +125,8 @@ namespace HardHat {
                     $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
                 }
 
-                $"".fmNewLine();
-                $" {"1", 2}] http".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
-                $" {"2", 2}] https".txtPrimary(ct.WriteLine);
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
-                
-                Section.HorizontalRule();
-            
-                $"{" Make your choice: ", -25}".txtInfo();
+                Protocols.Start();
+
                 string opt_ptc = Console.ReadLine();
                 opt_ptc = opt_ptc?.ToLower();
 
@@ -175,21 +135,57 @@ namespace HardHat {
                     switch (opt_ptc)
                     {
                         case "1":
-                            _cp.gbs.ptc = "http";
+                            _cp.snr.ptc = "http";
                             break;
                         case "2":
-                            _cp.gbs.ptc = "https";
+                            _cp.snr.ptc = "https";
                             break;
                         default:
                             Message.Error();
                             break;
                     }
                 } else {
-                    _cp.gbs.ptc = "http";
+                    _cp.snr.ptc = "http";
                 }
 
                 Menu.Status();
                 Select();
+            }
+            catch (Exception Ex){
+                Message.Critical(
+                    msg: $" {Ex.Message}"
+                );
+            }
+        }
+
+        public static void Server() {
+            Colorify.Default();
+            Console.Clear();
+
+            try
+            {
+                Section.Header("SONAR CONFIGURATION", "SERVER");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
+
+                $"".fmNewLine();
+                $"{" [D] Domain:"     , -25}".txtPrimary();   $"{_cp.snr.dmn}".txtDefault(ct.WriteLine);
+                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_cp.snr.prt}".txtDefault(ct.WriteLine);
+
+                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
+
+                Section.HorizontalRule();
+
+                $"{" Make your choice:", -25}".txtInfo();
+                string opt = Console.ReadLine();
+                
+                if(String.IsNullOrEmpty(opt?.ToLower()))
+                {
+                    Menu.Start();
+                } else {
+                    Menu.Route($"s>s{opt?.ToLower()}", "s");
+                }
+                Message.Error();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -204,28 +200,27 @@ namespace HardHat {
 
             try
             {
-                Section.Header("CONNECT DEVICE", "IP ADDRESS");
+                Section.Header("SONAR CONFIGURATION", "SERVER", "DOMAIN");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
                 
                 $"".fmNewLine();
-                $" Write last mobile device IP octet.".txtPrimary(ct.WriteLine);
-                $" PC and Mobile device needs to be in same WiFi Network.".txtPrimary(ct.WriteLine);
+                $" Write server domain.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
                 
                 Section.HorizontalRule();
 
-                _cp.ipb = Network.GetLocalIPBase(_cp.ipl);
-                $"{$" {_cp.ipb} ", -25}".txtInfo();
+                $"{" Make your choice: ", -25}".txtInfo();
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
-                    Validation.Range(opt, 1, 255);
-                    _cp.adb.wip = $"{_cp.ipb}{opt}";
+                    _cp.snr.dmn = opt;
                 }
 
                 Menu.Status();
-                //Configuration();
+                Server();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -240,11 +235,12 @@ namespace HardHat {
 
             try
             {
-                Section.Header("CONNECT DEVICE", "PORT");
+                Section.Header("SONAR CONFIGURATION", "SERVER", "PORT");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
                 
                 $"".fmNewLine();
-                $" Write mobile device port.".txtPrimary(ct.WriteLine);
-                $" Between 5555".txtPrimary(); $" (Default)".txtInfo(); $" and 5585".txtPrimary(ct.WriteLine); 
+                $" Write server port.".txtPrimary(ct.WriteLine);
                 
                 $"".fmNewLine();
                 $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
@@ -255,14 +251,14 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
-                    Validation.Range(opt, 5555, 5585);
-                    _cp.adb.wpr = opt;
+                    Validation.Range(opt, 0, 65536);
+                    _cp.snr.prt = opt;
                 } else {
-                    _cp.adb.wpr = "5555";
+                    _cp.snr.prt = "9000";
                 }
 
                 Menu.Status();
-                //Configuration();
+                Server();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -277,14 +273,9 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION", "INTERNAL PATH");
+                Section.Header("SONAR CONFIGURATION", "INTERNAL PATH");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
-                }
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
 
                 $"".fmNewLine();
                 $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
@@ -297,7 +288,7 @@ namespace HardHat {
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ipt = Console.ReadLine();
-                _cp.gbs.ipt = $"{opt_ipt}";
+                _cp.snr.ipt = $"{opt_ipt}";
                 
                 Menu.Status();
                 Select();
@@ -333,6 +324,7 @@ namespace HardHat {
             {
                 Section.Header("SONAR SCANNER");
                 Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
 
                 string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _cp.snr.ipt);
 
@@ -358,7 +350,7 @@ namespace HardHat {
 
             try
             {
-                CmdBrowse(_cp.mnu.s_url);
+                CmdBrowse(_cp.mnu.s_cnf);
                 Menu.Start();
             }
             catch (Exception Ex){
