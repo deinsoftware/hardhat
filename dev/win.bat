@@ -34,7 +34,7 @@ if %errorlevel% == 0 (
     echo. 
     echo ==========================================================================================
     echo. 
-    echo  HardHat was updated please RESTART to continue.
+    echo  HardHat was updated.
     echo. 
     echo  Refer to CHANGELOG file for details
     echo  or visit https://github.com/equiman/hardhat/
@@ -42,7 +42,7 @@ if %errorlevel% == 0 (
     echo ==========================================================================================
     echo.
     pause
-    goto end
+    goto run
 )
 
 :debug

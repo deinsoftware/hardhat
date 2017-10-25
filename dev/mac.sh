@@ -32,14 +32,14 @@ function fxUpdate() {
         echo ""
         echo "======================================================================================="
         echo ""
-        echo "HardHat was updated please RESTART to continue."
+        echo "HardHat was updated."
         echo ""
         echo "Refer to CHANGELOG file for details"
         echo "or visit http://www.github.com/equiman/hardhat/"
         echo ""
         echo "======================================================================================="
         pause "Press [Enter] key to continue..."
-        fxExit
+        fxRun
     else
         fxRun
     fi
@@ -60,6 +60,7 @@ function fxDebug() {
 function fxRun() {
     chmod +x HardHat
     ./HardHat
+    fxExit()
 }
 
 function fxExit() {
