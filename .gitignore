@@ -17,5 +17,5 @@
 ### HardHat Project ###
 **/bin
 **/obj
-**/config.*.json
+**/dist
 /HardHat

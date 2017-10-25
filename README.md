@@ -1,13 +1,13 @@
 # HardHat [ for Win+Mac ]
 
-I don't like repetitive tasks and make a build is one of them... yuck!
 
 **HardHat** was created to simplify and automate tasks related to Android development.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
-[![Working Man - Rush](rush-workingman.png)](https://www.youtube.com/watch?v=_-4YOOMqKgk)  
-*Rush - Working Man*
+I don't like repetitive tasks and make a build is one of them... yuck!
+
+![Why we need automation?](automation.png "Be a Geek!")
 
 Contributions or Beer :beers: will be appreciated :thumbsup:
 
@@ -51,9 +51,19 @@ What things you need to install?
 * [Git](https://git-scm.com/downloads)
 * [Gulp](http://gulpjs.com/) (to Minify and Uglify)
 * [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [.Net Core](https://www.microsoft.com/net/download/core#/runtime) (optional)
 * [Node.js](https://nodejs.org/en/download/) (with NPM)
+* [SonarQube](https://www.sonarqube.org/)
+* [SonarScanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)
+
+Windows only
+
 * [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (Windows only)
+
+Optional
+
+* [.Net Core](https://www.microsoft.com/net/download/core#/runtime)
+* [SonarLint](http://www.sonarlint.org/commandline/index.html)
+
 
 ### Installing
 
@@ -63,8 +73,8 @@ Clone **HardHat** from GitHub on *recommended* path. Using this command on termi
 
 | OS | Command |
 | --- | --- |
-| win | `git clone https://github.com/equiman/hardhat.git "D:\Applications\HardHat"` |
-| mac | `git clone https://github.com/equiman/hardhat.git ~/Applications/HardHat/` |
+| win | `git clone -b win https://github.com/equiman/hardhat.git "D:\Applications\HardHat"` |
+| mac | `git clone -b mac https://github.com/equiman/hardhat.git ~/Applications/HardHat/` |
 
 ## Environment Variables
 
@@ -88,7 +98,10 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `SIGCHECK_HOME` | D:\Applications\Sigcheck |
-| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
+| `SONAR_LINT_HOME` | D:\Applications\Sonar\Lint |
+| `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
+| `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
+| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_LINT_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
 Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
 
@@ -102,16 +115,22 @@ export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
 export ANDROID_BT_VERSION="26.0.2"
 export ANDROID_PROPERTIES="~/Applications/Android/Properties"
-export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
 export GULP_PROJECT="~/Applications/Gulp"
+export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
+export SONAR_LINT_HOME="~/Applications/Sonar/Lint"
+export SONAR_QUBE_HOME="~/Applications/Sonar/Qube"
+export SONAR_SCANNER_HOME="~/Applications/Sonar/Scanner"
 
 export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PATH="$ANDROID_HOME/build-tools/$ANDROID_BT_VERSION:$PATH"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_NDK_HOME/:$PATH"
+export PATH="$SONAR_LINT_HOME/bin:$PATH"
+export PATH="$SONAR_QUBE_HOME/bin\macosx-universal-64:$PATH"
+export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 ```
 
 > **Where are environment variables?**  
@@ -131,8 +150,8 @@ macOS users need add execute permission over some files. Open a terminal on inst
 
 * `chmod +x mac.sh`
 * `chmod +x mac.command`
-* `chmod +x dist/mac/cmd.mac.sh`
-* `chmod +x dist/mac/HardHat`
+* `chmod +x cmd.mac.sh`
+* `chmod +x HardHat`
 
 ### Run
 
@@ -163,21 +182,19 @@ Open **star menu** and over the Android section you will can see the link. Remem
 
 #### Star Menu for macOS
 
-Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **HardHat** and add execute permission with `chmod +x HardHat` command.
+Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **Hard Hat** (with blank space between) and add execute permission with `chmod +x "Hard Hat"` command.
 
 Copy the picture in `icon.png` file  to the Clipboard. One way to do this is to open the picture in Preview, choose `Edit > Select All`, then choose `Edit > Copy` or press `Command-C`.
 
-Select **HardHat** (alias shortcut) file, then choose `File > Get Info`. At the top of the Info window, click the picture of the icon to select it, then choose `Edit > Paste` or press `Command-V`.
+Select **Hard Hat** (alias shortcut) file, then choose `File > Get Info`. At the top of the Info window, click the picture of the icon to select it, then choose `Edit > Paste` or press `Command-V`.
 
-Just drag and drop **HardHat** (alias shortcut) to your Dock or Desktop.
+Just drag and drop **Hard Hat** (alias shortcut) to your Dock or Desktop.
 
 ### Keyboard Shortcuts
 
 Choose desired letter combination and let **HardHat** work for you.
 
 > **UPPERCASE** options means default choice in a question, feel free to continue quickly with <kbd>RETURN</kbd> key :wink:
-
-![HardHat Main Menu](hardhat-main.png "HardHat Main Menu")
 
 #### Project
 
@@ -189,7 +206,21 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pd</kbd> | Make a copy of selected file and choose a new name. |
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
 | <kbd>ps</kbd> | Show signature information about selected file. |
-| <kbd>pv</kbd> | Show full information and values about selected file. |
+| <kbd>pv</kbd> | Show full information, values and hash about selected file. |
+
+#### Sonar
+
+| combination | action |
+| --- | --- |
+| <kbd>s</kbd> | Select and show Sonar configuration. |
+| <kbd>s>p</kbd> | Protocol shortcut inside server configuration. |
+| <kbd>s>s</kbd> | Server shortcut inside server configuration. |
+| <kbd>s>sd</kbd>| Domain shortcut inside server configuration. |
+| <kbd>s>sp</kbd>| Port shortcut inside server configuration. |
+| <kbd>s>i</kbd> | Internal Path shortcut inside server configuration. |
+| <kbd>sq</kbd> | Starts sonar server over `SONAR_QUBE_HOME` (_see [Environment Variables](#environment-variables) section_) |
+| <kbd>ss</kbd> | Launch `sonar-scanner` over `SONAR_SCANNER_HOME` (_see [Environment Variables](#environment-variables) section_) inside selected project or his internal path. |s
+| <kbd>sb</kbd> | Open sonar configuration on browser. |
 
 #### Version Control System
 
@@ -225,7 +256,7 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 | `www` | Original project files |
 
 Gulp Browser process was created under `default` task and follow this command help:
-`gulp [default] --pth path_value [--int internalPath value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
+`gulp [default] --pth path_value [--int internal_path_value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
 
 | parameter | description |
 | --- | --- |
@@ -260,7 +291,7 @@ Gulp Browser process was created under `default` task and follow this command he
 | <kbd>bc</kbd> | Make `clean` project with gradle command line. |
 | <kbd>bg</kbd> | Make `clean` and `build` project with gradle command line. |
 
-If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_). Files like:
+If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
 
 * local.properties
 * gradle.properties
@@ -410,6 +441,7 @@ This project is licensed under the GNU GPLv3 License - see the [LICENSE](LICENSE
 ### Acknowledgments
 
 * Beta testers: [Ricardo Mesa](https://github.com/rmesaf) and [Sebastian Loaiza](https://github.com/slmartinez).
-* [StackOverflow](http://stackoverflow.com) - The largest online community for programmers.
+* [StackOverflow](http://stackoverflow.com): The largest online community for programmers.
+* [XKCD](https://xkcd.com/): A web comic of romance, sarcasm, math and language... for making his [font](https://github.com/ipython/xkcd-font) available.
 
 ⇧ [Back to menu](#menu)

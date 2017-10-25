@@ -28,15 +28,6 @@ namespace dein.tools
             return !String.IsNullOrEmpty(env);
         }
 
-        public static void Status(string value){
-            string env = Env.Get(value);
-            if (!String.IsNullOrEmpty(env)){
-                $"{env.Slash()}".txtDefault(ct.WriteLine);
-            } else {
-                $"is not defined".txtWarning(ct.WriteLine);
-            }
-        }
-
         public static void CmdUpdate() {
             try
             {

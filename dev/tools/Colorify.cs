@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -20,7 +21,7 @@ namespace dein.tools
             }
         }
 
-        public static readonly Dictionary<string, Color> Theme = new Dictionary<string, Color>
+        public static readonly IReadOnlyDictionary<string, Color> Theme = new Dictionary<string, Color>
         {
             {"text-default", new Color(null                  , null                  )},
             {"text-muted"  , new Color(null                  , ConsoleColor.DarkGray )},
@@ -38,7 +39,13 @@ namespace dein.tools
             {"bg-danger"   , new Color(ConsoleColor.Red      , ConsoleColor.White    )},
         };
 
-        public static void txtStatus   (this string s, Type? type = Type.Write, bool status = false) { 
+        public static void txtStatus   (this string s, Type? type = Type.Write, params bool[] values) { 
+            bool status = true;
+            foreach (var v in values)
+            {
+                status = status && v;
+            }
+            
             if (status)
             {
                 s.txtPrimary(type);
@@ -104,7 +111,6 @@ namespace dein.tools
                     break;
                 case Type.Shell:
                     StringBuilder line = new StringBuilder();
-                    //string line = "";
                     string[] words = s.Split(' ');
                     int chunkSize = (Console.WindowWidth - 3);
                     foreach (var item in words)

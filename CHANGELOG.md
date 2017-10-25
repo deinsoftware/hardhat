@@ -9,6 +9,23 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.0.0] - 2017-10-25
+
+### Added
+
+* SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+* Warning alert on Sonar, Gulp or Build incorrect configuration.
+
+### Change
+
+* Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
+* Whole configuration file, menu and his status validations.
+* Update verification don't need restart when download new version.
+
+### Fixed
+
+* Copy path and full path on Windows. [\#16](https://github.com/equiman/hardhat/issues/16)
+
 ## [3.2.0] - 2017-10-13
 
 ### Added

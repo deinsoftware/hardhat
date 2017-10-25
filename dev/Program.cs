@@ -23,6 +23,7 @@ namespace HardHat
 
                     //Update Environment Variables
                     Env.CmdUpdate();
+                    Variables.Update();
                     
                     //Window
                     if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
@@ -49,7 +50,6 @@ namespace HardHat
                     msg: "HardHat is already running", 
                     replace: true, 
                     exit: true);
-                Exit();
             }
         }
 

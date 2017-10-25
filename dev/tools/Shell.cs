@@ -129,6 +129,35 @@ namespace dein.tools
             return result;
         }
 
+        public static void Browse(this string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch (Exception Ex)
+            {
+                switch (Os.Platform())
+                {
+                    case "win":
+                        url = url.Replace("&", "^&");
+                        Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                        break;
+                    case "mac":
+                        Process.Start("xdg-open", url);
+                        break;
+                    case "gnu":
+                        Process.Start("open", url);
+                        break;
+                    default:
+                        Message.Critical(
+                            msg: $" {Ex.Message}"
+                        );
+                        break;
+                }
+            }
+        }
+
         public static void Result(string response){
             response = response
                 .Replace("\r","")
