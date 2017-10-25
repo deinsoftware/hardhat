@@ -189,7 +189,10 @@ namespace HardHat
         public string   sel { get; set; }                   //Option
         public string   v_bnc   { get; set; }               //Current Branch
         public string   s_cnf   { get; set; }               //Sonar Configuration
+        public bool     s_val   { get; set; }               //Sonar Validation
         public string   g_cnf   { get; set; }               //Gulp Configuration
+        public bool     g_val   { get; set; }               //Gulp Validation
         public string   b_cnf   { get; set; }               //Build Configuration
+        public bool     b_val   { get; set; }               //Build Validation
     }
 }

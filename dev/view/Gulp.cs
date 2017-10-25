@@ -34,6 +34,7 @@ namespace HardHat {
             }
             g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
             _cp.mnu.g_cnf = g_cnf.ToString();
+            _cp.mnu.g_val = !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf);
             Options.Valid("g"  , Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
             Options.Valid("g>d", Variables.Valid("gp"));
@@ -43,7 +44,7 @@ namespace HardHat {
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gs" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf));
+            Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
         }
 
         public static void Start() {
@@ -52,7 +53,13 @@ namespace HardHat {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
                 $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
-                $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);    
+                if (_cp.mnu.g_val)
+                {
+                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
+                } else {
+                    $"{_cp.mnu.g_cnf}".txtWarning(ct.WriteLine);
+                }
+                
             }
             $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,      Options.Valid("gu"));
             $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));

@@ -9,7 +9,7 @@ namespace HardHat
 {
     public static partial class Sonar {
 
-        public static bool CmdStatus(string sitename, string dir) {
+        public static bool CmdStatus(string prt) {
             bool cnt = false;
             try
             {
@@ -19,13 +19,13 @@ namespace HardHat
                 switch (Os.Platform())
                 {
                     case "win":
-                        cmd.Append($"findstr -i \"LISTENING\" | findstr \"9000\"");
+                        cmd.Append($"findstr -i \"LISTENING\" | findstr \"{prt}\"");
                         break;
                     case "mac":
-                        cmd.Append($"egrep -i 'LISTENING' | egrep ");
+                        cmd.Append($"egrep -i 'LISTENING' | egrep '{prt}'");
                         break;
                 }
-                result = cmd.ToString().Term(Output.Hidden, dir);
+                result = cmd.ToString().Term(Output.Hidden);
                 result.stdout = result.stdout
                     .Replace("\r","")
                     .Replace("\n","");
@@ -63,11 +63,10 @@ namespace HardHat
             }
         }
 
-        public static void CmdBrowse(string dir){
+        public static void CmdScanner(string dir){
             try
             {
-                Validation.Url(dir);
-                $"http://localhost:9000".Term(Output.Internal, dir);
+                $"sonar-scanner".Term(Output.Internal, dir);
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -76,10 +75,11 @@ namespace HardHat
             }
         }
 
-        public static void CmdScanner(string dir){
+        public static void CmdBrowse(string url){
             try
             {
-                $"sonar-scanner".Term(Output.Internal, dir);
+                Validation.Url(url);
+                $"http://localhost:9000".Term(Output.Internal);
             }
             catch (Exception Ex){
                 Message.Critical(

@@ -24,22 +24,28 @@ namespace HardHat {
             b_cnf.Append(Flavors.Name(_cp.gdl.flv));
             b_cnf.Append(Modes.Name(_cp.gdl.mde));
             _cp.mnu.b_cnf = b_cnf.ToString();
+            _cp.mnu.b_val = !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf);
             Options.Valid("b"  , Variables.Valid("gh"));
             Options.Valid("b>d", Variables.Valid("gh"));
             Options.Valid("b>f", Variables.Valid("gh"));
             Options.Valid("b>m", Variables.Valid("gh"));
             Options.Valid("bp" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("bc" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("bg" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
+            Options.Valid("bg" , Variables.Valid("gh") && _cp.mnu.b_val);
         }
 
         public static void Start(){
             if (String.IsNullOrEmpty(_cp.mnu.b_cnf))
             {
-                $" [B] Build".txtStatus(ct.WriteLine,               Options.Valid("b"));
+                $" [B] Build".txtStatus(ct.WriteLine,                Options.Valid("b"));
             } else {
-                $"{" [B] Build:"    , -25}".txtStatus(ct.Write,         Options.Valid("b"));
-                $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                $"{" [B] Build:"    , -25}".txtStatus(ct.Write,      Options.Valid("b"));
+                if (_cp.mnu.b_val)
+                {
+                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                } else {
+                    $"{_cp.mnu.b_cnf}".txtWarning(ct.WriteLine);
+                }
             }
             $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
             $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));

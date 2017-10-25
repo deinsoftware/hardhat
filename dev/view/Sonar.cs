@@ -35,10 +35,11 @@ namespace HardHat {
                 s_cnf.Append($"/{_cp.snr.ipt}");
             }
             _cp.mnu.s_cnf = s_cnf.ToString();
+            _cp.mnu.s_val = !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf);
             Options.Valid("s" , Variables.Valid("sq"));
             Options.Valid("sq", Variables.Valid("sq"));
             Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("sb", !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf));
+            Options.Valid("sb", _cp.mnu.s_val);
         }
         
         public static void Start() {
@@ -47,7 +48,12 @@ namespace HardHat {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
                 $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
-                $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);    
+                if (_cp.mnu.s_val)
+                {
+                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
+                } else {
+                    $"{_cp.mnu.s_cnf}".txtWarning(ct.WriteLine);
+                }
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
             $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,      Options.Valid("ss"));
