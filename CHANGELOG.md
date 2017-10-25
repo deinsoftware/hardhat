@@ -14,6 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Added
 
 * SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+* Warning alert on Sonar, Gulp or Build incorrect configuration.
 
 ### Change
 
