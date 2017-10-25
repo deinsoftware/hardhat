@@ -32,7 +32,7 @@ namespace HardHat {
                 string bnc = Git.CmdBranch(dirPath);
                 if (!String.IsNullOrEmpty(bnc))
                 {
-                    _cp.mnu.v_bnc = $"git:{Git.CmdBranch(dirPath)}";
+                    _cp.mnu.v_bnc = $"git://{Git.CmdBranch(dirPath)}";
                 } 
             }
             Options.Valid("v"   , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
