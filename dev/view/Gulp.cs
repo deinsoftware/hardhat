@@ -26,7 +26,7 @@ namespace HardHat {
             {
                 g_cnf.Append(_cp.gbs.dmn);
             }
-            g_cnf.Append(Section.FlavorName(_cp.gbs.flv));
+            g_cnf.Append(Flavors.Name(_cp.gbs.flv));
             g_cnf.Append(_cp.gbs.srv);
             if (!String.IsNullOrEmpty(_cp.gbs.ipt))
             {
@@ -79,7 +79,7 @@ namespace HardHat {
                 $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.gbs.ptc}".txtDefault(ct.WriteLine);
                 $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.gbs.ipt}".txtDefault(ct.WriteLine);
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gbs.dmn}".txtDefault(ct.WriteLine);
-                string g_cnf = Section.FlavorName(_cp.gbs.flv);
+                string g_cnf = Flavors.Name(_cp.gbs.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
                 $"{" [N] Number:"       , -25}".txtPrimary();   $"{_cp.gbs.srv}".txtDefault(ct.WriteLine);
                 $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_cp.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
@@ -278,7 +278,7 @@ namespace HardHat {
                     $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
                 }
 
-                Section.FlavorOptions();
+                Flavors.Start();
                 
                 string opt_flv = Console.ReadLine();
                 opt_flv = opt_flv?.ToLower();

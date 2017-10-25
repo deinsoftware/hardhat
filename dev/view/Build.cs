@@ -21,8 +21,8 @@ namespace HardHat {
         public static void Status(){
             StringBuilder b_cnf = new StringBuilder();
             b_cnf.Append(_cp.gdl.dmn ?? "");
-            b_cnf.Append(Section.FlavorName(_cp.gdl.flv));
-            b_cnf.Append(Section.ModeName(_cp.gdl.mde));
+            b_cnf.Append(Flavors.Name(_cp.gdl.flv));
+            b_cnf.Append(Modes.Name(_cp.gdl.mde));
             _cp.mnu.b_cnf = b_cnf.ToString();
             Options.Valid("b"  , Variables.Valid("gh"));
             Options.Valid("b>d", Variables.Valid("gh"));
@@ -64,9 +64,9 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);
-                string b_flv = Section.FlavorName(_cp.gdl.flv);
+                string b_flv = Flavors.Name(_cp.gdl.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
-                string b_mde = Section.ModeName(_cp.gdl.mde);
+                string b_mde = Modes.Name(_cp.gdl.mde);
                 $"{" [M] Mode:"         , -25}".txtPrimary();   $"{b_mde}".txtDefault(ct.WriteLine);
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
@@ -149,7 +149,7 @@ namespace HardHat {
                     $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
                 }
 
-                Section.FlavorOptions();
+                Flavors.Start();
                 
                 string opt_flv = Console.ReadLine();
                 opt_flv = opt_flv.ToLower();
