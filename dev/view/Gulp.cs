@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
@@ -16,6 +17,47 @@ namespace HardHat {
         {
             _c = Program.config;
             _cp = Program.config.personal;
+        }
+
+        public static void Status(){
+            StringBuilder g_cnf = new StringBuilder();
+            g_cnf.Append($"{_cp.gbs.ptc}://");
+            if (!String.IsNullOrEmpty(_cp.gbs.dmn))
+            {
+                g_cnf.Append(_cp.gbs.dmn);
+            }
+            g_cnf.Append(Section.FlavorName(_cp.gbs.flv));
+            g_cnf.Append(_cp.gbs.srv);
+            if (!String.IsNullOrEmpty(_cp.gbs.ipt))
+            {
+                g_cnf.Append($"/{_cp.gbs.ipt}");
+            }
+            g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
+            _cp.mnu.g_cnf = g_cnf.ToString();
+            Options.Valid("g"  , Variables.Valid("gp"));
+            Options.Valid("g>i", Variables.Valid("gp"));
+            Options.Valid("g>d", Variables.Valid("gp"));
+            Options.Valid("g>f", Variables.Valid("gp"));
+            Options.Valid("g>n", Variables.Valid("gp"));
+            Options.Valid("g>s", Variables.Valid("gp"));
+            Options.Valid("g>p", Variables.Valid("gp"));
+            Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("gs" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf));
+        }
+
+        public static void Start() {
+            if (String.IsNullOrEmpty(_cp.mnu.g_cnf))
+            {
+                $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
+            } else {
+                $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
+                $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);    
+            }
+            $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,      Options.Valid("gu"));
+            $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));
+            $"{"[S] Server"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("gs"));
+            $"".fmNewLine();
         }
         
         public static void Select() {

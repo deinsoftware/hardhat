@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
@@ -15,6 +16,35 @@ namespace HardHat {
         {
             _c = Program.config;
             _cp = Program.config.personal;
+        }
+
+        public static void Status(){
+            StringBuilder b_cnf = new StringBuilder();
+            b_cnf.Append(_cp.gdl.dmn ?? "");
+            b_cnf.Append(Section.FlavorName(_cp.gdl.flv));
+            b_cnf.Append(Section.ModeName(_cp.gdl.mde));
+            _cp.mnu.b_cnf = b_cnf.ToString();
+            Options.Valid("b"  , Variables.Valid("gh"));
+            Options.Valid("b>d", Variables.Valid("gh"));
+            Options.Valid("b>f", Variables.Valid("gh"));
+            Options.Valid("b>m", Variables.Valid("gh"));
+            Options.Valid("bp" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("bc" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("bg" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf));
+        }
+
+        public static void Start(){
+            if (String.IsNullOrEmpty(_cp.mnu.b_cnf))
+            {
+                $" [B] Build".txtStatus(ct.WriteLine,               Options.Valid("b"));
+            } else {
+                $"{" [B] Build:"    , -25}".txtStatus(ct.Write,         Options.Valid("b"));
+                $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+            }
+            $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
+            $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
+            $"{"[G] Gradle"         , -17}".txtStatus(ct.WriteLine,  Options.Valid("bg"));
+            $"".fmNewLine();
         }
         
         public static void Select() {

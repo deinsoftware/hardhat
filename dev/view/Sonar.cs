@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
@@ -17,7 +18,43 @@ namespace HardHat {
             _c = Program.config;
             _cp = Program.config.personal;
         }
+
+        public static void Status(){
+            StringBuilder s_cnf = new StringBuilder();
+            s_cnf.Append($"{_cp.snr.ptc}://");
+            if (!String.IsNullOrEmpty(_cp.snr.dmn))
+            {
+                s_cnf.Append($"{_cp.snr.dmn}");
+            }
+            if (!String.IsNullOrEmpty(_cp.snr.prt))
+            {
+                s_cnf.Append($":{_cp.snr.prt}");
+            }
+            if (!String.IsNullOrEmpty(_cp.snr.ipt))
+            {
+                s_cnf.Append($"/{_cp.snr.ipt}");
+            }
+            _cp.mnu.s_cnf = s_cnf.ToString();
+            Options.Valid("s" , Variables.Valid("sq"));
+            Options.Valid("sq", Variables.Valid("sq"));
+            Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("sb", !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf));
+        }
         
+        public static void Start() {
+            if (String.IsNullOrEmpty(_cp.mnu.s_cnf))
+            {
+                $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
+            } else {
+                $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
+                $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);    
+            }
+            $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
+            $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,      Options.Valid("ss"));
+            $"{"[B] Browse"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("sb"));
+            $"".fmNewLine();
+        }
+
         public static void Select() {
             Colorify.Default();
             Console.Clear();

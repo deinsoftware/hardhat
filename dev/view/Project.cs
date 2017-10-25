@@ -21,6 +21,51 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void Status(string dirPath){
+            if (!Directory.Exists(dirPath))
+            {
+                _cp.spr = "";
+            }
+            Options.Valid("p" , true);
+            string filePath = Paths.Combine(dirPath, _c.android.prj, _c.android.bld, _cp.sfl ?? "");
+            if (!File.Exists(filePath))
+            {
+                _cp.sfl = "";
+            }
+            Options.Valid("pf", !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("pi", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+            Options.Valid("pd", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+            Options.Valid("pp", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+            Options.Valid("ps", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+            Options.Valid("pv", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+        }
+
+        public static void Start() {
+            if (String.IsNullOrEmpty(_cp.spr))
+            {
+                $" [P] Select Project".txtPrimary(ct.WriteLine);
+            } else {
+                $"{" [P] Selected Project:", -25}".txtPrimary();
+                $"{_cp.spr}".txtDefault(ct.WriteLine);
+            }
+            
+            if (String.IsNullOrEmpty(_cp.spr))
+            {
+                $"   [F] Select File".txtStatus(ct.WriteLine,   Options.Valid("pf"));
+            } else {
+                $"{"   [F] Selected File:", -25}".txtPrimary();
+                $"{_cp.sfl}".txtDefault(ct.WriteLine);
+            }
+
+            $"{"   [I] Install" , -17}".txtStatus(ct.Write,     Options.Valid("pi"));
+            $"{"[D] Duplicate"  , -17}".txtStatus(ct.Write,     Options.Valid("pd"));
+            $"{"[P] Path"       , -17}".txtStatus(ct.Write,     Options.Valid("pp"));
+            $"{"[S] Signer"     , -17}".txtStatus(ct.Write,     Options.Valid("ps"));
+            $"{"[V] Values"     , -17}".txtStatus(ct.WriteLine, Options.Valid("pv"));
+
+            $"".fmNewLine();
+        }
+
         public static void Select() {
             Colorify.Default();
             Console.Clear();
@@ -70,7 +115,7 @@ namespace HardHat {
             }
         }
 
-        public static void File() {
+        public static void SelectFile() {
             Colorify.Default();
             Console.Clear();
 

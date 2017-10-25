@@ -16,6 +16,25 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void Start(){
+            if (String.IsNullOrEmpty(_cp.adb.dvc))
+            {
+                $" [A] ADB".txtMuted(ct.WriteLine);
+            } else {
+                $"{" [A] ADB:"          , -25}".txtMuted();
+                $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
+            }
+            $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
+            if (!_cp.adb.wst)
+            {
+                $"{"[W] WiFi Connect"   , -34}".txtPrimary(ct.Write);
+            } else {
+                $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
+            }
+            $"{"[R] Restart"            , -17}".txtPrimary(ct.WriteLine);
+            $"".fmNewLine();
+        }
+
         public static void Install() {
             Colorify.Default();
             Console.Clear();

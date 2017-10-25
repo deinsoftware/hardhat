@@ -28,7 +28,7 @@ namespace HardHat {
                 opts.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
                 // Project
                 opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
-                opts.Add(new Option{opt="pf"  , stt=false, act=Project.File                     });
+                opts.Add(new Option{opt="pf"  , stt=false, act=Project.SelectFile                     });
                 opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
                 opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
                 opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });

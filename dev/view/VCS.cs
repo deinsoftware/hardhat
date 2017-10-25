@@ -17,6 +17,37 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void Status(string dirPath){
+            _cp.mnu.v_bnc = "";
+            if (!String.IsNullOrEmpty(_cp.spr)){
+                string bnc = Git.CmdBranch(dirPath);
+                if (!String.IsNullOrEmpty(bnc))
+                {
+                    _cp.mnu.v_bnc = $"git:{Git.CmdBranch(dirPath)}";
+                } 
+            }
+            Options.Valid("v"   , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("vd"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("vp"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("vr"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+        }
+
+        public static void Start() {
+            if (Options.Valid("v"))
+            {
+                $" [V] VCS".txtMuted(ct.WriteLine);
+            } else {
+                $"{" [V] VCS:", -25}".txtMuted(ct.Write);
+                $"{_cp.mnu.v_bnc}".txtDefault(ct.WriteLine);
+            }
+            $"{"   [D] Discard" , -34}".txtStatus(ct.Write,     Options.Valid("vd"));
+            $"{"[P] Pull"       , -34}".txtStatus(ct.Write,     Options.Valid("vp"));
+            $"{"[R] Reset"      , -17}".txtStatus(ct.WriteLine, Options.Valid("vr"));
+            $"".fmNewLine();
+        }
+
         public static void Discard(){
             Vcs.Actions(true, false, false);
         }
