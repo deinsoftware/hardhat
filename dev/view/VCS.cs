@@ -108,7 +108,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }

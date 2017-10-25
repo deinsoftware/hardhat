@@ -303,7 +303,7 @@ namespace HardHat {
                 Paths.CopyAll(sourcePath, destinationPath, true, true, filter);     
             
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }

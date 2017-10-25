@@ -66,7 +66,7 @@ namespace HardHat {
                     }
 
                     Section.HorizontalRule();
-                    Sections.Pause();
+                    Section.Pause();
                 } else {
                     Message.Alert(" No device/emulators found");
                 }
@@ -106,7 +106,7 @@ namespace HardHat {
                 _cp.adb.dvc = "";
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
@@ -323,7 +323,7 @@ namespace HardHat {
                 _cp.adb.wst = connected;
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
@@ -350,7 +350,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
@@ -388,7 +388,7 @@ namespace HardHat {
                 CmdSignerVerify(dirPath);
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
@@ -427,7 +427,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }

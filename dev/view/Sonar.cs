@@ -341,7 +341,7 @@ namespace HardHat {
                 CmdScanner(dirPath);
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }

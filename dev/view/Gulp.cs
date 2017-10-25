@@ -458,7 +458,7 @@ namespace HardHat {
                 Paths.CopyAll(dirs[1], dirPath, true, true); 
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
@@ -487,7 +487,7 @@ namespace HardHat {
                 Paths.CopyAll(dirSource, dirPath, true, true); 
 
                 Section.HorizontalRule();
-                Sections.Pause();
+                Section.Pause();
 
                 Menu.Start();
             }
