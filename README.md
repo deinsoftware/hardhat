@@ -201,6 +201,18 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>ps</kbd> | Show signature information about selected file. |
 | <kbd>pv</kbd> | Show full information, values and hash about selected file. |
 
+#### Sonar
+
+| combination | action |
+| --- | --- |
+| <kbd>s</kbd> | Select and show Sonar configuration. |
+| <kbd>s>p</kbd> | Protocol shortcut inside server configuration. |
+| <kbd>s>s</kbd> | Domain and Port shortcut inside server configuration. |
+| <kbd>s>i</kbd> | Internal Path shortcut inside server configuration. |
+| <kbd>sq</kbd> | Starts sonar server over `SONAR_QUBE_HOME` (_see [Environment Variables](#environment-variables) section_) |
+| <kbd>ss</kbd> | Launch `sonar-scanner` over `SONAR_SCANNER_HOME` (_see [Environment Variables](#environment-variables) section_) inside selected project or his internal path. |s
+| <kbd>sb</kbd> | Open sonar configuration on browser. |
+
 #### Version Control System
 
 | combination | action |
