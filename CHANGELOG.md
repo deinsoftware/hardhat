@@ -20,6 +20,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
 * Whole configuration file, menu and his status validations.
+* Update verification don't need restart when download new version.
 
 ### Fixed
 
