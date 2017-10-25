@@ -51,12 +51,19 @@ What things you need to install?
 * [Git](https://git-scm.com/downloads)
 * [Gulp](http://gulpjs.com/) (to Minify and Uglify)
 * [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-* [.Net Core](https://www.microsoft.com/net/download/core#/runtime) (optional)
 * [Node.js](https://nodejs.org/en/download/) (with NPM)
-* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (Windows only)
-* [SonarLint](http://www.sonarlint.org/commandline/index.html) (optional)
 * [SonarQube](https://www.sonarqube.org/)
 * [SonarScanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)
+
+Windows only
+
+* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (Windows only)
+
+Optional
+
+* [.Net Core](https://www.microsoft.com/net/download/core#/runtime)
+* [SonarLint](http://www.sonarlint.org/commandline/index.html)
+
 
 ### Installing
 
