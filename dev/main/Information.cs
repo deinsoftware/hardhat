@@ -33,9 +33,7 @@ namespace HardHat {
             $"{" SonarScanner",     -25}".txtPrimary();     Version.CmdSonarScanner();
             
             Section.HorizontalRule();
-
-            $" Press [Any] key to continue...".txtInfo();
-            Console.ReadKey();
+            Sections.Pause();
 
             Menu.Start();
         }
@@ -58,9 +56,7 @@ namespace HardHat {
             }
 
             Section.HorizontalRule();
-
-            $" Press [Any] key to continue...".txtInfo();
-            Console.ReadKey();
+            Sections.Pause();
 
             Menu.Start();
         }

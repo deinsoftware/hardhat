@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
@@ -15,6 +16,14 @@ namespace HardHat {
         {
             _c = Program.config;
             _cp = Program.config.personal;
+        }
+
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="vd"  , stt=false, act=Vcs.Discard                      });
+            opts.Add(new Option{opt="vp"  , stt=false, act=Vcs.Pull                         });
+            opts.Add(new Option{opt="vr"  , stt=false, act=Vcs.Reset                        });
+            opts.Add(new Option{opt="vd+p", stt=false, act=Vcs.DiscardPull                  });
+            opts.Add(new Option{opt="vr+p", stt=false, act=Vcs.ResetPull                    });
         }
 
         public static void Status(string dirPath){
@@ -99,9 +108,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }

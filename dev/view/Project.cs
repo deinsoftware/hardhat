@@ -21,6 +21,16 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
+            opts.Add(new Option{opt="pf"  , stt=false, act=Project.SelectFile               });
+            opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
+            opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
+            opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
+            opts.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
+            opts.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
+        }
+
         public static void Status(string dirPath){
             if (!Directory.Exists(dirPath))
             {

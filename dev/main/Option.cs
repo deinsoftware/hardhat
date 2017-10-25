@@ -25,49 +25,17 @@ namespace HardHat {
             var opts = new List<Option>();
             try
             {
+                // Main
                 opts.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
-                // Project
-                opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
-                opts.Add(new Option{opt="pf"  , stt=false, act=Project.SelectFile                     });
-                opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
-                opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
-                opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
-                opts.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
-                opts.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
-                // Version Control System
-                opts.Add(new Option{opt="vd"  , stt=false, act=Vcs.Discard                      });
-                opts.Add(new Option{opt="vp"  , stt=false, act=Vcs.Pull                         });
-                opts.Add(new Option{opt="vr"  , stt=false, act=Vcs.Reset                        });
-                opts.Add(new Option{opt="vd+p", stt=false, act=Vcs.DiscardPull                  });
-                opts.Add(new Option{opt="vr+p", stt=false, act=Vcs.ResetPull                    });
-                // Sonar
-                opts.Add(new Option{opt="s"   , stt=true , act=Sonar.Select                     });
-                opts.Add(new Option{opt="sq"  , stt=false, act=Sonar.Qube                       });
-                opts.Add(new Option{opt="ss"  , stt=false, act=Sonar.Scanner                    });
-                opts.Add(new Option{opt="sb"  , stt=false, act=Sonar.Browse                     });
-                // Gulp
-                opts.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
-                opts.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
-                opts.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
-                opts.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
-                opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
-                opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
-                opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
-                opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
-                opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
-                opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
-                // Build
-                opts.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
-                opts.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
-                opts.Add(new Option{opt="b>f" , stt=false, act=Build.Flavor                     });
-                opts.Add(new Option{opt="b>m" , stt=false, act=Build.Mode                       });
-                opts.Add(new Option{opt="bp"  , stt=false, act=Build.Properties                 });
-                opts.Add(new Option{opt="bc"  , stt=false, act=Build.Clean                      });
-                opts.Add(new Option{opt="bg"  , stt=false, act=Build.Gradle                     });
-                // Adb
-                opts.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
-                opts.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices                      });
-                opts.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless                     });
+
+                // Views
+                Project.List(ref opts);
+                Vcs.List(ref opts);
+                Sonar.List(ref opts);
+                Gulp.List(ref opts);
+                Build.List(ref opts);
+                Adb.List(ref opts);
+                
                 // Config
                 opts.Add(new Option{opt="c"   , stt=true , act=Configuration.Select             });
                 opts.Add(new Option{opt="c>pd", stt=true , act=Configuration.PathDevelopment    });
@@ -82,6 +50,7 @@ namespace HardHat {
                 opts.Add(new Option{opt="c>gs", stt=true , act=Configuration.GulpServer         });
                 opts.Add(new Option{opt="c>ge", stt=true , act=Configuration.GulpExtension      });
                 opts.Add(new Option{opt="c>vs", stt=true , act=Configuration.SiteName           });
+                
                 // Extras
                 opts.Add(new Option{opt="i"   , stt=true , act=Information.Versions             });
                 opts.Add(new Option{opt="e"   , stt=true , act=Information.Environment          });

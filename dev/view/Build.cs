@@ -18,6 +18,16 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
+            opts.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
+            opts.Add(new Option{opt="b>f" , stt=false, act=Build.Flavor                     });
+            opts.Add(new Option{opt="b>m" , stt=false, act=Build.Mode                       });
+            opts.Add(new Option{opt="bp"  , stt=false, act=Build.Properties                 });
+            opts.Add(new Option{opt="bc"  , stt=false, act=Build.Clean                      });
+            opts.Add(new Option{opt="bg"  , stt=false, act=Build.Gradle                     });
+        }
+
         public static void Status(){
             StringBuilder b_cnf = new StringBuilder();
             b_cnf.Append(_cp.gdl.dmn ?? "");
@@ -293,9 +303,7 @@ namespace HardHat {
                 Paths.CopyAll(sourcePath, destinationPath, true, true, filter);     
             
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }

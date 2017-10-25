@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using dein.tools;
 
@@ -14,6 +15,12 @@ namespace HardHat {
         {
             _c = Program.config;
             _cp = Program.config.personal;
+        }
+
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
+            opts.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices                      });
+            opts.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless                     });
         }
 
         public static void Start(){
@@ -59,9 +66,7 @@ namespace HardHat {
                     }
 
                     Section.HorizontalRule();
-                    
-                    $" Press [Any] key to continue...".txtInfo();
-                    Console.ReadKey();
+                    Sections.Pause();
                 } else {
                     Message.Alert(" No device/emulators found");
                 }
@@ -101,9 +106,7 @@ namespace HardHat {
                 _cp.adb.dvc = "";
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
@@ -320,9 +323,7 @@ namespace HardHat {
                 _cp.adb.wst = connected;
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
@@ -349,9 +350,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
@@ -389,9 +388,7 @@ namespace HardHat {
                 CmdSignerVerify(dirPath);
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
@@ -430,9 +427,7 @@ namespace HardHat {
                 }
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }

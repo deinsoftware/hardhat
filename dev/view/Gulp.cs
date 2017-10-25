@@ -19,6 +19,19 @@ namespace HardHat {
             _cp = Program.config.personal;
         }
 
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
+            opts.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
+            opts.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
+            opts.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
+            opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
+            opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
+            opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
+            opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
+            opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
+            opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
+        }
+
         public static void Status(){
             StringBuilder g_cnf = new StringBuilder();
             g_cnf.Append($"{_cp.gbs.ptc}://");
@@ -445,9 +458,7 @@ namespace HardHat {
                 Paths.CopyAll(dirs[1], dirPath, true, true); 
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
@@ -476,9 +487,7 @@ namespace HardHat {
                 Paths.CopyAll(dirSource, dirPath, true, true); 
 
                 Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
+                Sections.Pause();
 
                 Menu.Start();
             }
