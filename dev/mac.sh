@@ -46,7 +46,6 @@ function fxUpdate() {
 }
 
 function fxGit() {
-    clear
     git config --local core.filemode false
     git reset --hard HEAD
     git pull
