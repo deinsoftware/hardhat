@@ -72,5 +72,10 @@ namespace HardHat {
             $"=".bgInfo(ct.Repeat);
             $"".fmNewLine();
         }
+
+        public static void Pause() {
+            $" Press [Any] key to continue...".txtInfo();
+            Console.ReadKey();
+        }
     }
 }
