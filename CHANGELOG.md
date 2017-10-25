@@ -17,7 +17,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Change
 
-Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
+* Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
 
 ### Fixed
 
