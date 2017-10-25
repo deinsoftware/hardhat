@@ -65,7 +65,12 @@ namespace HardHat {
                 if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    if (_cp.mnu.b_val)
+                    {
+                        $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
+                    } else {
+                        $"{_cp.mnu.b_cnf}".txtWarning(ct.WriteLine);
+                    }
                 }
 
                 $"".fmNewLine();
