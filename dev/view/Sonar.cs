@@ -30,10 +30,6 @@ namespace HardHat {
             {
                 s_cnf.Append($":{_cp.snr.prt}");
             }
-            if (!String.IsNullOrEmpty(_cp.snr.ipt))
-            {
-                s_cnf.Append($"/{_cp.snr.ipt}");
-            }
             _cp.mnu.s_cnf = s_cnf.ToString();
             _cp.mnu.s_val = !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf);
             Options.Valid("s" , Variables.Valid("sq"));
@@ -50,9 +46,9 @@ namespace HardHat {
                 $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
                 if (_cp.mnu.s_val)
                 {
-                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
+                    $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtDefault(ct.WriteLine);
                 } else {
-                    $"{_cp.mnu.s_cnf}".txtWarning(ct.WriteLine);
+                    $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtWarning(ct.WriteLine);
                 }
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
@@ -73,7 +69,12 @@ namespace HardHat {
                 if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
                 {
                     $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
+                    if (_cp.mnu.s_val)
+                    {
+                        $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtDefault(ct.WriteLine);
+                    } else {
+                        $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtWarning(ct.WriteLine);
+                    }
                 }
 
                 $"".fmNewLine();
@@ -159,64 +160,7 @@ namespace HardHat {
             }
         }
 
-        public static void Server() {
-            Colorify.Default();
-            Console.Clear();
-
-            try
-            {
-                Section.Header("CONNECT DEVICE");
-                
-                _cp.ipl = Network.GetLocalIPAddress();
-                $"{" Current IP:", -25}".txtMuted();
-                $"{_cp.ipl}".txtDefault(ct.WriteLine);
-
-                $"".fmNewLine();
-                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{_cp.adb.wip}".txtDefault(ct.WriteLine);
-                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_cp.adb.wpr}".txtDefault(ct.WriteLine);
-                
-                $"".fmNewLine();
-                $"{" [C] Connect", -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
-                $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
-
-                Section.HorizontalRule();
-
-                $"{" Make your choice:", -25}".txtInfo();
-                string opt = Console.ReadLine();
-
-                switch (opt?.ToLower())
-                {
-                    case "i":
-                        Base();
-                        break;
-                    case "p":
-                        Port();
-                        break;
-                    case "c":
-                        if (!String.IsNullOrEmpty(_cp.adb.wip))
-                        {
-                            Connect();
-                            Message.Error();
-                        }
-                        break;
-                    case "":
-                        Menu.Start();
-                        break;
-                    default:
-                        _cp.mnu.sel = "aw";
-                        break;
-                }
-
-                Message.Error();
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
-
-        public static void Base() {
+        public static void Domain() {
             Colorify.Default();
             Console.Clear();
 
@@ -289,32 +233,6 @@ namespace HardHat {
             }
         }
 
-        public static void Connect() {
-            Colorify.Default();
-            Console.Clear();
-
-            try
-            {
-                Section.Header("CONNECT DEVICE");
-                
-                $" --> Connecting...".txtInfo(ct.WriteLine);
-                //bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
-                //_cp.adb.wst = connected;
-
-                Section.HorizontalRule();
-
-                $" Press [Any] key to continue...".txtInfo();
-                Console.ReadKey();
-
-                Menu.Start();
-            }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
-            }
-        }
-        
         public static void InternalPath() {
             Colorify.Default();
             Console.Clear();
@@ -352,9 +270,6 @@ namespace HardHat {
                 );
             }
         }
-
-        
-        
         
         public static void Qube() {
             Colorify.Default();
@@ -362,19 +277,7 @@ namespace HardHat {
 
             try
             {
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
-                // CmdServer(
-                //     dirPath,
-                //     Paths.Combine(Variables.Value("gp")),
-                //     _cp.gbs.ipt,
-                //     _cp.gbs.dmn,
-                //     _cp.gbs.flv,
-                //     _cp.gbs.srv,
-                //     _cp.gbs.syn,
-                //     _cp.ipl,
-                //     _cp.gbs.ptc
-                // );
-                Menu.Start();
+                CmdQube();
             }
             catch (Exception Ex){
                 Message.Critical(
@@ -389,18 +292,20 @@ namespace HardHat {
 
             try
             {
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
-                // CmdServer(
-                //     dirPath,
-                //     Paths.Combine(Variables.Value("gp")),
-                //     _cp.gbs.ipt,
-                //     _cp.gbs.dmn,
-                //     _cp.gbs.flv,
-                //     _cp.gbs.srv,
-                //     _cp.gbs.syn,
-                //     _cp.ipl,
-                //     _cp.gbs.ptc
-                // );
+                Section.Header("SONAR SCANNER");
+                Section.SelectedProject();
+
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _cp.snr.ipt);
+
+                $"".fmNewLine();
+                $" --> Scanning...".txtInfo(ct.WriteLine);
+                CmdScanner(dirPath);
+
+                Section.HorizontalRule();
+
+                $" Press [Any] key to continue...".txtInfo();
+                Console.ReadKey();
+
                 Menu.Start();
             }
             catch (Exception Ex){
@@ -416,18 +321,7 @@ namespace HardHat {
 
             try
             {
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
-                // CmdServer(
-                //     dirPath,
-                //     Paths.Combine(Variables.Value("gp")),
-                //     _cp.gbs.ipt,
-                //     _cp.gbs.dmn,
-                //     _cp.gbs.flv,
-                //     _cp.gbs.srv,
-                //     _cp.gbs.syn,
-                //     _cp.ipl,
-                //     _cp.gbs.ptc
-                // );
+                CmdBrowse(_cp.mnu.s_cnf);
                 Menu.Start();
             }
             catch (Exception Ex){
