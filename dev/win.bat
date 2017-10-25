@@ -5,7 +5,6 @@ set dbg=%1
 
 :start
 cls
-call color 07
 if defined dbg (
     goto debug
 ) else (
@@ -26,7 +25,6 @@ git pull | findstr /c:"Already up-to-date"
 if %errorlevel% == 0 (
     goto run
 ) else (
-    cls
     call color E0
     git config --local core.filemode false
     git reset --hard HEAD
@@ -46,10 +44,12 @@ if %errorlevel% == 0 (
 )
 
 :debug
+call color 07
 dotnet run
 goto end
 
 :run
+call color 07
 HardHat.exe
 goto end
 
