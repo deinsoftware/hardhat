@@ -30,7 +30,13 @@ namespace HardHat {
             {
                 s_cnf.Append($":{_cp.snr.prt}");
             }
+            _cp.mnu.s_url = s_cnf.ToString();
+            if (!String.IsNullOrEmpty(_cp.snr.ipt))
+            {
+                s_cnf.Append($"/{_cp.snr.ipt}");
+            }
             _cp.mnu.s_cnf = s_cnf.ToString();
+
             _cp.mnu.s_val = !Strings.SomeNullOrEmpty(_cp.snr.ptc, _cp.snr.dmn, _cp.mnu.s_cnf);
             Options.Valid("s" , Variables.Valid("sq"));
             Options.Valid("sq", Variables.Valid("sq"));
@@ -44,12 +50,8 @@ namespace HardHat {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
                 $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
-                if (_cp.mnu.s_val)
-                {
-                    $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtDefault(ct.WriteLine);
-                } else {
-                    $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtWarning(ct.WriteLine);
-                }
+                StringBuilder s_cnf = new StringBuilder();
+                Section.Configuration(_cp.mnu.s_val, _cp.mnu.s_url);
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
             $"{"[S] Scanner"   , -34}".txtStatus(ct.Write,      Options.Valid("ss"));
@@ -65,17 +67,7 @@ namespace HardHat {
             {
                 Section.Header("SONAR SERVER CONFIGURATION");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.s_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    if (_cp.mnu.s_val)
-                    {
-                        $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtDefault(ct.WriteLine);
-                    } else {
-                        $"{_cp.mnu.s_cnf} {_cp.snr.ipt}".txtWarning(ct.WriteLine);
-                    }
-                }
+                Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_url);
 
                 $"".fmNewLine();
                 $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.snr.ptc}".txtDefault(ct.WriteLine);
@@ -321,7 +313,7 @@ namespace HardHat {
 
             try
             {
-                CmdBrowse(_cp.mnu.s_cnf);
+                CmdBrowse(_cp.mnu.s_url);
                 Menu.Start();
             }
             catch (Exception Ex){

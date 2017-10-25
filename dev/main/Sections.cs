@@ -32,9 +32,34 @@ namespace HardHat {
             $"".fmNewLine();
         }
 
+        public static void Footer(){
+            $"".fmNewLine();
+            $"{" [C] Config"        , -17}".txtInfo();
+            $"{"[I] Info"           , -17}".txtInfo();
+            $"{"[E] Environment"    , -34}".txtInfo();
+            $"{"[X] Exit"           , -17}".txtDanger(ct.WriteLine);
+        }
+
         public static void SelectedProject(){
             $"{" Selected Project:" , -25}".txtMuted();
             $"{_cp.spr}".txtDefault(ct.WriteLine);
+        }
+
+        public static void CurrentConfiguration(bool val, string cnf){
+            if (!String.IsNullOrEmpty(cnf))
+            {
+                $"{" Current Configuration:", -25}".txtMuted();
+                Configuration(val, cnf);
+            }
+        }
+
+        public static void Configuration(bool val, string cnf){
+            if (val)
+            {
+                $"{cnf}".txtDefault(ct.WriteLine);
+            } else {
+                $"{cnf}".txtWarning(ct.WriteLine);
+            }
         }
 
         public static void SelectedFile(){

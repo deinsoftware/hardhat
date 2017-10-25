@@ -63,21 +63,13 @@ namespace HardHat {
             Gulp.Start();
             Build.Start();
             Adb.Start();
-            Footer();
+            Section.Footer();
 
             Section.HorizontalRule();
 
             $"{" Make your choice:", -25}".txtInfo();
             string opt = Console.ReadLine();
             Route(opt);
-        }
-
-        public static void Footer(){
-            $"".fmNewLine();
-            $"{" [C] Config"        , -17}".txtInfo();
-            $"{"[I] Info"           , -17}".txtInfo();
-            $"{"[E] Environment"    , -34}".txtInfo();
-            $"{"[X] Exit"           , -17}".txtDanger(ct.WriteLine);
         }
 
         public static void Route(string sel = "m", string dfl = "m") {

@@ -40,12 +40,7 @@ namespace HardHat {
                 $" [B] Build".txtStatus(ct.WriteLine,                Options.Valid("b"));
             } else {
                 $"{" [B] Build:"    , -25}".txtStatus(ct.Write,      Options.Valid("b"));
-                if (_cp.mnu.b_val)
-                {
-                    $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
-                } else {
-                    $"{_cp.mnu.b_cnf}".txtWarning(ct.WriteLine);
-                }
+                Section.Configuration(_cp.mnu.b_val, _cp.mnu.b_cnf);
             }
             $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
             $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
@@ -61,17 +56,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION");
                 Section.SelectedProject();
-                
-                if (!String.IsNullOrEmpty(_cp.mnu.b_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    if (_cp.mnu.b_val)
-                    {
-                        $"{_cp.mnu.b_cnf}".txtDefault(ct.WriteLine);
-                    } else {
-                        $"{_cp.mnu.b_cnf}".txtWarning(ct.WriteLine);
-                    }
-                }
+                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
                 $"".fmNewLine();
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);

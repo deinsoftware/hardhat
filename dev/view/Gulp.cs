@@ -53,13 +53,7 @@ namespace HardHat {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
                 $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
-                if (_cp.mnu.g_val)
-                {
-                    $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                } else {
-                    $"{_cp.mnu.g_cnf}".txtWarning(ct.WriteLine);
-                }
-                
+                Section.Configuration(_cp.mnu.g_val, _cp.mnu.g_cnf);
             }
             $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,      Options.Valid("gu"));
             $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));
@@ -75,17 +69,7 @@ namespace HardHat {
             {
                 Section.Header("GULP SERVER CONFIGURATION");
                 Section.SelectedProject();
-
-                if (!String.IsNullOrEmpty(_cp.mnu.g_cnf))
-                {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    if (_cp.mnu.g_val)
-                    {
-                        $"{_cp.mnu.g_cnf}".txtDefault(ct.WriteLine);
-                    } else {
-                        $"{_cp.mnu.g_cnf}".txtWarning(ct.WriteLine);
-                    }
-                }
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.gbs.ptc}".txtDefault(ct.WriteLine);
