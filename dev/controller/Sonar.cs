@@ -50,7 +50,7 @@ namespace HardHat
             try
             {
                 Validation.Url(url);
-                $"{url}".Term(Output.Hidden);
+                $"{url}".Browse();
             }
             catch (Exception Ex){
                 Message.Critical(
