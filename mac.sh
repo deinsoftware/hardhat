@@ -1,7 +1,22 @@
 #!/bin/bash
-clear
-resize -s 27 88
-clear
+
+function fxStart() {
+    #Resize
+    clear
+    resize -s 29 88
+    clear
+    #Permissions
+    chmod +x mac.sh
+    chmod +x mac.command
+    chmod +x cmd.mac.sh
+    if [ -n "$1" ]; then
+        #Development
+        fxDebug
+    else
+        fxUpdate
+    fi
+    clear
+}
 
 function fxUpdate() {
     cd ~/Applications/HardHat/
@@ -18,39 +33,35 @@ function fxUpdate() {
         echo ""
         echo "======================================================================================="
         echo ""
-        echo "HardHat was updated please RESTART to continue."
+        echo "HardHat was updated."
         echo ""
         echo "Refer to CHANGELOG file for details"
         echo "or visit http://www.github.com/equiman/hardhat/"
         echo ""
         echo "======================================================================================="
         pause "Press [Enter] key to continue..."
-        fxExit
+        fxRun
     else
-        fxStart
+        fxRun
     fi
 }
 
 function fxGit() {
-    clear
+    claar
     git config --local core.filemode false
     git reset --hard HEAD
     git pull
 }
 
-function fxStart() {
-    #Permissions
-    chmod +x mac.sh
-    chmod +x mac.command
-    chmod +x cmd.mac.sh
-    if [ -n "$1" ]; then
-        #Development
-        dotnet run
-    else
-        chmod +x HardHat
-        ./HardHat
-    fi
-    clear
+function fxDebug() {
+    dotnet run
+    fxExit
+}
+
+function fxRun() {
+    chmod +x HardHat
+    ./HardHat
+    fxExit
 }
 
 function fxExit() {
@@ -63,4 +74,4 @@ function pause() {
     read -p " $*"
 }
 
-fxUpdate
+fxStart "$1"
