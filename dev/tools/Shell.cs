@@ -144,8 +144,6 @@ namespace dein.tools
                         Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
                         break;
                     case "mac":
-                        Process.Start("xdg-open", url);
-                        break;
                     case "gnu":
                         Process.Start("open", url);
                         break;

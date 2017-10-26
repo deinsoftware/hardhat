@@ -13,16 +13,13 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                if (Os.IsMacOS()){
-                    cmd.Append($"sudo ");
-                }
                 switch (Os.Platform())
                 {
                     case "win":
                         cmd.Append($"StartSonar");
                         break;
                     case "mac":
-                        cmd.Append($"sonar console");
+                        cmd.Append($"sonar.sh console");
                         break;
                 }
                 cmd.ToString().Term(Output.External);
