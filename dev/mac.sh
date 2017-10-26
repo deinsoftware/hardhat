@@ -5,6 +5,8 @@ function fxStart() {
     clear
     resize -s 29 88
     clear
+    #Git
+    git config --local core.filemode false
     #Permissions
     chmod +x mac.sh
     chmod +x mac.command
@@ -48,7 +50,6 @@ function fxUpdate() {
 
 function fxGit() {
     claar
-    git config --local core.filemode false
     git reset --hard HEAD
     git pull
 }
