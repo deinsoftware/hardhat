@@ -1,9 +1,10 @@
 #!/bin/bash
-clear
-resize -s 27 88
-clear
 
 function fxStart() {
+    #Resize
+    clear
+    resize -s 29 88
+    clear
     #Permissions
     chmod +x mac.sh
     chmod +x mac.command
@@ -54,13 +55,13 @@ function fxGit() {
 
 function fxDebug() {
     dotnet run
-    fxExit()
+    fxExit
 }
 
 function fxRun() {
     chmod +x HardHat
     ./HardHat
-    fxExit()
+    fxExit
 }
 
 function fxExit() {
@@ -73,4 +74,4 @@ function pause() {
     read -p " $*"
 }
 
-fxStart
+fxStart "$1"
