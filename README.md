@@ -129,7 +129,7 @@ export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_NDK_HOME/:$PATH"
 export PATH="$SONAR_LINT_HOME/bin:$PATH"
-export PATH="$SONAR_QUBE_HOME/bin\macosx-universal-64:$PATH"
+export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 ```
 
