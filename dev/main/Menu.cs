@@ -14,13 +14,11 @@ namespace HardHat {
 
         private static Config _c { get; set; }
         private static PersonalConfiguration _cp { get; set; }
-        private static IEnumerable<Option> _m { get; set; }
 
         static Menu()
         {
             _c  = Program.config;
             _cp = Program.config.personal;
-            _m  = Options.list;
         }
 
         public static void Status(string sel = null){
@@ -41,9 +39,7 @@ namespace HardHat {
                 Build.Status();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 

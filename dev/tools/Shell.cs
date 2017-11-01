@@ -178,9 +178,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }
@@ -194,9 +192,7 @@ namespace dein.tools
                 response = lines;
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }
@@ -217,9 +213,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }

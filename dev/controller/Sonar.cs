@@ -25,9 +25,7 @@ namespace HardHat
                 cmd.ToString().Term(Output.External);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -37,9 +35,7 @@ namespace HardHat
                 $"sonar-scanner".Term(Output.Internal, dir);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -50,9 +46,7 @@ namespace HardHat
                 $"{url}".Browse();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

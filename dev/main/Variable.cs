@@ -52,9 +52,7 @@ namespace HardHat {
                 list = opts;
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -67,13 +65,11 @@ namespace HardHat {
                 });
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
-        public static bool Valid(string opt, bool agn = false)
+        public static bool Valid(string opt, bool upd = false)
         {
             var response = false;
             try
@@ -81,7 +77,7 @@ namespace HardHat {
                 var option = list.Where(x => x.opt == opt).FirstOrDefault();
                 if (option != null)
                 {
-                    if (agn || !option.chk){
+                    if (upd || !option.chk){
                         Check(option);
                     }
                     response = option.stt;
@@ -108,9 +104,7 @@ namespace HardHat {
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -130,11 +124,34 @@ namespace HardHat {
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
+        }
+
+        public static void Value(string opt, string val)
+        {
+            try
+            {
+                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                if (option != null)
+                {
+                    Env.Set(option.nme, val);
+                }
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Upgrade(){
+            try
+            {
+                BuildTools.Upgrade();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
         }
     }
 }

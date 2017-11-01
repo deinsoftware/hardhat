@@ -31,9 +31,7 @@ namespace HardHat
                 cnt = (result.code == 0) && (!String.IsNullOrEmpty(result.stdout) && result.stdout.Contains("Connected"));
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return cnt;
         }
@@ -44,9 +42,7 @@ namespace HardHat
                 $"trac disconnect".Term(Output.Hidden, dir);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -56,9 +52,7 @@ namespace HardHat
                 $"trac connectgui -s {sitename}".Term(Output.Hidden, dir);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

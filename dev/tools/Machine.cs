@@ -23,6 +23,10 @@ namespace dein.tools
             return Environment.GetEnvironmentVariable(value);
         }
 
+        public static void Set(string name, string value) {
+            Environment.SetEnvironmentVariable(name, value);
+        }
+
         public static bool Check(string value){
             string env = Env.Get(value);
             return !String.IsNullOrEmpty(env);
@@ -36,9 +40,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }
