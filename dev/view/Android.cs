@@ -74,9 +74,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -111,9 +109,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -167,9 +163,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -232,9 +226,7 @@ namespace HardHat {
                 Message.Error();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -268,9 +260,7 @@ namespace HardHat {
                 Configuration();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -304,9 +294,7 @@ namespace HardHat {
                 Configuration();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -328,9 +316,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
         public static void Disconnect() {
@@ -355,9 +341,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }
@@ -393,9 +377,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -432,9 +414,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

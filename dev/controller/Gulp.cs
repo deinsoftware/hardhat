@@ -14,9 +14,7 @@ namespace HardHat
                 $"gulp build".Term(Output.Internal, dir);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
         public static void CmdServer(string path, string dir, string ipt, string dmn, string flv, string srv, bool syn, string lip, string ptc){
@@ -44,9 +42,7 @@ namespace HardHat
                 cmd.ToString().Term(Output.External, dir);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

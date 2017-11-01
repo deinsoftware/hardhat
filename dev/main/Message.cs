@@ -58,9 +58,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -92,9 +90,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -132,9 +128,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return opt_cnf;
         }

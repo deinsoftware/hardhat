@@ -30,9 +30,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return dev;
         }
@@ -63,9 +61,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return result;
         }
@@ -99,10 +95,8 @@ namespace HardHat
                     result = cmd.ToString().Term();
                 }
             }
-            catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+            catch (Exception Excatch (Exception Ex){
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -119,9 +113,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return connected;
         }
@@ -140,9 +132,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return connected;
         }
@@ -153,9 +143,7 @@ namespace HardHat
                 $"adb kill-server".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -165,9 +153,7 @@ namespace HardHat
                 $"adb start-server".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -180,9 +166,7 @@ namespace HardHat
                 response = Strings.Remove(result.stdout, $"List of devices attached{Environment.NewLine}");
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }
@@ -195,9 +179,7 @@ namespace HardHat
                 $"apksigner verify --print-certs {path}".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -207,9 +189,7 @@ namespace HardHat
                 $"aapt dump badging {path}".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -236,9 +216,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return result;
         }

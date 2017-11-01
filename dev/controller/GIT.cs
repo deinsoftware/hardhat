@@ -19,9 +19,7 @@ namespace HardHat
                     .Replace("\n","");
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }
@@ -32,9 +30,7 @@ namespace HardHat
                 $"git -C {path.Slash()} reset --hard HEAD".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
         
@@ -49,9 +45,7 @@ namespace HardHat
                     .Replace("\n","");
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }
@@ -62,9 +56,7 @@ namespace HardHat
                 $"git -C {path.Slash()} clean -f -d -x".Term(Output.Internal);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

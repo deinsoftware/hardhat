@@ -57,9 +57,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -79,20 +77,14 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Message.Critical(
-                    msg: $" {UAEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Message.Critical(
-                    msg: $" {PathEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return dirs;
         }
@@ -118,20 +110,14 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Message.Critical(
-                    msg: $" {UAEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Message.Critical(
-                    msg: $" {PathEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return files;
         }
@@ -150,9 +136,7 @@ namespace dein.tools
                 }
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return valid;
         }
@@ -180,20 +164,14 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Message.Critical(
-                    msg: $" {UAEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Message.Critical(
-                    msg: $" {PathEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -210,20 +188,14 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Message.Critical(
-                    msg: $" {UAEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Message.Critical(
-                    msg: $" {PathEx.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }
@@ -242,9 +214,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return response;
         }

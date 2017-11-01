@@ -119,9 +119,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -168,9 +166,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
         public static void Duplicate() {
@@ -204,9 +200,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical (
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -255,9 +249,7 @@ namespace HardHat {
                 Menu.Start();
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
     }

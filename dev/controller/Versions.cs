@@ -19,9 +19,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -34,9 +32,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -49,9 +45,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -64,9 +58,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -78,9 +70,7 @@ namespace HardHat
                 Shell.Result(result.stdout);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -96,9 +86,7 @@ namespace HardHat
                 Shell.Result(result.stdout);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -111,9 +99,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -125,9 +111,7 @@ namespace HardHat
                 Shell.Result(result.stdout);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -140,9 +124,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
@@ -155,9 +137,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
         public static void CmdSonarScanner() {
@@ -169,9 +149,7 @@ namespace HardHat
                 Shell.Result(response);
             }
             catch (Exception Ex){
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
         }
 
