@@ -7,13 +7,13 @@ using static dein.tools.Machine;
 
 using ct = dein.tools.Colorify.Type;
 
-namespace HardHat {
+namespace dein.tools {
 
     public static class Exceptions {
 
         public static void General(string msg = null) {
-            if (msg){
-                msg = $" {Ex.Message}";
+            if (!String.IsNullOrEmpty(msg)){
+                msg = $" {msg}";
             }
             Message.Critical(msg);
         }

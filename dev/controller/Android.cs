@@ -95,7 +95,7 @@ namespace HardHat
                     result = cmd.ToString().Term();
                 }
             }
-            catch (Exception Excatch (Exception Ex){
+            catch (Exception Ex){
                 Exceptions.General(Ex.Message);
             }
         }
