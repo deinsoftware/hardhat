@@ -115,7 +115,10 @@ namespace dein.tools
                     int chunkSize = (Console.WindowWidth - 3);
                     foreach (var item in words)
                     {
-                        if ( (line.Length + item.Length) >= chunkSize )
+                        if ( 
+                            ((line.Length + item.Length) >= chunkSize) || 
+                            (line.ToString().Contains(Environment.NewLine))
+                        )
                         {
                             Console.WriteLine($" {line.ToString().Trim()}");
                             line.Clear();
