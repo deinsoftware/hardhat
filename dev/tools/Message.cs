@@ -130,7 +130,6 @@ namespace dein.tools
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
             }
-            Console.Clear();
             return opt_cnf;
         }
     }

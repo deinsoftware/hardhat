@@ -435,7 +435,7 @@ namespace HardHat {
                         StringBuilder msg = new StringBuilder();
                         msg.Append($"There is a new Android Build Tools version installed.");
                         msg.Append(Environment.NewLine);
-                        msg.Append($" Do you want upgrade ANDROID_BT_VERSION from {currentVersion} to {lastVersion}?");
+                        msg.Append($" Do you want change ANDROID_BT_VERSION from {currentVersion} to {lastVersion}?");
                         bool change = Message.Confirmation(msg.ToString());
                         if (change){
                             Variables.Value("ab", lastVersion);

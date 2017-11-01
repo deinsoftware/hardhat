@@ -39,12 +39,12 @@ namespace HardHat {
         }
 
         public static void Environment() {
-            Colorify.Default();
-            Console.Clear();
-
             Variables.Upgrade();
             Variables.Update();
             
+            Colorify.Default();
+            Console.Clear();
+
             Section.Header("ENVIRONMENT VARIABLES");
 
             foreach (var v in Variables.list)
