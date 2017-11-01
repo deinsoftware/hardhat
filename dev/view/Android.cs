@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
+using System.Text;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
@@ -412,6 +414,34 @@ namespace HardHat {
                 Section.Pause();
 
                 Menu.Start();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Upgrade(){
+            try
+            {
+                string currentVersion = Variables.Value("ab");
+                string lastVersion = "";
+                string dirPath = Paths.Combine(Variables.Value("ah"), "build-tools");
+
+                if (Directory.Exists(dirPath)){
+                    List<string> dirs = new List<string>(Directory.EnumerateDirectories(dirPath));
+                    string d = dirs[dirs.Count - 1].Slash();
+                    lastVersion = d.Substring(d.LastIndexOf("/") + 1);
+                    if (currentVersion != lastVersion){
+                        StringBuilder msg = new StringBuilder();
+                        msg.Append($"There is a new Android Build Tools version installed.");
+                        msg.Append(Environment.NewLine);
+                        msg.Append($" Do you want upgrade ANDROID_BT_VERSION from {currentVersion} to {lastVersion}?");
+                        bool change = Message.Confirmation(msg.ToString());
+                        if (change){
+                            Variables.Value("ab", lastVersion);
+                        }
+                    }
+                }
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

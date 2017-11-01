@@ -23,6 +23,7 @@ namespace HardHat
 
                     //Update Environment Variables
                     Env.CmdUpdate();
+                    Variables.Upgrade();
                     Variables.Update();
                     
                     //Window
