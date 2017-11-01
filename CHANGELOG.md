@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.0.1] - 2017-11-01
+
+### Added
+
+* Android Build Tools check and upgrade version process. [\#11](https://github.com/equiman/hardhat/issues/11)
+
 ## [4.0.0] - 2017-10-25
 
 ### Added
