@@ -77,11 +77,11 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(UAEx.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(PathEx.Message);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
@@ -110,11 +110,11 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(UAEx.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(PathEx.Message);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
@@ -164,11 +164,11 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(UAEx.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(PathEx.Message);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
@@ -188,11 +188,11 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(UAEx.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(PathEx.Message);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
