@@ -1,4 +1,4 @@
-# HardHat [ for Win+Mac ]
+# HardHat [ for Win & Mac ]
 
 
 **HardHat** was created to simplify and automate tasks related to Android development.
