@@ -65,7 +65,7 @@ namespace dein.tools
             List<string> dirs = new List<string>();
             try
             {
-                dirs = new List<string>(Directory.EnumerateDirectories(dir, flt));
+                dirs = new List<string>(Directory.EnumerateDirectories(dir, flt).OrderBy(name => name));
                 if (dirs.Count < 1)
                 {
                     StringBuilder msg = new StringBuilder();
@@ -93,7 +93,7 @@ namespace dein.tools
             List<string> files = new List<string>();
             try
             {
-                files = new List<string>(Directory.EnumerateFiles(dir, flt));
+                files = new List<string>(Directory.EnumerateFiles(dir, flt).OrderBy(name => name));
                 if (files.Count < 1)
                 {
                     StringBuilder msg = new StringBuilder();
