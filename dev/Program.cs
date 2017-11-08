@@ -21,17 +21,17 @@ namespace HardHat
                     var cp = config.personal;
                     cp.hst = System.Environment.MachineName;
 
-                    //Check for updates
-                    Env.CmdUpdate();
-                    Variables.Upgrade();
-                    Variables.Update();
-                    Gulp.Check();
-                    
                     //Window
                     if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
                     {
                         Console.SetWindowSize(config.window.width, config.window.height);
                     }
+                    
+                    //Check for updates
+                    Env.CmdUpdate();
+                    Variables.Upgrade();
+                    Variables.Update();
+                    Gulp.Check();
                     
                     Menu.Start();
                 }
