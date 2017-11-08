@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.1.1] - 2017-11-08
+
+### Fixed
+
+* Gulp update redirection fix
+
+### Changed
+
+* Build Tools update message now only works as alert.
+
 ## [4.1.0] - 2017-11-08
 
 ### Added
