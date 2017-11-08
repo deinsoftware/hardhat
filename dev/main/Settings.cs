@@ -65,6 +65,7 @@ namespace HardHat
             config.personal.gbs.syn = false;
             config.personal.gbs.ptc = "http";
             config.personal.gbs.ipt = "";
+            config.personal.gbs.opn = true;
             config.personal.gdl = new BuildConfiguration();
             config.personal.gdl.mde = "";
             config.personal.gdl.dmn = "";
@@ -169,6 +170,7 @@ namespace HardHat
         public string   flv     { get; set; }               //Flavor
         public string   srv     { get; set; }               //Server
         public bool     syn     { get; set; }               //Sync
+        public bool     opn     { get; set; }               //Open
     }
 
     class BuildConfiguration {

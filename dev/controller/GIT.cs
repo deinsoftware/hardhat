@@ -59,5 +59,34 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void CmdFetch(string path){
+            try
+            {
+                $"git -C {path.Slash()} fetch".Term();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static bool CmdStatus(string path){
+            bool status = false;
+            string response = "";
+            try
+            {
+                string search = "Your branch is up-to-date";
+                Response result = new Response();
+                result = $"git -C {path.Slash()} status".Term();
+                response = Shell.ExtractLine(result.stdout, search);
+                if (!String.IsNullOrEmpty(response)){
+                    status = true;
+                }
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+            return status;
+        }
     }
 }

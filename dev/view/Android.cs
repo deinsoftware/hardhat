@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
@@ -428,8 +429,8 @@ namespace HardHat {
                 string dirPath = Paths.Combine(Variables.Value("ah"), "build-tools");
 
                 if (Directory.Exists(dirPath)){
-                    List<string> dirs = new List<string>(Directory.EnumerateDirectories(dirPath));
-                    string d = dirs[dirs.Count - 1].Slash();
+                    string dir = Directory.EnumerateDirectories(dirPath).OrderByDescending(name => name).Take(1).FirstOrDefault();
+                    string d = dir.Slash();
                     lastVersion = d.Substring(d.LastIndexOf("/") + 1);
                     if (currentVersion != lastVersion){
                         StringBuilder msg = new StringBuilder();
