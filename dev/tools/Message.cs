@@ -98,7 +98,7 @@ namespace dein.tools
             Colorify.Default();
             Console.Clear();
             
-            bool opt_cnf = false;        
+            bool opt_cnf = false;
             try
             {
                 $"=".bgWarning(ct.Repeat);
@@ -112,7 +112,9 @@ namespace dein.tools
                 $"=".bgWarning(ct.Repeat);
                 $"".fmNewLine();
 
-                $" [Y] Yes or [N] No: ".txtWarning();
+                $"{" [Y] Yes or [N] No ", 19}".txtWarning(ct.Write);
+                $"{"[EMPTY] Cancel", 66}".txtDanger(ct.WriteLine);
+
                 string opt = Console.ReadLine();
                 switch (opt?.ToLower())
                 {
@@ -123,7 +125,6 @@ namespace dein.tools
                         opt_cnf = false;
                         break;
                     default:
-                        Message.Error();
                         break;
                 }
             }
