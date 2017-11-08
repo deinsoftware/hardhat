@@ -49,7 +49,7 @@ function fxUpdate() {
 }
 
 function fxGit() {
-    claar
+    clear
     git reset --hard HEAD
     git pull
 }
