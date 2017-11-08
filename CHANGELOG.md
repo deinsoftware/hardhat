@@ -9,6 +9,18 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.1.0] - 2017-11-08
+
+### Added
+
+* Update notification for Gulp project. [\#3](https://github.com/equiman/hardhat/issues/3)
+* Open parameter on Gulp server configuration.
+
+### Fixed
+
+* Ascending order name on File and Directory list.
+* Last version check on build tools.
+
 ## [4.0.1] - 2017-11-01
 
 ### Added
