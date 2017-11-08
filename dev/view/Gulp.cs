@@ -127,7 +127,7 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                Protocols.Start();
+                Selector.Start(Selector.Protocol, "1");
 
                 string opt_ptc = Console.ReadLine();
                 opt_ptc = opt_ptc?.ToLower();
@@ -548,8 +548,7 @@ namespace HardHat {
                 Section.HorizontalRule();
                 Section.Pause();
 
-                Menu.Status();
-                Select();
+                Menu.Start();
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
