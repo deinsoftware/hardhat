@@ -31,7 +31,7 @@ namespace HardHat {
         public static void Status(){
             StringBuilder b_cnf = new StringBuilder();
             b_cnf.Append(_cp.gdl.dmn ?? "");
-            b_cnf.Append(Flavors.Name(_cp.gdl.flv));
+            b_cnf.Append(Selector.Name(Selector.Flavor, _cp.gdl.flv));
             b_cnf.Append(Modes.Name(_cp.gdl.mde));
             _cp.mnu.b_cnf = b_cnf.ToString();
             _cp.mnu.b_val = !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf);
@@ -70,7 +70,7 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);
-                string b_flv = Flavors.Name(_cp.gdl.flv);
+                string b_flv = Selector.Name(Selector.Flavor, _cp.gdl.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
                 string b_mde = Modes.Name(_cp.gdl.mde);
                 $"{" [M] Mode:"         , -25}".txtPrimary();   $"{b_mde}".txtDefault(ct.WriteLine);
@@ -141,7 +141,7 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
-                Flavors.Start();
+                Selector.Start(Selector.Flavor, "a");
                 
                 string opt_flv = Console.ReadLine();
                 opt_flv = opt_flv.ToLower();
