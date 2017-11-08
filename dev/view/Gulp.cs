@@ -27,6 +27,7 @@ namespace HardHat {
             opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
             opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
             opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
+            opts.Add(new Option{opt="g>o" , stt=false, act=Gulp.Open                        });
             opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
             opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
             opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
@@ -37,9 +38,9 @@ namespace HardHat {
             g_cnf.Append($"{_cp.gbs.ptc}://");
             if (!String.IsNullOrEmpty(_cp.gbs.dmn))
             {
-                g_cnf.Append(_cp.gbs.dmn);
+                g_cnf.Append($"{_cp.gbs.dmn}/");
             }
-            g_cnf.Append(Flavors.Name(_cp.gbs.flv));
+            g_cnf.Append(Selector.Name(Selector.Flavor, _cp.gbs.flv));
             g_cnf.Append(_cp.gbs.srv);
             if (!String.IsNullOrEmpty(_cp.gbs.ipt))
             {
@@ -55,6 +56,7 @@ namespace HardHat {
             Options.Valid("g>n", Variables.Valid("gp"));
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
+            Options.Valid("g>o", Variables.Valid("gp"));
             Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
@@ -75,12 +77,13 @@ namespace HardHat {
         }
         
         public static void Select() {
+            Gulp.Check();
+            
             Colorify.Default();
             Console.Clear();
-
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION");
+                Section.Header("GULP SERVER");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -88,10 +91,11 @@ namespace HardHat {
                 $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.gbs.ptc}".txtDefault(ct.WriteLine);
                 $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.gbs.ipt}".txtDefault(ct.WriteLine);
                 $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gbs.dmn}".txtDefault(ct.WriteLine);
-                string g_cnf = Flavors.Name(_cp.gbs.flv);
+                string g_cnf = Selector.Name(Selector.Flavor, _cp.gbs.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
                 $"{" [N] Number:"       , -25}".txtPrimary();   $"{_cp.gbs.srv}".txtDefault(ct.WriteLine);
                 $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_cp.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
+                $"{" [O] Open:"         , -25}".txtPrimary();   $"{(_cp.gbs.opn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
 
@@ -119,7 +123,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > PROTOCOL");
+                Section.Header("GULP SERVER", "PROTOCOL");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -160,7 +164,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > INTERNAL PATH");
+                Section.Header("GULP SERVER", "INTERNAL PATH");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -176,7 +180,7 @@ namespace HardHat {
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ipt = Console.ReadLine();
                 _cp.gbs.ipt = $"{opt_ipt}";
-                
+
                 Menu.Status();
                 Select();
             }
@@ -191,7 +195,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > DIMENSION");
+                Section.Header("GULP SERVER", "DIMENSION");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -248,11 +252,11 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > FLAVOR");
+                Section.Header("GULP SERVER", "FLAVOR");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                Flavors.Start();
+                Selector.Start(Selector.Flavor, "a");
                 
                 string opt_flv = Console.ReadLine();
                 opt_flv = opt_flv?.ToLower();
@@ -288,7 +292,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > NUMBER");
+                Section.Header("GULP SERVER", "NUMBER");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -324,19 +328,12 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER CONFIGURATION > SYNC");
+                Section.Header("GULP SERVER", "SYNC");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                $"".fmNewLine();
-                $" {"Y", 2}] Yes".txtPrimary(ct.WriteLine);
-                $" {"N", 2}] No".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
-                
-                Section.HorizontalRule();
+                Selector.Start(Selector.Logical, "n");
 
-                $"{" Make your choice: ", -25}".txtInfo();
                 string opt_syn = Console.ReadLine();
                 opt_syn = opt_syn?.ToLower();
                 
@@ -348,6 +345,43 @@ namespace HardHat {
                     case "n":
                     case "":
                         _cp.gbs.syn = false;
+                        break;
+                    default:
+                        Message.Error();
+                        break;
+                }
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Open() {
+            Colorify.Default();
+            Console.Clear();
+
+            try
+            {
+                Section.Header("GULP SERVER", "OPEN");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+
+                Selector.Start(Selector.Logical, "y");
+                
+                string opt_opn = Console.ReadLine();
+                opt_opn = opt_opn?.ToLower();
+                
+                switch (opt_opn)
+                {
+                    case "y":
+                    case "":
+                        _cp.gbs.opn = true;
+                        break;
+                    case "n":
+                        _cp.gbs.opn = false;
                         break;
                     default:
                         Message.Error();
@@ -460,9 +494,62 @@ namespace HardHat {
                     _cp.gbs.srv,
                     _cp.gbs.syn,
                     _cp.ipl,
-                    _cp.gbs.ptc
+                    _cp.gbs.ptc,
+                    _cp.gbs.opn
                 );
                 Menu.Start();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Check(){
+            try
+            {
+                string dirPath = Paths.Combine(Variables.Value("gp"));
+
+                if (Directory.Exists(Paths.Combine(dirPath, ".git"))){
+                    Git.CmdFetch(dirPath);
+                    bool updated = Git.CmdStatus(dirPath);
+                    if (!updated){
+                        StringBuilder msg = new StringBuilder();
+                        msg.Append($"There is a new Gulp project version available.");
+                        msg.Append(Environment.NewLine);
+                        msg.Append($" Do you want update it?");
+                        bool update = Message.Confirmation(msg.ToString());
+                        if (update){
+                            Upgrade();
+                        }
+                    }
+                }
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Upgrade() {
+            Colorify.Default();
+            Console.Clear();
+
+            try
+            {
+                Section.Header("GULP SERVER", "UPDATE");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+
+                string dirPath = Paths.Combine(Variables.Value("gp"));
+
+                $"".fmNewLine();
+                $" --> Updating...".txtInfo(ct.WriteLine);
+                Git.CmdPull(dirPath);
+            
+                Section.HorizontalRule();
+                Section.Pause();
+
+                Menu.Status();
+                Select();
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
