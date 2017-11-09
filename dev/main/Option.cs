@@ -105,7 +105,7 @@ namespace HardHat {
                 {
                     response = option.act;
                 } else {
-                    Message.Critical();
+                    Message.Error();
                 }
             }
             catch (Exception Ex){

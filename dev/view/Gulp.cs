@@ -77,8 +77,6 @@ namespace HardHat {
         }
         
         public static void Select() {
-            Gulp.Check();
-            
             Colorify.Default();
             Console.Clear();
             try

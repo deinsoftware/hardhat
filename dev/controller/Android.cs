@@ -48,7 +48,7 @@ namespace HardHat
                     if (result.stdout.Contains("device")){
                         cmd.Append($" -s {device}");
                     } else {
-                        Message.Critical(
+                        Message.Error(
                             msg: $" Device '{device}' not found."
                         );
                     }
@@ -86,7 +86,7 @@ namespace HardHat
                         if (result.stdout.Contains("device")){
                             cmd.Append($" -s {device}");
                         } else {
-                            Message.Critical(
+                            Message.Error(
                                 msg: $" Device '{device}' not found."
                             );
                         }
