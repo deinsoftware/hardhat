@@ -11,47 +11,34 @@ namespace HardHat
 
         static void Main(string[] args)
         {
-            bool createdMutex;
-            Mutex mutex = new Mutex(true, Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString(), out createdMutex);
-            if(mutex.WaitOne(TimeSpan.Zero, true)) {
-                try
-                {
-                    //Config
-                    config = Settings.Read();
-                    var cp = config.personal;
-                    cp.hst = System.Environment.MachineName;
+            try
+            {
+                //Config
+                config = Settings.Read();
+                var cp = config.personal;
+                cp.hst = System.Environment.MachineName;
 
-                    //Window
-                    if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
-                    {
-                        Console.SetWindowSize(config.window.width, config.window.height);
-                    }
-                    
-                    //Check for updates
-                    Env.CmdUpdate();
-                    Variables.Upgrade();
-                    Variables.Update();
-                    Gulp.Check();
-                    
-                    Menu.Start();
-                }
-                catch (Exception Ex)
+                //Window
+                if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
                 {
-                    Message.Error(
-                        msg: Ex.Message, 
-                        replace: true, 
-                        exit: true);
-                    Exit();
+                    Console.SetWindowSize(config.window.width, config.window.height);
                 }
-                finally
-                {
-                    mutex.ReleaseMutex();
-                }
-            } else {
+                
+                //Check for updates
+                Env.CmdUpdate();
+                Variables.Upgrade();
+                Variables.Update();
+                Gulp.Check();
+                
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
                 Message.Error(
-                    msg: "HardHat is already running", 
+                    msg: Ex.Message, 
                     replace: true, 
                     exit: true);
+                Exit();
             }
         }
 
