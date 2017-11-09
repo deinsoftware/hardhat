@@ -123,7 +123,7 @@ namespace HardHat {
                     $"{_cp.mnu.s_cnf}".txtDefault(ct.WriteLine);
                 }
 
-                Protocols.Start();
+                Selector.Start(Selector.Protocol, "1");
 
                 string opt_ptc = Console.ReadLine();
                 opt_ptc = opt_ptc?.ToLower();

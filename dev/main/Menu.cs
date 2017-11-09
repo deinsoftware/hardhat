@@ -77,7 +77,7 @@ namespace HardHat {
                     _cp.mnu.sel = dfl;
                     act.Invoke();
                 } else {
-                    Message.Critical();
+                    Message.Error();
                 }
             } else {
                 Menu.Start();

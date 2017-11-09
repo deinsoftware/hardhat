@@ -26,6 +26,12 @@ namespace HardHat {
             {"n", "No"}
         };
 
+        public static readonly Dictionary<string, string> Protocol = new Dictionary<string, string>
+        {
+            {"1", "http"},
+            {"2", "https"}
+        };
+
         public static string Name(Dictionary<string, string> sel, string opt){
             try {
                 opt = opt.ToLower();

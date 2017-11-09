@@ -35,21 +35,21 @@ function fxUpdate() {
         echo ""
         echo "======================================================================================="
         echo ""
-        echo "HardHat was updated."
+        echo " HardHat was updated."
         echo ""
-        echo "Refer to CHANGELOG file for details"
-        echo "or visit http://www.github.com/equiman/hardhat/"
+        echo " Refer to CHANGELOG file for details"
+        echo " or visit http://www.github.com/equiman/hardhat/"
         echo ""
         echo "======================================================================================="
         pause "Press [Enter] key to continue..."
-        fxRun
+        fxIsRunning
     else
-        fxRun
+        fxIsRunning
     fi
 }
 
 function fxGit() {
-    claar
+    clear
     git reset --hard HEAD
     git pull
 }
@@ -59,9 +59,32 @@ function fxDebug() {
     fxExit
 }
 
+function fxIsRunning() {
+    number="$(ps aux | grep ./HardHat | wc -l)"
+
+    if [ $number -gt 0 ]; then
+        fxStop
+    else
+        fxRun
+    fi
+}
+
 function fxRun() {
     chmod +x HardHat
     ./HardHat
+    fxExit
+}
+
+function fxStop() {
+    clear;
+    echo "======================================================================================="
+    echo " ERROR "
+    echo "======================================================================================="
+    echo ""
+    echo " HardHat is already running."
+    echo ""
+    echo "======================================================================================="
+    pause "Press [Enter] key to continue..."
     fxExit
 }
 

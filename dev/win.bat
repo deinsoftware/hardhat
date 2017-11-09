@@ -23,7 +23,7 @@ echo ==^> Updating...
 cd /d %~dp0
 git pull | findstr /c:"Already up-to-date"
 if %errorlevel% == 0 (
-    goto run
+    goto running
 ) else (
     call color E0
     git config --local core.filemode false
@@ -41,7 +41,7 @@ if %errorlevel% == 0 (
     echo ==========================================================================================
     echo.
     pause
-    goto run
+    goto running
 )
 
 :debug
@@ -49,9 +49,29 @@ call color 07
 dotnet run
 goto end
 
+:running
+set exe=HardHat.exe
+for /f %%x in ('tasklist /nh /fi "imagename eq %exe%"') do if %%x == %exe% goto stop
+goto run
+
 :run
 call color 07
 HardHat.exe
+goto end
+
+:stop
+call color FC
+cls
+cls
+echo ==========================================================================================
+echo  ERROR
+echo ==========================================================================================
+echo. 
+echo  HardHat is already running.
+echo. 
+echo ==========================================================================================
+echo.
+pause
 goto end
 
 :end
