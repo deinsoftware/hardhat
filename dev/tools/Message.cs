@@ -6,22 +6,11 @@ using ct = dein.tools.Colorify.Type;
 
 namespace dein.tools
 {
-    public static class Message
+    public class Message
     {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Message()
-        {
-            _c = Program.config;
-            _cp = Program.config.personal;
-        }
-
         public static void Critical(string msg = null){
-            _cp.mnu.sel = "m";
             Error(msg, !String.IsNullOrEmpty(msg));
         }
-
 
         public static void Error(string msg = null, bool replace = false, bool exit = false) {
             Colorify.Default();
@@ -82,10 +71,8 @@ namespace dein.tools
                 $" Press [Any] key to continue...".txtWarning();
                 Console.ReadKey();
 
-                if (!exit)
+                if (exit)
                 {
-                    Menu.Start();
-                } else {
                     Program.Exit();
                 }
             }
@@ -109,11 +96,13 @@ namespace dein.tools
                 $" {msg}".txtDefault(ct.Shell);
 
                 $"".fmNewLine();
+                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+
+                $"".fmNewLine();
                 $"=".bgWarning(ct.Repeat);
                 $"".fmNewLine();
 
-                $"{" [Y] Yes or [N] No ", 19}".txtWarning(ct.Write);
-                $"{"[EMPTY] Cancel", 66}".txtDanger(ct.WriteLine);
+                $" [Y] Yes or [N] No: ".txtWarning();
 
                 string opt = Console.ReadLine();
                 switch (opt?.ToLower())
@@ -124,7 +113,11 @@ namespace dein.tools
                     case "n":
                         opt_cnf = false;
                         break;
+                    case "":
+                        //Menu.Route();
+                        break;
                     default:
+                        Message.Error();
                         break;
                 }
             }

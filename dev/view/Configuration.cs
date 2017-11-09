@@ -131,7 +131,7 @@ namespace HardHat {
                     msg.Append(Environment.NewLine);
                     msg.Append(" Please review your configuration file.");
 
-                    Message.Critical(
+                    Message.Error(
                         msg: msg.ToString()
                     );
                 }
@@ -173,15 +173,11 @@ namespace HardHat {
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Message.Critical(
-                    msg: $" {UAEx.Message}"
-                );
+                Exceptions.General(UAEx.Message);
             }
             catch (PathTooLongException PathEx)
             {
-                Message.Critical(
-                    msg: $" {PathEx.Message}"
-                );
+                Exceptions.General(PathEx.Message);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

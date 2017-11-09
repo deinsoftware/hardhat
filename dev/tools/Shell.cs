@@ -61,9 +61,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
                 
         }
@@ -122,9 +120,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Message.Critical(
-                    msg: $" {Ex.Message}"
-                );
+                Exceptions.General(Ex.Message);
             }
             return result;
         }
@@ -148,7 +144,7 @@ namespace dein.tools
                         Process.Start("open", url);
                         break;
                     default:
-                        Message.Critical(
+                        Message.Error(
                             msg: $" {Ex.Message}"
                         );
                         break;

@@ -51,7 +51,7 @@ namespace dein.tools
                         msg.Append($" {message}");
                     }
 
-                    Message.Critical(
+                    Message.Error(
                         msg: msg.ToString()
                     );
                 }
