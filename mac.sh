@@ -60,7 +60,12 @@ function fxDebug() {
 }
 
 function fxIsRunning() {
-    fxRun
+    instance="$(pgrep HardHat)"
+    if [ -n "${instance}" ]; then
+        fxStop
+    else
+        fxRun
+    fi
 }
 
 function fxRun() {
