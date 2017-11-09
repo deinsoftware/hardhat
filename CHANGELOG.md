@@ -14,7 +14,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ### Fixed
 
 * Gulp update redirection fix.
-* One instance running for windows.
+* One instance running check from startup.
 
 ### Changed
 
