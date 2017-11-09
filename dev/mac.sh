@@ -3,7 +3,7 @@
 function fxStart() {
     #Resize
     clear
-    resize -s 29 88
+    resize -s 30 88
     clear
     #Git
     git config --local core.filemode false
@@ -70,7 +70,9 @@ function fxIsRunning() {
 
 function fxRun() {
     chmod +x HardHat
-    ./HardHat
+osascript <<EOF
+    tell application "Terminal" to do script "cd ~/Applications/HardHat/; clear; resize -s 30 88; clear; ./HardHat;"
+EOF
     fxExit
 }
 
