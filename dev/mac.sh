@@ -60,9 +60,8 @@ function fxDebug() {
 }
 
 function fxIsRunning() {
-    number="$(ps aux | grep ./HardHat | wc -l)"
-
-    if [ $number -gt 0 ]; then
+    instance="$(pgrep HardHat)"
+    if [ -n "${instance}" ]; then
         fxStop
     else
         fxRun
