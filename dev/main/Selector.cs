@@ -16,7 +16,7 @@ namespace HardHat {
             {"a", "Alfa"},
             {"b", "Beta"},
             {"s", "Stag"},
-            {"p", "Prog"},
+            {"p", "Prod"},
             {"d", "Desk"}
         };
 

@@ -13,6 +13,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ### Fixed
 
+* Production flavor name.
+
+## [4.1.2] - 2017-11-16
+
+### Fixed
+
 * Load macOS environment variables on Launch.
 
 ## [4.1.1] - 2017-11-09
