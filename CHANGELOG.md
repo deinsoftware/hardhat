@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.1.2] - 2017-11-16
+
+### Fixed
+
+* Load macOS environment variables on Launch.
+
 ## [4.1.1] - 2017-11-09
 
 ### Fixed

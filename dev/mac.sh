@@ -71,7 +71,7 @@ function fxIsRunning() {
 function fxRun() {
     chmod +x HardHat
 osascript <<EOF
-    tell application "Terminal" to do script "cd ~/Applications/HardHat/; clear; resize -s 30 88; clear; ./HardHat; clear; exit;"
+    tell application "Terminal" to do script "source ~/.bash_profile; cd ~/Applications/HardHat/; clear; resize -s 30 88; clear; ./HardHat; clear; exit;"
 EOF
     fxExit
 }

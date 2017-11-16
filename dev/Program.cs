@@ -25,7 +25,6 @@ namespace HardHat
                 }
                 
                 //Check for updates
-                Env.CmdUpdate();
                 Variables.Upgrade();
                 Variables.Update();
                 Gulp.Check();

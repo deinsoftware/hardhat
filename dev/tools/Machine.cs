@@ -31,17 +31,5 @@ namespace dein.tools
             string env = Env.Get(value);
             return !String.IsNullOrEmpty(env);
         }
-
-        public static void CmdUpdate() {
-            try
-            {
-                if (Os.IsWindows()){
-                    $"refreshenv".Term();
-                }
-            }
-            catch (Exception Ex){
-                Exceptions.General(Ex.Message);
-            }
-        }
     }
 }
