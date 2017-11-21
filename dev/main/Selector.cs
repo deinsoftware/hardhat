@@ -34,8 +34,12 @@ namespace HardHat {
 
         public static string Name(Dictionary<string, string> sel, string opt){
             try {
-                opt = opt.ToLower();
-                opt = sel[opt];
+                if (String.IsNullOrEmpty(opt)){
+                    opt = String.Empty;
+                } else {
+                    opt = opt.ToLower();
+                    opt = sel[opt];
+                }
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
