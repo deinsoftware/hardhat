@@ -21,7 +21,7 @@ echo ===========================================================================
 echo. 
 echo ==^> Updating...
 cd /d %~dp0
-git pull | findstr /c:"Already up-to-date"
+git pull | findstr /irc:"Already up.to.date"
 if %errorlevel% == 0 (
     goto running
 ) else (
