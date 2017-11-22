@@ -75,7 +75,7 @@ namespace HardHat
             string response = "";
             try
             {
-                string search = "Your branch is up-to-date";
+                string search = "nothing to commit";
                 Response result = new Response();
                 result = $"git -C {path.Slash()} status".Term();
                 response = Shell.ExtractLine(result.stdout, search);

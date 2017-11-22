@@ -23,7 +23,7 @@ namespace HardHat
                 {
                     Console.SetWindowSize(config.window.width, config.window.height);
                 }
-                
+
                 //Check for updates
                 Variables.Upgrade();
                 Variables.Update();
@@ -33,6 +33,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
+                Exceptions.General(Ex.Message);
                 Message.Error(
                     msg: Ex.Message, 
                     replace: true, 

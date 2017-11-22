@@ -9,13 +9,23 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [4.1.3] - 2017-11-21
+## [4.1.5] - 2017-11-22
+
+### Added
+
+* Gulp server parameter optimization
 
 ### Fixed
 
-* Configuration name on empty value.
+* Check Gulp for Update.
 
-## [4.1.2] - 2017-11-16
+## [4.1.4] - 2017-11-21
+
+### Fixed
+
+* Configuration name on empty value. [\#17](https://github.com/equiman/hardhat/issues/17)
+
+## [4.1.3] - 2017-11-16
 
 ### Fixed
 
