@@ -486,14 +486,8 @@ namespace HardHat {
                 CmdServer(
                     dirPath,
                     Paths.Combine(Variables.Value("gp")),
-                    _cp.gbs.ipt,
-                    _cp.gbs.dmn,
-                    _cp.gbs.flv,
-                    _cp.gbs.srv,
-                    _cp.gbs.syn,
-                    _cp.ipl,
-                    _cp.gbs.ptc,
-                    _cp.gbs.opn
+                    _cp.gbs,
+                    _cp.ipl
                 );
                 Menu.Start();
             }

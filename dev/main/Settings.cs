@@ -163,7 +163,7 @@ namespace HardHat
         public string   ipt     { get; set; }               //Internal Path
     }
 
-    class ServerConfiguration {
+    public class ServerConfiguration {
         public string   ptc     { get; set; }               //Protocol
         public string   ipt     { get; set; }               //Internal Path
         public string   dmn     { get; set; }               //Dimension

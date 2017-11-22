@@ -17,7 +17,7 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
-        public static void CmdServer(string path, string dir, string ipt, string dmn, string flv, string srv, bool syn, string lip, string ptc, bool opn){
+        public static void CmdServer(string path, string dir, ServerConfiguration gbs, string lip){
             try
             {
                 StringBuilder cmd = new StringBuilder();
@@ -25,20 +25,20 @@ namespace HardHat
                     cmd.Append($"sudo ");
                 }
                 cmd.Append($"gulp --pth {path.Slash()}/");
-                if (!String.IsNullOrEmpty(ipt)){
-                    cmd.Append($" --ipt {ipt.Slash()}");
+                if (!String.IsNullOrEmpty(gbs.ipt)){
+                    cmd.Append($" --ipt {gbs.ipt.Slash()}");
                 }
-                cmd.Append($" --dmn {dmn}");
-                cmd.Append($" --ptc {ptc}");
-                if (!String.IsNullOrEmpty(flv)){
-                    cmd.Append($" --flv {flv.ToUpper()}");
+                cmd.Append($" --dmn {gbs.dmn}");
+                cmd.Append($" --ptc {gbs.ptc}");
+                if (!String.IsNullOrEmpty(gbs.flv)){
+                    cmd.Append($" --flv {gbs.flv.ToUpper()}");
                 }
-                if (!String.IsNullOrEmpty(srv)){
-                    cmd.Append($" --srv {srv}");
+                if (!String.IsNullOrEmpty(gbs.srv)){
+                    cmd.Append($" --srv {gbs.srv}");
                 }
                 cmd.Append($" --host {lip}");
-                cmd.Append($" --sync {(syn ? "Y" : "N")}");
-                cmd.Append($" --open {(opn ? "Y" : "N")}");
+                cmd.Append($" --sync {(gbs.syn ? "Y" : "N")}");
+                cmd.Append($" --open {(gbs.opn ? "Y" : "N")}");
                 cmd.Append($" --os {Os.Platform()}");
                 cmd.ToString().Term(Output.External, dir);
             }
