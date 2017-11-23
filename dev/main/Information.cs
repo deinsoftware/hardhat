@@ -29,7 +29,6 @@ namespace HardHat {
             $"{" GIT",              -25}".txtPrimary();              Version.CmdGit();
             $"{" NativeScript",     -25}".txtPrimary();     Version.CmdNativescript();
             $"{" TypeScript",       -25}".txtPrimary();       Version.CmdTypescript();
-            $"{" SonarLint",        -25}".txtPrimary();        Version.CmdSonarLint();
             $"{" SonarScanner",     -25}".txtPrimary();     Version.CmdSonarScanner();
             
             Section.HorizontalRule();

@@ -128,18 +128,6 @@ namespace HardHat
             }
         }
 
-        public static void CmdSonarLint() {
-            try
-            {
-                Response result = new Response();
-                result = $"sonarlint -v".Term();
-                string response = Shell.ExtractLine(result.stdout, "INFO: ", "INFO: ");
-                Shell.Result(response);
-            }
-            catch (Exception Ex){
-                Exceptions.General(Ex.Message);
-            }
-        }
         public static void CmdSonarScanner() {
             try
             {
