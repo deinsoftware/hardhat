@@ -37,7 +37,6 @@ namespace HardHat {
                 // Project
                 opts.Add(new Variable{opt="sh", nme="SIGCHECK_HOME",      chk=false, stt=false, vlu=""});
                 // Sonar
-                opts.Add(new Variable{opt="sl", nme="SONAR_LINT_HOME",    chk=false, stt=false, vlu=""});
                 opts.Add(new Variable{opt="sq", nme="SONAR_QUBE_HOME",    chk=false, stt=false, vlu=""});
                 opts.Add(new Variable{opt="ss", nme="SONAR_SCANNER_HOME", chk=false, stt=false, vlu=""});
                 // VCS

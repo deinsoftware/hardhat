@@ -9,11 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.1.6] - 2017-11-23
+
+### Removed
+
+* SonarLint is no longer supported.
+
 ## [4.1.5] - 2017-11-22
 
 ### Added
 
-* Gulp server parameter optimization
+* Gulp server parameter optimization.
 
 ### Fixed
 

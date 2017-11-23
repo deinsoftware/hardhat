@@ -62,7 +62,6 @@ Windows only
 Optional
 
 * [.Net Core](https://www.microsoft.com/net/download/core#/runtime)
-* [SonarLint](http://www.sonarlint.org/commandline/index.html)
 
 
 ### Installing
@@ -98,10 +97,9 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `SIGCHECK_HOME` | D:\Applications\Sigcheck |
-| `SONAR_LINT_HOME` | D:\Applications\Sonar\Lint |
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
-| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_LINT_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
+| `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
 Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
 
@@ -119,7 +117,6 @@ export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
 export GULP_PROJECT="~/Applications/Gulp"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export SONAR_LINT_HOME="~/Applications/Sonar/Lint"
 export SONAR_QUBE_HOME="~/Applications/Sonar/Qube"
 export SONAR_SCANNER_HOME="~/Applications/Sonar/Scanner"
 
@@ -128,7 +125,6 @@ export PATH="$ANDROID_HOME/build-tools/$ANDROID_BT_VERSION:$PATH"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/tools:$PATH"
 export PATH="$ANDROID_NDK_HOME/:$PATH"
-export PATH="$SONAR_LINT_HOME/bin:$PATH"
 export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 ```
@@ -404,7 +400,6 @@ Applications
 │           └── ...
 ├── Gulp
 ├── Sonar
-│   ├── Lint
 │   ├── Qube
 │   └── Scanner
 └── HardHat
