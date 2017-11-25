@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.1.7] - 2017-11-25
+
+### Fixed
+
+* Add white theme for mac. [\#14](https://github.com/equiman/hardhat/issues/14)
+
 ## [4.1.6] - 2017-11-23
 
 ### Removed
