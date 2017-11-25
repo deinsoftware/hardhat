@@ -8,7 +8,7 @@ cls
 if defined dbg (
     goto debug
 ) else (
-    goto update
+    goto running
 )
 cls
 
@@ -23,7 +23,7 @@ echo ==^> Updating...
 cd /d %~dp0
 git pull | findstr /irc:"Already up.to.date"
 if %errorlevel% == 0 (
-    goto running
+    goto run
 ) else (
     call color E0
     git config --local core.filemode false
@@ -41,7 +41,7 @@ if %errorlevel% == 0 (
     echo ==========================================================================================
     echo.
     pause
-    goto running
+    goto run
 )
 
 :debug

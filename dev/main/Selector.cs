@@ -11,7 +11,7 @@ namespace HardHat {
 
     public static class Selector {
 
-        public static readonly Dictionary<string, string> Flavor = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> Flavor = new Dictionary<string, string>
         {
             {"a", "Alfa"},
             {"b", "Beta"},
@@ -20,19 +20,19 @@ namespace HardHat {
             {"d", "Desk"}
         };
 
-        public static readonly Dictionary<string, string> Logical = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> Logical = new Dictionary<string, string>
         {
             {"y", "Yes"},
             {"n", "No"}
         };
 
-        public static readonly Dictionary<string, string> Protocol = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> Protocol = new Dictionary<string, string>
         {
             {"1", "http"},
             {"2", "https"}
         };
 
-        public static string Name(Dictionary<string, string> sel, string opt){
+        public static string Name(IReadOnlyDictionary<string, string> sel, string opt){
             try {
                 if (String.IsNullOrEmpty(opt)){
                     opt = String.Empty;
@@ -47,7 +47,7 @@ namespace HardHat {
             return opt;
         }
 
-        public static void Start(Dictionary<string, string> sel, string dfl){
+        public static void Start(IReadOnlyDictionary<string, string> sel, string dfl){
             try {
                 dfl = dfl.ToLower();
                 $"".fmNewLine();
