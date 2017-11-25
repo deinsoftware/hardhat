@@ -128,9 +128,7 @@ namespace HardHat {
                     string list = CmdList();
                     string[] lines = Shell.SplitLines(list);
 
-                    if (lines.Length < 1) {
-                        _cp.adb.dvc = "";
-                    } else {
+                    if (lines.Length >= 1) {
                         var i = 1;
                         foreach (string l in lines)
                         {

@@ -167,33 +167,43 @@ namespace dein.tools
             int chunkSize = (Console.WindowWidth - 3);
             foreach (var item in words)
             {
-                if (
-                    ((line.Length + item.Length) >= chunkSize) || 
-                    (line.ToString().Contains(Environment.NewLine))
-                )
-                {
-                    Console.WriteLine($" {line.ToString().Trim()}");
-                    line.Clear();
-                }
-                if ( item.Length >= chunkSize )
-                {
-                    if (line.Length > 0){
-                        Console.WriteLine($" {line.ToString().Trim()}");
-                        line.Clear();
-                    }
-                    for (int i = 0; i < item.Length ; i += chunkSize)
-                    {
-                        if (i + chunkSize > item.Length) chunkSize = item.Length  - i;
-                        Console.WriteLine($" {item.Substring(i, chunkSize).Trim()}");
-                        line.Clear();
-                    }
-                } else {
-                    line.Append($"{item} ");
-                }
+                WriteShellLine(ref line, item, chunkSize);
+                WriteShellItem(ref line, item, chunkSize);
             }
             if (!String.IsNullOrEmpty(line.ToString().Trim()))
             {
                 Console.WriteLine($" {line.ToString().Trim()}");
+            }
+        }
+
+        private static void WriteShellLine(ref StringBuilder line, string item, int chunkSize)
+        {
+            if (
+                ((line.Length + item.Length) >= chunkSize) || 
+                (line.ToString().Contains(Environment.NewLine))
+            )
+            {
+                Console.WriteLine($" {line.ToString().Trim()}");
+                line.Clear();
+            }
+        }
+
+        private static void WriteShellItem(ref StringBuilder line, string item, int chunkSize)
+        {
+            if ( item.Length >= chunkSize )
+            {
+                if (line.Length > 0){
+                    Console.WriteLine($" {line.ToString().Trim()}");
+                    line.Clear();
+                }
+                for (int i = 0; i < item.Length ; i += chunkSize)
+                {
+                    if (i + chunkSize > item.Length) chunkSize = item.Length  - i;
+                    Console.WriteLine($" {item.Substring(i, chunkSize).Trim()}");
+                    line.Clear();
+                }
+            } else {
+                line.Append($"{item} ");
             }
         }
 
