@@ -6,7 +6,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace dein.tools
 {
-    public class Message
+    public static class Message
     {
         public static void Critical(string msg = null){
             Error(msg, !String.IsNullOrEmpty(msg));
@@ -114,7 +114,6 @@ namespace dein.tools
                         opt_cnf = false;
                         break;
                     case "":
-                        //Menu.Route();
                         break;
                     default:
                         Message.Error();

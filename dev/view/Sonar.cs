@@ -57,7 +57,6 @@ namespace HardHat {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
                 $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
-                StringBuilder s_cnf = new StringBuilder();
                 Section.Configuration(_cp.mnu.s_val, _cp.mnu.s_cnf);
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
