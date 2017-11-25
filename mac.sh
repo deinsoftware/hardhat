@@ -15,7 +15,7 @@ function fxStart() {
         #Development
         fxDebug
     else
-        fxUpdate
+        fxIsRunning
     fi
     clear
 }
@@ -42,9 +42,9 @@ function fxUpdate() {
         echo ""
         echo "======================================================================================="
         pause "Press [Enter] key to continue..."
-        fxIsRunning
+        fxRun
     else
-        fxIsRunning
+        fxRun
     fi
 }
 
@@ -64,7 +64,7 @@ function fxIsRunning() {
     if [ -n "${instance}" ]; then
         fxStop
     else
-        fxRun
+        fxUpdate
     fi
 }
 
