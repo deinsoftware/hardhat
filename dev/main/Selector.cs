@@ -35,7 +35,7 @@ namespace HardHat {
         public static string Name(IReadOnlyDictionary<string, string> sel, string opt){
             try {
                 if (String.IsNullOrEmpty(opt)){
-                    opt = String.Empty;
+                    opt = "";
                 } else {
                     opt = opt.ToLower();
                     opt = sel[opt];
