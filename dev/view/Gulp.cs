@@ -407,7 +407,7 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
 
                 $"".fmNewLine();
                 $" --> Making...".txtInfo(ct.WriteLine);
