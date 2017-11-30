@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.2.0] - 2017-11-22
+
+### Added
+
+* Gulp make server option.
+
 ## [4.1.7] - 2017-11-25
 
 ### Fixed

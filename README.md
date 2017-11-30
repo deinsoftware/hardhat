@@ -240,6 +240,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>g>n</kbd> | Number shortcut inside server configuration. |
 | <kbd>g>s</kbd> | Sync shortcut inside server configuration. |
 | <kbd>g>p</kbd> | Protocol shortcut inside server configuration. |
+| <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gr</kbd> | Revert original files to selected project. |
 | <kbd>gs</kbd> | Start server according to previous configuration. |
@@ -250,6 +251,9 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 | --- | --- |
 | `bld` | Result from magic |
 | `www` | Original project files |
+
+Gulp Make process was created under `make` task and follow this command help:
+`gulp make --prj path_value [--ptf platform_value]`
 
 Gulp Browser process was created under `default` task and follow this command help:
 `gulp [default] --pth path_value [--int internal_path_value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`

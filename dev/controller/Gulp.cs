@@ -17,6 +17,22 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void CmdMake(string path, string dir, string ptf = ""){
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"gulp make --prj {path.Slash()}/");
+                if (!String.IsNullOrEmpty(ptf)){
+                    cmd.Append($" --ptf {ptf}");
+                }
+                cmd.ToString().Term(Output.Internal, dir);
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
         public static void CmdServer(string path, string dir, ServerConfiguration gbs, string lip){
             try
             {

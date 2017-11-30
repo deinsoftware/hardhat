@@ -28,6 +28,7 @@ namespace HardHat {
             opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
             opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
             opts.Add(new Option{opt="g>o" , stt=false, act=Gulp.Open                        });
+            opts.Add(new Option{opt="gm"  , stt=false, act=Gulp.Make                        });
             opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
             opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
             opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
@@ -57,6 +58,7 @@ namespace HardHat {
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
+            Options.Valid("gm" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
@@ -70,7 +72,8 @@ namespace HardHat {
                 $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
                 Section.Configuration(_cp.mnu.g_val, _cp.mnu.g_cnf);
             }
-            $"{"   [U] Uglify" , -34}".txtStatus(ct.Write,      Options.Valid("gu"));
+            $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));
+            $"{"[U] Uglify"    , -17}".txtStatus(ct.Write,      Options.Valid("gu"));
             $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));
             $"{"[S] Server"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("gs"));
             $"".fmNewLine();
@@ -81,7 +84,7 @@ namespace HardHat {
             Console.Clear();
             try
             {
-                Section.Header("GULP SERVER");
+                Section.Header("GULP", "SERVER");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -121,7 +124,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "PROTOCOL");
+                Section.Header("GULP", "SERVER", "PROTOCOL");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -162,7 +165,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "INTERNAL PATH");
+                Section.Header("GULP", "SERVER", "INTERNAL PATH");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -193,7 +196,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "DIMENSION");
+                Section.Header("GULP", "SERVER", "DIMENSION");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -250,7 +253,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "FLAVOR");
+                Section.Header("GULP", "SERVER", "FLAVOR");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -290,7 +293,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "NUMBER");
+                Section.Header("GULP", "SERVER", "NUMBER");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -326,7 +329,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "SYNC");
+                Section.Header("GULP", "SERVER", "SYNC");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -363,7 +366,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "OPEN");
+                Section.Header("GULP", "SERVER", "OPEN");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -393,6 +396,32 @@ namespace HardHat {
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void Make() {
+            Colorify.Default();
+            Console.Clear();
+
+            try
+            {
+                Section.Header("GULP", "MAKE");
+                Section.SelectedProject();
+                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+
+                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
+
+                $"".fmNewLine();
+                $" --> Making...".txtInfo(ct.WriteLine);
+                CmdMake(dirPath, Paths.Combine(Variables.Value("gp")));
+
+                Section.HorizontalRule();
+                Section.Pause();
+
+                Menu.Start();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
         
         public static void Uglify() {
             Colorify.Default();
@@ -400,7 +429,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP UGLIFY");
+                Section.Header("GULP", "UGLIFY");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -455,7 +484,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP REVERT");
+                Section.Header("GULP", "REVERT");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
@@ -476,6 +505,7 @@ namespace HardHat {
                 Exceptions.General(Ex.Message);
             }
         }
+
         public static void Server() {
             Colorify.Default();
             Console.Clear();
@@ -527,7 +557,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP SERVER", "UPDATE");
+                Section.Header("GULP", "SERVER", "UPDATE");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
