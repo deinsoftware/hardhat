@@ -52,7 +52,7 @@ goto end
 :running
 set exe=HardHat.exe
 for /f %%x in ('tasklist /nh /fi "imagename eq %exe%"') do if %%x == %exe% goto stop
-goto run
+goto update
 
 :run
 call color 07
