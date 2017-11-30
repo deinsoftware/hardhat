@@ -11,108 +11,108 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [4.2.0] - 2017-11-22
 
-### Added
+**Added:**
 
-* Gulp make server option.
+* Gulp make option.
 
 ## [4.1.7] - 2017-11-25
 
-### Fixed
+**Fixed:**
 
 * Add white theme for mac. [\#14](https://github.com/equiman/hardhat/issues/14)
 
 ## [4.1.6] - 2017-11-23
 
-### Removed
+**Removed:**
 
 * SonarLint is no longer supported.
 
 ## [4.1.5] - 2017-11-22
 
-### Added
+**Added:**
 
 * Gulp server parameter optimization.
 
-### Fixed
+**Fixed:**
 
 * Check Gulp for Update.
 
 ## [4.1.4] - 2017-11-21
 
-### Fixed
+**Fixed:**
 
 * Configuration name on empty value. [\#17](https://github.com/equiman/hardhat/issues/17)
 
 ## [4.1.3] - 2017-11-16
 
-### Fixed
+**Fixed:**
 
 * Production flavor name.
 
 ## [4.1.2] - 2017-11-16
 
-### Fixed
+**Fixed:**
 
 * Load macOS environment variables on Launch.
 
 ## [4.1.1] - 2017-11-09
 
-### Fixed
+**Fixed:**
 
 * Gulp update redirection fix.
 * One instance running check from startup.
 
-### Changed
+**Changed:**
 
 * Build Tools update message now only works as alert.
 
 ## [4.1.0] - 2017-11-08
 
-### Added
+**Added:**
 
 * Update notification for Gulp project. [\#3](https://github.com/equiman/hardhat/issues/3)
 * Open parameter on Gulp server configuration.
 
-### Fixed
+**Fixed:**
 
 * Ascending order name on File and Directory list.
 * Last version check on build tools.
 
 ## [4.0.1] - 2017-11-01
 
-### Added
+**Added:**
 
 * Android Build Tools check and upgrade version process. [\#11](https://github.com/equiman/hardhat/issues/11)
 
 ## [4.0.0] - 2017-10-25
 
-### Added
+**Added:**
 
 * SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
 * Warning alert on Sonar, Gulp or Build incorrect configuration.
 
-### Change
+**Change:**
 
 * Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
 * Whole configuration file, menu and his status validations.
 * Update verification don't need restart when download new version.
 
-### Fixed
+**Fixed:**
 
 * Copy path and full path on Windows. [\#16](https://github.com/equiman/hardhat/issues/16)
 
 ## [3.2.0] - 2017-10-13
 
-### Added
+**Added:**
 
 * SignCheck for Windows and get SHA256 value from APK option. [\#13](https://github.com/equiman/hardhat/issues/13)
 
-### Fixed
+**Fixed:**
 
 * Option to remove selected device. [\#12](https://github.com/equiman/hardhat/issues/12)
 * Better code quality and fixes, due SonarQube analysis.
 
-### Changed
+**Changed:**
 
 * Environment variable from `ANDROID_TEMPLATE` to `ANDROID_PROPERTIES`.
 * Path from `Applications/Android/Studio` to `Applications/Android/Properties`.
@@ -120,18 +120,18 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [3.1.0] - 2017-08-25
 
-### Added
+**Added:**
 
 * Desk flavor for Gradle and Gulp.
 * Auto execute permissions on macOS.
 
-### Changed
+**Changed:**
 
 * Upgrade from .Net Core 1.1 to 2.0.
 
 ## [3.0.5] - 2017-08-23
 
-### Fixed
+**Fixed:**
 
 * Loop on device detection when ADB server is not running.
 * Path index on Uglify process.
@@ -139,48 +139,48 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [3.0.4] - 2017-08-18
 
-### Removed
+**Removed:**
 
 * Auto update from c#.
 
-### Fixed
+**Fixed:**
 
 * Duplicate file option.
 * Auto update moved to batch/bash files in order to avoid deadlock.
 
 ## [3.0.3] - 2017-08-17
 
-### Removed
+**Removed:**
 
 * Made a project copy to `bkp` folder is unnecessary on Gulp Uglify process, with `www` folder can be restored to original state.
 
-### Added
+**Added:**
 
 * Launch app on device when installation was success.
 
-### Fixed
+**Fixed:**
 
 * Auto update loop.
 * When no detect devices, clean selected device.
 
 ## [3.0.2] - 2017-08-14
 
-### Fixed
+**Fixed:**
 
 * Auto update with total revert.
 
-### Changed
+**Changed:**
 
 * Config file path changed.
 
 ## [3.0.1] - 2017-08-09
 
-### Fixed
+**Fixed:**
 
 * Batch/Bash exit code 0 to external window command.
 * Auto update with stash validation.
 
-### Changed
+**Changed:**
 
 * Default setting file values at fresh start.
 
@@ -190,16 +190,16 @@ One code to rule theme all... with .Net Core can share same code for multiple Op
 
 This version are merging [HardHat [for Windows]](https://github.com/equiman/hardhatwin/) and [HardHat [for macOS])](https://github.com/equiman/hardhatwin/) projects.
 
-### Added
+**Added:**
 
 * Configuration, Info and Environment option from main menu.
 * Current GIT branch information.
 
-### Changed
+**Changed:**
 
 * Mobile IP Address base from current IP Address.
 
-### Removed
+**Removed:**
 
 * Networks configuration list.
 * Subversion as option for Version Control System.
