@@ -69,7 +69,7 @@ namespace HardHat {
             {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
-                $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
+                $" [G] Gulp: ".txtStatus(ct.Write,              Options.Valid("g"));
                 Section.Configuration(_cp.mnu.g_val, _cp.mnu.g_cnf);
             }
             $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));

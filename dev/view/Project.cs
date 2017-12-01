@@ -56,7 +56,7 @@ namespace HardHat {
             {
                 $" [P] Select Project".txtPrimary(ct.WriteLine);
             } else {
-                $"{" [P] Selected Project:", -25}".txtPrimary();
+                $" [P] Selected Project: ".txtPrimary();
                 $"{_cp.spr}".txtDefault(ct.WriteLine);
             }
             
@@ -64,7 +64,7 @@ namespace HardHat {
             {
                 $"   [F] Select File".txtStatus(ct.WriteLine,   Options.Valid("pf"));
             } else {
-                $"{"   [F] Selected File:", -25}".txtPrimary();
+                $"   [F] Selected File:  ".txtPrimary();
                 $"{_cp.sfl}".txtDefault(ct.WriteLine);
             }
 

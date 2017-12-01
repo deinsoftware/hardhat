@@ -56,7 +56,7 @@ namespace HardHat {
             {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
-                $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
+                $" [S] Sonar: ".txtStatus(ct.Write,             Options.Valid("s"));
                 Section.Configuration(_cp.mnu.s_val, _cp.mnu.s_cnf);
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));

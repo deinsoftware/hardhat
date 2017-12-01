@@ -49,7 +49,7 @@ namespace HardHat {
             {
                 $" [B] Build".txtStatus(ct.WriteLine,                Options.Valid("b"));
             } else {
-                $"{" [B] Build:"    , -25}".txtStatus(ct.Write,      Options.Valid("b"));
+                $" [B] Build: ".txtStatus(ct.Write,                  Options.Valid("b"));
                 Section.Configuration(_cp.mnu.b_val, _cp.mnu.b_cnf);
             }
             $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));

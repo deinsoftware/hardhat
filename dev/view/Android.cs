@@ -31,7 +31,7 @@ namespace HardHat {
             {
                 $" [A] ADB".txtMuted(ct.WriteLine);
             } else {
-                $"{" [A] ADB:"          , -25}".txtMuted();
+                $"[A] ADB: ".txtMuted();
                 $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
             }
             $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
