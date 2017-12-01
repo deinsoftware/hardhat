@@ -403,10 +403,10 @@ Applications
 │       └── Business_n
 │           └── ...
 ├── Gulp
-├── Sonar
-│   ├── Qube
-│   └── Scanner
-└── HardHat
+├── HardHat
+└── Sonar
+    ├── Qube
+    └── Scanner
 ```
 
 ⇧ [Back to menu](#menu)
