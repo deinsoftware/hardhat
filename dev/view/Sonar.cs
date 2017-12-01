@@ -56,7 +56,7 @@ namespace HardHat {
             {
                 $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
             } else {
-                $"{" [S] Sonar:", -25}".txtStatus(ct.Write,     Options.Valid("s"));
+                $" [S] Sonar: ".txtStatus(ct.Write,             Options.Valid("s"));
                 Section.Configuration(_cp.mnu.s_val, _cp.mnu.s_cnf);
             }
             $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
@@ -73,7 +73,6 @@ namespace HardHat {
 
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -108,7 +107,6 @@ namespace HardHat {
 
         public static void Protocol() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -155,7 +153,6 @@ namespace HardHat {
 
         public static void Server() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -189,7 +186,6 @@ namespace HardHat {
 
         public static void Domain() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -222,7 +218,6 @@ namespace HardHat {
 
         public static void Port() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -258,7 +253,6 @@ namespace HardHat {
 
         public static void InternalPath() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -289,7 +283,6 @@ namespace HardHat {
         
         public static void Qube() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -303,7 +296,6 @@ namespace HardHat {
 
         public static void Scanner() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -329,7 +321,6 @@ namespace HardHat {
 
         public static void Browse() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

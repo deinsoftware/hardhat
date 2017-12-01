@@ -69,7 +69,7 @@ namespace HardHat {
             {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
-                $"{" [G] Gulp:", -25}".txtStatus(ct.Write,      Options.Valid("g"));
+                $" [G] Gulp: ".txtStatus(ct.Write,              Options.Valid("g"));
                 Section.Configuration(_cp.mnu.g_val, _cp.mnu.g_cnf);
             }
             $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));
@@ -81,7 +81,7 @@ namespace HardHat {
         
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
+
             try
             {
                 Section.Header("GULP", "SERVER");
@@ -120,7 +120,6 @@ namespace HardHat {
 
         public static void Protocol() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -161,7 +160,6 @@ namespace HardHat {
         
         public static void InternalPath() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -192,7 +190,6 @@ namespace HardHat {
 
         public static void Dimension() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -249,7 +246,6 @@ namespace HardHat {
 
         public static void Flavor() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -289,7 +285,6 @@ namespace HardHat {
 
         public static void Number() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -325,7 +320,6 @@ namespace HardHat {
 
         public static void Sync() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -362,7 +356,6 @@ namespace HardHat {
 
         public static void Open() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -399,7 +392,6 @@ namespace HardHat {
 
         public static void Make() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -425,7 +417,6 @@ namespace HardHat {
         
         public static void Uglify() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -480,7 +471,6 @@ namespace HardHat {
 
         public static void Revert() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -508,7 +498,6 @@ namespace HardHat {
 
         public static void Server() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -553,7 +542,6 @@ namespace HardHat {
 
         public static void Upgrade() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

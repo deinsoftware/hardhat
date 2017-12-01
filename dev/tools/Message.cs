@@ -14,7 +14,6 @@ namespace dein.tools
 
         public static void Error(string msg = null, bool replace = false, bool exit = false) {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -53,7 +52,6 @@ namespace dein.tools
 
         public static void Alert(string msg, bool exit = false) {
             Colorify.Default();
-            Console.Clear();
             
             try
             {
@@ -83,7 +81,6 @@ namespace dein.tools
 
         public static bool Confirmation(string msg) {
             Colorify.Default();
-            Console.Clear();
             
             bool opt_cnf = false;
             try

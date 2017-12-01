@@ -45,7 +45,6 @@ namespace HardHat {
 
         public static void Start() {
             Colorify.Default();
-            Console.Clear();
 
             string name = Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString();
             string version = Assembly.GetEntryAssembly().GetName().Version.ToString();

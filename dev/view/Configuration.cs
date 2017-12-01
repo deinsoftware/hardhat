@@ -23,7 +23,6 @@ namespace HardHat {
 
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
 
             Section.Header("CONFIGURATION");
             
@@ -71,7 +70,6 @@ namespace HardHat {
         #region Paths
         public static void PathDevelopment() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -116,7 +114,6 @@ namespace HardHat {
 
         public static void PathBusiness() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -186,7 +183,6 @@ namespace HardHat {
 
         public static void PathProjects() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -230,7 +226,6 @@ namespace HardHat {
 
         public static void PathFilter() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -264,7 +259,6 @@ namespace HardHat {
         #region Android
         public static void AndroidProject() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -308,7 +302,6 @@ namespace HardHat {
 
         public static void AndroidBuild() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -339,7 +332,6 @@ namespace HardHat {
 
         public static void AndroidExtension() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -370,7 +362,6 @@ namespace HardHat {
 
         public static void AndroidCompact() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -401,7 +392,6 @@ namespace HardHat {
 
         public static void AndroidFilter() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -440,7 +430,6 @@ namespace HardHat {
         #region Gulp
         public static void GulpServer() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -471,7 +460,6 @@ namespace HardHat {
 
         public static void GulpExtension() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -504,7 +492,6 @@ namespace HardHat {
         #region VPN
         public static void SiteName() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

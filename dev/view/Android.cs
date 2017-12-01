@@ -31,7 +31,7 @@ namespace HardHat {
             {
                 $" [A] ADB".txtMuted(ct.WriteLine);
             } else {
-                $"{" [A] ADB:"          , -25}".txtMuted();
+                $"[A] ADB: ".txtMuted();
                 $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
             }
             $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
@@ -47,7 +47,6 @@ namespace HardHat {
 
         public static void Install() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -83,7 +82,6 @@ namespace HardHat {
 
         public static void Restart() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -118,7 +116,6 @@ namespace HardHat {
 
         public static void Devices() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -178,7 +175,6 @@ namespace HardHat {
 
         public static void Configuration() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -233,7 +229,6 @@ namespace HardHat {
 
         public static void Base() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -267,7 +262,6 @@ namespace HardHat {
 
         public static void Port() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -301,7 +295,6 @@ namespace HardHat {
 
         public static void Connect() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -322,7 +315,6 @@ namespace HardHat {
         }
         public static void Disconnect() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -359,7 +351,6 @@ namespace HardHat {
         
         public static void SignerVerify() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -384,7 +375,6 @@ namespace HardHat {
 
         public static void Information() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

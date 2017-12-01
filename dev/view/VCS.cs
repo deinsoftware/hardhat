@@ -48,7 +48,7 @@ namespace HardHat {
             {
                 $" [V] VCS".txtMuted(ct.WriteLine);
             } else {
-                $"{" [V] VCS:", -25}".txtMuted(ct.Write);
+                $" [V] VCS: ".txtMuted(ct.Write);
                 $"{_cp.mnu.v_bnc}".txtDefault(ct.WriteLine);
             }
             $"{"   [D] Discard" , -34}".txtStatus(ct.Write,     Options.Valid("vd"));
@@ -80,7 +80,6 @@ namespace HardHat {
         public static void Actions(bool discard, bool pull, bool reset)
         {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
