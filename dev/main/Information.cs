@@ -12,7 +12,6 @@ namespace HardHat {
     public static class Information {
         public static void Versions() {
             Colorify.Default();
-            Console.Clear();
 
             Section.Header("COMMANDS");
             
@@ -42,7 +41,6 @@ namespace HardHat {
             Variables.Update();
             
             Colorify.Default();
-            Console.Clear();
 
             Section.Header("ENVIRONMENT VARIABLES");
 

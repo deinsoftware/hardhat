@@ -80,7 +80,6 @@ namespace HardHat {
         public static void Actions(bool discard, bool pull, bool reset)
         {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

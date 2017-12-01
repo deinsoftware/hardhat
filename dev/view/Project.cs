@@ -79,7 +79,6 @@ namespace HardHat {
 
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -126,7 +125,6 @@ namespace HardHat {
 
         public static void SelectFile() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -172,7 +170,6 @@ namespace HardHat {
         }
         public static void Duplicate() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -207,7 +204,6 @@ namespace HardHat {
 
         public static void FilePath() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

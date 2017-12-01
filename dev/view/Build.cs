@@ -60,7 +60,6 @@ namespace HardHat {
         
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -97,7 +96,6 @@ namespace HardHat {
 
         public static void Dimension() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -133,7 +131,6 @@ namespace HardHat {
 
         public static void Flavor() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -173,7 +170,6 @@ namespace HardHat {
 
         public static void Mode() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -217,7 +213,6 @@ namespace HardHat {
 
         public static void Gradle() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -235,7 +230,6 @@ namespace HardHat {
 
         public static void Clean() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -254,7 +248,6 @@ namespace HardHat {
         public static void Properties()
         {
             Colorify.Default();
-            Console.Clear();
 
             try
             {

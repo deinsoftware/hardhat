@@ -73,7 +73,6 @@ namespace HardHat {
 
         public static void Select() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -108,7 +107,6 @@ namespace HardHat {
 
         public static void Protocol() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -155,7 +153,6 @@ namespace HardHat {
 
         public static void Server() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -189,7 +186,6 @@ namespace HardHat {
 
         public static void Domain() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -222,7 +218,6 @@ namespace HardHat {
 
         public static void Port() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -258,7 +253,6 @@ namespace HardHat {
 
         public static void InternalPath() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -289,7 +283,6 @@ namespace HardHat {
         
         public static void Qube() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -303,7 +296,6 @@ namespace HardHat {
 
         public static void Scanner() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
@@ -329,7 +321,6 @@ namespace HardHat {
 
         public static void Browse() {
             Colorify.Default();
-            Console.Clear();
 
             try
             {
