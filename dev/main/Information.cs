@@ -46,7 +46,7 @@ namespace HardHat {
 
             foreach (var v in Variables.list)
             {
-                $"{$" {v.nme}:", -25}".txtPrimary();
+                $"{$" {v.nme}:", -21}".txtPrimary();
                 if (v.stt) {
                     $"{v.vlu.Slash()}".txtDefault(ct.WriteLine);
                 } else {

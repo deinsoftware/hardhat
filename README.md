@@ -379,7 +379,7 @@ Developer
 │       │   ├── android
 │       │   ├── ios
 │       │   └── web
-│       ├── _distBranch_2
+│       ├── _devBranch_2
 │       │   ├── android
 │       │   ├── ios
 │       │   └── web
@@ -387,7 +387,7 @@ Developer
 │       │   └── ...
 │       ├── _devBranch_n
 │       │   └── ...
-│       └── _devProject
+│       └── _distProject
 │           ├── android
 │           ├── ios
 │           └── web
