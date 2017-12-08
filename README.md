@@ -197,7 +197,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | combination | action |
 | --- | --- |
 | <kbd>p</kbd> | Select a project inside `path.dir/bsn/prd` path (_see [Setup > Path Variables](#path-variables) section_) that starts with `flt` folder name. This project required to have an `android.prj` folder inside. |
-| <kbd>pf</kbd> | Select an APK file generated inside selected project on `android.bld` path  with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
+| <kbd>pf</kbd> | Select an APK file generated inside selected project on `android.bld` path with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>pi</kbd> | Install selected file on an Android device. |
 | <kbd>pd</kbd> | Make a copy of selected file and choose a new name. |
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
@@ -243,7 +243,8 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gr</kbd> | Revert original files to selected project. |
-| <kbd>gs</kbd> | Start server according to previous configuration. |
+| <kbd>gs</kbd> | Launch `gulp default` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
+| <kbd>gl</kbd> | Launch `gulp log` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 
 Gulp Uglify process was create under `build` task and configured to use some folders. We recommend follow the same structure.
 
@@ -253,10 +254,22 @@ Gulp Uglify process was create under `build` task and configured to use some fol
 | `www` | Original project files |
 
 Gulp Make process was created under `make` task and follow this command help:
-`gulp make --prj path_value [--ptf platform_value]`
+
+~~~console
+gulp make --prj path_value [--ptf platform_value]
+~~~
 
 Gulp Browser process was created under `default` task and follow this command help:
-`gulp [default] --pth path_value [--int internal_path_value] --dmn dimension_value [--flv flavor_value --srv server_number --sync Y/N --host ip_value --ptc http/https --os os_name]`
+
+~~~console
+gulp [default] --pth path_value [--ipt internalPath_value] --dmn dimension_value [--ptc http/https --flv flavor_value --srv server_number --host ip_value --sync Y/N --open Y/N --os os_name]
+~~~
+
+Gulp Log process was created under `log` task and follow this command help:
+
+~~~console
+gulp log --dmn dimension_value [--flv flavor_value --srv server_number]
+~~~
 
 | parameter | description |
 | --- | --- |
@@ -362,22 +375,22 @@ Highly recommend this file and directory structure:
 Developer
 ├── Business_1
 │   └── Projects
-│       ├── _devProject_1
+│       ├── _devBranch_1
 │       │   ├── android
 │       │   ├── ios
 │       │   └── web
-│       ├── _distProject_1
+│       ├── _distBranch_2
 │       │   ├── android
 │       │   ├── ios
 │       │   └── web
-│       ├── _devProject_2
+│       ├── _devBranch_3
 │       │   └── ...
-│       ├── _distProject_2
+│       ├── _devBranch_n
 │       │   └── ...
-│       ├── _devProject_n
-│       │   └── ...
-│       └── _distProject_n
-│           └── ...
+│       └── _devProject
+│           ├── android
+│           ├── ios
+│           └── web
 ├── Business_2
 │   └── ...
 ├── Business_n

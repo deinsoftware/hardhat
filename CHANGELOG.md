@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.3.0] - 2017-12-07
+
+**Added:**
+
+* Gulp log options.
+
 ## [4.2.1] - 2017-11-23
 
 **Fixed:**
