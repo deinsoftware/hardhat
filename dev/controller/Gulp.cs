@@ -62,5 +62,25 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void CmdLog(string dir, ServerConfiguration gbs)
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"gulp log");
+                cmd.Append($" --dmn {gbs.dmn}");
+                if (!String.IsNullOrEmpty(gbs.flv)){
+                    cmd.Append($" --flv {gbs.flv.ToUpper()}");
+                }
+                if (!String.IsNullOrEmpty(gbs.srv)){
+                    cmd.Append($" --srv {gbs.srv}");
+                }
+                cmd.ToString().Term(Output.External, dir);
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
     }
 }

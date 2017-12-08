@@ -32,6 +32,7 @@ namespace HardHat {
             opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
             opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
             opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
+            opts.Add(new Option{opt="gl"  , stt=false, act=Gulp.Log                         });
         }
 
         public static void Status(){
@@ -62,6 +63,7 @@ namespace HardHat {
             Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
+            Options.Valid("gl" , Variables.Valid("gp") && _cp.mnu.g_val);
         }
 
         public static void Start() {
@@ -74,8 +76,9 @@ namespace HardHat {
             }
             $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));
             $"{"[U] Uglify"    , -17}".txtStatus(ct.Write,      Options.Valid("gu"));
-            $"{"[R] Revert"    , -34}".txtStatus(ct.Write,      Options.Valid("gr"));
-            $"{"[S] Server"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("gs"));
+            $"{"[R] Revert"    , -17}".txtStatus(ct.Write,      Options.Valid("gr"));
+            $"{"[S] Server"    , -17}".txtStatus(ct.Write,      Options.Valid("gs"));
+            $"{"[L] Log"       , -17}".txtStatus(ct.WriteLine,  Options.Valid("gl"));
             $"".fmNewLine();
         }
         
@@ -515,6 +518,22 @@ namespace HardHat {
             }
         }
 
+        public static void Log() {
+            Colorify.Default();
+
+            try
+            {
+                CmdLog(
+                    Paths.Combine(Variables.Value("gp")),
+                    _cp.gbs
+                );
+                Menu.Start();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
         public static void Check(){
             try
             {
@@ -545,7 +564,7 @@ namespace HardHat {
 
             try
             {
-                Section.Header("GULP", "SERVER", "UPDATE");
+                Section.Header("GULP", "UPDATE");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
