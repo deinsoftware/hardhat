@@ -542,7 +542,7 @@ namespace HardHat {
                 if (Directory.Exists(Paths.Combine(dirPath, ".git"))){
                     Git.CmdFetch(dirPath);
                     bool updated = Git.CmdStatus(dirPath);
-                    if (!updated){
+                    if (updated){
                         StringBuilder msg = new StringBuilder();
                         msg.Append($"There is a new Gulp project version available.");
                         msg.Append(Environment.NewLine);
