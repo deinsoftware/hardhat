@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [4.3.2] - 2017-12-14
+
+**Added:**
+
+* VPN connection verification on Gulp log option.
+* Install dependencies on Gulp Update.
+
+**Fixed:**
+
+* Gulp update check message.
+
 ## [4.3.1] - 2017-12-11
 
 **Fixed:**
