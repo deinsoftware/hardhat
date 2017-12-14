@@ -190,8 +190,6 @@ Just drag and drop **Hard Hat** (alias shortcut) to your Dock or Desktop.
 
 Choose desired letter combination and let **HardHat** work for you.
 
-> **UPPERCASE** options means default choice in a question, feel free to continue quickly with <kbd>RETURN</kbd> key :wink:
-
 #### Project
 
 | combination | action |
@@ -265,6 +263,18 @@ Gulp Browser process was created under `default` task and follow this command he
 gulp [default] --pth path_value [--ipt internalPath_value] --dmn dimension_value [--ptc http/https --flv flavor_value --srv server_number --host ip_value --sync Y/N --open Y/N --os os_name]
 ~~~
 
+| parameter | description |
+| --- | --- |
+| `pth` | Selected project path |
+| `ipt` | web files path inside `pth` |
+| `dmn` | Server configuration file name under `server` folder |
+| `flv` | Flavor **A**lfa/**B**eta/**S**tag/**P**rod.|
+| `srv` | Server Number (if have multiple servers with same flavor) |
+| `sync` | (**Y**) Enable or (**N**) Disable Browser Sync. |
+| `host` | External IP address access |
+| `ptc` | **http** or **https**. |
+| `os` | **win** or **mac**. |
+
 Gulp Log process was created under `log` task and follow this command help:
 
 ~~~console
@@ -279,18 +289,6 @@ gulp log --dmn dimension_value [--flv flavor_value --srv server_number]
 | `flv` | Server Number (if have multiple servers with same flavor) |
 | `sync` | Enable or disable browserSync task |
 | `host` | External IP address access |
-
-| parameter | description |
-| --- | --- |
-| `pth` | Selected project path |
-| `ipt` | web files path inside `pth` |
-| `dmn` | Server configuration file name under `server` folder |
-| `flv` | Flavor **A**lfa/**B**eta/**S**tag/**P**rod.|
-| `srv` | Server Number (if have multiple servers with same flavor) |
-| `sync` | (**Y**) Enable or (**N**) Disable Browser Sync. |
-| `host` | External IP address access |
-| `ptc` | **http** or **https**. |
-| `os` | **win** or **mac**. |
 
 #### Build
 
