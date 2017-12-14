@@ -82,5 +82,15 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void CmdInstall(string dir){
+            try
+            {
+                $"npm i".Term(Output.Hidden, dir);
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
     }
 }

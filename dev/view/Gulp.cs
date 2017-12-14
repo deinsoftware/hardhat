@@ -523,6 +523,8 @@ namespace HardHat {
 
             try
             {
+                Vpn.Verification();
+
                 CmdLog(
                     Paths.Combine(Variables.Value("gp")),
                     _cp.gbs
@@ -542,7 +544,7 @@ namespace HardHat {
                 if (Directory.Exists(Paths.Combine(dirPath, ".git"))){
                     Git.CmdFetch(dirPath);
                     bool updated = Git.CmdStatus(dirPath);
-                    if (updated){
+                    if (!updated){
                         StringBuilder msg = new StringBuilder();
                         msg.Append($"There is a new Gulp project version available.");
                         msg.Append(Environment.NewLine);
@@ -565,14 +567,15 @@ namespace HardHat {
             try
             {
                 Section.Header("GULP", "UPDATE");
-                Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
-
+                
                 string dirPath = Paths.Combine(Variables.Value("gp"));
 
-                $"".fmNewLine();
                 $" --> Updating...".txtInfo(ct.WriteLine);
                 Git.CmdPull(dirPath);
+
+                $"".fmNewLine();
+                $" --> Updating Dependencies...".txtInfo(ct.WriteLine);
+                Gulp.CmdInstall(dirPath);
             
                 Section.HorizontalRule();
                 Section.Pause();
