@@ -75,11 +75,11 @@ namespace HardHat
             string response = "";
             try
             {
-                string search = "nothing to commit";
+                string search = "Your branch is behind";
                 Response result = new Response();
                 result = $"git -C {path.Slash()} status".Term();
                 response = Shell.ExtractLine(result.stdout, search);
-                if (!String.IsNullOrEmpty(response)){
+                if (String.IsNullOrEmpty(response)){
                     status = true;
                 }
             }
