@@ -87,7 +87,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | --- | --- |
 | `ANDROID_HOME` | D:\Applications\Android\SDK |
 | `ANDROID_NDK_HOME` | %ANDROID_HOME%\ndk-bundle |
-| `ANDROID_BT_VERSION` | 27.0.0 |
+| `ANDROID_BT_VERSION` | 27.0.3 |
 | `ANDROID_PROPERTIES` | D:\Applications\Android\Properties |
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
@@ -111,7 +111,7 @@ Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommend
 ```bash
 export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
-export ANDROID_BT_VERSION="27.0.0"
+export ANDROID_BT_VERSION="27.0.3"
 export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
