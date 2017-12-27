@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
-
+using ToolBox.Platform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -15,7 +15,7 @@ namespace HardHat
                 Response result = new Response();
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"trac info -s {sitename} -tr true | ");
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         cmd.Append($"findstr status");

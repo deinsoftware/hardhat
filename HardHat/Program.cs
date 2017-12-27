@@ -2,26 +2,42 @@
 using System.Reflection;
 using System.Threading;
 using dein.tools;
+using ToolBox.Files;
+using ToolBox.Platform;
 
 namespace HardHat
 {
     static class Program
     {
-        public static Config config  { get; set; }
+        public static Config _config  { get; set; }
+        static DiskConfigurator _disk {get; set;}
+        static PathsConfigurator _path {get; set;}
 
         static void Main(string[] args)
         {
             try
             {
+                //Factory
+                _disk = new DiskConfigurator(FileSystem.Default);
+                switch (OS.GetCurrent())
+                {
+                    case "win":
+                        _path = new PathsConfigurator(CommandSystem.Win, FileSystem.Default);
+                        break;
+                    case "mac":
+                        _path = new PathsConfigurator(CommandSystem.Mac, FileSystem.Default);
+                        break;
+                }
+                
                 //Config
-                config = Settings.Read();
-                var cp = config.personal;
+                _config = Settings.Read();
+                var cp = _config.personal;
                 cp.hst = System.Environment.MachineName;
 
                 //Window
-                if (Os.IsWindows() && (config.window.width + config.window.height) > 0)
+                if (OS.IsWin() && (_config.window.width + _config.window.height) > 0)
                 {
-                    Console.SetWindowSize(config.window.width, config.window.height);
+                    Console.SetWindowSize(_config.window.width, _config.window.height);
                 }
 
                 //Check for updates
@@ -43,7 +59,7 @@ namespace HardHat
         }
 
         public static void Exit(){
-            Settings.Save(config);
+            Settings.Save(_config);
             Console.Clear();
             Environment.Exit(0);
         }

@@ -14,8 +14,8 @@ namespace HardHat {
 
         static Modes()
         {
-            _c = Program.config;
-            _cp = Program.config.personal;
+            _c = Program._config;
+            _cp = Program._config.personal;
         }
 
         public static string Name(string mde){

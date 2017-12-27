@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Platform;
 
 using ct = dein.tools.Colorify.Type;
 
@@ -16,8 +17,8 @@ namespace HardHat {
 
         static Adb()
         {
-            _c = Program.config;
-            _cp = Program.config.personal;
+            _c = Program._config;
+            _cp = Program._config.personal;
         }
 
         public static void List(ref List<Option> opts) {
@@ -345,8 +346,8 @@ namespace HardHat {
 
         static BuildTools()
         {
-            _c = Program.config;
-            _cp = Program.config.personal;
+            _c = Program._config;
+            _cp = Program._config.personal;
         }
         
         public static void SignerVerify() {
@@ -387,7 +388,7 @@ namespace HardHat {
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);
                 CmdInformation(dirPath);
 
-                if ((Os.IsWindows() && Variables.Valid("sh")) || Os.IsMacOS()){
+                if ((OS.IsWin() && Variables.Valid("sh")) || OS.IsMac()){
                     Response result = CmdSha(dirPath);
                     if (result.code == 0) {
                         $"".fmNewLine();

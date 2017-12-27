@@ -2,6 +2,7 @@ using System.Runtime.InteropServices;
 using System;
 using System.Diagnostics;
 using System.Text;
+using ToolBox.Platform;
 
 namespace dein.tools
 {
@@ -11,7 +12,7 @@ namespace dein.tools
         {
             StringBuilder cmd = new StringBuilder();
             cmd.Append($"echo ");
-            switch (Os.Platform())
+            switch (OS.GetCurrent())
             {
                 case "win":
                     cmd.Append($"{val.BackSlash()}|clip");

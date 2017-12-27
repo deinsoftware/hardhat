@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
-
+using ToolBox.Platform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -197,7 +197,7 @@ namespace HardHat
             Response result = new Response();
             try
             {
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         result = $"sigcheck -h {path}".Term();

@@ -17,8 +17,8 @@ namespace HardHat {
 
         static Configuration()
         {
-            _c = Program.config;
-            _cp = Program.config.personal;
+            _c = Program._config;
+            _cp = Program._config.personal;
         }
 
         public static void Select() {

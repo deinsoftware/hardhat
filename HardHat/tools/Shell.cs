@@ -6,6 +6,7 @@ using System.Text;
 using ct = dein.tools.Colorify.Type;
 using System.Reflection;
 using System.IO;
+using ToolBox.Platform;
 
 namespace dein.tools
 {
@@ -31,7 +32,7 @@ namespace dein.tools
                 {
                     dir.Exists("");
                 }
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         fnm = "cmd.exe";
@@ -133,7 +134,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         url = url.Replace("&", "^&");

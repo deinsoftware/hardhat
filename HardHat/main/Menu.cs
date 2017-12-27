@@ -17,8 +17,8 @@ namespace HardHat {
 
         static Menu()
         {
-            _c  = Program.config;
-            _cp = Program.config.personal;
+            _c  = Program._config;
+            _cp = Program._config.personal;
         }
 
         public static void Status(string sel = null){

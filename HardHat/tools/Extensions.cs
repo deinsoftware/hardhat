@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using ToolBox.Platform;
 
 using ct = dein.tools.Colorify.Type;
 
@@ -17,7 +18,7 @@ namespace dein.tools
         {
             string path = Path.Combine(paths);
             path = path.Slash();
-            switch (Os.Platform())
+            switch (OS.GetCurrent())
             {
                 case "win":
                     path = path.Replace("~",$"{Env.Get("USERPROFILE")}");

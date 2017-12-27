@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net;
 using System.Text;
+using ToolBox.Platform;
 
 namespace dein.tools
 {
@@ -16,7 +17,7 @@ namespace dein.tools
 
             Theme.Add("text-default"   , new Color(null                   , null                   ));
             Theme.Add("bg-default"     , new Color(null                   , null                   ));
-            switch (Os.Platform())
+            switch (OS.GetCurrent())
             {
                 case "win":
                     Theme.Add("text-muted"     , new Color(null                   , ConsoleColor.DarkGray  ));
@@ -54,7 +55,7 @@ namespace dein.tools
             public Color(ConsoleColor? _background, ConsoleColor? _foreground) : this()
             {
 
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         background = _background ?? ConsoleColor.Black;

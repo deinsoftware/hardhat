@@ -3,6 +3,7 @@ using System.IO;
 using dein.tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using ToolBox.Platform;
 
 namespace HardHat
 {
@@ -20,7 +21,7 @@ namespace HardHat
             config.window.width = 86;
 
             config.path = new PathConfiguration();
-            switch (Os.Platform())
+            switch (OS.GetCurrent())
             {
                 case "win":
                     config.path.dir = "D:/Developer";

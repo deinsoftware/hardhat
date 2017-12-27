@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
-
+using ToolBox.Platform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -37,7 +37,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                if (Os.IsMacOS()){
+                if (OS.IsMac()){
                     cmd.Append($"sudo ");
                 }
                 cmd.Append($"gulp --pth {path.Slash()}/");
@@ -55,7 +55,7 @@ namespace HardHat
                 cmd.Append($" --host {lip}");
                 cmd.Append($" --sync {(gbs.syn ? "Y" : "N")}");
                 cmd.Append($" --open {(gbs.opn ? "Y" : "N")}");
-                cmd.Append($" --os {Os.Platform()}");
+                cmd.Append($" --os {OS.GetCurrent()}");
                 cmd.ToString().Term(Output.External, dir);
             }
             catch (Exception Ex){

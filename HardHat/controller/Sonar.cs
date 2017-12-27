@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
-
+using ToolBox.Platform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -13,7 +13,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                switch (Os.Platform())
+                switch (OS.GetCurrent())
                 {
                     case "win":
                         cmd.Append($"StartSonar");
