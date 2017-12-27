@@ -9,6 +9,7 @@ using ToolBox.Platform;
 using ToolBox.System;
 using ToolBox.Validations;
 using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace HardHat {
 
@@ -55,7 +56,7 @@ namespace HardHat {
                 Section.Header("INSTALL FILE");
                 Section.SelectedFile();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"".fmNewLine();
                 $" --> Checking devices...".txtInfo(ct.WriteLine);
@@ -359,7 +360,7 @@ namespace HardHat {
                 Section.Header("SIGNER VERIFY");
                 Section.SelectedFile();
                 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"".fmNewLine();
                 $" --> Verifying...".txtInfo(ct.WriteLine);
@@ -383,7 +384,7 @@ namespace HardHat {
                 Section.Header("INFORMATION VALUES");
                 Section.SelectedFile();
                 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
 
                 $"".fmNewLine();
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);
@@ -416,11 +417,11 @@ namespace HardHat {
             {
                 string currentVersion = Variables.Value("ab");
                 string lastVersion = "";
-                string dirPath = Paths.Combine(Variables.Value("ah"), "build-tools");
+                string dirPath = _path.Combine(Variables.Value("ah"), "build-tools");
 
                 if (Directory.Exists(dirPath)){
                     string dir = Directory.EnumerateDirectories(dirPath).OrderByDescending(name => name).Take(1).FirstOrDefault();
-                    string d = dir.Slash();
+                    string d = dir;
                     lastVersion = d.Substring(d.LastIndexOf("/") + 1);
                     if (currentVersion != lastVersion){
                         StringBuilder msg = new StringBuilder();

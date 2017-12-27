@@ -22,7 +22,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                cmd.Append($"gulp make --prj {path.Slash()}/");
+                cmd.Append($"gulp make --prj {path}/");
                 if (!String.IsNullOrEmpty(ptf)){
                     cmd.Append($" --ptf {ptf}");
                 }
@@ -40,9 +40,9 @@ namespace HardHat
                 if (OS.IsMac()){
                     cmd.Append($"sudo ");
                 }
-                cmd.Append($"gulp --pth {path.Slash()}/");
+                cmd.Append($"gulp --pth {path}/");
                 if (!String.IsNullOrEmpty(gbs.ipt)){
-                    cmd.Append($" --ipt {gbs.ipt.Slash()}");
+                    cmd.Append($" --ipt {gbs.ipt}");
                 }
                 cmd.Append($" --dmn {gbs.dmn}");
                 cmd.Append($" --ptc {gbs.ptc}");

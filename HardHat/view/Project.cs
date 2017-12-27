@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using ToolBox.Validations;
 using dein.tools;
+using static HardHat.Program;
 
 using static dein.tools.Paths;
 
@@ -40,7 +41,7 @@ namespace HardHat {
                 _cp.spr = "";
             }
             Options.Valid("p" , true);
-            string filePath = Paths.Combine(dirPath, _c.android.prj, _c.android.bld, _cp.sfl ?? "");
+            string filePath = _path.Combine(dirPath, _c.android.prj, _c.android.bld, _cp.sfl ?? "");
             if (!File.Exists(filePath))
             {
                 _cp.sfl = "";
@@ -86,7 +87,7 @@ namespace HardHat {
             {
                 Section.Header("SELECT PROJECT");
                 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj);
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj);
                 dirPath.Exists("Please review your configuration file.");
                 List<string> dirs = dirPath.Directories(_c.path.flt, "projects");
 
@@ -96,7 +97,7 @@ namespace HardHat {
                     var i = 1;
                     foreach (var dir in dirs)
                     {
-                        string d = dir.Slash();
+                        string d = dir;
                         $" {i, 2}] {d.Substring(d.LastIndexOf("/") + 1)}".txtPrimary(ct.WriteLine);
                         i++;
                     }
@@ -114,7 +115,7 @@ namespace HardHat {
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
 
-                    var sel = dirs[Convert.ToInt32(opt) - 1].Slash();
+                    var sel = dirs[Convert.ToInt32(opt) - 1];
                     _cp.spr = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
@@ -132,7 +133,7 @@ namespace HardHat {
             {
                 Section.Header("SELECT FILE");
                 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld);
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld);
                 dirPath.Exists("Please review your configuration file or make a build first.");
                 List<string> files = dirPath.Files($"*{_c.android.ext}", "Please make a build first.");
                 
@@ -143,7 +144,7 @@ namespace HardHat {
                     var i = 1;
                     foreach (var file in files)
                     {
-                        string f = file.Slash();
+                        string f = file;
                         $" {i, 2}] {f.Substring(f.LastIndexOf("/") + 1)}".txtPrimary(ct.WriteLine);
                         i++;
                     }
@@ -160,7 +161,7 @@ namespace HardHat {
                 if (!String.IsNullOrEmpty(opt))
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
-                    var sel = files[Convert.ToInt32(opt) - 1].Slash();
+                    var sel = files[Convert.ToInt32(opt) - 1];
                     _cp.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
@@ -178,7 +179,7 @@ namespace HardHat {
                 Section.Header("DUPLICATE FILE");
                 Section.SelectedFile();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
 
                 $"".fmNewLine();
                 $" Write a new name, without include his extension.".txtPrimary(ct.WriteLine);
@@ -193,7 +194,7 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(Paths.Combine(dirPath, _cp.sfl), Paths.Combine(dirPath, $"{opt}{_c.android.ext}"));
+                    System.IO.File.Copy(_path.Combine(dirPath, _cp.sfl), _path.Combine(dirPath, $"{opt}{_c.android.ext}"));
                     _cp.sfl = $"{opt}{_c.android.ext}";
                 }
 
@@ -211,7 +212,7 @@ namespace HardHat {
             {
                 Section.Header("FILE PATH");
                 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
 
                 $"{" Path:", -10}".txtMuted();
                 $"{dirPath}".txtDefault(ct.WriteLine);
@@ -235,7 +236,7 @@ namespace HardHat {
                         Clipboard.Copy(dirPath);
                         break;
                     case "f":
-                        Clipboard.Copy(Paths.Combine(dirPath, _cp.sfl));
+                        Clipboard.Copy(_path.Combine(dirPath, _cp.sfl));
                         break;
                     case "":
                         //Cancel

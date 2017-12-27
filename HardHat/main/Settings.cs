@@ -4,13 +4,14 @@ using dein.tools;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ToolBox.Platform;
+using static HardHat.Program;
 
 namespace HardHat
 {
     static class Settings{
         public static void Save(Config config){
             string json = JsonConvert.SerializeObject(config);
-            File.WriteAllText($"{Paths.Combine("~", $".hardhat.config.json")}", json);
+            File.WriteAllText($"{_path.Combine("~", $".hardhat.config.json")}", json);
         }
 
         public static Config Read(){
@@ -83,11 +84,11 @@ namespace HardHat
             config.personal.mnu.g_cnf = "";
             config.personal.mnu.b_cnf = "";
             
-            if (!File.Exists($"{Paths.Combine("~", $".hardhat.config.json")}")) {
+            if (!File.Exists($"{_path.Combine("~", $".hardhat.config.json")}")) {
                 return config;
             } else {
                 string file = JsonConvert.SerializeObject(config);
-                string json = File.ReadAllText($"{Paths.Combine("~", $".hardhat.config.json")}");
+                string json = File.ReadAllText($"{_path.Combine("~", $".hardhat.config.json")}");
 
                 JObject oFile = JObject.Parse(file);
                 JObject oJson = JObject.Parse(json);

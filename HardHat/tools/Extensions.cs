@@ -15,30 +15,6 @@ namespace dein.tools
 {
     public static class Paths
     {
-        public static string Combine(params string[] paths)
-        {
-            string path = Path.Combine(paths);
-            path = path.Slash();
-            switch (OS.GetCurrent())
-            {
-                case "win":
-                    path = path.Replace("~",$"{Env.GetValue("USERPROFILE")}");
-                    break;
-                case "mac":
-                    path = path.Replace("~",$"/Users/{User.GetUserName()}");
-                    break;
-            }
-            return path.Slash();
-        }
-
-        public static string Slash(this string path){
-            return path.Replace(@"\",@"/");
-        }
-
-        public static string BackSlash(this string path){
-            return path.Replace(@"/",@"\");
-        }
-
         public static void Exists(this string dir, string message = null)
         {
             try
@@ -151,7 +127,7 @@ namespace dein.tools
                     .GetDirectories(sourcePath, "*.*", SearchOption.AllDirectories);
                 Parallel.ForEach(directories, dirPath =>
                 {
-                    $" [COPY] {Strings.RemoveWords(dirPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
+                    $" [COPY] {Strings.RemoveWords(dirPath,sourcePath)}".txtPrimary(ct.Shell);
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, destinationPath));
                 }); 
 
@@ -160,7 +136,7 @@ namespace dein.tools
                     .Where(f => isFiltered(filter, f));
                 Parallel.ForEach(files, newPath =>
                 {
-                    $"  [COPY] {Strings.RemoveWords(newPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
+                    $"  [COPY] {Strings.RemoveWords(newPath,sourcePath)}".txtPrimary(ct.Shell);
                     File.Copy(newPath, newPath.Replace(sourcePath, destinationPath), overWrite);
                 }); 
             }
@@ -181,7 +157,7 @@ namespace dein.tools
         {
             try
             {
-                $"  [DEL] {sourcePath.Slash()}".txtPrimary(ct.Shell);
+                $"  [DEL] {sourcePath}".txtPrimary(ct.Shell);
                 Directory.Delete(sourcePath, recursive);
             }
             catch (DirectoryNotFoundException) 

@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Text;
 using ToolBox.Platform;
+using static HardHat.Program;
 
 namespace dein.tools
 {
@@ -15,10 +16,10 @@ namespace dein.tools
             switch (OS.GetCurrent())
             {
                 case "win":
-                    cmd.Append($"{val.BackSlash()}|clip");
+                    cmd.Append($"{val}|clip");
                     break;
                 case "mac":
-                    cmd.Append($"\"{val.Slash()}\" | pbcopy");
+                    cmd.Append($"\"{val}\" | pbcopy");
                     break;
             }
             cmd.ToString().Term();

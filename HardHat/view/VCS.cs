@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using ToolBox.Validations;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 
@@ -87,7 +88,7 @@ namespace HardHat {
                 Section.Header("GIT");
                 Section.SelectedProject();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
 
                 if (discard) {
                     $"".fmNewLine();

@@ -47,7 +47,7 @@ namespace HardHat {
             {
                 $"{$" {v.nme}:", -21}".txtPrimary();
                 if (v.stt) {
-                    $"{v.vlu.Slash()}".txtDefault(ct.WriteLine);
+                    $"{v.vlu}".txtDefault(ct.WriteLine);
                 } else {
                     $"is not defined".txtWarning(ct.WriteLine);
                 }

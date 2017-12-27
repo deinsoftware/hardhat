@@ -6,6 +6,7 @@ using System.Text;
 using Validation = ToolBox.Validations.Strings;
 using Transform = ToolBox.Transform.Strings;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 using ToolBox.Validations;
@@ -204,7 +205,7 @@ namespace HardHat {
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
                 $"".fmNewLine();
-                string dirPath = Paths.Combine(Variables.Value("gp"), _c.gulp.srv); 
+                string dirPath = _path.Combine(Variables.Value("gp"), _c.gulp.srv); 
                 dirPath.Exists("Please review your configuration file.");
                 List<string> files = dirPath.Files($"*{_c.gulp.ext}");
                 
@@ -215,7 +216,7 @@ namespace HardHat {
                     var i = 1;
                     foreach (var file in files)
                     {
-                        string f = file.Slash();
+                        string f = file;
                         $" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _c.gulp.ext)}".txtPrimary(ct.WriteLine);
                         i++;
                     }
@@ -233,7 +234,7 @@ namespace HardHat {
                     if (!String.IsNullOrEmpty(opt_dmn))
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt_dmn), files.Count);
-                        var sel = files[Convert.ToInt32(opt_dmn) - 1].Slash();
+                        var sel = files[Convert.ToInt32(opt_dmn) - 1];
                         _cp.gbs.dmn = Transform.RemoveWords(sel.Substring(sel.LastIndexOf("/") + 1), _c.gulp.ext);
                     } else {
                         if (String.IsNullOrEmpty(_cp.gbs.dmn)){
@@ -405,11 +406,11 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
 
                 $"".fmNewLine();
                 $" --> Making...".txtInfo(ct.WriteLine);
-                CmdMake(dirPath, Paths.Combine(Variables.Value("gp")));
+                CmdMake(dirPath, _path.Combine(Variables.Value("gp")));
 
                 Section.HorizontalRule();
                 Section.Pause();
@@ -430,11 +431,11 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
 
                 string[] dirs = new string[] {
-                    Paths.Combine(Variables.Value("gp"),"www"),
-                    Paths.Combine(Variables.Value("gp"),"bld"),
+                    _path.Combine(Variables.Value("gp"),"www"),
+                    _path.Combine(Variables.Value("gp"),"bld"),
                 };
 
                 $"".fmNewLine();
@@ -457,7 +458,7 @@ namespace HardHat {
 
                 $"".fmNewLine();
                 $" --> Uglifying...".txtInfo(ct.WriteLine);
-                CmdUglify(Paths.Combine(Variables.Value("gp")));
+                CmdUglify(_path.Combine(Variables.Value("gp")));
 
                 $"".fmNewLine();
                 $" --> Replacing...".txtInfo(ct.WriteLine);
@@ -484,8 +485,8 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
-                string dirSource = Paths.Combine(Variables.Value("gp"),"www");
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
+                string dirSource = _path.Combine(Variables.Value("gp"),"www");
                 $"".fmNewLine();
                 $" --> Reverting...".txtInfo(ct.WriteLine);
                 $"{" From:", -8}".txtMuted(); $"{dirSource}".txtDefault(ct.WriteLine);
@@ -507,10 +508,10 @@ namespace HardHat {
 
             try
             {
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
                 CmdServer(
                     dirPath,
-                    Paths.Combine(Variables.Value("gp")),
+                    _path.Combine(Variables.Value("gp")),
                     _cp.gbs,
                     _cp.ipl
                 );
@@ -529,7 +530,7 @@ namespace HardHat {
                 Vpn.Verification();
 
                 CmdLog(
-                    Paths.Combine(Variables.Value("gp")),
+                    _path.Combine(Variables.Value("gp")),
                     _cp.gbs
                 );
                 Menu.Start();
@@ -542,9 +543,9 @@ namespace HardHat {
         public static void Check(){
             try
             {
-                string dirPath = Paths.Combine(Variables.Value("gp"));
+                string dirPath = _path.Combine(Variables.Value("gp"));
 
-                if (Directory.Exists(Paths.Combine(dirPath, ".git"))){
+                if (Directory.Exists(_path.Combine(dirPath, ".git"))){
                     Git.CmdFetch(dirPath);
                     bool updated = Git.CmdStatus(dirPath);
                     if (!updated){
@@ -571,7 +572,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "UPDATE");
                 
-                string dirPath = Paths.Combine(Variables.Value("gp"));
+                string dirPath = _path.Combine(Variables.Value("gp"));
 
                 $" --> Updating...".txtInfo(ct.WriteLine);
                 Git.CmdPull(dirPath);

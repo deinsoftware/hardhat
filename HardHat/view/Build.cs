@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using ToolBox.Validations;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 
@@ -219,7 +220,7 @@ namespace HardHat {
             {
                 Vpn.Verification();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
                 CmdGradle(dirPath, _cp.mnu.b_cnf);
 
                 Menu.Start();
@@ -236,7 +237,7 @@ namespace HardHat {
             {
                 Vpn.Verification();
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -256,8 +257,8 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
 
-                string sourcePath = Paths.Combine(Variables.Value("bp"), _c.path.bsn);
-                string destinationPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string sourcePath = _path.Combine(Variables.Value("bp"), _c.path.bsn);
+                string destinationPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
                 
                 $"".fmNewLine();
                 List<string> filter = new List<string>() { 

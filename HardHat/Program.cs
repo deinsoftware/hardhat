@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Reflection;
-using System.Threading;
 using dein.tools;
 using ToolBox.Files;
 using ToolBox.Platform;
@@ -11,8 +9,8 @@ namespace HardHat
     static class Program
     {
         public static Config _config  { get; set; }
-        static DiskConfigurator _disk {get; set;}
-        static PathsConfigurator _path {get; set;}
+        public static DiskConfigurator _disk {get; set;}
+        public static PathsConfigurator _path {get; set;}
 
         static void Main(string[] args)
         {

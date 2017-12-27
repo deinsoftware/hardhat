@@ -5,8 +5,10 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Files;
 using ToolBox.System;
 using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace HardHat {
     
@@ -31,7 +33,7 @@ namespace HardHat {
                     _cp.mnu.sel = sel;
                 }
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr ?? "");
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr ?? "");
                 Project.Status(dirPath);
                 Vcs.Status(dirPath);
                 Sonar.Status();

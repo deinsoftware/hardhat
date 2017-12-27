@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using ToolBox.Validations;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 
@@ -304,7 +305,7 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_cp.mnu.s_val, _cp.mnu.s_cnf);
 
-                string dirPath = Paths.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _cp.snr.ipt);
+                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _cp.snr.ipt);
 
                 $"".fmNewLine();
                 $" --> Scanning...".txtInfo(ct.WriteLine);
