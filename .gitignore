@@ -16,5 +16,4 @@
 ### HardHat Project ###
 **/bin
 **/obj
-**/dist
-/HardHat
+**/Distribution
