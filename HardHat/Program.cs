@@ -4,6 +4,7 @@ using System.Threading;
 using dein.tools;
 using ToolBox.Files;
 using ToolBox.Platform;
+using ToolBox.System;
 
 namespace HardHat
 {
@@ -32,7 +33,7 @@ namespace HardHat
                 //Config
                 _config = Settings.Read();
                 var cp = _config.personal;
-                cp.hst = System.Environment.MachineName;
+                cp.hst = User.GetMachine();
 
                 //Window
                 if (OS.IsWin() && (_config.window.width + _config.window.height) > 0)

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using dein.tools;
-using static dein.tools.Machine;
 
 using ct = dein.tools.Colorify.Type;
 
