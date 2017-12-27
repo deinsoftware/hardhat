@@ -37,9 +37,8 @@
     <None Update="icon.png" CopyToOutputDirectory="PreserveNewest" />
     <!-- Packages -->
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
-  <ItemGroup>
+    <!-- Projects -->
     <ProjectReference Include="..\..\_devTB\ToolBox\ToolBox.csproj" />
-    <ProjectReference Include="..\..\_devCC\Colorify\Colorify.csproj" />
+    <!-- <ProjectReference Include="..\..\_devCC\Colorify\Colorify.csproj" /> -->
   </ItemGroup>
 </Project>
