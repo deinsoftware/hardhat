@@ -2,7 +2,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardHat", "dev\HardHat.csproj", "{2D476D99-8571-4923-B6D1-C6563DEC48AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HardHat", "HardHat\HardHat.csproj", "{2D476D99-8571-4923-B6D1-C6563DEC48AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardHat.Tests", "HardHat.Tests\HardHat.Tests.csproj", "{B0D70AAA-A8B6-4B19-8B03-4E915878B603}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,18 @@ Global
 		{2D476D99-8571-4923-B6D1-C6563DEC48AB}.Release|x64.Build.0 = Release|Any CPU
 		{2D476D99-8571-4923-B6D1-C6563DEC48AB}.Release|x86.ActiveCfg = Release|Any CPU
 		{2D476D99-8571-4923-B6D1-C6563DEC48AB}.Release|x86.Build.0 = Release|Any CPU
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|x64.ActiveCfg = Debug|x64
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|x64.Build.0 = Debug|x64
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|x86.ActiveCfg = Debug|x86
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Debug|x86.Build.0 = Debug|x86
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|x64.ActiveCfg = Release|x64
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|x64.Build.0 = Release|x64
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|x86.ActiveCfg = Release|x86
+		{B0D70AAA-A8B6-4B19-8B03-4E915878B603}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
