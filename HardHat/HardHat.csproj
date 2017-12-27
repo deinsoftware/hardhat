@@ -38,4 +38,8 @@
     <!-- Packages -->
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\_devTB\ToolBox\ToolBox.csproj" />
+    <ProjectReference Include="..\..\_devCC\Colorify\Colorify.csproj" />
+  </ItemGroup>
 </Project>
