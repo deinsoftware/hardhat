@@ -1,55 +1,59 @@
 {
-    "version": "0.1.0",
-    "command": "dotnet",
-    "isShellCommand": true,
-    "args": [],
+    "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
             "args": [
-                "${workspaceRoot}/dev/HardHat.csproj"
+                "build",
+                "${workspaceFolder}/HardHat/HardHat.csproj"
             ],
-            "isBuildCommand": true,
             "problemMatcher": "$msCompile"
         },
         {
-            "taskName": "run",
+            "label": "build tests",
+            "command": "dotnet",
+            "type": "process",
+            "group": "build",
             "args": [
-                "${workspaceRoot}/dev/HardHat.csproj"
+                "build",
+                "${workspaceFolder}/HardHat.Tests/HardHat.Tests.csproj"
             ],
-            "isBuildCommand": false,
             "problemMatcher": "$msCompile"
         },
         {
-            "taskName": "publish win",
+            "label": "publish win",
             "command": "dotnet",
             "args": [
                 "publish",
-                "${workspaceRoot}/dev/HardHat.csproj",
+                "${workspaceRoot}/HardHat/HardHat.csproj",
                 "-o",
-                "${workspaceRoot}/dist/win/",
+                "${workspaceRoot}/Distribution/win/",
                 "-c",
                 "release",
                 "-r",
                 "win10-x64"
             ],
-            "isBuildCommand": false,
             "problemMatcher": "$msCompile"
         },
         {
-            "taskName": "publish mac",
+            "label": "publish mac",
             "command": "dotnet",
             "args": [
                 "publish",
-                "${workspaceRoot}/dev/HardHat.csproj",
+                "${workspaceRoot}/HardHat/HardHat.csproj",
                 "-o",
-                "${workspaceRoot}/dist/mac/",
+                "${workspaceRoot}/Distribution/mac/",
                 "-c",
                 "release",
                 "-r",
                 "osx.10.12-x64"
             ],
-            "isBuildCommand": false,
             "problemMatcher": "$msCompile"
         }
     ]
