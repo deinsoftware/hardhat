@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Platform;
+using ToolBox.System;
 using ToolBox.Validations;
 using ct = dein.tools.Colorify.Type;
 
@@ -181,7 +182,7 @@ namespace HardHat {
             {
                 Section.Header("CONNECT DEVICE");
                 
-                _cp.ipl = Network.GetLocalIPAddress();
+                _cp.ipl = Network.GetLocalIPv4();
                 $"{" Current IP:", -25}".txtMuted();
                 $"{_cp.ipl}".txtDefault(ct.WriteLine);
 
@@ -244,7 +245,7 @@ namespace HardHat {
                 
                 Section.HorizontalRule();
 
-                _cp.ipb = Network.GetLocalIPBase(_cp.ipl);
+                _cp.ipb = Network.RemoveLastOctetIPv4(_cp.ipl);
                 $"{$" {_cp.ipb} ", -25}".txtInfo();
                 string opt = Console.ReadLine();
                 

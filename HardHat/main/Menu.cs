@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
-
+using ToolBox.System;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
@@ -24,7 +24,7 @@ namespace HardHat {
         public static void Status(string sel = null){
             try
             {
-                _cp.ipl = Network.GetLocalIPAddress();
+                _cp.ipl = Network.GetLocalIPv4();
 
                 if (!String.IsNullOrEmpty(sel))
                 {
