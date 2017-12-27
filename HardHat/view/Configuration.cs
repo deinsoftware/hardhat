@@ -4,6 +4,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Validations;
+
 using static dein.tools.Paths;
 
 using ct = dein.tools.Colorify.Type;
@@ -160,7 +162,7 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    Validation.Range(opt, 1, dirs.Count);
+                    Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
                     
                     var sel = dirs[Convert.ToInt32(opt) - 1].Slash();
                     _c.path.bsn = sel.Substring(sel.LastIndexOf("/") + 1);

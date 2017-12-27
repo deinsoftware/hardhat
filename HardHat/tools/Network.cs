@@ -3,6 +3,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Net.NetworkInformation;
 using System.Linq;
+using ToolBox.Transform;
 
 namespace dein.tools
 {
@@ -23,7 +24,7 @@ namespace dein.tools
 
         public static string GetLocalIPBase(string ip)
         {
-            ip = Strings.Remove(ip, $".{ip.Split('.').Last()}");
+            ip = Strings.RemoveWords(ip, $".{ip.Split('.').Last()}");
             return $"{ip}.";
         }
     }

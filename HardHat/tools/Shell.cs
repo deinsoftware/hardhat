@@ -7,6 +7,7 @@ using ct = dein.tools.Colorify.Type;
 using System.Reflection;
 using System.IO;
 using ToolBox.Platform;
+using ToolBox.Transform;
 
 namespace dein.tools
 {
@@ -204,7 +205,7 @@ namespace dein.tools
                 {
                     if (l.Contains(search))
                     {
-                        response = Strings.Remove(l, remove);
+                        response = Strings.RemoveWords(l, remove);
                         break;
                     }
                 }

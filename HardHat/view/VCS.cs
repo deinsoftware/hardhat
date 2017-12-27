@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Text;
+using ToolBox.Validations;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;

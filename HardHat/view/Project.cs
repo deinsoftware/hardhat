@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using ToolBox.Validations;
 using dein.tools;
+
 using static dein.tools.Paths;
 
 using ct = dein.tools.Colorify.Type;
@@ -110,8 +112,8 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    Validation.Range(opt, 1, dirs.Count);
-                    
+                    Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
+
                     var sel = dirs[Convert.ToInt32(opt) - 1].Slash();
                     _cp.spr = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
@@ -157,7 +159,7 @@ namespace HardHat {
                 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    Validation.Range(opt, 1, files.Count);
+                    Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
                     var sel = files[Convert.ToInt32(opt) - 1].Slash();
                     _cp.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
                 }

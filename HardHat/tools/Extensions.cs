@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ToolBox.Platform;
 using ToolBox.System;
+using ToolBox.Transform;
 using ct = dein.tools.Colorify.Type;
 
 namespace dein.tools
@@ -150,7 +151,7 @@ namespace dein.tools
                     .GetDirectories(sourcePath, "*.*", SearchOption.AllDirectories);
                 Parallel.ForEach(directories, dirPath =>
                 {
-                    $" [COPY] {Strings.Remove(dirPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
+                    $" [COPY] {Strings.RemoveWords(dirPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, destinationPath));
                 }); 
 
@@ -159,7 +160,7 @@ namespace dein.tools
                     .Where(f => isFiltered(filter, f));
                 Parallel.ForEach(files, newPath =>
                 {
-                    $"  [COPY] {Strings.Remove(newPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
+                    $"  [COPY] {Strings.RemoveWords(newPath,sourcePath).Slash()}".txtPrimary(ct.Shell);
                     File.Copy(newPath, newPath.Replace(sourcePath, destinationPath), overWrite);
                 }); 
             }
@@ -198,35 +199,6 @@ namespace dein.tools
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
             }
-        }
-    }
-
-    public static class Strings
-    {
-        public static string Remove(string request, params string[] remove){
-            string response = "";
-            try
-            {
-                response = request;
-                foreach (var r in remove)
-                {
-                    response = response.Replace(r, "");
-                }    
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex.Message);
-            }
-            return response;
-        }
-
-        public static bool SomeNullOrEmpty(params string[] values){
-            bool result = false;
-            foreach (var v in values)
-            {
-                result = result || String.IsNullOrEmpty(v);
-            }
-            return result;
         }
     }
 }

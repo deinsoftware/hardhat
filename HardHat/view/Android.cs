@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Platform;
-
+using ToolBox.Validations;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
@@ -148,7 +148,7 @@ namespace HardHat {
 
                     if (!String.IsNullOrEmpty(opt))
                     {
-                        Validation.Range(opt, 1, list.Length);
+                        Number.IsOnRange(1, Convert.ToInt32(opt), list.Length);
                         var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
                         _cp.adb.dvc = sel;
                     } else {
@@ -249,7 +249,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
-                    Validation.Range(opt, 1, 255);
+                    Number.IsOnRange(1, Convert.ToInt32(opt), 255);
                     _cp.adb.wip = $"{_cp.ipb}{opt}";
                 }
 
@@ -280,7 +280,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
-                    Validation.Range(opt, 5555, 5585);
+                    Number.IsOnRange(5555, Convert.ToInt32(opt), 5585);
                     _cp.adb.wpr = opt;
                 } else {
                     _cp.adb.wpr = "5555";

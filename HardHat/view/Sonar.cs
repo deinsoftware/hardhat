@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using ToolBox.Validations;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
@@ -126,7 +127,7 @@ namespace HardHat {
                 opt_ptc = opt_ptc?.ToLower();
 
                 if (!String.IsNullOrEmpty(opt_ptc)){
-                    Validation.Range(opt_ptc, 1, 2);
+                    Number.IsOnRange(1, Convert.ToInt32(opt_ptc), 2);
                     switch (opt_ptc)
                     {
                         case "1":
@@ -237,7 +238,7 @@ namespace HardHat {
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
-                    Validation.Range(opt, 0, 65536);
+                    Number.IsOnRange(0, Convert.ToInt32(opt), 65536);
                     _cp.snr.prt = opt;
                 } else {
                     _cp.snr.prt = "9000";

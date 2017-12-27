@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Validation = ToolBox.Validations.Strings;
+using Transform = ToolBox.Transform.Strings;
 using dein.tools;
 
 using ct = dein.tools.Colorify.Type;
+using ToolBox.Validations;
 
 namespace HardHat {
 
@@ -24,7 +27,7 @@ namespace HardHat {
             opts.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
             opts.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
             opts.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
-            opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.Number                      });
+            opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.ServerNumber                });
             opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
             opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
             opts.Add(new Option{opt="g>o" , stt=false, act=Gulp.Open                        });
@@ -50,7 +53,7 @@ namespace HardHat {
             }
             g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
             _cp.mnu.g_cnf = g_cnf.ToString();
-            _cp.mnu.g_val = !Strings.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf);
+            _cp.mnu.g_val = !Validation.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf);
             Options.Valid("g"  , Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
             Options.Valid("g>d", Variables.Valid("gp"));
@@ -59,9 +62,9 @@ namespace HardHat {
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
-            Options.Valid("gm" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gu" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gr" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("gm" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("gu" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
+            Options.Valid("gr" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
             Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
             Options.Valid("gl" , Variables.Valid("gp") && _cp.mnu.g_val);
         }
@@ -136,7 +139,7 @@ namespace HardHat {
                 opt_ptc = opt_ptc?.ToLower();
 
                 if (!String.IsNullOrEmpty(opt_ptc)){
-                    Validation.Range(opt_ptc, 1, 2);
+                    Number.IsOnRange(1, Convert.ToInt32(opt_ptc), 2);
                     switch (opt_ptc)
                     {
                         case "1":
@@ -213,7 +216,7 @@ namespace HardHat {
                     foreach (var file in files)
                     {
                         string f = file.Slash();
-                        $" {i, 2}] {Strings.Remove(f.Substring(f.LastIndexOf("/") + 1), _c.gulp.ext)}".txtPrimary(ct.WriteLine);
+                        $" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _c.gulp.ext)}".txtPrimary(ct.WriteLine);
                         i++;
                     }
                     if (!String.IsNullOrEmpty(_cp.gbs.dmn))
@@ -229,9 +232,9 @@ namespace HardHat {
                     
                     if (!String.IsNullOrEmpty(opt_dmn))
                     {
-                        Validation.Range(opt_dmn, 1, files.Count);
+                        Number.IsOnRange(1, Convert.ToInt32(opt_dmn), files.Count);
                         var sel = files[Convert.ToInt32(opt_dmn) - 1].Slash();
-                        _cp.gbs.dmn = Strings.Remove(sel.Substring(sel.LastIndexOf("/") + 1), _c.gulp.ext);
+                        _cp.gbs.dmn = Transform.RemoveWords(sel.Substring(sel.LastIndexOf("/") + 1), _c.gulp.ext);
                     } else {
                         if (String.IsNullOrEmpty(_cp.gbs.dmn)){
                             Message.Error();
@@ -286,7 +289,7 @@ namespace HardHat {
             }
         }
 
-        public static void Number() {
+        public static void ServerNumber() {
             Colorify.Default();
 
             try
@@ -309,7 +312,7 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt_srv))
                 {
-                    Validation.Number(opt_srv);
+                    Number.IsNumber(opt_srv);
                 } 
                 _cp.gbs.srv = opt_srv;
 

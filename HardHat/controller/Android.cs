@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Platform;
+using ToolBox.Transform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -15,7 +16,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"adb devices -l".Term();
-                response = Strings.Remove(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
+                response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
                 
                 if (
                     !String.IsNullOrEmpty(result.stdout) &&
@@ -74,7 +75,7 @@ namespace HardHat
                 string packagename = Shell.ExtractLine(result.stdout, "package:");
                 if (!String.IsNullOrEmpty(packagename)){
                     packagename = Shell.GetWord(packagename, 1);
-                    packagename = Strings.Remove(packagename, "name=", "'");
+                    packagename = Strings.RemoveWords(packagename, "name=", "'");
                 }
 
                 if (!String.IsNullOrEmpty(packagename)){
@@ -163,7 +164,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"adb devices -l".Term();
-                response = Strings.Remove(result.stdout, $"List of devices attached{Environment.NewLine}");
+                response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}");
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

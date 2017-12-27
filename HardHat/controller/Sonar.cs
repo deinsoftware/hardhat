@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Platform;
+using ToolBox.Validations;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -42,7 +43,7 @@ namespace HardHat
         public static void CmdBrowse(string url){
             try
             {
-                Validation.Url(url);
+                Web.IsUrl(url);
                 $"{url}".Browse();
             }
             catch (Exception Ex){

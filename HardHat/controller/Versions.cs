@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using dein.tools;
-
+using ToolBox.Transform;
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
@@ -54,7 +54,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"node -v".Term();
-                string response = Strings.Remove(result.stdout, "v");
+                string response = Strings.RemoveWords(result.stdout, "v");
                 Shell.Result(response);
             }
             catch (Exception Ex){
@@ -120,7 +120,7 @@ namespace HardHat
             {
                 Response result = new Response();
                 result = $"tsc -v".Term();
-                string response = Strings.Remove(result.stdout, "Version ");
+                string response = Strings.RemoveWords(result.stdout, "Version ");
                 Shell.Result(response);
             }
             catch (Exception Ex){
