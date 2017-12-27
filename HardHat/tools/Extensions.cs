@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using ToolBox.Platform;
-
+using ToolBox.System;
 using ct = dein.tools.Colorify.Type;
 
 namespace dein.tools
@@ -21,10 +21,10 @@ namespace dein.tools
             switch (OS.GetCurrent())
             {
                 case "win":
-                    path = path.Replace("~",$"{Env.Get("USERPROFILE")}");
+                    path = path.Replace("~",$"{Env.GetValue("USERPROFILE")}");
                     break;
                 case "mac":
-                    path = path.Replace("~",$"/Users/{Machine.User()}");
+                    path = path.Replace("~",$"/Users/{User.GetUserName()}");
                     break;
             }
             return path.Slash();

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using dein.tools;
+using ToolBox.System;
 
 namespace HardHat {
     
@@ -92,10 +93,10 @@ namespace HardHat {
         {
             try
             {
-                opt.stt = Env.Check(opt.nme);
+                opt.stt = Env.IsNullOrEmpty(opt.nme);
                 if (opt.stt)
                 {
-                    opt.vlu = Env.Get(opt.nme);
+                    opt.vlu = Env.GetValue(opt.nme);
                 } else {
                     opt.vlu = "";
                 }
@@ -133,7 +134,7 @@ namespace HardHat {
                 var option = list.Where(x => x.opt == opt).FirstOrDefault();
                 if (option != null)
                 {
-                    Env.Set(option.nme, val);
+                    Env.SetValue(option.nme, val);
                 }
             }
             catch (Exception Ex){
