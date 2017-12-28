@@ -7,10 +7,12 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/osx.10.12-x64": {
-      "HardHat/4.3.2": {
+      "HardHat/5.0.0": {
         "dependencies": {
+          "Colorify": "1.0.0",
           "Microsoft.NETCore.App": "2.0.0",
-          "Newtonsoft.Json": "10.0.3"
+          "Newtonsoft.Json": "10.0.3",
+          "ToolBox": "1.0.0"
         },
         "runtime": {
           "HardHat.dll": {}
@@ -753,11 +755,27 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         }
+      },
+      "Colorify/1.0.0": {
+        "dependencies": {
+          "ToolBox": "1.0.0"
+        },
+        "runtime": {
+          "Colorify.dll": {}
+        }
+      },
+      "ToolBox/1.0.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "10.0.3"
+        },
+        "runtime": {
+          "ToolBox.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "HardHat/4.3.2": {
+    "HardHat/5.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1356,6 +1374,16 @@
       "sha512": "sha512-lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
+    },
+    "Colorify/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ToolBox/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
