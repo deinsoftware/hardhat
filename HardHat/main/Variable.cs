@@ -93,7 +93,7 @@ namespace HardHat {
         {
             try
             {
-                opt.stt = Env.IsNullOrEmpty(opt.nme);
+                opt.stt = !Env.IsNullOrEmpty(opt.nme);
                 if (opt.stt)
                 {
                     opt.vlu = Env.GetValue(opt.nme);
