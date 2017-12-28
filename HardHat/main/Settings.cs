@@ -17,10 +17,6 @@ namespace HardHat
         public static Config Read(){
             Config config = new Config();
 
-            config.window = new WindowConfiguration();
-            config.window.height = 30;
-            config.window.width = 86;
-
             config.path = new PathConfiguration();
             switch (OS.GetCurrent())
             {
@@ -106,18 +102,11 @@ namespace HardHat
 
     class Config
     {
-        public WindowConfiguration      window      { get; set; }
         public PathConfiguration        path        { get; set; }
         public AndroidConfiguration     android     { get; set; }
         public GulpConfiguration        gulp        { get; set; }
         public VpnConfiguration         vpn         { get; set; }
         public PersonalConfiguration    personal    { get; set; }
-    }
-
-    class WindowConfiguration 
-    {
-        public int      height  { get; set; }
-        public int      width   { get; set; }
     }
 
     class PathConfiguration
