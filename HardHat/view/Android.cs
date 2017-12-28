@@ -407,7 +407,7 @@ namespace HardHat {
                 if (Directory.Exists(dirPath)){
                     string dir = Directory.EnumerateDirectories(dirPath).OrderByDescending(name => name).Take(1).FirstOrDefault();
                     string d = dir;
-                    lastVersion = _path.GetDirectoryName(d);
+                    lastVersion = _path.GetFileName(d);
                     if (currentVersion != lastVersion){
                         StringBuilder msg = new StringBuilder();
                         msg.Append($"There is a new Android Build Tools version installed.");

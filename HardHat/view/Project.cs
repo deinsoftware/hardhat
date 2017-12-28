@@ -89,7 +89,7 @@ namespace HardHat {
                     foreach (var dir in dirs)
                     {
                         string d = dir;
-                        _colorify.WriteLine($" {i, 2}] {_path.GetDirectoryName(d)}", txtPrimary);
+                        _colorify.WriteLine($" {i, 2}] {_path.GetFileName(d)}", txtPrimary);
                         i++;
                     }
                 }
@@ -107,7 +107,7 @@ namespace HardHat {
                     Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
 
                     var sel = dirs[Convert.ToInt32(opt) - 1];
-                    _config.personal.spr = _path.GetDirectoryName(sel);
+                    _config.personal.spr = _path.GetFileName(sel);
                 }
 
                 Menu.Start();
