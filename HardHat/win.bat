@@ -4,7 +4,9 @@ cls
 set dbg=%1
 
 :start
+:: Resize
 cls
+mode con:cols=86 lines=30
 if defined dbg (
     goto debug
 ) else (

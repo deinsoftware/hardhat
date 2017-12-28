@@ -22,7 +22,6 @@ namespace HardHat
             {
                 Factory();
                 Config();
-                Resize();
                 Upgrade();
                 
                 Menu.Start();
@@ -57,13 +56,6 @@ namespace HardHat
         private static void Config(){
             _config = Settings.Read();
             _config.personal.hst = User.GetMachine();
-        }
-
-        private static void Resize(){
-            if (OS.IsWin() && (_config.window.width + _config.window.height) > 0)
-            {
-                Console.SetWindowSize(_config.window.width, _config.window.height);
-            }
         }
 
         private static void Upgrade(){
