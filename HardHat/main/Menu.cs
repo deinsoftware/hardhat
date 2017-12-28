@@ -14,26 +14,17 @@ namespace HardHat {
     
     public static class Menu {
 
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Menu()
-        {
-            _c  = Program._config;
-            _cp = Program._config.personal;
-        }
-
         public static void Status(string sel = null){
             try
             {
-                _cp.ipl = Network.GetLocalIPv4();
+                _config.personal.ipl = Network.GetLocalIPv4();
 
                 if (!String.IsNullOrEmpty(sel))
                 {
-                    _cp.mnu.sel = sel;
+                    _config.personal.mnu.sel = sel;
                 }
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr ?? "");
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr ?? "");
                 Project.Status(dirPath);
                 Vcs.Status(dirPath);
                 Sonar.Status();
@@ -51,7 +42,7 @@ namespace HardHat {
             string name = Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString();
             string version = Assembly.GetEntryAssembly().GetName().Version.ToString();
 
-            Section.Header($" {name} # {version}|{_cp.hst} : {_cp.ipl} ");
+            Section.Header($" {name} # {version}|{_config.personal.hst} : {_config.personal.ipl} ");
 
             Status("m");
             Project.Start();
@@ -70,12 +61,12 @@ namespace HardHat {
         }
 
         public static void Route(string sel = "m", string dfl = "m") {
-            _cp.mnu.sel = sel?.ToLower();
-            if (!String.IsNullOrEmpty(_cp.mnu.sel)){
-                if (Options.Valid(_cp.mnu.sel))
+            _config.personal.mnu.sel = sel?.ToLower();
+            if (!String.IsNullOrEmpty(_config.personal.mnu.sel)){
+                if (Options.Valid(_config.personal.mnu.sel))
                 {
-                    Action act = Options.Action(_cp.mnu.sel, dfl);
-                    _cp.mnu.sel = dfl;
+                    Action act = Options.Action(_config.personal.mnu.sel, dfl);
+                    _config.personal.mnu.sel = dfl;
                     act.Invoke();
                 } else {
                     Message.Error();

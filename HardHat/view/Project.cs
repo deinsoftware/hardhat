@@ -16,14 +16,6 @@ namespace HardHat {
 
     public static class Project {
 
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Project()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
@@ -38,37 +30,37 @@ namespace HardHat {
         public static void Status(string dirPath){
             if (!Directory.Exists(dirPath))
             {
-                _cp.spr = "";
+                _config.personal.spr = "";
             }
             Options.Valid("p" , true);
-            string filePath = _path.Combine(dirPath, _c.android.prj, _c.android.bld, _cp.sfl ?? "");
+            string filePath = _path.Combine(dirPath, _config.android.prj, _config.android.bld, _config.personal.sfl ?? "");
             if (!File.Exists(filePath))
             {
-                _cp.sfl = "";
+                _config.personal.sfl = "";
             }
-            Options.Valid("pf", !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("pi", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
-            Options.Valid("pd", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
-            Options.Valid("pp", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
-            Options.Valid("ps", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
-            Options.Valid("pv", !Strings.SomeNullOrEmpty(_cp.spr, _cp.sfl));
+            Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("pd", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("ps", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
         }
 
         public static void Start() {
-            if (String.IsNullOrEmpty(_cp.spr))
+            if (String.IsNullOrEmpty(_config.personal.spr))
             {
                 $" [P] Select Project".txtPrimary(ct.WriteLine);
             } else {
                 $" [P] Selected Project: ".txtPrimary();
-                $"{_cp.spr}".txtDefault(ct.WriteLine);
+                $"{_config.personal.spr}".txtDefault(ct.WriteLine);
             }
             
-            if (String.IsNullOrEmpty(_cp.spr))
+            if (String.IsNullOrEmpty(_config.personal.spr))
             {
                 $"   [F] Select File".txtStatus(ct.WriteLine,   Options.Valid("pf"));
             } else {
                 $"   [F] Selected File:  ".txtPrimary();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
             }
 
             $"{"   [I] Install" , -17}".txtStatus(ct.Write,     Options.Valid("pi"));
@@ -87,12 +79,12 @@ namespace HardHat {
             {
                 Section.Header("SELECT PROJECT");
                 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj);
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj);
                 dirPath.Exists("Please review your configuration file.");
-                List<string> dirs = dirPath.Directories(_c.path.flt, "projects");
+                List<string> dirs = dirPath.Directories(_config.path.flt, "projects");
 
                 if (dirs.Count < 1) {
-                    _cp.spr = "";
+                    _config.personal.spr = "";
                 } else {
                     var i = 1;
                     foreach (var dir in dirs)
@@ -116,7 +108,7 @@ namespace HardHat {
                     Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
 
                     var sel = dirs[Convert.ToInt32(opt) - 1];
-                    _cp.spr = sel.Substring(sel.LastIndexOf("/") + 1);
+                    _config.personal.spr = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
                 Menu.Start();
@@ -133,13 +125,13 @@ namespace HardHat {
             {
                 Section.Header("SELECT FILE");
                 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld);
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
                 dirPath.Exists("Please review your configuration file or make a build first.");
-                List<string> files = dirPath.Files($"*{_c.android.ext}", "Please make a build first.");
+                List<string> files = dirPath.Files($"*{_config.android.ext}", "Please make a build first.");
                 
                 if (files.Count < 1)
                 {
-                    _cp.sfl = "";
+                    _config.personal.sfl = "";
                 } else {
                     var i = 1;
                     foreach (var file in files)
@@ -162,7 +154,7 @@ namespace HardHat {
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
                     var sel = files[Convert.ToInt32(opt) - 1];
-                    _cp.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
+                    _config.personal.sfl = sel.Substring(sel.LastIndexOf("/") + 1);
                 }
 
                 Menu.Start();
@@ -179,7 +171,7 @@ namespace HardHat {
                 Section.Header("DUPLICATE FILE");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
 
                 $"".fmNewLine();
                 $" Write a new name, without include his extension.".txtPrimary(ct.WriteLine);
@@ -194,8 +186,8 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(_path.Combine(dirPath, _cp.sfl), _path.Combine(dirPath, $"{opt}{_c.android.ext}"));
-                    _cp.sfl = $"{opt}{_c.android.ext}";
+                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.sfl), _path.Combine(dirPath, $"{opt}{_config.android.ext}"));
+                    _config.personal.sfl = $"{opt}{_config.android.ext}";
                 }
 
                 Menu.Start();
@@ -212,13 +204,13 @@ namespace HardHat {
             {
                 Section.Header("FILE PATH");
                 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
 
                 $"{" Path:", -10}".txtMuted();
                 $"{dirPath}".txtDefault(ct.WriteLine);
 
                 $"{" File:", -10}".txtMuted();
-                $"{_cp.sfl}".txtDefault(ct.WriteLine);
+                $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
                 $"{" [P] Copy Path", -34}".txtInfo();
@@ -236,7 +228,7 @@ namespace HardHat {
                         Clipboard.Copy(dirPath);
                         break;
                     case "f":
-                        Clipboard.Copy(_path.Combine(dirPath, _cp.sfl));
+                        Clipboard.Copy(_path.Combine(dirPath, _config.personal.sfl));
                         break;
                     case "":
                         //Cancel

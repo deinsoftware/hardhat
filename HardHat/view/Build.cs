@@ -11,15 +11,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     public static partial class Build {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Build()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
-
+        
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
             opts.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
@@ -32,27 +24,27 @@ namespace HardHat {
 
         public static void Status(){
             StringBuilder b_cnf = new StringBuilder();
-            b_cnf.Append(_cp.gdl.dmn ?? "");
-            b_cnf.Append(Selector.Name(Selector.Flavor, _cp.gdl.flv));
-            b_cnf.Append(Modes.Name(_cp.gdl.mde));
-            _cp.mnu.b_cnf = b_cnf.ToString();
-            _cp.mnu.b_val = !Strings.SomeNullOrEmpty(_cp.spr, _cp.gdl.mde, _cp.gdl.flv, _cp.mnu.b_cnf);
+            b_cnf.Append(_config.personal.gdl.dmn ?? "");
+            b_cnf.Append(Selector.Name(Selector.Flavor, _config.personal.gdl.flv));
+            b_cnf.Append(Modes.Name(_config.personal.gdl.mde));
+            _config.personal.mnu.b_cnf = b_cnf.ToString();
+            _config.personal.mnu.b_val = !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.gdl.mde, _config.personal.gdl.flv, _config.personal.mnu.b_cnf);
             Options.Valid("b"  , Variables.Valid("gh"));
             Options.Valid("b>d", Variables.Valid("gh"));
             Options.Valid("b>f", Variables.Valid("gh"));
             Options.Valid("b>m", Variables.Valid("gh"));
-            Options.Valid("bp" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("bc" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("bg" , Variables.Valid("gh") && _cp.mnu.b_val);
+            Options.Valid("bp" , Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("bc" , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("bg" , Variables.Valid("gh") && _config.personal.mnu.b_val);
         }
 
         public static void Start(){
-            if (String.IsNullOrEmpty(_cp.mnu.b_cnf))
+            if (String.IsNullOrEmpty(_config.personal.mnu.b_cnf))
             {
                 $" [B] Build".txtStatus(ct.WriteLine,                Options.Valid("b"));
             } else {
                 $" [B] Build: ".txtStatus(ct.Write,                  Options.Valid("b"));
-                Section.Configuration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.Configuration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
             }
             $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
             $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
@@ -67,13 +59,13 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
                 $"".fmNewLine();
-                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gdl.dmn}".txtDefault(ct.WriteLine);
-                string b_flv = Selector.Name(Selector.Flavor, _cp.gdl.flv);
+                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_config.personal.gdl.dmn}".txtDefault(ct.WriteLine);
+                string b_flv = Selector.Name(Selector.Flavor, _config.personal.gdl.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
-                string b_mde = Modes.Name(_cp.gdl.mde);
+                string b_mde = Modes.Name(_config.personal.gdl.mde);
                 $"{" [M] Mode:"         , -25}".txtPrimary();   $"{b_mde}".txtDefault(ct.WriteLine);
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
@@ -103,7 +95,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > DIMENSION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
                 $"".fmNewLine();
                 $" Write a project dimension:".txtPrimary(ct.WriteLine);
@@ -118,9 +110,9 @@ namespace HardHat {
                 string opt_dmn = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt_dmn))
                 {
-                    _cp.gdl.dmn = $"{opt_dmn}";
+                    _config.personal.gdl.dmn = $"{opt_dmn}";
                 } else {
-                    _cp.gdl.dmn = $"";
+                    _config.personal.gdl.dmn = $"";
                 }
 
                 Menu.Status();
@@ -138,7 +130,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > FLAVOR");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
                 Selector.Start(Selector.Flavor, "a");
                 
@@ -152,10 +144,10 @@ namespace HardHat {
                     case "s":
                     case "p":
                     case "d":
-                        _cp.gdl.flv = opt_flv;
+                        _config.personal.gdl.flv = opt_flv;
                         break;
                     case "":
-                        _cp.gdl.flv = "a";
+                        _config.personal.gdl.flv = "a";
                         break;
                     default:
                         Message.Error();
@@ -177,7 +169,7 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > MODE");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
                 $"".fmNewLine();
                 $" {"D", 2}] Debug".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
@@ -195,10 +187,10 @@ namespace HardHat {
                 {
                     case "d":
                     case "r":
-                        _cp.gdl.mde = opt_mde;
+                        _config.personal.gdl.mde = opt_mde;
                         break;
                     case "":
-                        _cp.gdl.mde = "d";
+                        _config.personal.gdl.mde = "d";
                         break;
                     default:
                         Message.Error();
@@ -220,8 +212,8 @@ namespace HardHat {
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
-                CmdGradle(dirPath, _cp.mnu.b_cnf);
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
+                CmdGradle(dirPath, _config.personal.mnu.b_cnf);
 
                 Menu.Start();
             }
@@ -237,7 +229,7 @@ namespace HardHat {
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -255,10 +247,10 @@ namespace HardHat {
             {
                 Section.Header("BUILD CONFIGURATION > PROPERTIES");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.b_val, _cp.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
-                string sourcePath = _path.Combine(Variables.Value("bp"), _c.path.bsn);
-                string destinationPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj); 
+                string sourcePath = _path.Combine(Variables.Value("bp"), _config.path.bsn);
+                string destinationPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
                 
                 $"".fmNewLine();
                 List<string> filter = new List<string>() { 

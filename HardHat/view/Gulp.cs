@@ -14,14 +14,6 @@ using ToolBox.Validations;
 namespace HardHat {
 
     public static partial class Gulp {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Gulp()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
@@ -41,20 +33,20 @@ namespace HardHat {
 
         public static void Status(){
             StringBuilder g_cnf = new StringBuilder();
-            g_cnf.Append($"{_cp.gbs.ptc}://");
-            if (!String.IsNullOrEmpty(_cp.gbs.dmn))
+            g_cnf.Append($"{_config.personal.gbs.ptc}://");
+            if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
             {
-                g_cnf.Append($"{_cp.gbs.dmn}/");
+                g_cnf.Append($"{_config.personal.gbs.dmn}/");
             }
-            g_cnf.Append(Selector.Name(Selector.Flavor, _cp.gbs.flv));
-            g_cnf.Append(_cp.gbs.srv);
-            if (!String.IsNullOrEmpty(_cp.gbs.ipt))
+            g_cnf.Append(Selector.Name(Selector.Flavor, _config.personal.gbs.flv));
+            g_cnf.Append(_config.personal.gbs.srv);
+            if (!String.IsNullOrEmpty(_config.personal.gbs.ipt))
             {
-                g_cnf.Append($"/{_cp.gbs.ipt}");
+                g_cnf.Append($"/{_config.personal.gbs.ipt}");
             }
-            g_cnf.Append(_cp.gbs.syn ? "+Sync" : "");
-            _cp.mnu.g_cnf = g_cnf.ToString();
-            _cp.mnu.g_val = !Validation.SomeNullOrEmpty(_cp.spr, _cp.gbs.dmn, _cp.mnu.g_cnf);
+            g_cnf.Append(_config.personal.gbs.syn ? "+Sync" : "");
+            _config.personal.mnu.g_cnf = g_cnf.ToString();
+            _config.personal.mnu.g_val = !Validation.SomeNullOrEmpty(_config.personal.spr, _config.personal.gbs.dmn, _config.personal.mnu.g_cnf);
             Options.Valid("g"  , Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
             Options.Valid("g>d", Variables.Valid("gp"));
@@ -63,20 +55,20 @@ namespace HardHat {
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
-            Options.Valid("gm" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gu" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gr" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_cp.spr));
-            Options.Valid("gs" , Variables.Valid("gp") && _cp.mnu.g_val);
-            Options.Valid("gl" , Variables.Valid("gp") && _cp.mnu.g_val);
+            Options.Valid("gm" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("gu" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("gr" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
+            Options.Valid("gs" , Variables.Valid("gp") && _config.personal.mnu.g_val);
+            Options.Valid("gl" , Variables.Valid("gp") && _config.personal.mnu.g_val);
         }
 
         public static void Start() {
-            if (String.IsNullOrEmpty(_cp.mnu.g_cnf))
+            if (String.IsNullOrEmpty(_config.personal.mnu.g_cnf))
             {
                 $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
             } else {
                 $" [G] Gulp: ".txtStatus(ct.Write,              Options.Valid("g"));
-                Section.Configuration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.Configuration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
             }
             $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));
             $"{"[U] Uglify"    , -17}".txtStatus(ct.Write,      Options.Valid("gu"));
@@ -93,17 +85,17 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 $"".fmNewLine();
-                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_cp.gbs.ptc}".txtDefault(ct.WriteLine);
-                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_cp.gbs.ipt}".txtDefault(ct.WriteLine);
-                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_cp.gbs.dmn}".txtDefault(ct.WriteLine);
-                string g_cnf = Selector.Name(Selector.Flavor, _cp.gbs.flv);
+                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_config.personal.gbs.ptc}".txtDefault(ct.WriteLine);
+                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_config.personal.gbs.ipt}".txtDefault(ct.WriteLine);
+                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_config.personal.gbs.dmn}".txtDefault(ct.WriteLine);
+                string g_cnf = Selector.Name(Selector.Flavor, _config.personal.gbs.flv);
                 $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
-                $"{" [N] Number:"       , -25}".txtPrimary();   $"{_cp.gbs.srv}".txtDefault(ct.WriteLine);
-                $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_cp.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
-                $"{" [O] Open:"         , -25}".txtPrimary();   $"{(_cp.gbs.opn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
+                $"{" [N] Number:"       , -25}".txtPrimary();   $"{_config.personal.gbs.srv}".txtDefault(ct.WriteLine);
+                $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_config.personal.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
+                $"{" [O] Open:"         , -25}".txtPrimary();   $"{(_config.personal.gbs.opn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
 
                 $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
 
@@ -132,7 +124,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "PROTOCOL");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 Selector.Start(Selector.Protocol, "1");
 
@@ -144,17 +136,17 @@ namespace HardHat {
                     switch (opt_ptc)
                     {
                         case "1":
-                            _cp.gbs.ptc = "http";
+                            _config.personal.gbs.ptc = "http";
                             break;
                         case "2":
-                            _cp.gbs.ptc = "https";
+                            _config.personal.gbs.ptc = "https";
                             break;
                         default:
                             Message.Error();
                             break;
                     }
                 } else {
-                    _cp.gbs.ptc = "http";
+                    _config.personal.gbs.ptc = "http";
                 }
 
                 Menu.Status();
@@ -172,7 +164,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "INTERNAL PATH");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
@@ -185,7 +177,7 @@ namespace HardHat {
             
                 $"{" Make your choice: ", -25}".txtInfo();
                 string opt_ipt = Console.ReadLine();
-                _cp.gbs.ipt = $"{opt_ipt}";
+                _config.personal.gbs.ipt = $"{opt_ipt}";
 
                 Menu.Status();
                 Select();
@@ -202,25 +194,25 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "DIMENSION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 $"".fmNewLine();
-                string dirPath = _path.Combine(Variables.Value("gp"), _c.gulp.srv); 
+                string dirPath = _path.Combine(Variables.Value("gp"), _config.gulp.srv); 
                 dirPath.Exists("Please review your configuration file.");
-                List<string> files = dirPath.Files($"*{_c.gulp.ext}");
+                List<string> files = dirPath.Files($"*{_config.gulp.ext}");
                 
                 if (files.Count < 1)
                 {
-                    _cp.gbs.dmn = "";
+                    _config.personal.gbs.dmn = "";
                 } else {
                     var i = 1;
                     foreach (var file in files)
                     {
                         string f = file;
-                        $" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _c.gulp.ext)}".txtPrimary(ct.WriteLine);
+                        $" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _config.gulp.ext)}".txtPrimary(ct.WriteLine);
                         i++;
                     }
-                    if (!String.IsNullOrEmpty(_cp.gbs.dmn))
+                    if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
                     {
                         $"".fmNewLine();
                         $"{"[EMPTY] Current", 82}".txtInfo(ct.WriteLine);
@@ -235,9 +227,9 @@ namespace HardHat {
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt_dmn), files.Count);
                         var sel = files[Convert.ToInt32(opt_dmn) - 1];
-                        _cp.gbs.dmn = Transform.RemoveWords(sel.Substring(sel.LastIndexOf("/") + 1), _c.gulp.ext);
+                        _config.personal.gbs.dmn = Transform.RemoveWords(sel.Substring(sel.LastIndexOf("/") + 1), _config.gulp.ext);
                     } else {
-                        if (String.IsNullOrEmpty(_cp.gbs.dmn)){
+                        if (String.IsNullOrEmpty(_config.personal.gbs.dmn)){
                             Message.Error();
                         }
                     }
@@ -258,7 +250,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "FLAVOR");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 Selector.Start(Selector.Flavor, "a");
                 
@@ -272,10 +264,10 @@ namespace HardHat {
                     case "s":
                     case "p":
                     case "d":
-                        _cp.gbs.flv = opt_flv;
+                        _config.personal.gbs.flv = opt_flv;
                         break;
                     case "":
-                        _cp.gbs.flv = "a";
+                        _config.personal.gbs.flv = "a";
                         break;
                     default:
                         Message.Error();
@@ -297,7 +289,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "NUMBER");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 $"".fmNewLine();
                 $" Write a server number:".txtPrimary(ct.WriteLine);
@@ -315,7 +307,7 @@ namespace HardHat {
                 {
                     Number.IsNumber(opt_srv);
                 } 
-                _cp.gbs.srv = opt_srv;
+                _config.personal.gbs.srv = opt_srv;
 
                 Menu.Status();
                 Select();
@@ -332,7 +324,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "SYNC");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 Selector.Start(Selector.Logical, "n");
 
@@ -342,11 +334,11 @@ namespace HardHat {
                 switch (opt_syn)
                 {
                     case "y":
-                        _cp.gbs.syn = true;
+                        _config.personal.gbs.syn = true;
                         break;
                     case "n":
                     case "":
-                        _cp.gbs.syn = false;
+                        _config.personal.gbs.syn = false;
                         break;
                     default:
                         Message.Error();
@@ -368,7 +360,7 @@ namespace HardHat {
             {
                 Section.Header("GULP", "SERVER", "OPEN");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
                 Selector.Start(Selector.Logical, "y");
                 
@@ -379,10 +371,10 @@ namespace HardHat {
                 {
                     case "y":
                     case "":
-                        _cp.gbs.opn = true;
+                        _config.personal.gbs.opn = true;
                         break;
                     case "n":
-                        _cp.gbs.opn = false;
+                        _config.personal.gbs.opn = false;
                         break;
                     default:
                         Message.Error();
@@ -404,9 +396,9 @@ namespace HardHat {
             {
                 Section.Header("GULP", "MAKE");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr); 
 
                 $"".fmNewLine();
                 $" --> Making...".txtInfo(ct.WriteLine);
@@ -429,9 +421,9 @@ namespace HardHat {
             {
                 Section.Header("GULP", "UGLIFY");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.cmp); 
 
                 string[] dirs = new string[] {
                     _path.Combine(Variables.Value("gp"),"www"),
@@ -447,7 +439,7 @@ namespace HardHat {
                 }
 
                 $"".fmNewLine();
-                List<string> filter = new List<string>(_c.android.flt);
+                List<string> filter = new List<string>(_config.android.flt);
 
                 $" --> Copying...".txtInfo(ct.WriteLine);
                 $"{" From:", -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
@@ -483,9 +475,9 @@ namespace HardHat {
             {
                 Section.Header("GULP", "REVERT");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_cp.mnu.g_val, _cp.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.cmp); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.cmp); 
                 string dirSource = _path.Combine(Variables.Value("gp"),"www");
                 $"".fmNewLine();
                 $" --> Reverting...".txtInfo(ct.WriteLine);
@@ -508,12 +500,12 @@ namespace HardHat {
 
             try
             {
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr);
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr);
                 CmdServer(
                     dirPath,
                     _path.Combine(Variables.Value("gp")),
-                    _cp.gbs,
-                    _cp.ipl
+                    _config.personal.gbs,
+                    _config.personal.ipl
                 );
                 Menu.Start();
             }
@@ -531,7 +523,7 @@ namespace HardHat {
 
                 CmdLog(
                     _path.Combine(Variables.Value("gp")),
-                    _cp.gbs
+                    _config.personal.gbs
                 );
                 Menu.Start();
             }

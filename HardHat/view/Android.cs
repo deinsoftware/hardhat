@@ -14,14 +14,6 @@ using static HardHat.Program;
 namespace HardHat {
 
     public static partial class Adb {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Adb()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
@@ -30,15 +22,15 @@ namespace HardHat {
         }
 
         public static void Start(){
-            if (String.IsNullOrEmpty(_cp.adb.dvc))
+            if (String.IsNullOrEmpty(_config.personal.adb.dvc))
             {
                 $" [A] ADB".txtMuted(ct.WriteLine);
             } else {
                 $"[A] ADB: ".txtMuted();
-                $"{_cp.adb.dvc}".txtDefault(ct.WriteLine);
+                $"{_config.personal.adb.dvc}".txtDefault(ct.WriteLine);
             }
             $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
-            if (!_cp.adb.wst)
+            if (!_config.personal.adb.wst)
             {
                 $"{"[W] WiFi Connect"   , -34}".txtPrimary(ct.Write);
             } else {
@@ -56,18 +48,18 @@ namespace HardHat {
                 Section.Header("INSTALL FILE");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
                 $"".fmNewLine();
                 $" --> Checking devices...".txtInfo(ct.WriteLine);
                 if (CmdDevices()){
                     $"".fmNewLine();
                     $" --> Installing...".txtInfo(ct.WriteLine);
-                    Response result = CmdInstall(dirPath, _cp.adb.dvc);
+                    Response result = CmdInstall(dirPath, _config.personal.adb.dvc);
                     if (result.code == 0) {
                         $"".fmNewLine();
                         $" --> Launching...".txtInfo(ct.WriteLine);
-                        CmdLaunch(dirPath, _cp.adb.dvc);
+                        CmdLaunch(dirPath, _config.personal.adb.dvc);
                     }
 
                     Section.HorizontalRule();
@@ -90,11 +82,11 @@ namespace HardHat {
             {
                 Section.Header("ADB KILL/RESTART");
                 
-                if (_cp.adb.wst)
+                if (_config.personal.adb.wst)
                 {
                     $" --> Disconnecting device...".txtInfo(ct.WriteLine);
-                    CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
-                    _cp.adb.wst = false;
+                    CmdDisconnect(_config.personal.adb.wip, _config.personal.adb.wpr);
+                    _config.personal.adb.wst = false;
                     $"".fmNewLine();
                 }
                 
@@ -105,7 +97,7 @@ namespace HardHat {
                 $" --> Start Server...".txtInfo(ct.WriteLine);
                 CmdStartServer();
 
-                _cp.adb.dvc = "";
+                _config.personal.adb.dvc = "";
 
                 Section.HorizontalRule();
                 Section.Pause();
@@ -152,12 +144,12 @@ namespace HardHat {
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt), list.Length);
                         var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
-                        _cp.adb.dvc = sel;
+                        _config.personal.adb.dvc = sel;
                     } else {
-                        _cp.adb.dvc = "";
+                        _config.personal.adb.dvc = "";
                     }
                 } else {
-                    _cp.adb.dvc = "";
+                    _config.personal.adb.dvc = "";
                     Message.Alert(" No device found.");
                 }
                 
@@ -169,7 +161,7 @@ namespace HardHat {
         }
 
         public static void Wireless(){
-            if (!_cp.adb.wst) { 
+            if (!_config.personal.adb.wst) { 
                 Adb.Configuration(); 
             } else { 
                 Adb.Disconnect(); 
@@ -183,16 +175,16 @@ namespace HardHat {
             {
                 Section.Header("CONNECT DEVICE");
                 
-                _cp.ipl = Network.GetLocalIPv4();
+                _config.personal.ipl = Network.GetLocalIPv4();
                 $"{" Current IP:", -25}".txtMuted();
-                $"{_cp.ipl}".txtDefault(ct.WriteLine);
+                $"{_config.personal.ipl}".txtDefault(ct.WriteLine);
 
                 $"".fmNewLine();
-                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{_cp.adb.wip}".txtDefault(ct.WriteLine);
-                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_cp.adb.wpr}".txtDefault(ct.WriteLine);
+                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{_config.personal.adb.wip}".txtDefault(ct.WriteLine);
+                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_config.personal.adb.wpr}".txtDefault(ct.WriteLine);
                 
                 $"".fmNewLine();
-                $"{" [C] Connect"     , -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_cp.adb.wip));
+                $"{" [C] Connect"     , -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_config.personal.adb.wip));
                 $"{"[EMPTY] Cancel"   , -17}".txtDanger(ct.WriteLine);
 
                 Section.HorizontalRule();
@@ -209,7 +201,7 @@ namespace HardHat {
                         Port();
                         break;
                     case "c":
-                        if (!String.IsNullOrEmpty(_cp.adb.wip))
+                        if (!String.IsNullOrEmpty(_config.personal.adb.wip))
                         {
                             Connect();
                             Message.Error();
@@ -219,7 +211,7 @@ namespace HardHat {
                         Menu.Start();
                         break;
                     default:
-                        _cp.mnu.sel = "aw";
+                        _config.personal.mnu.sel = "aw";
                         break;
                 }
 
@@ -246,13 +238,13 @@ namespace HardHat {
                 
                 Section.HorizontalRule();
 
-                _cp.ipb = Network.RemoveLastOctetIPv4(_cp.ipl);
-                $"{$" {_cp.ipb} ", -25}".txtInfo();
+                _config.personal.ipb = Network.RemoveLastOctetIPv4(_config.personal.ipl);
+                $"{$" {_config.personal.ipb} ", -25}".txtInfo();
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
                     Number.IsOnRange(1, Convert.ToInt32(opt), 255);
-                    _cp.adb.wip = $"{_cp.ipb}{opt}";
+                    _config.personal.adb.wip = $"{_config.personal.ipb}{opt}";
                 }
 
                 Menu.Status();
@@ -283,9 +275,9 @@ namespace HardHat {
                 
                 if (!String.IsNullOrEmpty(opt)){
                     Number.IsOnRange(5555, Convert.ToInt32(opt), 5585);
-                    _cp.adb.wpr = opt;
+                    _config.personal.adb.wpr = opt;
                 } else {
-                    _cp.adb.wpr = "5555";
+                    _config.personal.adb.wpr = "5555";
                 }
 
                 Menu.Status();
@@ -304,8 +296,8 @@ namespace HardHat {
                 Section.Header("CONNECT DEVICE");
                 
                 $" --> Connecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdConnect(_cp.adb.wip, _cp.adb.wpr);
-                _cp.adb.wst = connected;
+                bool connected = CmdConnect(_config.personal.adb.wip, _config.personal.adb.wpr);
+                _config.personal.adb.wst = connected;
 
                 Section.HorizontalRule();
                 Section.Pause();
@@ -324,11 +316,11 @@ namespace HardHat {
                 Section.Header("DISCONNECT DEVICE");
                 
                 $" --> Disconnecting...".txtInfo(ct.WriteLine);
-                bool connected = CmdDisconnect(_cp.adb.wip, _cp.adb.wpr);
-                _cp.adb.wst = connected;
-                if (_cp.adb.dvc == $"{_cp.adb.wip}:{_cp.adb.wpr}")
+                bool connected = CmdDisconnect(_config.personal.adb.wip, _config.personal.adb.wpr);
+                _config.personal.adb.wst = connected;
+                if (_config.personal.adb.dvc == $"{_config.personal.adb.wip}:{_config.personal.adb.wpr}")
                 {
-                    _cp.adb.dvc = "";
+                    _config.personal.adb.dvc = "";
                 }
 
                 Section.HorizontalRule();
@@ -343,14 +335,6 @@ namespace HardHat {
     }
 
     public static partial class BuildTools {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static BuildTools()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
         
         public static void SignerVerify() {
             Colorify.Default();
@@ -360,7 +344,7 @@ namespace HardHat {
                 Section.Header("SIGNER VERIFY");
                 Section.SelectedFile();
                 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
                 $"".fmNewLine();
                 $" --> Verifying...".txtInfo(ct.WriteLine);
@@ -384,7 +368,7 @@ namespace HardHat {
                 Section.Header("INFORMATION VALUES");
                 Section.SelectedFile();
                 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr, _c.android.prj, _c.android.bld, _cp.sfl); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
                 $"".fmNewLine();
                 $" --> Dump Badging...".txtInfo(ct.WriteLine);

@@ -4,19 +4,12 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     public static partial class Modes {
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Modes()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static string Name(string mde){
             try {

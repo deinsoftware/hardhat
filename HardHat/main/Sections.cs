@@ -4,20 +4,12 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using static HardHat.Program;
 
 using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     public static class Section {
-
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
-
-        static Section()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static void Header(string title, params string[] sections){
             $"=".bgInfo(ct.Repeat);
@@ -42,7 +34,7 @@ namespace HardHat {
 
         public static void SelectedProject(){
             $"{" Selected Project:" , -25}".txtMuted();
-            $"{_cp.spr}".txtDefault(ct.WriteLine);
+            $"{_config.personal.spr}".txtDefault(ct.WriteLine);
         }
 
         public static void CurrentConfiguration(bool val, string cnf){
@@ -64,7 +56,7 @@ namespace HardHat {
 
         public static void SelectedFile(){
             $"{" Selected File:"    , -25}".txtMuted();
-            $"{_cp.sfl}".txtDefault(ct.WriteLine);
+            $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
         }
 
         public static void HorizontalRule() {

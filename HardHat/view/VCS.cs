@@ -10,15 +10,7 @@ using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     public static class Vcs {
-        
-        private static Config _c { get; set; }
-        private static PersonalConfiguration _cp { get; set; }
 
-        static Vcs()
-        {
-            _c = Program._config;
-            _cp = Program._config.personal;
-        }
 
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="vd"  , stt=false, act=Vcs.Discard                      });
@@ -29,20 +21,20 @@ namespace HardHat {
         }
 
         public static void Status(string dirPath){
-            _cp.mnu.v_bnc = "";
-            if (!String.IsNullOrEmpty(_cp.spr)){
+            _config.personal.mnu.v_bnc = "";
+            if (!String.IsNullOrEmpty(_config.personal.spr)){
                 string bnc = Git.CmdBranch(dirPath);
                 if (!String.IsNullOrEmpty(bnc))
                 {
-                    _cp.mnu.v_bnc = $"git://{Git.CmdBranch(dirPath)}";
+                    _config.personal.mnu.v_bnc = $"git://{Git.CmdBranch(dirPath)}";
                 } 
             }
-            Options.Valid("v"   , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-            Options.Valid("vd"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-            Options.Valid("vp"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-            Options.Valid("vr"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
-            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_cp.spr, _cp.mnu.v_bnc));
+            Options.Valid("v"   , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
+            Options.Valid("vd"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
+            Options.Valid("vp"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
+            Options.Valid("vr"  , Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
+            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
+            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.mnu.v_bnc));
         }
 
         public static void Start() {
@@ -51,7 +43,7 @@ namespace HardHat {
                 $" [V] VCS".txtMuted(ct.WriteLine);
             } else {
                 $" [V] VCS: ".txtMuted(ct.Write);
-                $"{_cp.mnu.v_bnc}".txtDefault(ct.WriteLine);
+                $"{_config.personal.mnu.v_bnc}".txtDefault(ct.WriteLine);
             }
             $"{"   [D] Discard" , -34}".txtStatus(ct.Write,     Options.Valid("vd"));
             $"{"[P] Pull"       , -34}".txtStatus(ct.Write,     Options.Valid("vp"));
@@ -88,7 +80,7 @@ namespace HardHat {
                 Section.Header("GIT");
                 Section.SelectedProject();
 
-                string dirPath = _path.Combine(_c.path.dir, _c.path.bsn, _c.path.prj, _cp.spr); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr); 
 
                 if (discard) {
                     $"".fmNewLine();
