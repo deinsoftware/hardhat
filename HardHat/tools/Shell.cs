@@ -66,7 +66,6 @@ namespace dein.tools
             {
                 Exceptions.General(Ex.Message);
             }
-                
         }
 
         public static Response Term (this string cmd, Output? output = Output.Hidden, string dir = ""){

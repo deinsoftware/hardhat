@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [5.0.0] - 2017-12-28
+
+**Changed:**
+
+* Replace internal classes with [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) libraries.
+
 ## [4.3.2] - 2017-12-14
 
 **Added:**
