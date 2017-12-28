@@ -27,7 +27,6 @@ function fxUpdate() {
     echo " UPDATE "
     echo "======================================================================================="
     echo "";
-
     echo " --> Updating... "
     updated="$(git pull)"
     if [ "${updated}" != "Already up-to-date." ]; then 
