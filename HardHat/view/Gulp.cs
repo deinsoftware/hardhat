@@ -209,7 +209,7 @@ namespace HardHat {
                     foreach (var file in files)
                     {
                         string f = file;
-                        _colorify.WriteLine($" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _config.gulp.ext)}", txtPrimary);
+                        _colorify.WriteLine($" {i, 2}] {Transform.RemoveWords(_path.GetFileName(f), _config.gulp.ext)}", txtPrimary);
                         i++;
                     }
                     if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
@@ -227,7 +227,7 @@ namespace HardHat {
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt_dmn), files.Count);
                         var sel = files[Convert.ToInt32(opt_dmn) - 1];
-                        _config.personal.gbs.dmn = Transform.RemoveWords(sel.Substring(sel.LastIndexOf("/") + 1), _config.gulp.ext);
+                        _config.personal.gbs.dmn = Transform.RemoveWords(_path.GetFileName(sel), _config.gulp.ext);
                     } else {
                         if (String.IsNullOrEmpty(_config.personal.gbs.dmn)){
                             Message.Error();
