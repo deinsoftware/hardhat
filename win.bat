@@ -4,7 +4,9 @@ cls
 set dbg=%1
 
 :start
+:: Resize
 cls
+mode con:cols=86 lines=30
 if defined dbg (
     goto debug
 ) else (
@@ -29,7 +31,6 @@ if %errorlevel% == 0 (
     git config --local core.filemode false
     git reset --hard HEAD
     git pull
-    cls
     echo. 
     echo ==========================================================================================
     echo. 
@@ -46,7 +47,7 @@ if %errorlevel% == 0 (
 
 :debug
 call color 07
-dotnet run
+start powershell -command "[console]::backgroundcolor=0; [console]::WindowWidth=86; [console]::WindowHeight=30; [console]::BufferWidth=[console]::WindowWidth; dotnet run;"
 goto end
 
 :running
