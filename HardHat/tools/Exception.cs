@@ -4,8 +4,6 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using dein.tools;
 
-using ct = dein.tools.Colorify.Type;
-
 namespace dein.tools {
 
     public static class Exceptions {

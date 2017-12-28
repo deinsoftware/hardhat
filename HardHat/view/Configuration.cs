@@ -6,49 +6,47 @@ using System.Text;
 using dein.tools;
 using ToolBox.Validations;
 using static HardHat.Program;
-
-using static dein.tools.Paths;
-
-using ct = dein.tools.Colorify.Type;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
 
     public static class Configuration {
 
         public static void Select() {
-            Colorify.Default();
-
+            _colorify.Clear();
+            
             Section.Header("CONFIGURATION");
             
-            $" [P] Paths".txtMuted(ct.WriteLine);
-            $"{"   [D] Development", -25}".txtPrimary();   $"{_config.path.dir}".txtDefault(ct.WriteLine);
-            $"{"   [B] Business"   , -25}".txtPrimary();   $"{_config.path.bsn}".txtDefault(ct.WriteLine);
-            $"{"   [P] Projects"   , -25}".txtPrimary();   $"{_config.path.prj}".txtDefault(ct.WriteLine);
-            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{_config.path.flt}".txtDefault(ct.WriteLine);
+            _colorify.WriteLine($" [P] Paths", txtMuted);
+            _colorify.Write($"{"   [D] Development", -25}", txtPrimary);   _colorify.WriteLine($"{_config.path.dir}");
+            _colorify.Write($"{"   [B] Business"   , -25}", txtPrimary);   _colorify.WriteLine($"{_config.path.bsn}");
+            _colorify.Write($"{"   [P] Projects"   , -25}", txtPrimary);   _colorify.WriteLine($"{_config.path.prj}");
+            _colorify.Write($"{"   [F] Filter"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.path.flt}");
 
-            $"".fmNewLine();
-            $" [A] Android Path".txtMuted(ct.WriteLine);
-            $"{"   [P] Project"    , -25}".txtPrimary();   $"{_config.android.prj}".txtDefault(ct.WriteLine);
-            $"{"   [B] Build"      , -25}".txtPrimary();   $"{_config.android.bld}".txtDefault(ct.WriteLine);
-            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{_config.android.ext}".txtDefault(ct.WriteLine);
-            $"{"   [C] Compact"    , -25}".txtPrimary();   $"{_config.android.cmp}".txtDefault(ct.WriteLine);
-            $"{"   [F] Filter"     , -25}".txtPrimary();   $"{string.Join(",", _config.android.flt)}".txtDefault(ct.WriteLine);
+            _colorify.BlankLines();
+            _colorify.WriteLine($" [A] Android Path", txtMuted);
+            _colorify.Write($"{"   [P] Project"    , -25}", txtPrimary);   _colorify.WriteLine($"{_config.android.prj}");
+            _colorify.Write($"{"   [B] Build"      , -25}", txtPrimary);   _colorify.WriteLine($"{_config.android.bld}");
+            _colorify.Write($"{"   [E] Extension"  , -25}", txtPrimary);   _colorify.WriteLine($"{_config.android.ext}");
+            _colorify.Write($"{"   [C] Compact"    , -25}", txtPrimary);   _colorify.WriteLine($"{_config.android.cmp}");
+            _colorify.Write($"{"   [F] Filter"     , -25}", txtPrimary);   _colorify.WriteLine($"{string.Join(",", _config.android.flt)}");
 
-            $"".fmNewLine();
-            $" [G] Gulp Path".txtMuted(ct.WriteLine);
-            $"{"   [S] Server"     , -25}".txtPrimary();   $"{_config.gulp.srv}".txtDefault(ct.WriteLine);
-            $"{"   [E] Extension"  , -25}".txtPrimary();   $"{_config.gulp.ext}".txtDefault(ct.WriteLine);
+            _colorify.BlankLines();
+            _colorify.WriteLine($" [G] Gulp Path", txtMuted);
+            _colorify.Write($"{"   [S] Server"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.gulp.srv}");
+            _colorify.Write($"{"   [E] Extension"  , -25}", txtPrimary);   _colorify.WriteLine($"{_config.gulp.ext}");
 
-            $"".fmNewLine();
-            $" [V] VPN".txtMuted(ct.WriteLine);
-            $"{"   [S] Sitename"   , -25}".txtPrimary();   $"{_config.vpn.snm}".txtDefault(ct.WriteLine);
+            _colorify.BlankLines();
+            _colorify.WriteLine($" [V] VPN", txtMuted);
+            _colorify.Write($"{"   [S] Sitename"   , -25}", txtPrimary);   _colorify.WriteLine($"{_config.vpn.snm}");
 
-            $"".fmNewLine();
-            $"{"[EMPTY] Save", 82}".txtSuccess(ct.WriteLine);
+            _colorify.BlankLines();
+            _colorify.WriteLine($"{"[EMPTY] Save", 82}", txtSuccess);
             
             Section.HorizontalRule();
 
-            $"{" Make your choice:", -25}".txtInfo();
+            _colorify.Write($"{" Make your choice:", -25}", txtInfo);
             string opt = Console.ReadLine();
 
             if(String.IsNullOrEmpty(opt?.ToLower()))
@@ -63,21 +61,21 @@ namespace HardHat {
 
         #region Paths
         public static void PathDevelopment() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "PATH DEVELOPMENT");
                 
-                $" Write main Development path.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Write main Development path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -107,7 +105,7 @@ namespace HardHat {
         }
 
         public static void PathBusiness() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -140,16 +138,16 @@ namespace HardHat {
                 foreach (var dir in dirs)
                 {
                     string d = dir;
-                    $" {i, 2}] {d.Substring(d.LastIndexOf("/") + 1)}".txtPrimary(ct.WriteLine);
+                    _colorify.WriteLine($" {i, 2}] {d.Substring(d.LastIndexOf("/") + 1)}", txtPrimary);
                     i++;
                 }
 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt))
@@ -176,21 +174,21 @@ namespace HardHat {
         }
 
         public static void PathProjects() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "PATH PROJECTS");
                 
-                $" Projects folder inside Business path.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Projects folder inside Business path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -219,22 +217,22 @@ namespace HardHat {
         }
 
         public static void PathFilter() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "PATH FILTER");
                 
-                $" Filter for folders inside Projects path.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
-                $" Can use wildcard.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Filter for folders inside Projects path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
+                _colorify.WriteLine($" Can use wildcard.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -252,21 +250,21 @@ namespace HardHat {
 
         #region Android
         public static void AndroidProject() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID PROJECT");
                 
-                $" Android folder inside selected project path.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Android folder inside selected project path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -295,21 +293,21 @@ namespace HardHat {
         }
 
         public static void AndroidBuild() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID BUILD");
                 
-                $" Build path inside Android Project folder.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Build path inside Android Project folder.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -325,21 +323,21 @@ namespace HardHat {
         }
 
         public static void AndroidExtension() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID EXTENSION");
                 
-                $" File extension inside Build folder.".txtPrimary(ct.WriteLine);
-                $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" File extension inside Build folder.", txtPrimary);
+                _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -355,21 +353,21 @@ namespace HardHat {
         }
 
         public static void AndroidCompact() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION > ANDROID COMPACT");
                 
-                $" Files path inside Selected Project to be compacted with gulp.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Files path inside Selected Project to be compacted with gulp.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -385,22 +383,22 @@ namespace HardHat {
         }
 
         public static void AndroidFilter() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "ANDROID FILTER");
                 
-                $" Filter extension name to be proccessed with gulp.".txtPrimary(ct.WriteLine);
-                $" List separated by , (comma character).".txtPrimary(ct.WriteLine);
-                $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Filter extension name to be proccessed with gulp.", txtPrimary);
+                _colorify.WriteLine($" List separated by , (comma character).", txtPrimary);
+                _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -423,21 +421,21 @@ namespace HardHat {
 
         #region Gulp
         public static void GulpServer() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "GULP SERVER");
                 
-                $" Server path inside Gulp path.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Server path inside Gulp path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -453,21 +451,21 @@ namespace HardHat {
         }
 
         public static void GulpExtension() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "GULP EXTENSION");
                 
-                $" File extension inside Server folder.".txtPrimary(ct.WriteLine);
-                $" Don't use . (dot character) at start.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" File extension inside Server folder.", txtPrimary);
+                _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -485,20 +483,20 @@ namespace HardHat {
 
         #region VPN
         public static void SiteName() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONFIGURATION", "VPN SITE NAME");
                 
-                $" Site name for VPN connection.".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" Site name for VPN connection.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt))
                 {

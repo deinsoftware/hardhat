@@ -3,8 +3,6 @@ using System.Runtime.InteropServices;
 using dein.tools;
 using static HardHat.Program;
 
-using ct = dein.tools.Colorify.Type;
-
 namespace HardHat 
 {
     public static partial class Vpn {

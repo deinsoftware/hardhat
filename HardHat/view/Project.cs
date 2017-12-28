@@ -7,10 +7,9 @@ using System.Text;
 using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-
 using static dein.tools.Paths;
-
-using ct = dein.tools.Colorify.Type;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
 
@@ -49,31 +48,31 @@ namespace HardHat {
         public static void Start() {
             if (String.IsNullOrEmpty(_config.personal.spr))
             {
-                $" [P] Select Project".txtPrimary(ct.WriteLine);
+                _colorify.WriteLine($" [P] Select Project", txtPrimary);
             } else {
-                $" [P] Selected Project: ".txtPrimary();
-                $"{_config.personal.spr}".txtDefault(ct.WriteLine);
+                _colorify.Write($" [P] Selected Project: ", txtPrimary);
+                _colorify.WriteLine($"{_config.personal.spr}");
             }
             
             if (String.IsNullOrEmpty(_config.personal.spr))
             {
-                $"   [F] Select File".txtStatus(ct.WriteLine,   Options.Valid("pf"));
+                _colorify.WriteLine($"   [F] Select File", txtStatus(Options.Valid("pf")));
             } else {
-                $"   [F] Selected File:  ".txtPrimary();
-                $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
+                _colorify.Write($"   [F] Selected File:  ", txtPrimary);
+                _colorify.WriteLine($"{_config.personal.sfl}");
             }
 
-            $"{"   [I] Install" , -17}".txtStatus(ct.Write,     Options.Valid("pi"));
-            $"{"[D] Duplicate"  , -17}".txtStatus(ct.Write,     Options.Valid("pd"));
-            $"{"[P] Path"       , -17}".txtStatus(ct.Write,     Options.Valid("pp"));
-            $"{"[S] Signer"     , -17}".txtStatus(ct.Write,     Options.Valid("ps"));
-            $"{"[V] Values"     , -17}".txtStatus(ct.WriteLine, Options.Valid("pv"));
+            _colorify.Write($"{"   [I] Install" , -17}", txtStatus(Options.Valid("pi")));
+            _colorify.Write($"{"[D] Duplicate"  , -17}", txtStatus(Options.Valid("pd")));
+            _colorify.Write($"{"[P] Path"       , -17}", txtStatus(Options.Valid("pp")));
+            _colorify.Write($"{"[S] Signer"     , -17}", txtStatus(Options.Valid("ps")));
+            _colorify.WriteLine($"{"[V] Values" , -17}", txtStatus(Options.Valid("pv")));
 
-            $"".fmNewLine();
+            _colorify.BlankLines();
         }
 
         public static void Select() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -90,17 +89,17 @@ namespace HardHat {
                     foreach (var dir in dirs)
                     {
                         string d = dir;
-                        $" {i, 2}] {d.Substring(d.LastIndexOf("/") + 1)}".txtPrimary(ct.WriteLine);
+                        _colorify.WriteLine($" {i, 2}] {d.Substring(d.LastIndexOf("/") + 1)}", txtPrimary);
                         i++;
                     }
                 }
 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt))
@@ -119,7 +118,7 @@ namespace HardHat {
         }
 
         public static void SelectFile() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -137,17 +136,17 @@ namespace HardHat {
                     foreach (var file in files)
                     {
                         string f = file;
-                        $" {i, 2}] {f.Substring(f.LastIndexOf("/") + 1)}".txtPrimary(ct.WriteLine);
+                        _colorify.WriteLine($" {i, 2}] {f.Substring(f.LastIndexOf("/") + 1)}", txtPrimary);
                         i++;
                     }
                 }
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt))
@@ -164,7 +163,7 @@ namespace HardHat {
             }
         }
         public static void Duplicate() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -173,15 +172,15 @@ namespace HardHat {
 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
 
-                $"".fmNewLine();
-                $" Write a new name, without include his extension.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write a new name, without include his extension.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt))
@@ -198,7 +197,7 @@ namespace HardHat {
         }
 
         public static void FilePath() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -206,20 +205,20 @@ namespace HardHat {
                 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
 
-                $"{" Path:", -10}".txtMuted();
-                $"{dirPath}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" Path:", -10}", txtMuted);
+                _colorify.WriteLine($"{dirPath}");
 
-                $"{" File:", -10}".txtMuted();
-                $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" File:", -10}", txtMuted);
+                _colorify.WriteLine($"{_config.personal.sfl}");
 
-                $"".fmNewLine();
-                $"{" [P] Copy Path", -34}".txtInfo();
-                $"{"[F] Copy Full Path", -34}".txtInfo();
-                $"{"[EMPTY] Cancel", -17}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [P] Copy Path", -34}", txtInfo);
+                _colorify.Write($"{"[F] Copy Full Path", -34}", txtInfo);
+                _colorify.WriteLine($"{"[EMPTY] Cancel", -17}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 switch (opt?.ToLower())

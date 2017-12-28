@@ -3,44 +3,49 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using Colorify;
+using static Colorify.Colors;
 using dein.tools;
 using static HardHat.Program;
 
-using ct = dein.tools.Colorify.Type;
 
 namespace HardHat {
     public static class Section {
 
         public static void Header(string title, params string[] sections){
-            $"=".bgInfo(ct.Repeat);
+            _colorify.DivisionLine('=', bgInfo);
             StringBuilder text = new StringBuilder();
             text.Append(title);
             foreach (var s in sections)
             {
                 text.Append($" > {s}");
             } 
-            $" {text.ToString()}".bgInfo((title.Contains("|") ? ct.Justify : ct.PadLeft));
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            if (title.Contains("|")){
+                _colorify.AlignSplit($" {text.ToString()}", bgInfo);
+            } else {
+                _colorify.AlignLeft($" {text.ToString()}", bgInfo);
+            }
+            _colorify.DivisionLine('=', bgInfo);
+            _colorify.BlankLines();
         }
 
         public static void Footer(){
-            $"".fmNewLine();
-            $"{" [C] Config"        , -17}".txtInfo();
-            $"{"[I] Info"           , -17}".txtInfo();
-            $"{"[E] Environment"    , -34}".txtInfo();
-            $"{"[X] Exit"           , -17}".txtDanger(ct.WriteLine);
+            _colorify.BlankLines();
+            _colorify.Write($"{" [C] Config"        , -17}", txtInfo);
+            _colorify.Write($"{"[I] Info"           , -17}", txtInfo);
+            _colorify.Write($"{"[E] Environment"    , -34}", txtInfo);
+            _colorify.WriteLine($"{"[X] Exit"           , -17}", txtDanger);
         }
 
         public static void SelectedProject(){
-            $"{" Selected Project:" , -25}".txtMuted();
-            $"{_config.personal.spr}".txtDefault(ct.WriteLine);
+            _colorify.Write($"{" Selected Project:" , -25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.spr}");
         }
 
         public static void CurrentConfiguration(bool val, string cnf){
             if (!String.IsNullOrEmpty(cnf))
             {
-                $"{" Current Configuration:", -25}".txtMuted();
+                _colorify.Write($"{" Current Configuration:", -25}", txtMuted);
                 Configuration(val, cnf);
             }
         }
@@ -48,25 +53,25 @@ namespace HardHat {
         public static void Configuration(bool val, string cnf){
             if (val)
             {
-                $"{cnf}".txtDefault(ct.WriteLine);
+                _colorify.WriteLine($"{cnf}");
             } else {
-                $"{cnf}".txtWarning(ct.WriteLine);
+                _colorify.WriteLine($"{cnf}", txtWarning);
             }
         }
 
         public static void SelectedFile(){
-            $"{" Selected File:"    , -25}".txtMuted();
-            $"{_config.personal.sfl}".txtDefault(ct.WriteLine);
+            _colorify.Write($"{" Selected File:"    , -25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.sfl}");
         }
 
         public static void HorizontalRule() {
-            $"".fmNewLine();
-            $"=".bgInfo(ct.Repeat);
-            $"".fmNewLine();
+            _colorify.BlankLines();
+            _colorify.DivisionLine('=', bgInfo);
+            _colorify.BlankLines();
         }
 
         public static void Pause() {
-            $" Press [Any] key to continue...".txtInfo();
+            _colorify.Write($" Press [Any] key to continue...", txtInfo);
             Console.ReadKey();
         }
     }

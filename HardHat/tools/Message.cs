@@ -1,8 +1,10 @@
 using System;
 using System.Net;
 using System.Net.Sockets;
+using Colorify;
+using static Colorify.Colors;
 using HardHat;
-using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace dein.tools
 {
@@ -13,29 +15,27 @@ namespace dein.tools
         }
 
         public static void Error(string msg = null, bool replace = false, bool exit = false) {
-            Colorify.Default();
-
             try
             {
-                $"=".bgDanger(ct.Repeat);
-                $" ERROR".bgDanger(ct.PadLeft);
-                $"=".bgDanger(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.DivisionLine('=', bgDanger);
+                _colorify.AlignLeft(" ERROR", bgDanger);
+                _colorify.DivisionLine('=', bgDanger);
+                _colorify.BlankLines();
 
                 if (!replace)
                 {
-                    $" Invalid option, please try again.".txtDefault(ct.WriteLine);
+                    _colorify.WriteLine(" Invalid option, please try again.");
                 }
                 if (!String.IsNullOrEmpty(msg))
                 {
-                    $" {msg}".txtDefault(ct.Shell);
+                    _colorify.Wrap($" {msg}", txtDefault);
                 }
 
-                $"".fmNewLine();
-                $"=".bgDanger(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.BlankLines();
+                _colorify.DivisionLine('=', bgDanger);
+                _colorify.BlankLines();
 
-                $" Press [Any] key to continue...".txtDanger();
+                _colorify.Write(" Press [Any] key to continue...", txtDanger);
                 Console.ReadKey();
 
                 if (!exit)
@@ -51,22 +51,20 @@ namespace dein.tools
         }
 
         public static void Alert(string msg, bool exit = false) {
-            Colorify.Default();
-            
             try
             {
-                $"=".bgWarning(ct.Repeat);
-                $" WARNING".bgWarning(ct.PadLeft);
-                $"=".bgWarning(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.AlignLeft(" WARNING", bgWarning);
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.BlankLines();
 
-                $" {msg}".txtDefault(ct.Shell);
+                _colorify.Wrap($" {msg}", txtDefault);
 
-                $"".fmNewLine();
-                $"=".bgWarning(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.BlankLines();
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.BlankLines();
 
-                $" Press [Any] key to continue...".txtWarning();
+                _colorify.Write($" Press [Any] key to continue...", txtWarning);
                 Console.ReadKey();
 
                 if (exit)
@@ -80,26 +78,26 @@ namespace dein.tools
         }
 
         public static bool Confirmation(string msg) {
-            Colorify.Default();
+            _colorify.Clear();
             
             bool opt_cnf = false;
             try
             {
-                $"=".bgWarning(ct.Repeat);
-                $" WARNING".bgWarning(ct.PadLeft);
-                $"=".bgWarning(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.AlignLeft(" WARNING", bgWarning);
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.BlankLines();
 
-                $" {msg}".txtDefault(ct.Shell);
+                _colorify.Wrap($" {msg}", txtDefault);
 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
 
-                $"".fmNewLine();
-                $"=".bgWarning(ct.Repeat);
-                $"".fmNewLine();
+                _colorify.BlankLines();
+                _colorify.DivisionLine('=', bgWarning);
+                _colorify.BlankLines();
 
-                $" [Y] Yes or [N] No: ".txtWarning();
+                _colorify.Write($" [Y] Yes or [N] No: ", txtWarning);
 
                 string opt = Console.ReadLine();
                 switch (opt?.ToLower())

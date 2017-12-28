@@ -4,10 +4,10 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
+using static Colorify.Colors;
 using dein.tools;
 using ToolBox.Files;
 using ToolBox.System;
-using ct = dein.tools.Colorify.Type;
 using static HardHat.Program;
 
 namespace HardHat {
@@ -37,7 +37,7 @@ namespace HardHat {
         }
 
         public static void Start() {
-            Colorify.Default();
+            _colorify.Clear();
 
             string name = Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString();
             string version = Assembly.GetEntryAssembly().GetName().Version.ToString();
@@ -55,8 +55,9 @@ namespace HardHat {
 
             Section.HorizontalRule();
 
-            $"{" Make your choice:", -25}".txtInfo();
+            _colorify.Write($"{" Make your choice:", -25}", txtInfo);
             string opt = Console.ReadLine();
+            _colorify.Clear();
             Route(opt);
         }
 

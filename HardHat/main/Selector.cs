@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Colorify;
+using static Colorify.Colors;
 using dein.tools;
-
-using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace HardHat {
 
@@ -50,21 +51,22 @@ namespace HardHat {
         public static void Start(IReadOnlyDictionary<string, string> sel, string dfl){
             try {
                 dfl = dfl.ToLower();
-                $"".fmNewLine();
+                _colorify.BlankLines();
                 foreach (var item in sel)
                 {
                     if (item.Key == dfl) {
-                        $" {item.Key, 2}] {item.Value}".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
+                        _colorify.Write($" {item.Key, 2}] {item.Value}", txtPrimary);
+                        _colorify.WriteLine($" (Default)", txtInfo);
                     } else {
-                        $" {item.Key, 2}] {item.Value}".txtPrimary(ct.WriteLine);
+                        _colorify.WriteLine($" {item.Key, 2}] {item.Value}", txtPrimary);
                     }
                 }
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}" , txtInfo);
                 
                 Section.HorizontalRule();
-            
-                $"{" Make your choice: ", -25}".txtInfo();
+
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

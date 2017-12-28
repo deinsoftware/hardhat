@@ -2,7 +2,6 @@ using System;
 using System.Runtime.InteropServices;
 using dein.tools;
 using ToolBox.Transform;
-using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {

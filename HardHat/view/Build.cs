@@ -6,12 +6,12 @@ using System.Text;
 using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-
-using ct = dein.tools.Colorify.Type;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
     public static partial class Build {
-        
+
         public static void List(ref List<Option> opts) {
             opts.Add(new Option{opt="b"   , stt=false, act=Build.Select                     });
             opts.Add(new Option{opt="b>d" , stt=false, act=Build.Dimension                  });
@@ -41,19 +41,19 @@ namespace HardHat {
         public static void Start(){
             if (String.IsNullOrEmpty(_config.personal.mnu.b_cnf))
             {
-                $" [B] Build".txtStatus(ct.WriteLine,                Options.Valid("b"));
+                _colorify.WriteLine($" [B] Build", txtStatus(Options.Valid("b")));
             } else {
-                $" [B] Build: ".txtStatus(ct.Write,                  Options.Valid("b"));
+                _colorify.Write($" [B] Build: ", txtStatus(Options.Valid("b")));
                 Section.Configuration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
             }
-            $"{"   [P] Properties"  , -34}".txtStatus(ct.Write,      Options.Valid("bp"));
-            $"{"[C] Clean"          , -34}".txtStatus(ct.Write,      Options.Valid("bc"));
-            $"{"[G] Gradle"         , -17}".txtStatus(ct.WriteLine,  Options.Valid("bg"));
-            $"".fmNewLine();
+            _colorify.Write($"{"   [P] Properties"  , -34}", txtStatus(Options.Valid("bp")));
+            _colorify.Write($"{"[C] Clean"          , -34}", txtStatus(Options.Valid("bc")));
+            _colorify.WriteLine($"{"[G] Gradle"    , -17}", txtStatus(Options.Valid("bg")));
+            _colorify.BlankLines();
         }
         
         public static void Select() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -61,18 +61,18 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
-                $"".fmNewLine();
-                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_config.personal.gdl.dmn}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [D] Dimension:"    , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gdl.dmn}");
                 string b_flv = Selector.Name(Selector.Flavor, _config.personal.gdl.flv);
-                $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{b_flv}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" [F] Flavor:"       , -25}", txtPrimary);   _colorify.WriteLine($"{b_flv}");
                 string b_mde = Modes.Name(_config.personal.gdl.mde);
-                $"{" [M] Mode:"         , -25}".txtPrimary();   $"{b_mde}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" [M] Mode:"         , -25}", txtPrimary);   _colorify.WriteLine($"{b_mde}");
 
-                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
+                _colorify.WriteLine($"{"[EMPTY] Exit", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if(String.IsNullOrEmpty(opt?.ToLower()))
@@ -89,7 +89,7 @@ namespace HardHat {
         }
 
         public static void Dimension() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -97,16 +97,16 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
-                $"".fmNewLine();
-                $" Write a project dimension:".txtPrimary(ct.WriteLine);
-                $" EMPTY".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write a project dimension:", txtPrimary);
+                _colorify.Write($" EMPTY", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt_dmn = Console.ReadLine();
                 if (!String.IsNullOrEmpty(opt_dmn))
                 {
@@ -124,7 +124,7 @@ namespace HardHat {
         }
 
         public static void Flavor() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -163,7 +163,7 @@ namespace HardHat {
         }
 
         public static void Mode() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -171,15 +171,15 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
 
-                $"".fmNewLine();
-                $" {"D", 2}] Debug".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
-                $" {"R", 2}] Release".txtPrimary(ct.WriteLine);
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($" {"D", 2}] Debug", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
+                _colorify.WriteLine($" {"R", 2}] Release", txtPrimary);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt_mde = Console.ReadLine();
                 opt_mde = opt_mde.ToLower();
                 
@@ -206,7 +206,7 @@ namespace HardHat {
         }
 
         public static void Gradle() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -223,7 +223,7 @@ namespace HardHat {
         }
 
         public static void Clean() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -241,7 +241,7 @@ namespace HardHat {
 
         public static void Properties()
         {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -252,15 +252,15 @@ namespace HardHat {
                 string sourcePath = _path.Combine(Variables.Value("bp"), _config.path.bsn);
                 string destinationPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
                 
-                $"".fmNewLine();
+                _colorify.BlankLines();
                 List<string> filter = new List<string>() { 
                     ".properties"
                 };
 
-                $" --> Copying...".txtInfo(ct.WriteLine);
-                $"".fmNewLine();
-                $"{" From:", -8}".txtMuted(); $"{sourcePath}".txtDefault(ct.WriteLine);
-                $"{" To:"  , -8}".txtMuted(); $"{destinationPath}".txtDefault(ct.WriteLine);
+                _colorify.WriteLine($" --> Copying...", txtInfo);
+                _colorify.BlankLines();
+                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{sourcePath}");
+                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{destinationPath}");
                 Paths.CopyAll(sourcePath, destinationPath, true, true, filter);     
             
                 Section.HorizontalRule();

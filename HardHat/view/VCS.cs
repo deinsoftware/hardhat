@@ -5,8 +5,8 @@ using System.Text;
 using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-
-using ct = dein.tools.Colorify.Type;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
     public static class Vcs {
@@ -40,15 +40,15 @@ namespace HardHat {
         public static void Start() {
             if (Options.Valid("v"))
             {
-                $" [V] VCS".txtMuted(ct.WriteLine);
+                _colorify.WriteLine($" [V] VCS", txtMuted);
             } else {
-                $" [V] VCS: ".txtMuted(ct.Write);
-                $"{_config.personal.mnu.v_bnc}".txtDefault(ct.WriteLine);
+                _colorify.Write($" [V] VCS: ", txtMuted);
+                _colorify.WriteLine($"{_config.personal.mnu.v_bnc}");
             }
-            $"{"   [D] Discard" , -34}".txtStatus(ct.Write,     Options.Valid("vd"));
-            $"{"[P] Pull"       , -34}".txtStatus(ct.Write,     Options.Valid("vp"));
-            $"{"[R] Reset"      , -17}".txtStatus(ct.WriteLine, Options.Valid("vr"));
-            $"".fmNewLine();
+            _colorify.Write($"{"   [D] Discard" , -34}", txtStatus(Options.Valid("vd")));
+            _colorify.Write($"{"[P] Pull"       , -34}", txtStatus(Options.Valid("vp")));
+            _colorify.WriteLine($"{"[R] Reset"  , -17}", txtStatus(Options.Valid("vr")));
+            _colorify.BlankLines();
         }
 
         public static void Discard(){
@@ -73,7 +73,7 @@ namespace HardHat {
 
         public static void Actions(bool discard, bool pull, bool reset)
         {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -83,20 +83,20 @@ namespace HardHat {
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr); 
 
                 if (discard) {
-                    $"".fmNewLine();
-                    $" --> Discarding...".txtInfo(ct.WriteLine);
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Discarding...", txtInfo);
                     Git.CmdDiscard(dirPath);
                 }
 
                 if (reset){
-                    $"".fmNewLine();
-                    $" --> Reseting...".txtInfo(ct.WriteLine);
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Reseting...", txtInfo);
                     Git.CmdReset(dirPath);
                 }
                 
                 if (pull) {
-                    $"".fmNewLine();
-                    $" --> Updating...".txtInfo(ct.WriteLine);
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Updating...", txtInfo);
                     Git.CmdPull(dirPath);
                 }
 

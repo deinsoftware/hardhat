@@ -2,32 +2,33 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Colorify;
+using static Colorify.Colors;
 using dein.tools;
-
-using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace HardHat {
 
     public static class Information {
         public static void Versions() {
-            Colorify.Default();
+            _colorify.Clear();
 
             Section.Header("COMMANDS");
             
-            $" Required".txtInfo(ct.WriteLine);
-            $"{" Gradle",           -25}".txtPrimary();           Version.CmdGradle();
-            $"{" Gulp",             -25}".txtPrimary();             Version.CmdGulp();
-            $"{" Java",             -25}".txtPrimary();             Version.CmdJava();
-            $"{" Node",             -25}".txtPrimary();             Version.CmdNode();
-            $"{" NPM",              -25}".txtPrimary();              Version.CmdNPM();
+            _colorify.WriteLine(" Required", txtInfo);
+            _colorify.Write($"{" Gradle",           -25}", txtPrimary);           Version.CmdGradle();
+            _colorify.Write($"{" Gulp",             -25}", txtPrimary);             Version.CmdGulp();
+            _colorify.Write($"{" Java",             -25}", txtPrimary);             Version.CmdJava();
+            _colorify.Write($"{" Node",             -25}", txtPrimary);             Version.CmdNode();
+            _colorify.Write($"{" NPM",              -25}", txtPrimary);              Version.CmdNPM();
 
-            $"".fmNewLine();
-            $" Optional".txtInfo(ct.WriteLine);
-            $"{" Cordova",          -25}".txtPrimary();          Version.CmdCordova();
-            $"{" GIT",              -25}".txtPrimary();              Version.CmdGit();
-            $"{" NativeScript",     -25}".txtPrimary();     Version.CmdNativescript();
-            $"{" TypeScript",       -25}".txtPrimary();       Version.CmdTypescript();
-            $"{" SonarScanner",     -25}".txtPrimary();     Version.CmdSonarScanner();
+            _colorify.BlankLines();
+            _colorify.WriteLine(" Optional", txtInfo);
+            _colorify.Write($"{" Cordova",          -25}", txtPrimary);          Version.CmdCordova();
+            _colorify.Write($"{" GIT",              -25}", txtPrimary);              Version.CmdGit();
+            _colorify.Write($"{" NativeScript",     -25}", txtPrimary);     Version.CmdNativescript();
+            _colorify.Write($"{" TypeScript",       -25}", txtPrimary);       Version.CmdTypescript();
+            _colorify.Write($"{" SonarScanner",     -25}", txtPrimary);     Version.CmdSonarScanner();
             
             Section.HorizontalRule();
             Section.Pause();
@@ -38,18 +39,18 @@ namespace HardHat {
         public static void Environment() {
             Variables.Upgrade();
             Variables.Update();
-            
-            Colorify.Default();
+
+            _colorify.Clear();
 
             Section.Header("ENVIRONMENT VARIABLES");
 
             foreach (var v in Variables.list)
             {
-                $"{$" {v.nme}:", -21}".txtPrimary();
+                _colorify.Write($"{$" {v.nme}:", -21}", txtPrimary);
                 if (v.stt) {
-                    $"{v.vlu}".txtDefault(ct.WriteLine);
+                    _colorify.WriteLine($"{v.vlu}");
                 } else {
-                    $"is not defined".txtWarning(ct.WriteLine);
+                    _colorify.WriteLine("is not defined", txtWarning);
                 }
             }
 

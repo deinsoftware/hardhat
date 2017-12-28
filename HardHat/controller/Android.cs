@@ -4,7 +4,6 @@ using System.Text;
 using dein.tools;
 using ToolBox.Platform;
 using ToolBox.Transform;
-using ct = dein.tools.Colorify.Type;
 
 namespace HardHat 
 {

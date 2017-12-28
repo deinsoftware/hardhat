@@ -2,8 +2,6 @@ using System;
 using System.Runtime.InteropServices;
 using dein.tools;
 
-using ct = dein.tools.Colorify.Type;
-
 namespace HardHat 
 {
     public static partial class Build {

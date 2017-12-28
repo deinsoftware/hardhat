@@ -6,10 +6,12 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using Colorify;
+using static Colorify.Colors;
 using ToolBox.Platform;
 using ToolBox.System;
 using ToolBox.Transform;
-using ct = dein.tools.Colorify.Type;
+using static HardHat.Program;
 
 namespace dein.tools
 {
@@ -127,7 +129,7 @@ namespace dein.tools
                     .GetDirectories(sourcePath, "*.*", SearchOption.AllDirectories);
                 Parallel.ForEach(directories, dirPath =>
                 {
-                    $" [COPY] {Strings.RemoveWords(dirPath,sourcePath)}".txtPrimary(ct.Shell);
+                    _colorify.Wrap($" [COPY] {Strings.RemoveWords(dirPath,sourcePath)}", txtPrimary);
                     Directory.CreateDirectory(dirPath.Replace(sourcePath, destinationPath));
                 }); 
 
@@ -136,7 +138,7 @@ namespace dein.tools
                     .Where(f => isFiltered(filter, f));
                 Parallel.ForEach(files, newPath =>
                 {
-                    $"  [COPY] {Strings.RemoveWords(newPath,sourcePath)}".txtPrimary(ct.Shell);
+                    _colorify.Wrap($"  [COPY] {Strings.RemoveWords(newPath,sourcePath)}", txtPrimary);
                     File.Copy(newPath, newPath.Replace(sourcePath, destinationPath), overWrite);
                 }); 
             }
@@ -157,7 +159,7 @@ namespace dein.tools
         {
             try
             {
-                $"  [DEL] {sourcePath}".txtPrimary(ct.Shell);
+                _colorify.Wrap($"  [DEL] {sourcePath}", txtPrimary);
                 Directory.Delete(sourcePath, recursive);
             }
             catch (DirectoryNotFoundException) 

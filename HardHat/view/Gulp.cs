@@ -7,9 +7,9 @@ using Validation = ToolBox.Validations.Strings;
 using Transform = ToolBox.Transform.Strings;
 using dein.tools;
 using static HardHat.Program;
-
-using ct = dein.tools.Colorify.Type;
 using ToolBox.Validations;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
 
@@ -65,21 +65,21 @@ namespace HardHat {
         public static void Start() {
             if (String.IsNullOrEmpty(_config.personal.mnu.g_cnf))
             {
-                $" [G] Gulp".txtStatus(ct.WriteLine,            Options.Valid("g"));
+                _colorify.WriteLine($" [G] Gulp", txtStatus(Options.Valid("g")));
             } else {
-                $" [G] Gulp: ".txtStatus(ct.Write,              Options.Valid("g"));
+                _colorify.Write($" [G] Gulp: ", txtStatus(Options.Valid("g")));
                 Section.Configuration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
             }
-            $"{"   [M] Make"   , -17}".txtStatus(ct.Write,      Options.Valid("gm"));
-            $"{"[U] Uglify"    , -17}".txtStatus(ct.Write,      Options.Valid("gu"));
-            $"{"[R] Revert"    , -17}".txtStatus(ct.Write,      Options.Valid("gr"));
-            $"{"[S] Server"    , -17}".txtStatus(ct.Write,      Options.Valid("gs"));
-            $"{"[L] Log"       , -17}".txtStatus(ct.WriteLine,  Options.Valid("gl"));
-            $"".fmNewLine();
+            _colorify.Write($"{"   [M] Make"   , -17}", txtStatus(Options.Valid("gm")));
+            _colorify.Write($"{"[U] Uglify"    , -17}", txtStatus(Options.Valid("gu")));
+            _colorify.Write($"{"[R] Revert"    , -17}", txtStatus(Options.Valid("gr")));
+            _colorify.Write($"{"[S] Server"    , -17}", txtStatus(Options.Valid("gs")));
+            _colorify.WriteLine($"{"[L] Log"       , -17}", txtStatus(Options.Valid("gl")));
+            _colorify.BlankLines();
         }
         
         public static void Select() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -87,21 +87,21 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                $"".fmNewLine();
-                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_config.personal.gbs.ptc}".txtDefault(ct.WriteLine);
-                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_config.personal.gbs.ipt}".txtDefault(ct.WriteLine);
-                $"{" [D] Dimension:"    , -25}".txtPrimary();   $"{_config.personal.gbs.dmn}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [P] Protocol:"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.ptc}");
+                _colorify.Write($"{" [I] Internal Path:", -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.ipt}");
+                _colorify.Write($"{" [D] Dimension:"    , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.dmn}");
                 string g_cnf = Selector.Name(Selector.Flavor, _config.personal.gbs.flv);
-                $"{" [F] Flavor:"       , -25}".txtPrimary();   $"{g_cnf}".txtDefault(ct.WriteLine);
-                $"{" [N] Number:"       , -25}".txtPrimary();   $"{_config.personal.gbs.srv}".txtDefault(ct.WriteLine);
-                $"{" [S] Sync:"         , -25}".txtPrimary();   $"{(_config.personal.gbs.syn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
-                $"{" [O] Open:"         , -25}".txtPrimary();   $"{(_config.personal.gbs.opn ? "Yes" : "No")}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" [F] Flavor:"       , -25}", txtPrimary);   _colorify.WriteLine($"{g_cnf}");
+                _colorify.Write($"{" [N] Number:"       , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.srv}");
+                _colorify.Write($"{" [S] Sync:"         , -25}", txtPrimary);   _colorify.WriteLine($"{(_config.personal.gbs.syn ? "Yes" : "No")}");
+                _colorify.Write($"{" [O] Open:"         , -25}", txtPrimary);   _colorify.WriteLine($"{(_config.personal.gbs.opn ? "Yes" : "No")}");
 
-                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
+                _colorify.WriteLine($"{"[EMPTY] Exit", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if(String.IsNullOrEmpty(opt?.ToLower()))
@@ -118,7 +118,7 @@ namespace HardHat {
         }
 
         public static void Protocol() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -158,7 +158,7 @@ namespace HardHat {
         }
         
         public static void InternalPath() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -166,16 +166,16 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                $"".fmNewLine();
-                $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write an internal path inside your project.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt_ipt = Console.ReadLine();
                 _config.personal.gbs.ipt = $"{opt_ipt}";
 
@@ -188,7 +188,7 @@ namespace HardHat {
         }
 
         public static void Dimension() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -196,7 +196,7 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                $"".fmNewLine();
+                _colorify.BlankLines();
                 string dirPath = _path.Combine(Variables.Value("gp"), _config.gulp.srv); 
                 dirPath.Exists("Please review your configuration file.");
                 List<string> files = dirPath.Files($"*{_config.gulp.ext}");
@@ -209,18 +209,18 @@ namespace HardHat {
                     foreach (var file in files)
                     {
                         string f = file;
-                        $" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _config.gulp.ext)}".txtPrimary(ct.WriteLine);
+                        _colorify.WriteLine($" {i, 2}] {Transform.RemoveWords(f.Substring(f.LastIndexOf("/") + 1), _config.gulp.ext)}", txtPrimary);
                         i++;
                     }
                     if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
                     {
-                        $"".fmNewLine();
-                        $"{"[EMPTY] Current", 82}".txtInfo(ct.WriteLine);
+                        _colorify.BlankLines();
+                        _colorify.WriteLine($"{"[EMPTY] Current", 82}", txtInfo);
                     }
 
                     Section.HorizontalRule();
                 
-                    $"{" Make your choice: ", -25}".txtInfo();
+                    _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                     string opt_dmn = Console.ReadLine();
                     
                     if (!String.IsNullOrEmpty(opt_dmn))
@@ -244,7 +244,7 @@ namespace HardHat {
         }
 
         public static void Flavor() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -283,7 +283,7 @@ namespace HardHat {
         }
 
         public static void ServerNumber() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -291,16 +291,16 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
 
-                $"".fmNewLine();
-                $" Write a server number:".txtPrimary(ct.WriteLine);
-                $" 1".txtPrimary(); $" (Default)".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write a server number:", txtPrimary);
+                _colorify.Write($" 1", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt_srv = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt_srv))
@@ -318,7 +318,7 @@ namespace HardHat {
         }
 
         public static void Sync() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -354,7 +354,7 @@ namespace HardHat {
         }
 
         public static void Open() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -390,7 +390,7 @@ namespace HardHat {
         }
 
         public static void Make() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -400,8 +400,8 @@ namespace HardHat {
 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr); 
 
-                $"".fmNewLine();
-                $" --> Making...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Making...", txtInfo);
                 CmdMake(dirPath, _path.Combine(Variables.Value("gp")));
 
                 Section.HorizontalRule();
@@ -415,7 +415,7 @@ namespace HardHat {
         }
         
         public static void Uglify() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -430,32 +430,32 @@ namespace HardHat {
                     _path.Combine(Variables.Value("gp"),"bld"),
                 };
 
-                $"".fmNewLine();
-                $" --> Cleaning...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Cleaning...", txtInfo);
                 foreach (var dir in dirs)
                 {
                     Paths.DeleteAll(dir, true, true);
                     Directory.CreateDirectory(dir);
                 }
 
-                $"".fmNewLine();
+                _colorify.BlankLines();
                 List<string> filter = new List<string>(_config.android.flt);
 
-                $" --> Copying...".txtInfo(ct.WriteLine);
-                $"{" From:", -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
-                $"{" To:"  , -8}".txtMuted(); $"{dirs[0]}".txtDefault(ct.WriteLine);
+                _colorify.WriteLine($" --> Copying...", txtInfo);
+                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
+                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[0]}");
                 Paths.CopyAll(dirPath, dirs[0], true, true, filter);
-                $"{" To:"  , -8}".txtMuted(); $"{dirs[1]}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
                 Paths.CopyAll(dirPath, dirs[1], true, true, filter);
 
-                $"".fmNewLine();
-                $" --> Uglifying...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Uglifying...", txtInfo);
                 CmdUglify(_path.Combine(Variables.Value("gp")));
 
-                $"".fmNewLine();
-                $" --> Replacing...".txtInfo(ct.WriteLine);
-                $"{" From:", -8}".txtMuted(); $"{dirs[1]}".txtDefault(ct.WriteLine);
-                $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Replacing...", txtInfo);
+                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
+                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
                 Paths.CopyAll(dirs[1], dirPath, true, true); 
 
                 Section.HorizontalRule();
@@ -469,7 +469,7 @@ namespace HardHat {
         }
 
         public static void Revert() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -479,10 +479,10 @@ namespace HardHat {
 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.cmp); 
                 string dirSource = _path.Combine(Variables.Value("gp"),"www");
-                $"".fmNewLine();
-                $" --> Reverting...".txtInfo(ct.WriteLine);
-                $"{" From:", -8}".txtMuted(); $"{dirSource}".txtDefault(ct.WriteLine);
-                $"{" To:"  , -8}".txtMuted(); $"{dirPath}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Reverting...", txtInfo);
+                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirSource}");
+                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
                 Paths.CopyAll(dirSource, dirPath, true, true); 
 
                 Section.HorizontalRule();
@@ -496,7 +496,7 @@ namespace HardHat {
         }
 
         public static void Server() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -515,7 +515,7 @@ namespace HardHat {
         }
 
         public static void Log() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -558,7 +558,7 @@ namespace HardHat {
         }
 
         public static void Upgrade() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -566,11 +566,11 @@ namespace HardHat {
                 
                 string dirPath = _path.Combine(Variables.Value("gp"));
 
-                $" --> Updating...".txtInfo(ct.WriteLine);
+                _colorify.WriteLine($" --> Updating...", txtInfo);
                 Git.CmdPull(dirPath);
 
-                $"".fmNewLine();
-                $" --> Updating Dependencies...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Updating Dependencies...", txtInfo);
                 Gulp.CmdInstall(dirPath);
             
                 Section.HorizontalRule();

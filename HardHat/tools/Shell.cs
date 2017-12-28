@@ -2,12 +2,13 @@ using System.Runtime.InteropServices;
 using System;
 using System.Diagnostics;
 using System.Text;
-
-using ct = dein.tools.Colorify.Type;
 using System.Reflection;
 using System.IO;
 using ToolBox.Platform;
 using ToolBox.Transform;
+using static HardHat.Program;
+using Colorify;
+using static Colorify.Colors;
 
 namespace dein.tools
 {
@@ -94,18 +95,18 @@ namespace dein.tools
                     switch (output)
                     {
                         case Output.Internal:
-                            $"".fmNewLine();
+                            _colorify.BlankLines();
 
                             while (!process.StandardOutput.EndOfStream) {
                                 string line = process.StandardOutput.ReadLine();
                                 stdout.AppendLine(line);
-                                $"{line}".txtPrimary(ct.Shell);
+                                _colorify.Wrap($" {line}", txtPrimary);
                             }
                             
                             while (!process.StandardError.EndOfStream) {
                                 string line = process.StandardError.ReadLine();
                                 stderr.AppendLine(line);
-                                $"{line}".txtDanger(ct.Shell);
+                                _colorify.Wrap($" {line}", txtDanger);
                             }
                             break;
                         case Output.Hidden:
@@ -159,9 +160,9 @@ namespace dein.tools
                 .Replace("\r","")
                 .Replace("\n","");
             if (!String.IsNullOrEmpty(response)){
-                $"{response}".txtDefault(ct.WriteLine);
+                _colorify.WriteLine(response);
             } else {
-                $"is not installed".txtWarning(ct.WriteLine);
+                _colorify.WriteLine("is not installed", txtWarning);
             }
         }
 

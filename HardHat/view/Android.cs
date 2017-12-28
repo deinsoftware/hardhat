@@ -4,11 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using Colorify;
+using static Colorify.Colors;
 using dein.tools;
 using ToolBox.Platform;
 using ToolBox.System;
 using ToolBox.Validations;
-using ct = dein.tools.Colorify.Type;
 using static HardHat.Program;
 
 namespace HardHat {
@@ -24,24 +25,24 @@ namespace HardHat {
         public static void Start(){
             if (String.IsNullOrEmpty(_config.personal.adb.dvc))
             {
-                $" [A] ADB".txtMuted(ct.WriteLine);
+                _colorify.WriteLine($" [A] ADB", txtMuted);
             } else {
-                $"[A] ADB: ".txtMuted();
-                $"{_config.personal.adb.dvc}".txtDefault(ct.WriteLine);
+                _colorify.Write($"[A] ADB: ", txtMuted);
+                _colorify.WriteLine($"{_config.personal.adb.dvc}");
             }
-            $"{"   [D] Devices"         , -34}".txtPrimary(ct.Write);
+            _colorify.Write($"{"   [D] Devices"         , -34}", txtPrimary);
             if (!_config.personal.adb.wst)
             {
-                $"{"[W] WiFi Connect"   , -34}".txtPrimary(ct.Write);
+                _colorify.Write($"{"[W] WiFi Connect"   , -34}", txtPrimary);
             } else {
-                $"{"[W] WiFi Disconnect", -34}".txtPrimary(ct.Write);
+                _colorify.Write($"{"[W] WiFi Disconnect", -34}", txtPrimary);
             }
-            $"{"[R] Restart"            , -17}".txtPrimary(ct.WriteLine);
-            $"".fmNewLine();
+            _colorify.WriteLine($"{"[R] Restart"        , -17}", txtPrimary);
+            _colorify.BlankLines();
         }
 
         public static void Install() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -50,15 +51,15 @@ namespace HardHat {
 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
-                $"".fmNewLine();
-                $" --> Checking devices...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Checking devices...", txtInfo);
                 if (CmdDevices()){
-                    $"".fmNewLine();
-                    $" --> Installing...".txtInfo(ct.WriteLine);
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Installing...", txtInfo);
                     Response result = CmdInstall(dirPath, _config.personal.adb.dvc);
                     if (result.code == 0) {
-                        $"".fmNewLine();
-                        $" --> Launching...".txtInfo(ct.WriteLine);
+                        _colorify.BlankLines();
+                        _colorify.WriteLine($" --> Launching...", txtInfo);
                         CmdLaunch(dirPath, _config.personal.adb.dvc);
                     }
 
@@ -76,7 +77,7 @@ namespace HardHat {
         }
 
         public static void Restart() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -84,17 +85,17 @@ namespace HardHat {
                 
                 if (_config.personal.adb.wst)
                 {
-                    $" --> Disconnecting device...".txtInfo(ct.WriteLine);
+                    _colorify.WriteLine($" --> Disconnecting device...", txtInfo);
                     CmdDisconnect(_config.personal.adb.wip, _config.personal.adb.wpr);
                     _config.personal.adb.wst = false;
-                    $"".fmNewLine();
+                    _colorify.BlankLines();
                 }
                 
-                $" --> Kill Server...".txtInfo(ct.WriteLine);
+                _colorify.WriteLine($" --> Kill Server...", txtInfo);
                 CmdKillServer();
 
-                $"".fmNewLine();
-                $" --> Start Server...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Start Server...", txtInfo);
                 CmdStartServer();
 
                 _config.personal.adb.dvc = "";
@@ -110,7 +111,7 @@ namespace HardHat {
         }
 
         public static void Devices() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -126,18 +127,18 @@ namespace HardHat {
                         {
                             if (!String.IsNullOrEmpty(l))
                             {
-                                $" {i, 2}] {Shell.GetWord(l, 0)}".txtPrimary(ct.WriteLine);
+                                _colorify.WriteLine($" {i, 2}] {Shell.GetWord(l, 0)}", txtPrimary);
                                 i++;
                             }
                         }
                     }
 
-                    $"".fmNewLine();
-                    $"{"[EMPTY] None", 82}".txtDanger(ct.WriteLine);
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($"{"[EMPTY] None", 82}", txtDanger);
                     
                     Section.HorizontalRule();
 
-                    $"{" Make your choice:", -25}".txtInfo();
+                    _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                     string opt = Console.ReadLine();
 
                     if (!String.IsNullOrEmpty(opt))
@@ -169,27 +170,27 @@ namespace HardHat {
         }
 
         public static void Configuration() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONNECT DEVICE");
                 
                 _config.personal.ipl = Network.GetLocalIPv4();
-                $"{" Current IP:", -25}".txtMuted();
-                $"{_config.personal.ipl}".txtDefault(ct.WriteLine);
+                _colorify.Write($"{" Current IP:", -25}", txtMuted);
+                _colorify.WriteLine($"{_config.personal.ipl}");
 
-                $"".fmNewLine();
-                $"{" [I] IP Address:" , -25}".txtPrimary();   $"{_config.personal.adb.wip}".txtDefault(ct.WriteLine);
-                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_config.personal.adb.wpr}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [I] IP Address:" , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.adb.wip}");
+                _colorify.Write($"{" [P] Port:"       , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.adb.wpr}");
                 
-                $"".fmNewLine();
-                $"{" [C] Connect"     , -68}".txtStatus(ct.Write, !String.IsNullOrEmpty(_config.personal.adb.wip));
-                $"{"[EMPTY] Cancel"   , -17}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [C] Connect"     , -68}", txtStatus(!String.IsNullOrEmpty(_config.personal.adb.wip)));
+                _colorify.WriteLine($"{"[EMPTY] Cancel"   , -17}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 switch (opt?.ToLower())
@@ -223,23 +224,23 @@ namespace HardHat {
         }
 
         public static void Base() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONNECT DEVICE", "IP ADDRESS");
                 
-                $"".fmNewLine();
-                $" Write last mobile device IP octet.".txtPrimary(ct.WriteLine);
-                $" PC and Mobile device needs to be in same WiFi Network.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write last mobile device IP octet.", txtPrimary);
+                _colorify.WriteLine($" PC and Mobile device needs to be in same WiFi Network.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
 
                 _config.personal.ipb = Network.RemoveLastOctetIPv4(_config.personal.ipl);
-                $"{$" {_config.personal.ipb} ", -25}".txtInfo();
+                _colorify.Write($"{$" {_config.personal.ipb} ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
@@ -256,21 +257,21 @@ namespace HardHat {
         }
 
         public static void Port() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONNECT DEVICE", "PORT");
                 
-                $" Write mobile device port.".txtPrimary(ct.WriteLine);
-                $" Between 5555".txtPrimary(); $" (Default)".txtInfo(); $" and 5585".txtPrimary(ct.WriteLine); 
+                _colorify.WriteLine($" Write mobile device port.", txtPrimary);
+                _colorify.Write($" Between 5555", txtPrimary); _colorify.Write($" (Default)", txtInfo); _colorify.WriteLine($" and 5585", txtPrimary); 
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
@@ -289,13 +290,13 @@ namespace HardHat {
         }
 
         public static void Connect() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("CONNECT DEVICE");
                 
-                $" --> Connecting...".txtInfo(ct.WriteLine);
+                _colorify.WriteLine($" --> Connecting...", txtInfo);
                 bool connected = CmdConnect(_config.personal.adb.wip, _config.personal.adb.wpr);
                 _config.personal.adb.wst = connected;
 
@@ -309,13 +310,13 @@ namespace HardHat {
             }
         }
         public static void Disconnect() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
                 Section.Header("DISCONNECT DEVICE");
                 
-                $" --> Disconnecting...".txtInfo(ct.WriteLine);
+                _colorify.WriteLine($" --> Disconnecting...", txtInfo);
                 bool connected = CmdDisconnect(_config.personal.adb.wip, _config.personal.adb.wpr);
                 _config.personal.adb.wst = connected;
                 if (_config.personal.adb.dvc == $"{_config.personal.adb.wip}:{_config.personal.adb.wpr}")
@@ -337,7 +338,7 @@ namespace HardHat {
     public static partial class BuildTools {
         
         public static void SignerVerify() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -346,8 +347,8 @@ namespace HardHat {
                 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
-                $"".fmNewLine();
-                $" --> Verifying...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Verifying...", txtInfo);
                 CmdSignerVerify(dirPath);
 
                 Section.HorizontalRule();
@@ -361,7 +362,7 @@ namespace HardHat {
         }
 
         public static void Information() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -370,19 +371,19 @@ namespace HardHat {
                 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld, _config.personal.sfl); 
 
-                $"".fmNewLine();
-                $" --> Dump Badging...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Dump Badging...", txtInfo);
                 CmdInformation(dirPath);
 
                 if ((OS.IsWin() && Variables.Valid("sh")) || OS.IsMac()){
                     Response result = CmdSha(dirPath);
                     if (result.code == 0) {
-                        $"".fmNewLine();
-                        $" --> File Hash...".txtInfo(ct.WriteLine);
+                        _colorify.BlankLines();
+                        _colorify.WriteLine($" --> File Hash...", txtInfo);
                 
-                        $"".fmNewLine();
-                        $" SHA256: ".txtMuted();
-                        $"{result.stdout}".txtDefault(ct.WriteLine);    
+                        _colorify.BlankLines();
+                        _colorify.Write($" SHA256: ", txtMuted);
+                        _colorify.WriteLine($"{result.stdout}");
                     }
                 }
 

@@ -6,8 +6,8 @@ using System.Text;
 using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-
-using ct = dein.tools.Colorify.Type;
+using Colorify;
+using static Colorify.Colors;
 
 namespace HardHat {
 
@@ -48,25 +48,25 @@ namespace HardHat {
         public static void Start() {
             if (String.IsNullOrEmpty(_config.personal.mnu.s_cnf))
             {
-                $" [S] Sonar".txtStatus(ct.WriteLine,           Options.Valid("s"));
+                _colorify.WriteLine($" [S] Sonar", txtStatus(Options.Valid("s")));
             } else {
-                $" [S] Sonar: ".txtStatus(ct.Write,             Options.Valid("s"));
+                _colorify.Write($" [S] Sonar: ", txtStatus(Options.Valid("s")));
                 Section.Configuration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
             }
-            $"{"   [Q] Qube"   , -34}".txtStatus(ct.Write,      Options.Valid("sq"));
+            _colorify.Write($"{"   [Q] Qube"      , -34}", txtStatus(Options.Valid("sq")));
             if (String.IsNullOrEmpty(_config.personal.snr.ipt))
             {
-                $"{"[S] Scanner" , -34}".txtStatus(ct.Write,    Options.Valid("ss"));
+                _colorify.Write($"{"[S] Scanner"  , -34}", txtStatus(Options.Valid("ss")));
             } else {
-                $"{"[S] Scanner: ", -13}".txtStatus(ct.Write,    Options.Valid("ss"));
-                $"{_config.personal.snr.ipt    , -21}".txtDefault(ct.Write);
+                _colorify.Write($"{"[S] Scanner: ", -13}", txtStatus(Options.Valid("ss")));
+                _colorify.Write($"{_config.personal.snr.ipt    , -21}", txtDefault);
             }
-            $"{"[B] Browse"    , -17}".txtStatus(ct.WriteLine,  Options.Valid("sb"));
-            $"".fmNewLine();
+            _colorify.WriteLine($"{"[B] Browse"   , -17}", txtStatus(Options.Valid("sb")));
+            _colorify.BlankLines();
         }
 
         public static void Select() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -74,16 +74,16 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
 
-                $"".fmNewLine();
-                $"{" [P] Protocol:"     , -25}".txtPrimary();   $"{_config.personal.snr.ptc}".txtDefault(ct.WriteLine);
-                $"{" [S] Server:"       , -25}".txtPrimary();   $"{_config.personal.snr.dmn}{(!String.IsNullOrEmpty(_config.personal.snr.prt) ? ":"+_config.personal.snr.prt : "")}".txtDefault(ct.WriteLine);
-                $"{" [I] Internal Path:", -25}".txtPrimary();   $"{_config.personal.snr.ipt}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [P] Protocol:"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.snr.ptc}");
+                _colorify.Write($"{" [S] Server:"       , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.snr.dmn}{(!String.IsNullOrEmpty(_config.personal.snr.prt) ? ":"+_config.personal.snr.prt : "")}");
+                _colorify.Write($"{" [I] Internal Path:", -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.snr.ipt}");
 
-                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
+                _colorify.WriteLine($"{"[EMPTY] Exit", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if(String.IsNullOrEmpty(opt?.ToLower()))
@@ -100,7 +100,7 @@ namespace HardHat {
         }
 
         public static void Protocol() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -110,8 +110,8 @@ namespace HardHat {
 
                 if (!String.IsNullOrEmpty(_config.personal.mnu.s_cnf))
                 {
-                    $"{" Current Configuration:", -25}".txtMuted();
-                    $"{_config.personal.mnu.s_cnf}".txtDefault(ct.WriteLine);
+                    _colorify.Write($"{" Current Configuration:", -25}", txtMuted);
+                    _colorify.WriteLine($"{_config.personal.mnu.s_cnf}");
                 }
 
                 Selector.Start(Selector.Protocol, "1");
@@ -146,7 +146,7 @@ namespace HardHat {
         }
 
         public static void Server() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -154,15 +154,15 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
 
-                $"".fmNewLine();
-                $"{" [D] Domain:"     , -25}".txtPrimary();   $"{_config.personal.snr.dmn}".txtDefault(ct.WriteLine);
-                $"{" [P] Port:"       , -25}".txtPrimary();   $"{_config.personal.snr.prt}".txtDefault(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.Write($"{" [D] Domain:"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.snr.dmn}");
+                _colorify.Write($"{" [P] Port:"       , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.snr.prt}");
 
-                $"{"[EMPTY] Exit", 82}".txtDanger(ct.WriteLine);
+                _colorify.WriteLine($"{"[EMPTY] Exit", 82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                $"{" Make your choice:", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if(String.IsNullOrEmpty(opt?.ToLower()))
@@ -179,7 +179,7 @@ namespace HardHat {
         }
 
         public static void Domain() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -187,15 +187,15 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
                 
-                $"".fmNewLine();
-                $" Write server domain.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write server domain.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Cancel", 82}".txtDanger(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
                 
                 Section.HorizontalRule();
 
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
@@ -211,7 +211,7 @@ namespace HardHat {
         }
 
         public static void Port() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -219,15 +219,15 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
                 
-                $"".fmNewLine();
-                $" Write server port.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write server port.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt = Console.ReadLine();
                 
                 if (!String.IsNullOrEmpty(opt)){
@@ -246,7 +246,7 @@ namespace HardHat {
         }
 
         public static void InternalPath() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -254,16 +254,16 @@ namespace HardHat {
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
 
-                $"".fmNewLine();
-                $" Write an internal path inside your project.".txtPrimary(ct.WriteLine);
-                $" Don't use / (slash character) at start or end.".txtPrimary(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write an internal path inside your project.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
                 
-                $"".fmNewLine();
-                $"{"[EMPTY] Default", 82}".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
                 
                 Section.HorizontalRule();
             
-                $"{" Make your choice: ", -25}".txtInfo();
+                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
                 string opt_ipt = Console.ReadLine();
                 _config.personal.snr.ipt = $"{opt_ipt}";
                 
@@ -276,7 +276,7 @@ namespace HardHat {
         }
         
         public static void Qube() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -289,7 +289,7 @@ namespace HardHat {
         }
 
         public static void Scanner() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
@@ -299,8 +299,8 @@ namespace HardHat {
 
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.personal.snr.ipt);
 
-                $"".fmNewLine();
-                $" --> Scanning...".txtInfo(ct.WriteLine);
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Scanning...", txtInfo);
                 CmdScanner(dirPath);
 
                 Section.HorizontalRule();
@@ -314,7 +314,7 @@ namespace HardHat {
         }
 
         public static void Browse() {
-            Colorify.Default();
+            _colorify.Clear();
 
             try
             {
