@@ -15,6 +15,7 @@ namespace dein.tools
         }
 
         public static void Error(string msg = null, bool replace = false, bool exit = false) {
+            _colorify.Clear();
             try
             {
                 _colorify.DivisionLine('=', bgDanger);
@@ -51,6 +52,7 @@ namespace dein.tools
         }
 
         public static void Alert(string msg, bool exit = false) {
+            _colorify.Clear();
             try
             {
                 _colorify.DivisionLine('=', bgWarning);
