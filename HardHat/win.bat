@@ -57,7 +57,7 @@ goto update
 
 :run
 call color 07
-HardHat.exe
+start powershell -command "[console]::backgroundcolor=0; [console]::WindowWidth=86; [console]::WindowHeight=30; [console]::BufferWidth=[console]::WindowWidth; HardHat.exe;"
 goto end
 
 :stop
