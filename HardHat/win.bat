@@ -57,12 +57,11 @@ goto update
 
 :run
 call color 07
-start powershell -command "[console]::backgroundcolor=0; [console]::WindowWidth=86; [console]::WindowHeight=30; [console]::BufferWidth=[console]::WindowWidth; HardHat.exe;"
+HardHat.exe
 goto end
 
 :stop
 call color FC
-cls
 cls
 echo ==========================================================================================
 echo  ERROR
