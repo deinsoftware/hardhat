@@ -1,7 +1,7 @@
 # HardHat [ for Win & Mac ]
 
 
-**HardHat** was created to simplify and automate tasks related to Android development.
+**HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) libraries.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
