@@ -44,11 +44,11 @@ namespace HardHat
             {
                 case "win":
                     _path = new PathsConfigurator(CommandSystem.Win, FileSystem.Default);
-                    _colorify = new Format(Theme.Win);
+                    _colorify = new Format(Theme.Dark);
                     break;
                 case "mac":
                     _path = new PathsConfigurator(CommandSystem.Mac, FileSystem.Default);
-                    _colorify = new Format(Theme.Mac);
+                    _colorify = new Format(Theme.Light);
                     break;
             }
         }

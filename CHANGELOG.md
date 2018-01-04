@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [5.0.1] - 2018-01-04
+
+**Fixed:**
+
+* Update [Colorify](https://github.com/equiman/colorify) library, that solves bug with text on resize window.
+
 ## [5.0.0] - 2017-12-28
 
 **Changed:**
