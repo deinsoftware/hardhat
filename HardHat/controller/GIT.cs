@@ -1,8 +1,7 @@
 using System;
-using System.Runtime.InteropServices;
 using dein.tools;
 
-namespace HardHat 
+namespace HardHat
 {
     static class Git {
         public static string CmdBranch(string path) {

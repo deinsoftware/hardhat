@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Update [Colorify](https://github.com/equiman/colorify) library, that solves bug with text on resize window.
+* Update [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) library, that solves bug with text on resize window.
 
 ## [5.0.0] - 2017-12-28
 

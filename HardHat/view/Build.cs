@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-using Colorify;
 using static Colorify.Colors;
 
-namespace HardHat {
+namespace HardHat
+{
     public static partial class Build {
 
         public static void List(ref List<Option> opts) {
@@ -253,15 +251,13 @@ namespace HardHat {
                 string destinationPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
                 
                 _colorify.BlankLines();
-                List<string> filter = new List<string>() { 
-                    ".properties"
-                };
+                List<string> filter = _disk.FilterCreator(".properties");
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
                 _colorify.BlankLines();
                 _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{sourcePath}");
                 _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{destinationPath}");
-                Paths.CopyAll(sourcePath, destinationPath, true, true, filter);     
+                _disk.CopyAll(sourcePath, destinationPath, true, filter);
             
                 Section.HorizontalRule();
                 Section.Pause();

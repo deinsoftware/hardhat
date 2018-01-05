@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using Validation = ToolBox.Validations.Strings;
 using Transform = ToolBox.Transform.Strings;
 using dein.tools;
 using static HardHat.Program;
 using ToolBox.Validations;
-using Colorify;
 using static Colorify.Colors;
 
-namespace HardHat {
+namespace HardHat
+{
 
     public static partial class Gulp {
 
@@ -74,7 +73,7 @@ namespace HardHat {
             _colorify.Write($"{"[U] Uglify"    , -17}", txtStatus(Options.Valid("gu")));
             _colorify.Write($"{"[R] Revert"    , -17}", txtStatus(Options.Valid("gr")));
             _colorify.Write($"{"[S] Server"    , -17}", txtStatus(Options.Valid("gs")));
-            _colorify.WriteLine($"{"[L] Log"       , -17}", txtStatus(Options.Valid("gl")));
+            _colorify.WriteLine($"{"[L] Log"   , -17}", txtStatus(Options.Valid("gl")));
             _colorify.BlankLines();
         }
         
@@ -434,19 +433,19 @@ namespace HardHat {
                 _colorify.WriteLine($" --> Cleaning...", txtInfo);
                 foreach (var dir in dirs)
                 {
-                    Paths.DeleteAll(dir, true, true);
+                    _disk.DeleteAll(dir, true);
                     Directory.CreateDirectory(dir);
                 }
 
                 _colorify.BlankLines();
-                List<string> filter = new List<string>(_config.android.flt);
+                List<string> filter = _disk.FilterCreator(_config.android.flt);
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
                 _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
                 _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[0]}");
-                Paths.CopyAll(dirPath, dirs[0], true, true, filter);
+                _disk.CopyAll(dirPath, dirs[0], true, filter);
                 _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
-                Paths.CopyAll(dirPath, dirs[1], true, true, filter);
+                _disk.CopyAll(dirPath, dirs[1], true, filter);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Uglifying...", txtInfo);
@@ -456,7 +455,7 @@ namespace HardHat {
                 _colorify.WriteLine($" --> Replacing...", txtInfo);
                 _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
                 _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
-                Paths.CopyAll(dirs[1], dirPath, true, true); 
+                _disk.CopyAll(dirs[1], dirPath, true); 
 
                 Section.HorizontalRule();
                 Section.Pause();
@@ -483,7 +482,7 @@ namespace HardHat {
                 _colorify.WriteLine($" --> Reverting...", txtInfo);
                 _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirSource}");
                 _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
-                Paths.CopyAll(dirSource, dirPath, true, true); 
+                _disk.CopyAll(dirSource, dirPath, true);
 
                 Section.HorizontalRule();
                 Section.Pause();

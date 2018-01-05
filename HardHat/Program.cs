@@ -1,6 +1,5 @@
 ﻿using System;
 using Colorify;
-using static Colorify.Colors;
 using Colorify.UI;
 using dein.tools;
 using ToolBox.Files;
@@ -39,7 +38,7 @@ namespace HardHat
         }
 
         private static void Factory(){
-            _disk = new DiskConfigurator(FileSystem.Default);
+            _disk = new DiskConfigurator(FileSystem.Default, new ConsoleNotificationSystem());
             switch (OS.GetCurrent())
             {
                 case "win":
