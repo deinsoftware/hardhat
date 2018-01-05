@@ -3,6 +3,7 @@ using Colorify;
 using Colorify.UI;
 using dein.tools;
 using ToolBox.Files;
+using ToolBox.Log;
 using ToolBox.Platform;
 using ToolBox.System;
 
@@ -11,9 +12,11 @@ namespace HardHat
     static class Program
     {
         public static Config _config  { get; set; }
+        public static IFileSystem _fileSystem {get; set;}
         public static DiskConfigurator _disk {get; set;}
         public static PathsConfigurator _path {get; set;}
         public static Format _colorify {get; set;}
+        public static ILogSystem _logSystem {get; set;}
 
         static void Main(string[] args)
         {
@@ -38,15 +41,16 @@ namespace HardHat
         }
 
         private static void Factory(){
-            _disk = new DiskConfigurator(FileSystem.Default, new ConsoleNotificationSystem());
+            _fileSystem = FileSystem.Default;
+            _disk = new DiskConfigurator(_fileSystem, new ConsoleNotificationSystem());
             switch (OS.GetCurrent())
             {
                 case "win":
-                    _path = new PathsConfigurator(CommandSystem.Win, FileSystem.Default);
+                    _path = new PathsConfigurator(CommandSystem.Win, _fileSystem);
                     _colorify = new Format(Theme.Dark);
                     break;
                 case "mac":
-                    _path = new PathsConfigurator(CommandSystem.Mac, FileSystem.Default);
+                    _path = new PathsConfigurator(CommandSystem.Mac, _fileSystem);
                     _colorify = new Format(Theme.Light);
                     break;
             }

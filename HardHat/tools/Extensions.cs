@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static HardHat.Program;
 
 namespace dein.tools
 {
     public static class Paths
     {
-        public static void Exists(this string dir, string message = null)
+        public static void Exists(this string path, string message = null)
         {
             try
             {
-                if (!Directory.Exists(dir)){
+                if (!_fileSystem.DirectoryExists(path)){
                     StringBuilder msg = new StringBuilder();
                     msg.Append($" Path not found:{Environment.NewLine}");
-                    msg.Append($" '{dir}'{Environment.NewLine}");
+                    msg.Append($" '{path}'{Environment.NewLine}");
                     if (!String.IsNullOrEmpty(message))
                     {
                         msg.Append(Environment.NewLine);
@@ -32,16 +33,16 @@ namespace dein.tools
             }
         }
 
-        public static List<string> Directories(this string dir, string flt, string type){
+        public static List<string> Directories(this string path, string filter, string type){
             List<string> dirs = new List<string>();
             try
             {
-                dirs = new List<string>(Directory.EnumerateDirectories(dir, flt).OrderBy(name => name));
+                dirs = _path.GetDirectories(path, filter);
                 if (dirs.Count < 1)
                 {
                     StringBuilder msg = new StringBuilder();
                     msg.Append($" There is no {type} in current location:{Environment.NewLine}");
-                    msg.Append($" '{dir}'");
+                    msg.Append($" '{path}'");
                     
                     Message.Alert(msg.ToString());
                 }
@@ -60,16 +61,16 @@ namespace dein.tools
             return dirs;
         }
     
-        public static List<string> Files(this string dir, string flt, string message = null){
+        public static List<string> Files(this string path, string filter, string message = null){
             List<string> files = new List<string>();
             try
             {
-                files = new List<string>(Directory.EnumerateFiles(dir, flt).OrderBy(name => name));
+                files = _path.GetFiles(path, filter);
                 if (files.Count < 1)
                 {
                     StringBuilder msg = new StringBuilder();
                     msg.Append($" There is no files in current location.{Environment.NewLine}");
-                    msg.Append($" '{dir}'{Environment.NewLine}");
+                    msg.Append($" '{path}'{Environment.NewLine}");
                     if (!String.IsNullOrEmpty(message))
                     {
                         msg.Append(Environment.NewLine);
