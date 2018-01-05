@@ -251,7 +251,7 @@ namespace HardHat
                 string destinationPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj); 
                 
                 _colorify.BlankLines();
-                List<string> filter = _disk.FilterCreator(".properties");
+                List<string> filter = _disk.FilterCreator(true, ".properties");
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
                 _colorify.BlankLines();

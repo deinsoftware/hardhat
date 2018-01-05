@@ -438,7 +438,7 @@ namespace HardHat
                 }
 
                 _colorify.BlankLines();
-                List<string> filter = _disk.FilterCreator(_config.android.flt);
+                List<string> filter = _disk.FilterCreator(true, _config.android.flt);
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
                 _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
