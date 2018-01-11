@@ -1,7 +1,7 @@
 # HardHat [ for Win & Mac ]
 
 
-**HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) libraries.
+**HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
@@ -9,7 +9,7 @@ I don't like repetitive tasks and make a build is one of them... yuck!
 
 ![Why we need automation?](automation.png "Be a Geek!")
 
-Contributions or Beer :beers: will be appreciated :thumbsup:
+Contributions or Beer will be appreciated
 
 > The Code is Dark and Full of Errors!  
 > Console is your friend ... don't be afraid!
@@ -72,8 +72,8 @@ Clone **HardHat** from GitHub on *recommended* path. Using this command on termi
 
 | OS | Command |
 | --- | --- |
-| win | `git clone -b win https://github.com/equiman/hardhat.git "D:\Applications\HardHat"` |
-| mac | `git clone -b mac https://github.com/equiman/hardhat.git ~/Applications/HardHat/` |
+| win | `git clone -b win https://github.com/deinsoftware/hardhat.git "D:\Applications\HardHat"` |
+| mac | `git clone -b mac https://github.com/deinsoftware/hardhat.git ~/Applications/HardHat/` |
 
 ## Environment Variables
 
@@ -436,13 +436,13 @@ Please read [CONTRIBUTING](CONTRIBUTING.md) for details on our code of conduct, 
 
 ### Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [HardHat](https://github.com/equiman/hardhat/tags) on GitHub.
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [HardHat](https://github.com/deinsoftware/hardhat/tags) on GitHub.
 
 ### Authors
 
 * **Camilo Martinez** [[Equiman](http://stackoverflow.com/story/equiman)]
 
-See also the list of [contributors](https://github.com/equiman/hardhat/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/deinsoftware/hardhat/contributors) who participated in this project.
 
 ### License
 
