@@ -429,6 +429,7 @@ Applications
 ### Built With
 
 * [VS Code](https://code.visualstudio.com/) - Code editing redefined.
+* [SonarQube](https://sonarcloud.io/dashboard/index/dein:hardhat) - Continuous code quality.
 
 ### Contributing
 
