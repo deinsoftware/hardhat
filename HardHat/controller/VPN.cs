@@ -11,7 +11,6 @@ namespace HardHat
             bool cnt = false;
             try
             {
-                Response result = new Response();
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"trac info -s {sitename} -tr true | ");
                 switch (OS.GetCurrent())
@@ -23,7 +22,7 @@ namespace HardHat
                         cmd.Append($"egrep -i 'status:'");
                         break;
                 }
-                result = cmd.ToString().Term(Output.Hidden, dir);
+                Response result = cmd.ToString().Term(Output.Hidden, dir);
                 result.stdout = result.stdout
                     .Replace("\r","")
                     .Replace("\n","");

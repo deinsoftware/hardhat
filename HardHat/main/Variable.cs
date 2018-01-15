@@ -74,7 +74,7 @@ namespace HardHat {
             var response = false;
             try
             {
-                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
                     if (upd || !option.chk){
@@ -111,7 +111,7 @@ namespace HardHat {
             var response = "";
             try
             {
-                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
                     if (!option.chk)
@@ -131,7 +131,7 @@ namespace HardHat {
         {
             try
             {
-                var option = list.Where(x => x.opt == opt).FirstOrDefault();
+                var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
                     Env.SetValue(option.nme, val);

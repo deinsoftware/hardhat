@@ -8,8 +8,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = new Response();
-                result = $"git -C {path} branch".Term();
+                Response result = $"git -C {path} branch".Term();
                 response = Shell.ExtractLine(result.stdout, "*", "* ");
                 response = response
                     .Replace("\r","")
@@ -35,8 +34,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = new Response();
-                result = $"git -C {path} pull".Term(Output.Internal);
+                Response result = $"git -C {path} pull".Term(Output.Internal);
                 response = result.stdout
                     .Replace("\r","")
                     .Replace("\n","");
@@ -73,8 +71,7 @@ namespace HardHat
             try
             {
                 string search = "Your branch is behind";
-                Response result = new Response();
-                result = $"git -C {path} status".Term();
+                Response result = $"git -C {path} status".Term();
                 response = Shell.ExtractLine(result.stdout, search);
                 if (String.IsNullOrEmpty(response)){
                     status = true;
