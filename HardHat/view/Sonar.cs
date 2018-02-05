@@ -293,6 +293,7 @@ namespace HardHat {
 
             try
             {
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.personal.snr.ipt);
                 CmdScanner(dirPath);
                 Menu.Start();
             }
