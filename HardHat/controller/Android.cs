@@ -13,8 +13,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = new Response();
-                result = $"adb devices -l".Term();
+                Response result = $"adb devices -l".Term();
                 response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
                 
                 if (
@@ -80,8 +79,7 @@ namespace HardHat
         public static void CmdLaunch(string path, string device){
             try
             {
-                Response result = new Response();
-                result = $"aapt dump badging {path}".Term();
+                Response result = $"aapt dump badging {path}".Term();
                 string packagename = Shell.ExtractLine(result.stdout, "package:");
                 if (!String.IsNullOrEmpty(packagename)){
                     packagename = Shell.GetWord(packagename, 1);
@@ -99,7 +97,7 @@ namespace HardHat
                         }
                     }
                     cmd.Append($" shell monkey -p {packagename} 1");
-                    result = cmd.ToString().Term();
+                    cmd.ToString().Term();
                 }
             }
             catch (Exception Ex){
@@ -139,8 +137,7 @@ namespace HardHat
             bool connected = false;
             try
             {
-                Response result = new Response();
-                result = $"adb connect {ip}:{port}".Term(Output.Internal);
+                Response result = $"adb connect {ip}:{port}".Term(Output.Internal);
                 if (result.stdout.Contains($"connected to {ip}:{port}")){
                     connected = true;
                 } else {
@@ -190,8 +187,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = new Response();
-                result = $"adb devices -l".Term();
+                Response result = $"adb devices -l".Term();
                 response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}");
             }
             catch (Exception Ex){

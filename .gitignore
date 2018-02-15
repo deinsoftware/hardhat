@@ -10,8 +10,8 @@
 .history
 
 ### SonarQube ###
-.sonar/
-.scannerwork/
+.sonarqube/
+sonar.txt
 
 ### HardHat Project ###
 **/bin

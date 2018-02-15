@@ -27,6 +27,20 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "test",
+            "command": "dotnet",
+            "type": "process",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "args": [
+                "test",
+                "${workspaceFolder}/ToolBox.Tests/ToolBox.Tests.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "publish win",
             "command": "dotnet",
             "args": [
@@ -55,6 +69,21 @@
                 "osx.10.12-x64"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "sonar",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceRoot}\\sonar.bat"
+            },
+            "osx": {
+                "command": "${workspaceRoot}/sonar.sh"
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": []
         }
     ]
 }

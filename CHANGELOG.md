@@ -19,6 +19,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * ADB WiFi disconnect status.
 
+## [5.0.2] - 2018-02-05
+
+**Changed:**
+
+* Sonar Scanner run in external terminal window.
+
 ## [5.0.1] - 2018-01-04
 
 **Fixed:**

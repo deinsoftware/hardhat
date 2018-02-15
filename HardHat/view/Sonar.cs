@@ -293,19 +293,8 @@ namespace HardHat {
 
             try
             {
-                Section.Header("SONAR SCANNER");
-                Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.s_val, _config.personal.mnu.s_cnf);
-
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.personal.snr.ipt);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($" --> Scanning...", txtInfo);
                 CmdScanner(dirPath);
-
-                Section.HorizontalRule();
-                Section.Pause();
-
                 Menu.Start();
             }
             catch (Exception Ex){

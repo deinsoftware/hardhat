@@ -32,7 +32,7 @@ namespace HardHat
         public static void CmdScanner(string dir){
             try
             {
-                $"sonar-scanner".Term(Output.Internal, dir);
+                $"sonar-scanner".Term(Output.External, dir);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
