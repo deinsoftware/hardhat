@@ -2,11 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-<<<<<<< HEAD
     <VersionPrefix>5.1.0</VersionPrefix>
-=======
-    <VersionPrefix>5.0.2</VersionPrefix>
->>>>>>> 3f47af310ffc5068c512e87abdff111f3730eeb0
     
     <Authors>Camilo Martinez</Authors>
     <Company>dein Software</Company>
