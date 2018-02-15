@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [5.1.0] - 2018-02-15
+
+**Added:**
+
+* ADB option to change listening port on device connected to USB.
+
+**Fixed:**
+
+* ADB WiFi disconnect status.
+
 ## [5.0.1] - 2018-01-04
 
 **Fixed:**
