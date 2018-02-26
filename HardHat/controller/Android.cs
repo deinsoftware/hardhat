@@ -34,22 +34,31 @@ namespace HardHat
             return dev;
         }
 
+        public static Response CmdState(string device){
+            Response result = new Response();
+            result = $"adb -s {device} get-state".Term();
+            if (result.stdout.Contains("not found")){
+                result.code = 0;   
+            } else {
+                result.code = 1;
+                Message.Error(
+                    msg: $" Device '{device}' not found."
+                );
+            }
+            return result;
+        }
+
         public static Response CmdInstall(string path, string device){
             Response result = new Response();
-            result.code = 1;
             try
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append("adb");
                 if (!String.IsNullOrEmpty(device))
                 {
-                    result = $"adb -s {device} get-state".Term();
-                    if (result.stdout.Contains("device")){
+                    result = CmdState(device);
+                    if (result.code == 0){
                         cmd.Append($" -s {device}");
-                    } else {
-                        Message.Error(
-                            msg: $" Device '{device}' not found."
-                        );
                     }
                 }
                 cmd.Append($" install -r {path} 2>&1");
@@ -57,6 +66,8 @@ namespace HardHat
                 string status = Shell.ExtractLine(result.stdout, "Success");
                 if (status.Contains("Success")){
                     result.code = 0;
+                } else {
+                    result.code = 1;
                 }
             }
             catch (Exception Ex){
@@ -80,13 +91,9 @@ namespace HardHat
                     cmd.Append("adb");
                     if (!String.IsNullOrEmpty(device))
                     {
-                        result = $"adb -s {device} get-state".Term();
-                        if (result.stdout.Contains("device")){
+                        result = CmdState(device);
+                        if (result.code == 0){
                             cmd.Append($" -s {device}");
-                        } else {
-                            Message.Error(
-                                msg: $" Device '{device}' not found."
-                            );
                         }
                     }
                     cmd.Append($" shell monkey -p {packagename} 1");
@@ -96,6 +103,34 @@ namespace HardHat
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
             }
+        }
+
+        public static Response CmdTcpIp(string port, string device){
+            Response result = new Response();
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append("adb");
+                if (!String.IsNullOrEmpty(device))
+                {
+                    result = CmdState(device);
+                    if (result.code == 0){
+                        cmd.Append($" -s {device}");
+                    }
+                }
+                cmd.Append($" tcpip {port} 2>&1");
+                result = cmd.ToString().Term(Output.Internal);
+                string status = Shell.ExtractLine(result.stdout, $"{port}");
+                if (String.IsNullOrEmpty(status) || status.Contains($"{port}")){
+                    result.code = 0;
+                } else {
+                    result.code = 1;
+                }
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+            return result;
         }
 
         public static bool CmdConnect(string ip, string port){
@@ -116,16 +151,11 @@ namespace HardHat
         }
 
         public static bool CmdDisconnect(string ip, string port){
-            bool connected = true;
+            bool connected = false;
             try
             {
-                
-                Response result = $"adb disconnect {ip}:{port}".Term(Output.Internal);
-                if (result.stdout.StartsWith($"disconnected {ip}:{port}")){
-                    connected = false;
-                } else {
-                    connected = true;
-                }
+                Response result = new Response();
+                result = $"adb disconnect {ip}:{port}".Term(Output.Internal);
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

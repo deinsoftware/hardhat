@@ -282,7 +282,46 @@ namespace HardHat {
                 }
 
                 Menu.Status();
+
+                StringBuilder msg = new StringBuilder();
+                msg.Append($" Do you want to change device port to {_config.personal.adb.wpr}?");
+                bool update = Message.Confirmation(msg.ToString());
+                if (update){
+                    Listening();
+                }
+
                 Configuration();
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void Listening() {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("LISTENING PORT");
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Checking devices...", txtInfo);
+                if (CmdDevices()){
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Changing port...", txtInfo);
+                    Response result = CmdTcpIp(_config.personal.adb.wpr, _config.personal.adb.dvc);
+                    if (result.code == 0) {
+                        _colorify.BlankLines();
+                        _colorify.WriteLine($" --> Restarting...", txtInfo);
+                        _colorify.BlankLines();
+                        _colorify.WriteLine($" TCP mode port: {_config.personal.adb.wpr}");                        
+                    }
+
+                    Section.HorizontalRule();
+                    Section.Pause();
+                } else {
+                    Message.Alert(" No device/emulators found");
+                }
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);
