@@ -8,10 +8,12 @@ function fxStart() {
     clear
     #Git
     git config --local core.filemode false
+    #Mode
     if [ -n "$1" ]; then
-        #Development
+        #Debug
         fxDebug
     else
+        #Release
         fxIsRunning
     fi
     clear
@@ -26,7 +28,9 @@ function fxUpdate() {
     echo "";
     echo " --> Updating... "
     updated="$(git pull)"
-    if [ "${updated}" != "Already up-to-date." ]; then 
+    if [ "${updated}" == "Already up-to-date." ] || [ "${updated}" == "Already up to date." ] ; then
+        fxRun
+    else
         fxGit
         echo ""
         echo "======================================================================================="
@@ -38,8 +42,6 @@ function fxUpdate() {
         echo ""
         echo "======================================================================================="
         pause "Press [Enter] key to continue..."
-        fxRun
-    else
         fxRun
     fi
 }
