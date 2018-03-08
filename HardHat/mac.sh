@@ -4,13 +4,10 @@ function fxStart() {
     #Resize
     clear
     resize -s 30 88
+    tell application "Terminal" to set bounds of front window to {22, 44, 650, 500}
     clear
     #Git
     git config --local core.filemode false
-    #Permissions
-    chmod +x mac.sh
-    chmod +x mac.command
-    chmod +x cmd.mac.sh
     if [ -n "$1" ]; then
         #Development
         fxDebug
@@ -47,12 +44,21 @@ function fxUpdate() {
     fi
 }
 
+function fxPermission() {
+    chmod +x mac.sh
+    chmod +x mac.command
+    chmod +x cmd.mac.sh
+    chmod +x HardHat
+    chmod +x "Hard Hat"
+}
+
 function fxGit() {
     git reset --hard HEAD
     git pull
 }
 
 function fxDebug() {
+    fxPermission
     dotnet run
     fxExit
 }
@@ -67,9 +73,10 @@ function fxIsRunning() {
 }
 
 function fxRun() {
-    chmod +x HardHat
+    fxPermission
 osascript <<EOF
     tell application "Terminal" to do script "source ~/.bash_profile; cd ~/Applications/HardHat/; clear; resize -s 30 88; clear; ./HardHat; clear; exit;"
+    tell application "Terminal" to set bounds of front window to {22, 44, 650, 500}
 EOF
     fxExit
 }
