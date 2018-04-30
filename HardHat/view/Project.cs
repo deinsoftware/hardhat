@@ -10,27 +10,30 @@ using static Colorify.Colors;
 namespace HardHat
 {
 
-    public static class Project {
+    public static class Project
+    {
 
 
-        public static void List(ref List<Option> opts) {
-            opts.Add(new Option{opt="p"   , stt=true , act=Project.Select                   });
-            opts.Add(new Option{opt="pf"  , stt=false, act=Project.SelectFile               });
-            opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
-            opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
-            opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
-            opts.Add(new Option{opt="pp>p", stt=false, act=Project.CopyFilePath             });
-            opts.Add(new Option{opt="pp>f", stt=false, act=Project.CopyFullPath             });
-            opts.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
-            opts.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
+        public static void List(ref List<Option> opts)
+        {
+            opts.Add(new Option { opt = "p", stt = true, act = Project.Select });
+            opts.Add(new Option { opt = "pf", stt = false, act = Project.SelectFile });
+            opts.Add(new Option { opt = "pi", stt = false, act = Adb.Install });
+            opts.Add(new Option { opt = "pd", stt = false, act = Project.Duplicate });
+            opts.Add(new Option { opt = "pp", stt = false, act = Project.FilePath });
+            opts.Add(new Option { opt = "pp>p", stt = false, act = Project.CopyFilePath });
+            opts.Add(new Option { opt = "pp>f", stt = false, act = Project.CopyFullPath });
+            opts.Add(new Option { opt = "ps", stt = false, act = BuildTools.SignerVerify });
+            opts.Add(new Option { opt = "pv", stt = false, act = BuildTools.Information });
         }
 
-        public static void Status(string dirPath){
+        public static void Status(string dirPath)
+        {
             if (!_fileSystem.DirectoryExists(dirPath))
             {
                 _config.personal.spr = "";
             }
-            Options.Valid("p" , true);
+            Options.Valid("p", true);
             string filePath = _path.Combine(dirPath, _config.android.prj, _config.android.bld, _config.personal.sfl ?? "");
             if (!File.Exists(filePath))
             {
@@ -40,65 +43,76 @@ namespace HardHat
             Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
             Options.Valid("pd", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
             Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
+            Options.Valid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
             Options.Valid("ps", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
             Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.sfl));
         }
 
-        public static void Start() {
+        public static void Start()
+        {
             if (String.IsNullOrEmpty(_config.personal.spr))
             {
                 _colorify.WriteLine($" [P] Select Project", txtPrimary);
-            } else {
+            }
+            else
+            {
                 _colorify.Write($" [P] Selected Project: ", txtPrimary);
                 _colorify.WriteLine($"{_config.personal.spr}");
             }
-            
+
             if (String.IsNullOrEmpty(_config.personal.spr))
             {
                 _colorify.WriteLine($"   [F] Select File", txtStatus(Options.Valid("pf")));
-            } else {
+            }
+            else
+            {
                 _colorify.Write($"   [F] Selected File:  ", txtPrimary);
                 _colorify.WriteLine($"{_config.personal.sfl}");
             }
 
-            _colorify.Write($"{"   [I] Install" , -17}", txtStatus(Options.Valid("pi")));
-            _colorify.Write($"{"[D] Duplicate"  , -17}", txtStatus(Options.Valid("pd")));
-            _colorify.Write($"{"[P] Path"       , -17}", txtStatus(Options.Valid("pp")));
-            _colorify.Write($"{"[S] Signer"     , -17}", txtStatus(Options.Valid("ps")));
-            _colorify.WriteLine($"{"[V] Values" , -17}", txtStatus(Options.Valid("pv")));
+            _colorify.Write($"{"   [I] Install",-17}", txtStatus(Options.Valid("pi")));
+            _colorify.Write($"{"[D] Duplicate",-17}", txtStatus(Options.Valid("pd")));
+            _colorify.Write($"{"[P] Path",-17}", txtStatus(Options.Valid("pp")));
+            _colorify.Write($"{"[S] Signer",-17}", txtStatus(Options.Valid("ps")));
+            _colorify.WriteLine($"{"[V] Values",-17}", txtStatus(Options.Valid("pv")));
 
             _colorify.BlankLines();
         }
 
-        public static void Select() {
+        public static void Select()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("SELECT PROJECT");
-                
+
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj);
                 dirPath.Exists("Please review your configuration file.");
                 List<string> dirs = dirPath.Directories(_config.path.flt, "projects");
 
-                if (dirs.Count < 1) {
+                if (dirs.Count < 1)
+                {
                     _config.personal.spr = "";
-                } else {
+                }
+                else
+                {
                     var i = 1;
                     foreach (var dir in dirs)
                     {
                         string d = dir;
-                        _colorify.WriteLine($" {i, 2}] {_path.GetFileName(d)}", txtPrimary);
+                        _colorify.WriteLine($" {i,2}] {_path.GetFileName(d)}", txtPrimary);
                         i++;
                     }
                 }
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
-                
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
+
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
+                _colorify.Write($"{" Make your choice:",-25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt))
@@ -111,43 +125,47 @@ namespace HardHat
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void SelectFile() {
+        public static void SelectFile()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("SELECT FILE");
-                
+
                 string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
                 dirPath.Exists("Please review your configuration file or make a build first.");
                 List<string> files = dirPath.Files($"*{_config.android.ext}", "Please make a build first.");
-                
+
                 if (files.Count < 1)
                 {
                     _config.personal.sfl = "";
-                } else {
+                }
+                else
+                {
                     var i = 1;
                     foreach (var file in files)
                     {
                         string f = file;
-                        _colorify.WriteLine($" {i, 2}] {_path.GetFileName(f)}", txtPrimary);
+                        _colorify.WriteLine($" {i,2}] {_path.GetFileName(f)}", txtPrimary);
                         i++;
                     }
                 }
-                
+
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
+                _colorify.Write($"{" Make your choice:",-25}", txtInfo);
                 string opt = Console.ReadLine();
-                
+
                 if (!String.IsNullOrEmpty(opt))
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
@@ -157,35 +175,43 @@ namespace HardHat
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CopyFilePath() {
+        public static void CopyFilePath()
+        {
             try
             {
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
                 Clipboard.Copy(dirPath);
+                Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CopyFullPath() {
+        public static void CopyFullPath()
+        {
             try
             {
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
                 Clipboard.Copy(_path.Combine(dirPath, _config.personal.sfl));
+                Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
 
-        public static void Duplicate() {
+        public static void Duplicate()
+        {
             _colorify.Clear();
 
             try
@@ -193,17 +219,17 @@ namespace HardHat
                 Section.Header("DUPLICATE FILE");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write a new name, without include his extension.", txtPrimary);
-                
+
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
+                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
                 string opt = Console.ReadLine();
 
                 if (!String.IsNullOrEmpty(opt))
@@ -214,45 +240,49 @@ namespace HardHat
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void FilePath() {
+        public static void FilePath()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("FILE PATH");
-                
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
 
-                _colorify.Write($"{" Path:", -10}", txtMuted);
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld);
+
+                _colorify.Write($"{" Path:",-10}", txtMuted);
                 _colorify.WriteLine($"{dirPath}");
 
-                _colorify.Write($"{" File:", -10}", txtMuted);
+                _colorify.Write($"{" File:",-10}", txtMuted);
                 _colorify.WriteLine($"{_config.personal.sfl}");
 
                 _colorify.BlankLines();
-                _colorify.Write($"{" [P] Copy Path", -34}", txtInfo);
-                _colorify.Write($"{"[F] Copy Full Path", -34}", txtInfo);
-                _colorify.WriteLine($"{"[EMPTY] Cancel", -17}", txtDanger);
+                _colorify.Write($"{" [P] Copy Path",-34}", txtInfo);
+                _colorify.Write($"{"[F] Copy Full Path",-34}", txtInfo);
+                _colorify.WriteLine($"{"[EMPTY] Cancel",-17}", txtDanger);
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
+                _colorify.Write($"{" Make your choice:",-25}", txtInfo);
                 string opt = Console.ReadLine();
 
-                if(String.IsNullOrEmpty(opt?.ToLower()))
+                if (String.IsNullOrEmpty(opt?.ToLower()))
                 {
                     Menu.Start();
-                } else {
+                }
+                else
+                {
                     Menu.Route($"pp>{opt?.ToLower()}", "pp");
                 }
-                Message.Error();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
