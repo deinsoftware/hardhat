@@ -20,6 +20,9 @@ namespace HardHat {
             opts.Add(new Option{opt="ar"  , stt=true , act=Adb.Restart                      });
             opts.Add(new Option{opt="ad"  , stt=true , act=Adb.Devices                      });
             opts.Add(new Option{opt="aw"  , stt=true , act=Adb.Wireless                     });
+            opts.Add(new Option{opt="aw>i", stt=true , act=Adb.Base                         });
+            opts.Add(new Option{opt="aw>p", stt=true , act=Adb.Port                         });
+            opts.Add(new Option{opt="aw>c", stt=true , act=Adb.Connect                      });
         }
 
         public static void Start(){
@@ -193,29 +196,12 @@ namespace HardHat {
                 _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
-                switch (opt?.ToLower())
+                if(String.IsNullOrEmpty(opt?.ToLower()))
                 {
-                    case "i":
-                        Base();
-                        break;
-                    case "p":
-                        Port();
-                        break;
-                    case "c":
-                        if (!String.IsNullOrEmpty(_config.personal.adb.wip))
-                        {
-                            Connect();
-                            Message.Error();
-                        }
-                        break;
-                    case "":
-                        Menu.Start();
-                        break;
-                    default:
-                        _config.personal.mnu.sel = "aw";
-                        break;
+                    Menu.Start();
+                } else {
+                    Menu.Route($"aw>{opt?.ToLower()}", "aw");
                 }
-
                 Message.Error();
             }
             catch (Exception Ex){
@@ -329,23 +315,26 @@ namespace HardHat {
         }
 
         public static void Connect() {
-            _colorify.Clear();
-
-            try
+            if (!String.IsNullOrEmpty(_config.personal.adb.wip))
             {
-                Section.Header("CONNECT DEVICE");
-                
-                _colorify.WriteLine($" --> Connecting...", txtInfo);
-                bool connected = CmdConnect(_config.personal.adb.wip, _config.personal.adb.wpr);
-                _config.personal.adb.wst = connected;
+                _colorify.Clear();
 
-                Section.HorizontalRule();
-                Section.Pause();
+                try
+                {
+                    Section.Header("CONNECT DEVICE");
+                    
+                    _colorify.WriteLine($" --> Connecting...", txtInfo);
+                    bool connected = CmdConnect(_config.personal.adb.wip, _config.personal.adb.wpr);
+                    _config.personal.adb.wst = connected;
 
-                Menu.Start();
-            }
-            catch (Exception Ex){
-                Exceptions.General(Ex.Message);
+                    Section.HorizontalRule();
+                    Section.Pause();
+
+                    Menu.Start();
+                }
+                catch (Exception Ex){
+                    Exceptions.General(Ex.Message);
+                }
             }
         }
         public static void Disconnect() {
@@ -443,7 +432,7 @@ namespace HardHat {
                 string lastVersion = "";
                 string dirPath = _path.Combine(Variables.Value("ah"), "build-tools");
 
-                if (Directory.Exists(dirPath)){
+                if (_fileSystem.DirectoryExists(dirPath)){
                     string dir = Directory.EnumerateDirectories(dirPath).OrderByDescending(name => name).Take(1).FirstOrDefault();
                     string d = dir;
                     lastVersion = _path.GetFileName(d);

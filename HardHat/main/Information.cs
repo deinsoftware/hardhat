@@ -10,6 +10,12 @@ using static HardHat.Program;
 namespace HardHat {
 
     public static class Information {
+
+        public static void List(ref List<Option> opts) {
+            opts.Add(new Option{opt="i"   , stt=true , act=Information.Versions             });
+            opts.Add(new Option{opt="e"   , stt=true , act=Information.Environment          });
+        }
+
         public static void Versions() {
             _colorify.Clear();
 

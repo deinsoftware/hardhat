@@ -19,12 +19,14 @@ namespace HardHat
             opts.Add(new Option{opt="pi"  , stt=false, act=Adb.Install                      });
             opts.Add(new Option{opt="pd"  , stt=false, act=Project.Duplicate                });
             opts.Add(new Option{opt="pp"  , stt=false, act=Project.FilePath                 });
+            opts.Add(new Option{opt="pp>p", stt=false, act=Project.CopyFilePath             });
+            opts.Add(new Option{opt="pp>f", stt=false, act=Project.CopyFullPath             });
             opts.Add(new Option{opt="ps"  , stt=false, act=BuildTools.SignerVerify          });
             opts.Add(new Option{opt="pv"  , stt=false, act=BuildTools.Information           });
         }
 
         public static void Status(string dirPath){
-            if (!Directory.Exists(dirPath))
+            if (!_fileSystem.DirectoryExists(dirPath))
             {
                 _config.personal.spr = "";
             }
@@ -159,6 +161,30 @@ namespace HardHat
                 Exceptions.General(Ex.Message);
             }
         }
+
+        public static void CopyFilePath() {
+            try
+            {
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
+                Clipboard.Copy(dirPath);
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+        public static void CopyFullPath() {
+            try
+            {
+                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.bld); 
+                Clipboard.Copy(_path.Combine(dirPath, _config.personal.sfl));
+            }
+            catch (Exception Ex){
+                Exceptions.General(Ex.Message);
+            }
+        }
+
+
         public static void Duplicate() {
             _colorify.Clear();
 
@@ -218,23 +244,13 @@ namespace HardHat
                 _colorify.Write($"{" Make your choice:", -25}", txtInfo);
                 string opt = Console.ReadLine();
 
-                switch (opt?.ToLower())
+                if(String.IsNullOrEmpty(opt?.ToLower()))
                 {
-                    case "p":
-                        Clipboard.Copy(dirPath);
-                        break;
-                    case "f":
-                        Clipboard.Copy(_path.Combine(dirPath, _config.personal.sfl));
-                        break;
-                    case "":
-                        //Cancel
-                        break;
-                    default:
-                        Message.Error();
-                        break;
+                    Menu.Start();
+                } else {
+                    Menu.Route($"pp>{opt?.ToLower()}", "pp");
                 }
-
-                Menu.Start();
+                Message.Error();
             }
             catch (Exception Ex){
                 Exceptions.General(Ex.Message);

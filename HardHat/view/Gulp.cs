@@ -536,7 +536,7 @@ namespace HardHat
             {
                 string dirPath = _path.Combine(Variables.Value("gp"));
 
-                if (Directory.Exists(_path.Combine(dirPath, ".git"))){
+                if (_fileSystem.DirectoryExists(_path.Combine(dirPath, ".git"))){
                     Git.CmdFetch(dirPath);
                     bool updated = Git.CmdStatus(dirPath);
                     if (!updated){
