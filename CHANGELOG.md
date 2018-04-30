@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [5.1.1] - 2018-04-30
+
+**Fixed:**
+
+* Internal options menu.
+
 ## [5.1.0] - 2018-02-15
 
 **Added:**
