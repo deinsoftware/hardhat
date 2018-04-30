@@ -60,7 +60,6 @@ function fxGit() {
 }
 
 function fxDebug() {
-    fxPermission
     dotnet run
     fxExit
 }
