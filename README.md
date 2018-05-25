@@ -131,7 +131,7 @@ export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 ```
 
-On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want.
+On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. And omit `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
 
 > **Where are environment variables?**  
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
