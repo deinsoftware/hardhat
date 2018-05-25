@@ -101,7 +101,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
 | `PATH` | %ANDROID_HOME%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_HOME%\platform-tools;<br>%ANDROID_HOME%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
-Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommended use the last one).
+On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Build Tool version (recommended use the last one).
 
 > **Where are environment variables?**  
 > In the System Properties window, click on the Advanced tab, then click the Environment Variables button near the bottom of that tab. In the Environment Variables window, highlight the Path variable in the "System variables" section and click the Edit button.
@@ -111,7 +111,7 @@ Replace `ANDROID_BT_VERSION` with your Android SDK Build Tool version (recommend
 ```bash
 export ANDROID_HOME="/usr/local/opt/android-sdk/"
 export ANDROID_NDK_HOME="/usr/local/opt/android-sdk/ndk-bundle"
-export ANDROID_BT_VERSION="27.0.3"
+export ANDROID_BT_VERSION="$(ls -tr $ANDROID_HOME/build-tools | sort | tail -1)"
 export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
@@ -128,6 +128,8 @@ export PATH="$ANDROID_NDK_HOME/:$PATH"
 export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 ```
+
+On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want.
 
 > **Where are environment variables?**  
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
