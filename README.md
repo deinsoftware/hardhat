@@ -299,9 +299,9 @@ gulp log --dmn dimension_value [--flv flavor_value --srv server_number]
 | combination | action |
 | --- | --- |
 | <kbd>b</kbd> | Configure your build type, flavor and dimensions. |
-| <kbd>g>s</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
-| <kbd>g>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
-| <kbd>g>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
+| <kbd>b>d</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
+| <kbd>b>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
+| <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
 | <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>bc</kbd> | Make `clean` project with gradle command line. |
 | <kbd>bg</kbd> | Make `clean` and `build` project with gradle command line. |
