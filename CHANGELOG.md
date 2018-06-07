@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [5.2.1] - 2018-06-07
+
+**Fix:**
+
+* Gulp Uglify error when www folder don't exists.
+
+**Changed:**
+
+* Update ToolBox to 1.1.4 and Colorify to 1.0.4.
+
 ## [5.2.0] - 2018-04-30
 
 **Added:**
