@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.1.0] - 2018-06-08
+
+**Added:**
+
+* Config option to enable log file in order to trace development issues.
+
 ## [6.0.2] - 2018-06-08
 
 **Changed:**

@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
-using Colorify;
 using static Colorify.Colors;
 using dein.tools;
 using ToolBox.Platform;
@@ -89,7 +87,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -125,7 +123,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -184,7 +182,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -237,7 +235,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -273,7 +271,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -320,7 +318,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -357,7 +355,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -382,7 +380,7 @@ namespace HardHat
                 }
                 catch (Exception Ex)
                 {
-                    Exceptions.General(Ex.Message);
+                    Exceptions.General(Ex);
                 }
             }
         }
@@ -409,7 +407,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
     }
@@ -439,7 +437,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -479,7 +477,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -508,7 +506,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
     }

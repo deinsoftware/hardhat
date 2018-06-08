@@ -1,9 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Text;
-using Colorify;
 using static Colorify.Colors;
 using dein.tools;
 using static HardHat.Program;
@@ -13,12 +9,6 @@ namespace HardHat
 
     public static class Selector
     {
-        public static readonly IReadOnlyDictionary<string, string> Theme = new Dictionary<string, string>
-        {
-            {"l", "Light"},
-            {"d", "Dark"},
-        };
-
         public static readonly IReadOnlyDictionary<string, string> Flavor = new Dictionary<string, string>
         {
             {"a", "Alfa"},
@@ -28,22 +18,34 @@ namespace HardHat
             {"d", "Desk"}
         };
 
-        public static readonly IReadOnlyDictionary<string, string> Mode = new Dictionary<string, string>
-        {
-            {"d", "Debug"},
-            {"r", "Release"}
-        };
-
         public static readonly IReadOnlyDictionary<string, string> Logical = new Dictionary<string, string>
         {
             {"y", "Yes"},
             {"n", "No"}
         };
 
+        public static readonly IReadOnlyDictionary<string, string> Mode = new Dictionary<string, string>
+        {
+            {"d", "Debug"},
+            {"r", "Release"}
+        };
+
         public static readonly IReadOnlyDictionary<string, string> Protocol = new Dictionary<string, string>
         {
             {"1", "http"},
             {"2", "https"}
+        };
+
+        public static readonly IReadOnlyDictionary<string, string> Status = new Dictionary<string, string>
+        {
+            {"e", "Enable"},
+            {"d", "Disable"}
+        };
+
+        public static readonly IReadOnlyDictionary<string, string> Theme = new Dictionary<string, string>
+        {
+            {"l", "Light"},
+            {"d", "Dark"},
         };
 
         public static string Name(IReadOnlyDictionary<string, string> sel, string opt)
@@ -62,7 +64,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return opt;
         }
@@ -111,7 +113,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return opt;
         }

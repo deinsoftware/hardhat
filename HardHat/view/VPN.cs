@@ -22,7 +22,7 @@ namespace HardHat
                 }
             }
             catch (Exception Ex){
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
     }

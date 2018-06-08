@@ -1,7 +1,4 @@
 using System;
-using System.Net;
-using System.Net.Sockets;
-using Colorify;
 using static Colorify.Colors;
 using HardHat;
 using static HardHat.Program;
@@ -52,7 +49,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -82,7 +79,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -126,7 +123,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return sel;
         }

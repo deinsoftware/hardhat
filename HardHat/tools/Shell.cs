@@ -1,13 +1,10 @@
-using System.Runtime.InteropServices;
 using System;
 using System.Diagnostics;
 using System.Text;
-using System.Reflection;
 using System.IO;
 using ToolBox.Platform;
 using ToolBox.Transform;
 using static HardHat.Program;
-using Colorify;
 using static Colorify.Colors;
 
 namespace dein.tools
@@ -66,7 +63,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -128,7 +125,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return result;
         }
@@ -189,7 +186,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return response;
         }
@@ -205,7 +202,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return response;
         }
@@ -228,7 +225,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return response;
         }

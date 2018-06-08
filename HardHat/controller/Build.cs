@@ -14,7 +14,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
         public static void CmdGradle(string path, string conf, string device = null)
@@ -25,7 +25,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
         public static void CmdRefresh(string path, string conf, string device = null)
@@ -36,7 +36,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
     }

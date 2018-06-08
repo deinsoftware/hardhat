@@ -20,7 +20,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -34,7 +34,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -48,7 +48,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -62,7 +62,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -75,7 +75,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -92,7 +92,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -106,7 +106,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -119,7 +119,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -133,7 +133,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -147,7 +147,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 

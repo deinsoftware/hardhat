@@ -31,7 +31,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
                 Message.Error(
                     msg: Ex.Message,
                     replace: true,
@@ -55,6 +55,7 @@ namespace HardHat
                     _colorify = new Format(Theme.Light);
                     break;
             }
+            _logSystem = new FileLogTxt(_fileSystem, _path.Combine("~"), ".hardhat.log");
         }
 
         private static void Config()

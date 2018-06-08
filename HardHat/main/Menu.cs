@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Text;
 using static Colorify.Colors;
 using dein.tools;
-using ToolBox.Files;
 using ToolBox.System;
 using static HardHat.Program;
 
@@ -36,7 +31,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 

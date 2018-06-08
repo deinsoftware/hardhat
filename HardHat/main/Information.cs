@@ -1,10 +1,5 @@
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Colorify;
 using static Colorify.Colors;
-using dein.tools;
 using static HardHat.Program;
 
 namespace HardHat

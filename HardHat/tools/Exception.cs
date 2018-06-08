@@ -1,23 +1,26 @@
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using dein.tools;
+using static HardHat.Program;
+using ToolBox.Log;
 
 namespace dein.tools
 {
 
     public static class Exceptions
     {
-
-        public static void General(string msg = null)
+        public static void General(Exception Ex)
         {
-            if (!String.IsNullOrEmpty(msg))
-            {
-                msg = $" {msg}";
-            }
-            Message.Critical(msg);
-        }
+            string message = Ex.Message;
 
+            if (_config.personal.log)
+            {
+                _logSystem.Save(Ex, LogLevel.Error);
+            }
+
+            if (!String.IsNullOrEmpty(message))
+            {
+                message = $" {message}";
+            }
+            Message.Critical(message);
+        }
     }
 }

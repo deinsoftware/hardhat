@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using static HardHat.Program;
 
@@ -31,7 +30,7 @@ namespace dein.tools
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -52,15 +51,15 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(UAEx.Message);
+                Exceptions.General(UAEx);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(PathEx.Message);
+                Exceptions.General(PathEx);
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return dirs;
         }
@@ -87,15 +86,15 @@ namespace dein.tools
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(UAEx.Message);
+                Exceptions.General(UAEx);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(PathEx.Message);
+                Exceptions.General(PathEx);
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
             return files;
         }

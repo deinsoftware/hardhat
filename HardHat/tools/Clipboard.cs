@@ -1,9 +1,5 @@
-using System.Runtime.InteropServices;
-using System;
-using System.Diagnostics;
 using System.Text;
 using ToolBox.Platform;
-using static HardHat.Program;
 
 namespace dein.tools
 {

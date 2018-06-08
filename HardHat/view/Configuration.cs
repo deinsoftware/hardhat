@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Validations;
@@ -34,6 +33,7 @@ namespace HardHat
             opts.Add(new Option { opt = "c>ge", status = true, action = Configuration.GulpExtension });
             opts.Add(new Option { opt = "c>v", status = true, action = Configuration.SiteName });
             opts.Add(new Option { opt = "c>t", status = true, action = Configuration.ThemeSelector });
+            opts.Add(new Option { opt = "c>l", status = true, action = Configuration.Log });
         }
 
         public static void Select()
@@ -62,6 +62,8 @@ namespace HardHat
             _colorify.Write($"{" [V] VPN",-25}", txtPrimary); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
+            string statusLog = Selector.Name(Selector.Status, (_config.personal.log ? "e" : "d"));
+            _colorify.Write($"{" [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{statusLog}");
 
             _colorify.BlankLines();
             _colorify.WriteLine($"{"[EMPTY] Save",82}", txtSuccess);
@@ -81,48 +83,6 @@ namespace HardHat
                 Menu.Route($"c>{opt}", "c");
             }
             Message.Error();
-        }
-
-        public static void ThemeSelector()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("CONFIGURATION", "THEME");
-
-                string defaultColor = String.Empty;
-                switch (OS.GetCurrent())
-                {
-                    case "win":
-                        defaultColor = "d";
-                        break;
-                    case "mac":
-                        defaultColor = "l";
-                        break;
-                }
-
-                _config.personal.theme = Selector.Start(Selector.Theme, defaultColor);
-                switch (_config.personal.theme)
-                {
-                    case "d":
-                        _colorify = new Format(Theme.Dark);
-                        break;
-                    case "l":
-                        _colorify = new Format(Theme.Light);
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
-
-                Menu.Status();
-                Select();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex.Message);
-            }
         }
 
         #region Paths
@@ -170,7 +130,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -234,15 +194,15 @@ namespace HardHat
             }
             catch (UnauthorizedAccessException UAEx)
             {
-                Exceptions.General(UAEx.Message);
+                Exceptions.General(UAEx);
             }
             catch (PathTooLongException PathEx)
             {
-                Exceptions.General(PathEx.Message);
+                Exceptions.General(PathEx);
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -289,7 +249,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -322,7 +282,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
         #endregion
@@ -371,7 +331,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -403,7 +363,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -435,7 +395,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -467,7 +427,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -505,7 +465,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
         #endregion
@@ -539,7 +499,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -571,7 +531,7 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
 
@@ -603,12 +563,12 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
         #endregion
 
-        #region VPN
+        #region Others
         public static void SiteName()
         {
             _colorify.Clear();
@@ -636,9 +596,72 @@ namespace HardHat
             }
             catch (Exception Ex)
             {
-                Exceptions.General(Ex.Message);
+                Exceptions.General(Ex);
             }
         }
+
+        public static void ThemeSelector()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("CONFIGURATION", "THEME");
+
+                string defaultColor = String.Empty;
+                switch (OS.GetCurrent())
+                {
+                    case "win":
+                        defaultColor = "d";
+                        break;
+                    case "mac":
+                        defaultColor = "l";
+                        break;
+                }
+
+                _config.personal.theme = Selector.Start(Selector.Theme, defaultColor);
+                switch (_config.personal.theme)
+                {
+                    case "d":
+                        _colorify = new Format(Theme.Dark);
+                        break;
+                    case "l":
+                        _colorify = new Format(Theme.Light);
+                        break;
+                    default:
+                        Message.Error();
+                        break;
+                }
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Log()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("CONFIGURATION", "LOG");
+
+                string opt = Selector.Start(Selector.Status, "d");
+                _config.personal.log = (opt == "e");
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         #endregion
     }
 }

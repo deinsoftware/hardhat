@@ -82,6 +82,7 @@ namespace HardHat
             config.personal.menu.gulpConfiguration = "";
             config.personal.menu.buildConfiguration = "";
             config.personal.theme = "";
+            config.personal.log = false;
 
             if (!File.Exists($"{_path.Combine("~", $".hardhat.config.json")}"))
             {
@@ -162,6 +163,7 @@ namespace HardHat
         public AdbConfiguration adb { get; set; }
         public MenuConfiguration menu { get; set; }
         public string theme { get; set; }
+        public bool log { get; set; }
     }
 
     class SonarConfiguration
