@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.0.2] - 2018-06-08
+
+**Changed:**
+
+* Updated library references for [Colorify](https://github.com/equiman/colorify) 1.0.5.
+
 ## [6.0.1] - 2018-06-08
 
 **Fix:**
@@ -37,7 +43,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-* Update library references for [ToolBox](https://github.com/equiman/toolbox) to 1.1.4 and [Colorify](https://github.com/equiman/colorify) to 1.0.4.
+* Updated library references for [ToolBox](https://github.com/equiman/toolbox) 1.1.4 and [Colorify](https://github.com/equiman/colorify) 1.0.4.
 
 ## [5.2.0] - 2018-04-30
 
