@@ -138,7 +138,7 @@ namespace HardHat
 
                 string opt = Selector.Start(Selector.Protocol, "2");
                 Number.IsOnRange(1, Convert.ToInt32(opt), 2);
-                _config.personal.sonar.protocol = Selector.Name(Selector.Protocol, opt);
+                _config.personal.webServer.protocol = Selector.Name(Selector.Protocol, opt);
 
                 Menu.Status();
                 Select();

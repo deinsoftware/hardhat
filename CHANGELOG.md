@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.0.1] - 2018-06-08
+
+**Fix:**
+
+* Error when select web server protocol
+
 ## [6.0.0] - 2018-06-08
 
 **Added:**
