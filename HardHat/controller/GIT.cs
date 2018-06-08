@@ -3,69 +3,81 @@ using dein.tools;
 
 namespace HardHat
 {
-    static class Git {
-        public static string CmdBranch(string path) {
+    static class Git
+    {
+        public static string CmdBranch(string path)
+        {
             string response = "";
             try
             {
                 Response result = $"git -C {path} branch".Term();
                 response = Shell.ExtractLine(result.stdout, "*", "* ");
                 response = response
-                    .Replace("\r","")
-                    .Replace("\n","");
+                    .Replace("\r", "")
+                    .Replace("\n", "");
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
         }
 
-        public static void CmdDiscard(string path) {
+        public static void CmdDiscard(string path)
+        {
             try
             {
                 $"git -C {path} reset --hard HEAD".Term(Output.Internal);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
-        
-        public static string CmdPull(string path) {
+
+        public static string CmdPull(string path)
+        {
             string response = "";
             try
             {
                 Response result = $"git -C {path} pull".Term(Output.Internal);
                 response = result.stdout
-                    .Replace("\r","")
-                    .Replace("\n","");
+                    .Replace("\r", "")
+                    .Replace("\n", "");
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
         }
 
-        public static void CmdReset(string path) {
+        public static void CmdReset(string path)
+        {
             try
             {
                 $"git -C {path} clean -f -d -x".Term(Output.Internal);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CmdFetch(string path){
+        public static void CmdFetch(string path)
+        {
             try
             {
                 $"git -C {path} fetch".Term();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static bool CmdStatus(string path){
+        public static bool CmdStatus(string path)
+        {
             bool status = false;
             string response = "";
             try
@@ -73,11 +85,13 @@ namespace HardHat
                 string search = "Your branch is behind";
                 Response result = $"git -C {path} status".Term();
                 response = Shell.ExtractLine(result.stdout, search);
-                if (String.IsNullOrEmpty(response)){
+                if (String.IsNullOrEmpty(response))
+                {
                     status = true;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return status;

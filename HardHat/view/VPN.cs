@@ -13,11 +13,11 @@ namespace HardHat
             {
                 if (
                     Variables.Valid("bv") &&
-                    !Vpn.CmdStatus(_config.vpn.snm, Variables.Value("bv"))
+                    !Vpn.CmdStatus(_config.vpn.siteName, Variables.Value("bv"))
                 )
                 {
                     Vpn.CmdDisconnect(Variables.Value("bv"));
-                    Vpn.CmdConnect(_config.vpn.snm, Variables.Value("bv"));
+                    Vpn.CmdConnect(_config.vpn.siteName, Variables.Value("bv"));
                     Message.Alert(" Please connect your VPN and try again.");
                 }
             }

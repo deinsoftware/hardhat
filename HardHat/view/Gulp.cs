@@ -12,41 +12,44 @@ using static Colorify.Colors;
 namespace HardHat
 {
 
-    public static partial class Gulp {
+    public static partial class Gulp
+    {
 
-        public static void List(ref List<Option> opts) {
-            opts.Add(new Option{opt="g"   , stt=false, act=Gulp.Select                      });
-            opts.Add(new Option{opt="g>i" , stt=false, act=Gulp.InternalPath                });
-            opts.Add(new Option{opt="g>d" , stt=false, act=Gulp.Dimension                   });
-            opts.Add(new Option{opt="g>f" , stt=false, act=Gulp.Flavor                      });
-            opts.Add(new Option{opt="g>n" , stt=false, act=Gulp.ServerNumber                });
-            opts.Add(new Option{opt="g>s" , stt=false, act=Gulp.Sync                        });
-            opts.Add(new Option{opt="g>p" , stt=false, act=Gulp.Protocol                    });
-            opts.Add(new Option{opt="g>o" , stt=false, act=Gulp.Open                        });
-            opts.Add(new Option{opt="gm"  , stt=false, act=Gulp.Make                        });
-            opts.Add(new Option{opt="gu"  , stt=false, act=Gulp.Uglify                      });
-            opts.Add(new Option{opt="gr"  , stt=false, act=Gulp.Revert                      });
-            opts.Add(new Option{opt="gs"  , stt=false, act=Gulp.Server                      });
-            opts.Add(new Option{opt="gl"  , stt=false, act=Gulp.Log                         });
+        public static void List(ref List<Option> opts)
+        {
+            opts.Add(new Option { opt = "g", status = false, action = Gulp.Select });
+            opts.Add(new Option { opt = "g>i", status = false, action = Gulp.InternalPath });
+            opts.Add(new Option { opt = "g>d", status = false, action = Gulp.Dimension });
+            opts.Add(new Option { opt = "g>f", status = false, action = Gulp.Flavor });
+            opts.Add(new Option { opt = "g>n", status = false, action = Gulp.ServerNumber });
+            opts.Add(new Option { opt = "g>s", status = false, action = Gulp.Sync });
+            opts.Add(new Option { opt = "g>p", status = false, action = Gulp.Protocol });
+            opts.Add(new Option { opt = "g>o", status = false, action = Gulp.Open });
+            opts.Add(new Option { opt = "gm", status = false, action = Gulp.Make });
+            opts.Add(new Option { opt = "gu", status = false, action = Gulp.Uglify });
+            opts.Add(new Option { opt = "gr", status = false, action = Gulp.Revert });
+            opts.Add(new Option { opt = "gs", status = false, action = Gulp.Server });
+            opts.Add(new Option { opt = "gl", status = false, action = Gulp.Log });
         }
 
-        public static void Status(){
-            StringBuilder g_cnf = new StringBuilder();
-            g_cnf.Append($"{_config.personal.gbs.ptc}://");
-            if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
+        public static void Status()
+        {
+            StringBuilder gulpConfiguration = new StringBuilder();
+            gulpConfiguration.Append($"{_config.personal.webServer.protocol}://");
+            if (!String.IsNullOrEmpty(_config.personal.webServer.dimension))
             {
-                g_cnf.Append($"{_config.personal.gbs.dmn}/");
+                gulpConfiguration.Append($"{_config.personal.webServer.dimension}/");
             }
-            g_cnf.Append(Selector.Name(Selector.Flavor, _config.personal.gbs.flv));
-            g_cnf.Append(_config.personal.gbs.srv);
-            if (!String.IsNullOrEmpty(_config.personal.gbs.ipt))
+            gulpConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.webServer.flavor));
+            gulpConfiguration.Append(_config.personal.webServer.number);
+            if (!String.IsNullOrEmpty(_config.personal.webServer.internalPath))
             {
-                g_cnf.Append($"/{_config.personal.gbs.ipt}");
+                gulpConfiguration.Append($"/{_config.personal.webServer.internalPath}");
             }
-            g_cnf.Append(_config.personal.gbs.syn ? "+Sync" : "");
-            _config.personal.mnu.g_cnf = g_cnf.ToString();
-            _config.personal.mnu.g_val = !Validation.SomeNullOrEmpty(_config.personal.spr, _config.personal.gbs.dmn, _config.personal.mnu.g_cnf);
-            Options.Valid("g"  , Variables.Valid("gp"));
+            gulpConfiguration.Append(_config.personal.webServer.sync ? "+Sync" : "");
+            _config.personal.menu.gulpConfiguration = gulpConfiguration.ToString();
+            _config.personal.menu.gulpValidation = !Validation.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.webServer.dimension, _config.personal.menu.gulpConfiguration);
+            Options.Valid("g", Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
             Options.Valid("g>d", Variables.Valid("gp"));
             Options.Valid("g>f", Variables.Valid("gp"));
@@ -54,181 +57,179 @@ namespace HardHat
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
-            Options.Valid("gm" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
-            Options.Valid("gu" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
-            Options.Valid("gr" , Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.spr));
-            Options.Valid("gs" , Variables.Valid("gp") && _config.personal.mnu.g_val);
-            Options.Valid("gl" , Variables.Valid("gp") && _config.personal.mnu.g_val);
+            Options.Valid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("gs", Variables.Valid("gp") && _config.personal.menu.gulpValidation);
+            Options.Valid("gl", Variables.Valid("gp") && _config.personal.menu.gulpValidation);
         }
 
-        public static void Start() {
-            if (String.IsNullOrEmpty(_config.personal.mnu.g_cnf))
+        public static void Start()
+        {
+            if (String.IsNullOrEmpty(_config.personal.menu.gulpConfiguration))
             {
                 _colorify.WriteLine($" [G] Gulp", txtStatus(Options.Valid("g")));
-            } else {
-                _colorify.Write($" [G] Gulp: ", txtStatus(Options.Valid("g")));
-                Section.Configuration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
             }
-            _colorify.Write($"{"   [M] Make"   , -17}", txtStatus(Options.Valid("gm")));
-            _colorify.Write($"{"[U] Uglify"    , -17}", txtStatus(Options.Valid("gu")));
-            _colorify.Write($"{"[R] Revert"    , -17}", txtStatus(Options.Valid("gr")));
-            _colorify.Write($"{"[S] Server"    , -17}", txtStatus(Options.Valid("gs")));
-            _colorify.WriteLine($"{"[L] Log"   , -17}", txtStatus(Options.Valid("gl")));
+            else
+            {
+                _colorify.Write($" [G] Gulp: ", txtStatus(Options.Valid("g")));
+                Section.Configuration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
+            }
+            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.Valid("gm")));
+            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.Valid("gu")));
+            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.Valid("gr")));
+            _colorify.Write($"{"[S] Server",-17}", txtStatus(Options.Valid("gs")));
+            _colorify.WriteLine($"{"[L] Log",-17}", txtStatus(Options.Valid("gl")));
             _colorify.BlankLines();
         }
-        
-        public static void Select() {
+
+        public static void Select()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
                 _colorify.BlankLines();
-                _colorify.Write($"{" [P] Protocol:"     , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.ptc}");
-                _colorify.Write($"{" [I] Internal Path:", -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.ipt}");
-                _colorify.Write($"{" [D] Dimension:"    , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.dmn}");
-                string g_cnf = Selector.Name(Selector.Flavor, _config.personal.gbs.flv);
-                _colorify.Write($"{" [F] Flavor:"       , -25}", txtPrimary);   _colorify.WriteLine($"{g_cnf}");
-                _colorify.Write($"{" [N] Number:"       , -25}", txtPrimary);   _colorify.WriteLine($"{_config.personal.gbs.srv}");
-                _colorify.Write($"{" [S] Sync:"         , -25}", txtPrimary);   _colorify.WriteLine($"{(_config.personal.gbs.syn ? "Yes" : "No")}");
-                _colorify.Write($"{" [O] Open:"         , -25}", txtPrimary);   _colorify.WriteLine($"{(_config.personal.gbs.opn ? "Yes" : "No")}");
+                _colorify.Write($"{" [P] Protocol:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.protocol}");
+                _colorify.Write($"{" [I] Internal Path:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.internalPath}");
+                _colorify.Write($"{" [D] Dimension:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.dimension}");
+                string gulpConfiguration = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
+                _colorify.Write($"{" [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{gulpConfiguration}");
+                _colorify.Write($"{" [N] Number:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.number}");
+                _colorify.Write($"{" [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.sync ? "Yes" : "No")}");
+                _colorify.Write($"{" [O] Open:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.open ? "Yes" : "No")}");
 
-                _colorify.WriteLine($"{"[EMPTY] Exit", 82}", txtDanger);
+                _colorify.WriteLine($"{"[EMPTY] Exit",82}", txtDanger);
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice:", -25}", txtInfo);
-                string opt = Console.ReadLine();
-                
-                if(String.IsNullOrEmpty(opt?.ToLower()))
+                _colorify.Write($"{" Make your choice:",-25}", txtInfo);
+                string opt = Console.ReadLine()?.ToLower();
+
+                if (String.IsNullOrEmpty(opt))
                 {
                     Menu.Start();
-                } else {
-                    Menu.Route($"g>{opt?.ToLower()}", "g");
+                }
+                else
+                {
+                    Menu.Route($"g>{opt}", "g");
                 }
                 Message.Error();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Protocol() {
+        public static void Protocol()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "PROTOCOL");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                Selector.Start(Selector.Protocol, "1");
-
-                string opt_ptc = Console.ReadLine();
-                opt_ptc = opt_ptc?.ToLower();
-
-                if (!String.IsNullOrEmpty(opt_ptc)){
-                    Number.IsOnRange(1, Convert.ToInt32(opt_ptc), 2);
-                    switch (opt_ptc)
-                    {
-                        case "1":
-                            _config.personal.gbs.ptc = "http";
-                            break;
-                        case "2":
-                            _config.personal.gbs.ptc = "https";
-                            break;
-                        default:
-                            Message.Error();
-                            break;
-                    }
-                } else {
-                    _config.personal.gbs.ptc = "http";
-                }
+                string opt = Selector.Start(Selector.Protocol, "2");
+                Number.IsOnRange(1, Convert.ToInt32(opt), 2);
+                _config.personal.sonar.protocol = Selector.Name(Selector.Protocol, opt);
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
-        
-        public static void InternalPath() {
+
+        public static void InternalPath()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "INTERNAL PATH");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write an internal path inside your project.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
-                
+
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
-                
+                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
+
                 Section.HorizontalRule();
-            
-                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
-                string opt_ipt = Console.ReadLine();
-                _config.personal.gbs.ipt = $"{opt_ipt}";
+
+                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine();
+                _config.personal.webServer.internalPath = $"{opt}";
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Dimension() {
+        public static void Dimension()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "DIMENSION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
                 _colorify.BlankLines();
-                string dirPath = _path.Combine(Variables.Value("gp"), _config.gulp.srv); 
+                string dirPath = _path.Combine(Variables.Value("gp"), _config.gulp.webFolder);
                 dirPath.Exists("Please review your configuration file.");
-                List<string> files = dirPath.Files($"*{_config.gulp.ext}");
-                
+                List<string> files = dirPath.Files($"*{_config.gulp.extension}");
+
                 if (files.Count < 1)
                 {
-                    _config.personal.gbs.dmn = "";
-                } else {
+                    _config.personal.webServer.dimension = "";
+                }
+                else
+                {
                     var i = 1;
                     foreach (var file in files)
                     {
                         string f = file;
-                        _colorify.WriteLine($" {i, 2}] {Transform.RemoveWords(_path.GetFileName(f), _config.gulp.ext)}", txtPrimary);
+                        _colorify.WriteLine($" {i,2}] {Transform.RemoveWords(_path.GetFileName(f), _config.gulp.extension)}", txtPrimary);
                         i++;
                     }
-                    if (!String.IsNullOrEmpty(_config.personal.gbs.dmn))
+                    if (!String.IsNullOrEmpty(_config.personal.webServer.dimension))
                     {
                         _colorify.BlankLines();
-                        _colorify.WriteLine($"{"[EMPTY] Current", 82}", txtInfo);
+                        _colorify.WriteLine($"{"[EMPTY] Current",82}", txtInfo);
                     }
 
                     Section.HorizontalRule();
-                
-                    _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
-                    string opt_dmn = Console.ReadLine();
-                    
-                    if (!String.IsNullOrEmpty(opt_dmn))
+
+                    _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
+                    string opt = Console.ReadLine();
+
+                    if (!String.IsNullOrEmpty(opt))
                     {
-                        Number.IsOnRange(1, Convert.ToInt32(opt_dmn), files.Count);
-                        var sel = files[Convert.ToInt32(opt_dmn) - 1];
-                        _config.personal.gbs.dmn = Transform.RemoveWords(_path.GetFileName(sel), _config.gulp.ext);
-                    } else {
-                        if (String.IsNullOrEmpty(_config.personal.gbs.dmn)){
+                        Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
+                        var sel = files[Convert.ToInt32(opt) - 1];
+                        _config.personal.webServer.dimension = Transform.RemoveWords(_path.GetFileName(sel), _config.gulp.extension);
+                    }
+                    else
+                    {
+                        if (String.IsNullOrEmpty(_config.personal.webServer.dimension))
+                        {
                             Message.Error();
                         }
                     }
@@ -237,167 +238,125 @@ namespace HardHat
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Flavor() {
+        public static void Flavor()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "FLAVOR");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                Selector.Start(Selector.Flavor, "a");
-                
-                string opt_flv = Console.ReadLine();
-                opt_flv = opt_flv?.ToLower();
-                
-                switch (opt_flv)
-                {
-                    case "a":
-                    case "b":
-                    case "s":
-                    case "p":
-                    case "d":
-                        _config.personal.gbs.flv = opt_flv;
-                        break;
-                    case "":
-                        _config.personal.gbs.flv = "a";
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
+                _config.personal.webServer.flavor = Selector.Start(Selector.Flavor, "a");
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void ServerNumber() {
+        public static void ServerNumber()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "NUMBER");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write a server number:", txtPrimary);
                 _colorify.Write($" 1", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
-                
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default", 82}", txtInfo);
-                
-                Section.HorizontalRule();
-            
-                _colorify.Write($"{" Make your choice: ", -25}", txtInfo);
-                string opt_srv = Console.ReadLine();
 
-                if (!String.IsNullOrEmpty(opt_srv))
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
+
+                Section.HorizontalRule();
+
+                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine();
+
+                if (!String.IsNullOrEmpty(opt))
                 {
-                    Number.IsNumber(opt_srv);
-                } 
-                _config.personal.gbs.srv = opt_srv;
+                    Number.IsNumber(opt);
+                }
+                _config.personal.webServer.number = opt;
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Sync() {
+        public static void Sync()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "SYNC");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                Selector.Start(Selector.Logical, "n");
-
-                string opt_syn = Console.ReadLine();
-                opt_syn = opt_syn?.ToLower();
-                
-                switch (opt_syn)
-                {
-                    case "y":
-                        _config.personal.gbs.syn = true;
-                        break;
-                    case "n":
-                    case "":
-                        _config.personal.gbs.syn = false;
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
+                string opt = Selector.Start(Selector.Logical, "n");
+                _config.personal.webServer.sync = (opt == "y");
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Open() {
+        public static void Open()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "SERVER", "OPEN");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                Selector.Start(Selector.Logical, "y");
-                
-                string opt_opn = Console.ReadLine();
-                opt_opn = opt_opn?.ToLower();
-                
-                switch (opt_opn)
-                {
-                    case "y":
-                    case "":
-                        _config.personal.gbs.opn = true;
-                        break;
-                    case "n":
-                        _config.personal.gbs.opn = false;
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
+                string opt = Selector.Start(Selector.Logical, "y");
+                _config.personal.webServer.open = (opt == "y");
 
                 Menu.Status();
                 Select();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Make() {
+        public static void Make()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "MAKE");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr); 
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Making...", txtInfo);
@@ -408,21 +367,23 @@ namespace HardHat
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
-        
-        public static void Uglify() {
+
+        public static void Uglify()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "UGLIFY");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.cmp); 
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.hybridFiles);
 
                 string[] dirs = new string[] {
                     _path.Combine(Variables.Value("gp"),"www"),
@@ -438,13 +399,13 @@ namespace HardHat
                 }
 
                 _colorify.BlankLines();
-                List<string> filter = _disk.FilterCreator(true, _config.android.flt);
+                List<string> filter = _disk.FilterCreator(true, _config.android.filterFiles);
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
-                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
-                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[0]}");
+                _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
+                _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirs[0]}");
                 _disk.CopyAll(dirPath, dirs[0], true, filter);
-                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
+                _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
                 _disk.CopyAll(dirPath, dirs[1], true, filter);
 
                 _colorify.BlankLines();
@@ -453,35 +414,37 @@ namespace HardHat
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Replacing...", txtInfo);
-                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
-                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
-                _disk.CopyAll(dirs[1], dirPath, true); 
+                _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
+                _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
+                _disk.CopyAll(dirs[1], dirPath, true);
 
                 Section.HorizontalRule();
                 Section.Pause();
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Revert() {
+        public static void Revert()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "REVERT");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.g_val, _config.personal.mnu.g_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj, _config.android.cmp); 
-                string dirSource = _path.Combine(Variables.Value("gp"),"www");
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.hybridFiles);
+                string dirSource = _path.Combine(Variables.Value("gp"), "www");
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Reverting...", txtInfo);
-                _colorify.Write($"{" From:", -8}", txtMuted); _colorify.WriteLine($"{dirSource}");
-                _colorify.Write($"{" To:"  , -8}", txtMuted); _colorify.WriteLine($"{dirPath}");
+                _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirSource}");
+                _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
                 _disk.CopyAll(dirSource, dirPath, true);
 
                 Section.HorizontalRule();
@@ -489,31 +452,35 @@ namespace HardHat
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Server() {
+        public static void Server()
+        {
             _colorify.Clear();
 
             try
             {
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
                 CmdServer(
                     dirPath,
                     _path.Combine(Variables.Value("gp")),
-                    _config.personal.gbs,
-                    _config.personal.ipl
+                    _config.personal.webServer,
+                    _config.personal.ipAddress
                 );
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Log() {
+        public static void Log()
+        {
             _colorify.Clear();
 
             try
@@ -522,47 +489,54 @@ namespace HardHat
 
                 CmdLog(
                     _path.Combine(Variables.Value("gp")),
-                    _config.personal.gbs
+                    _config.personal.webServer
                 );
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Check(){
+        public static void Check()
+        {
             try
             {
                 string dirPath = _path.Combine(Variables.Value("gp"));
 
-                if (_fileSystem.DirectoryExists(_path.Combine(dirPath, ".git"))){
+                if (_fileSystem.DirectoryExists(_path.Combine(dirPath, ".git")))
+                {
                     Git.CmdFetch(dirPath);
                     bool updated = Git.CmdStatus(dirPath);
-                    if (!updated){
+                    if (!updated)
+                    {
                         StringBuilder msg = new StringBuilder();
                         msg.Append($"There is a new Gulp project version available.");
                         msg.Append(Environment.NewLine);
                         msg.Append($" Do you want update it?");
                         bool update = Message.Confirmation(msg.ToString());
-                        if (update){
+                        if (update)
+                        {
                             Upgrade();
                         }
                     }
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Upgrade() {
+        public static void Upgrade()
+        {
             _colorify.Clear();
 
             try
             {
                 Section.Header("GULP", "UPDATE");
-                
+
                 string dirPath = _path.Combine(Variables.Value("gp"));
 
                 _colorify.WriteLine($" --> Updating...", txtInfo);
@@ -571,13 +545,14 @@ namespace HardHat
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Updating Dependencies...", txtInfo);
                 Gulp.CmdInstall(dirPath);
-            
+
                 Section.HorizontalRule();
                 Section.Pause();
 
                 Menu.Start();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }

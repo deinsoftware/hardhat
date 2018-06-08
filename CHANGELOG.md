@@ -9,21 +9,35 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.0.0] - 2018-06-07
+
+**Added:**
+
+* Theme selector in Config option.
+
+**Changed:**
+
+* Entire configuration menu, file and options. This change delete your current saved configuration.
+
+**Fix:**
+
+* Error when configuration file can't load saved values. [\#20](https://github.com/equiman/hardhat/issues/20)
+
 ## [5.2.1] - 2018-06-07
 
 **Fix:**
 
-* Gulp Uglify error when www folder don't exists.
+* Gulp Uglify error when www folder don't exists. [\#21](https://github.com/equiman/hardhat/issues/21)
 
 **Changed:**
 
-* Update ToolBox to 1.1.4 and Colorify to 1.0.4.
+* Update library references for [ToolBox](https://github.com/equiman/toolbox) to 1.1.4 and [Colorify](https://github.com/equiman/colorify) to 1.0.4.
 
 ## [5.2.0] - 2018-04-30
 
 **Added:**
 
-* Copy properties configuration per dimension.
+* Copy properties configuration per dimension. [\#23](https://github.com/equiman/hardhat/issues/23)
 
 ## [5.1.1] - 2018-04-30
 

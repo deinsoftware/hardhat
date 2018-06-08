@@ -10,53 +10,57 @@ using System.Threading.Tasks;
 using dein.tools;
 using ToolBox.System;
 
-namespace HardHat {
-    
-    public class Variable {
-        public string   opt { get; set; }       //Option
-        public string   nme { get; set; }       //Name
-        public bool     chk { get; set; }       //Checked
-        public bool     stt { get; set; }       //Status
-        public string   vlu { get; set; }       //Value
+namespace HardHat
+{
+
+    public class Variable
+    {
+        public string opt { get; set; }
+        public string name { get; set; }
+        public bool verified { get; set; }
+        public bool status { get; set; }
+        public string value { get; set; }
     }
 
     public static class Variables
     {
         public static IEnumerable<Variable> list { get; set; }
-        
+
         static Variables()
         {
             var opts = new List<Variable>();
             try
             {
                 // Java
-                opts.Add(new Variable{opt="jh", nme="JAVA_HOME",          chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "jh", name = "JAVA_HOME", verified = false, status = false, value = "" });
                 // Android
-                opts.Add(new Variable{opt="ah", nme="ANDROID_HOME",       chk=false, stt=false, vlu=""});
-                opts.Add(new Variable{opt="an", nme="ANDROID_NDK_HOME",   chk=false, stt=false, vlu=""});
-                opts.Add(new Variable{opt="ab", nme="ANDROID_BT_VERSION", chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "ah", name = "ANDROID_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "an", name = "ANDROID_NDK_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "ab", name = "ANDROID_BT_VERSION", verified = false, status = false, value = "" });
                 // Project
-                opts.Add(new Variable{opt="sh", nme="SIGCHECK_HOME",      chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "sh", name = "SIGCHECK_HOME", verified = false, status = false, value = "" });
                 // Sonar
-                opts.Add(new Variable{opt="sq", nme="SONAR_QUBE_HOME",    chk=false, stt=false, vlu=""});
-                opts.Add(new Variable{opt="ss", nme="SONAR_SCANNER_HOME", chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "sq", name = "SONAR_QUBE_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "ss", name = "SONAR_SCANNER_HOME", verified = false, status = false, value = "" });
                 // VCS
-                opts.Add(new Variable{opt="gh", nme="GIT_HOME",           chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "gh", name = "GIT_HOME", verified = false, status = false, value = "" });
                 // Gulp
-                opts.Add(new Variable{opt="gp", nme="GULP_PROJECT",       chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "gp", name = "GULP_PROJECT", verified = false, status = false, value = "" });
                 // Build
-                opts.Add(new Variable{opt="bh", nme="GRADLE_HOME",        chk=false, stt=false, vlu=""});
-                opts.Add(new Variable{opt="bp", nme="ANDROID_PROPERTIES", chk=false, stt=false, vlu=""});
-                opts.Add(new Variable{opt="bv", nme="VPN_HOME",           chk=false, stt=false, vlu=""});
+                opts.Add(new Variable { opt = "bh", name = "GRADLE_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "bp", name = "ANDROID_PROPERTIES", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "bv", name = "VPN_HOME", verified = false, status = false, value = "" });
 
                 list = opts;
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Update(){
+        public static void Update()
+        {
             try
             {
                 Parallel.ForEach(list, v =>
@@ -64,12 +68,13 @@ namespace HardHat {
                     Valid(v.opt, true);
                 });
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static bool Valid(string opt, bool upd = false)
+        public static bool Valid(string opt, bool verified = false)
         {
             var response = false;
             try
@@ -77,13 +82,15 @@ namespace HardHat {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    if (upd || !option.chk){
+                    if (verified || !option.verified)
+                    {
                         Check(option);
                     }
-                    response = option.stt;
+                    response = option.status;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
@@ -93,15 +100,18 @@ namespace HardHat {
         {
             try
             {
-                opt.stt = !Env.IsNullOrEmpty(opt.nme);
-                if (opt.stt)
+                opt.status = !Env.IsNullOrEmpty(opt.name);
+                if (opt.status)
                 {
-                    opt.vlu = Env.GetValue(opt.nme);
-                } else {
-                    opt.vlu = "";
+                    opt.value = Env.GetValue(opt.name);
+                }
+                else
+                {
+                    opt.value = "";
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
@@ -114,40 +124,44 @@ namespace HardHat {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    if (!option.chk)
+                    if (!option.verified)
                     {
                         Check(option);
                     }
-                    response = option.vlu;
+                    response = option.value;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
         }
 
-        public static void Value(string opt, string val)
+        public static void Value(string opt, string value)
         {
             try
             {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    Env.SetValue(option.nme, val);
+                    Env.SetValue(option.name, value);
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Upgrade(){
+        public static void Upgrade()
+        {
             try
             {
                 BuildTools.Upgrade();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }

@@ -4,10 +4,12 @@ using System.Text;
 using dein.tools;
 using ToolBox.Platform;
 
-namespace HardHat 
+namespace HardHat
 {
-    public static partial class Vpn {
-        public static bool CmdStatus(string sitename, string dir) {
+    public static partial class Vpn
+    {
+        public static bool CmdStatus(string sitename, string dir)
+        {
             bool cnt = false;
             try
             {
@@ -24,32 +26,37 @@ namespace HardHat
                 }
                 Response result = cmd.ToString().Term(Output.Hidden, dir);
                 result.stdout = result.stdout
-                    .Replace("\r","")
-                    .Replace("\n","");
+                    .Replace("\r", "")
+                    .Replace("\n", "");
                 cnt = (result.code == 0) && (!String.IsNullOrEmpty(result.stdout) && result.stdout.Contains("Connected"));
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return cnt;
         }
 
-        public static void CmdDisconnect(string dir) {
+        public static void CmdDisconnect(string dir)
+        {
             try
             {
                 $"trac disconnect".Term(Output.Hidden, dir);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CmdConnect(string sitename, string dir) {
+        public static void CmdConnect(string sitename, string dir)
+        {
             try
             {
                 $"trac connectgui -s {sitename}".Term(Output.Hidden, dir);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }

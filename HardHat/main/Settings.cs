@@ -6,83 +6,96 @@ using static HardHat.Program;
 
 namespace HardHat
 {
-    static class Settings{
-        public static void Save(Config config){
+    static class Settings
+    {
+        public static void Save(Config config)
+        {
             string json = JsonConvert.SerializeObject(config);
             File.WriteAllText($"{_path.Combine("~", $".hardhat.config.json")}", json);
         }
 
-        public static Config Read(){
+        public static Config Read()
+        {
             Config config = new Config();
 
             config.path = new PathConfiguration();
             switch (OS.GetCurrent())
             {
                 case "win":
-                    config.path.dir = "D:/Developer";
+                    config.path.development = "D:/Developer";
                     break;
                 case "mac":
-                    config.path.dir = "~/Developer";
+                    config.path.development = "~/Developer";
                     break;
             }
-            config.path.bsn = "";
-            config.path.prj = "Projects";
-            config.path.flt = "_d*";
-    
+            config.path.workspace = "";
+            config.path.project = "Projects";
+            config.path.filter = "_d*";
+
             config.android = new AndroidConfiguration();
-            config.android.prj = "android";
-            config.android.bld = "build/outputs/apk";
-            config.android.ext = ".apk";
-            config.android.cmp = "assets/www";
-            config.android.flt = new string[] {".js",".css"};
+            config.android.projectPath = "android";
+            config.android.buildPath = "build/outputs/apk";
+            config.android.buildExtension = ".apk";
+            config.android.hybridFiles = "assets/www";
+            config.android.filterFiles = new string[] { ".js", ".css" };
 
             config.gulp = new GulpConfiguration();
-            config.gulp.srv = "server";
-            config.gulp.ext = ".json";
+            config.gulp.webFolder = "server";
+            config.gulp.logFolder = "ssh";
+            config.gulp.extension = ".json";
 
             config.vpn = new VpnConfiguration();
-            config.vpn.snm = "";
+            config.vpn.siteName = "";
 
             config.personal = new PersonalConfiguration();
-            config.personal.hst = "";
-            config.personal.ipl = "";
-            config.personal.ipb = "";
-            config.personal.spr = "";
-            config.personal.sfl = "";
-            config.personal.snr = new SonarConfiguration();
-            config.personal.snr.ptc = "http";
-            config.personal.snr.dmn = "localhost";
-            config.personal.snr.prt = "9000";
-            config.personal.snr.ipt = "";
-            config.personal.gbs = new ServerConfiguration();
-            config.personal.gbs.dmn = "";
-            config.personal.gbs.flv = "";
-            config.personal.gbs.srv = "";
-            config.personal.gbs.syn = false;
-            config.personal.gbs.ptc = "http";
-            config.personal.gbs.ipt = "";
-            config.personal.gbs.opn = true;
-            config.personal.gdl = new BuildConfiguration();
-            config.personal.gdl.mde = "";
-            config.personal.gdl.dmn = "";
-            config.personal.gdl.flv = "";
+            config.personal.hostName = "";
+            config.personal.ipAddress = "";
+            config.personal.ipAddressBase = "";
+            config.personal.selectedProject = "";
+            config.personal.selectedFile = "";
+            config.personal.sonar = new SonarConfiguration();
+            config.personal.sonar.protocol = "https";
+            config.personal.sonar.domain = "localhost";
+            config.personal.sonar.port = "9000";
+            config.personal.sonar.internalPath = "";
+            config.personal.webServer = new WebConfiguration();
+            config.personal.webServer.dimension = "";
+            config.personal.webServer.flavor = "";
+            config.personal.webServer.number = "";
+            config.personal.webServer.sync = false;
+            config.personal.webServer.protocol = "http";
+            config.personal.webServer.internalPath = "";
+            config.personal.webServer.open = true;
+            config.personal.gradle = new BuildConfiguration();
+            config.personal.gradle.mode = "";
+            config.personal.gradle.dimension = "";
+            config.personal.gradle.flavor = "";
             config.personal.adb = new AdbConfiguration();
-            config.personal.adb.dvc = "";
-            config.personal.adb.wip = "";
-            config.personal.adb.wpr = "";
-            config.personal.adb.wst = false;
-            config.personal.mnu = new MenuConfiguration();
-            config.personal.mnu.sel = "";
-            config.personal.mnu.v_bnc = "";
-            config.personal.mnu.s_cnf = "";
-            config.personal.mnu.g_cnf = "";
-            config.personal.mnu.b_cnf = "";
-            
-            if (!File.Exists($"{_path.Combine("~", $".hardhat.config.json")}")) {
+            config.personal.adb.deviceName = "";
+            config.personal.adb.wifiIpAddress = "";
+            config.personal.adb.wifiPort = "";
+            config.personal.adb.wifiStatus = false;
+            config.personal.menu = new MenuConfiguration();
+            config.personal.menu.selectedOption = "";
+            config.personal.menu.currentBranch = "";
+            config.personal.menu.sonarConfiguration = "";
+            config.personal.menu.gulpConfiguration = "";
+            config.personal.menu.buildConfiguration = "";
+            config.personal.theme = "";
+
+            if (!File.Exists($"{_path.Combine("~", $".hardhat.config.json")}"))
+            {
                 return config;
-            } else {
+            }
+            else
+            {
                 string file = JsonConvert.SerializeObject(config);
                 string json = File.ReadAllText($"{_path.Combine("~", $".hardhat.config.json")}");
+
+                if (string.IsNullOrEmpty(json))
+                {
+                    return config;
+                }
 
                 JObject oFile = JObject.Parse(file);
                 JObject oJson = JObject.Parse(json);
@@ -100,90 +113,100 @@ namespace HardHat
 
     class Config
     {
-        public PathConfiguration        path        { get; set; }
-        public AndroidConfiguration     android     { get; set; }
-        public GulpConfiguration        gulp        { get; set; }
-        public VpnConfiguration         vpn         { get; set; }
-        public PersonalConfiguration    personal    { get; set; }
+        public PathConfiguration path { get; set; }
+        public AndroidConfiguration android { get; set; }
+        public GulpConfiguration gulp { get; set; }
+        public VpnConfiguration vpn { get; set; }
+        public PersonalConfiguration personal { get; set; }
     }
 
     class PathConfiguration
     {
-        public string   dir     { get; set; }               //Development
-        public string   bsn     { get; set; }               //Bussiness Name
-        public string   prj     { get; set; }               //Projects
-        public string   flt     { get; set; }               //Filter
+        public string development { get; set; }
+        public string workspace { get; set; }
+        public string project { get; set; }
+        public string filter { get; set; }
     }
 
-    class AndroidConfiguration {
-        public string   prj     { get; set; }               //Android Project Folder
-        public string   bld     { get; set; }               //Build Path
-        public string   ext     { get; set; }               //Build Extension
-        public string   cmp     { get; set; }               //Path to process with Gulp
-        public string[] flt     { get; set; }               //Filter files to Process
+    class AndroidConfiguration
+    {
+        public string projectPath { get; set; }
+        public string buildPath { get; set; }
+        public string buildExtension { get; set; }
+        public string hybridFiles { get; set; }
+        public string[] filterFiles { get; set; }
     }
 
-    class GulpConfiguration {
-        public string   srv     { get; set; }               //Server Folder
-        public string   ext     { get; set; }               //Server Extension
+    class GulpConfiguration
+    {
+        public string webFolder { get; set; }
+        public string logFolder { get; set; }
+        public string extension { get; set; }
     }
 
-    class VpnConfiguration {
-        public string   snm     { get; set; }               //Sitename
-    }
-    
-    class PersonalConfiguration {
-        public string               hst     { get; set; }   //Hostname
-        public string               ipl     { get; set; }   //Local IP Address
-        public string               ipb     { get; set; }   //Local IP Address base
-        public string               spr     { get; set; }   //Selected Project
-        public string               sfl     { get; set; }   //Selected File
-        public SonarConfiguration   snr     { get; set; }   //Sonar
-        public ServerConfiguration  gbs     { get; set; }   //Gradle Server
-        public BuildConfiguration   gdl     { get; set; }   //Gradle Configuration
-        public AdbConfiguration     adb     { get; set; }   //ADB Configuration
-        public MenuConfiguration    mnu     { get; set; }   //Menu Configuration
+    class VpnConfiguration
+    {
+        public string siteName { get; set; }
     }
 
-    class SonarConfiguration {
-        public string   ptc     { get; set; }               //Protocol
-        public string   dmn     { get; set; }               //Domain
-        public string   prt     { get; set; }               //Port
-        public string   ipt     { get; set; }               //Internal Path
+    class PersonalConfiguration
+    {
+        public string hostName { get; set; }
+        public string ipAddress { get; set; }
+        public string ipAddressBase { get; set; }
+        public string selectedProject { get; set; }
+        public string selectedFile { get; set; }
+        public SonarConfiguration sonar { get; set; }
+        public WebConfiguration webServer { get; set; }
+        public BuildConfiguration gradle { get; set; }
+        public AdbConfiguration adb { get; set; }
+        public MenuConfiguration menu { get; set; }
+        public string theme { get; set; }
     }
 
-    public class ServerConfiguration {
-        public string   ptc     { get; set; }               //Protocol
-        public string   ipt     { get; set; }               //Internal Path
-        public string   dmn     { get; set; }               //Dimension
-        public string   flv     { get; set; }               //Flavor
-        public string   srv     { get; set; }               //Server
-        public bool     syn     { get; set; }               //Sync
-        public bool     opn     { get; set; }               //Open
+    class SonarConfiguration
+    {
+        public string protocol { get; set; }
+        public string domain { get; set; }
+        public string port { get; set; }
+        public string internalPath { get; set; }
     }
 
-    class BuildConfiguration {
-        public string   mde     { get; set; }               //Mode
-        public string   dmn     { get; set; }               //Dimension
-        public string   flv     { get; set; }               //Flavor
+    public class WebConfiguration
+    {
+        public string protocol { get; set; }
+        public string internalPath { get; set; }
+        public string dimension { get; set; }
+        public string flavor { get; set; }
+        public string number { get; set; }
+        public bool sync { get; set; }
+        public bool open { get; set; }
     }
 
-    class AdbConfiguration {
-        public string   dvc     { get; set; }               //Device Name
-        public string   wip     { get; set; }               //WiFi IP
-        public string   wpr     { get; set; }               //WiFi Port
-        public bool     wst     { get; set; }               //WiFi Status
+    class BuildConfiguration
+    {
+        public string mode { get; set; }
+        public string dimension { get; set; }
+        public string flavor { get; set; }
+    }
+
+    class AdbConfiguration
+    {
+        public string deviceName { get; set; }
+        public string wifiIpAddress { get; set; }
+        public string wifiPort { get; set; }
+        public bool wifiStatus { get; set; }
     }
 
     public class MenuConfiguration
     {
-        public string   sel { get; set; }                   //Option
-        public string   v_bnc   { get; set; }               //Current Branch
-        public string   s_cnf   { get; set; }               //Sonar Configuration
-        public bool     s_val   { get; set; }               //Sonar Validation
-        public string   g_cnf   { get; set; }               //Gulp Configuration
-        public bool     g_val   { get; set; }               //Gulp Validation
-        public string   b_cnf   { get; set; }               //Build Configuration
-        public bool     b_val   { get; set; }               //Build Validation
+        public string selectedOption { get; set; }
+        public string currentBranch { get; set; }
+        public string sonarConfiguration { get; set; }
+        public bool sonarValidation { get; set; }
+        public string gulpConfiguration { get; set; }
+        public bool gulpValidation { get; set; }
+        public string buildConfiguration { get; set; }
+        public bool buildValidation { get; set; }
     }
 }

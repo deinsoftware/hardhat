@@ -10,11 +10,13 @@ namespace dein.tools
 {
     public static class Message
     {
-        public static void Critical(string msg = null){
+        public static void Critical(string msg = null)
+        {
             Error(msg, !String.IsNullOrEmpty(msg));
         }
 
-        public static void Error(string msg = null, bool replace = false, bool exit = false) {
+        public static void Error(string msg = null, bool replace = false, bool exit = false)
+        {
             _colorify.Clear();
             try
             {
@@ -42,16 +44,20 @@ namespace dein.tools
                 if (!exit)
                 {
                     Menu.Route();
-                } else {
+                }
+                else
+                {
                     Program.Exit();
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void Alert(string msg, bool exit = false) {
+        public static void Alert(string msg, bool exit = false)
+        {
             _colorify.Clear();
             try
             {
@@ -74,15 +80,17 @@ namespace dein.tools
                     Program.Exit();
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static bool Confirmation(string msg) {
+        public static bool Confirmation(string msg)
+        {
             _colorify.Clear();
-            
-            bool opt_cnf = false;
+
+            bool sel = false;
             try
             {
                 _colorify.DivisionLine('=', bgWarning);
@@ -93,7 +101,7 @@ namespace dein.tools
                 _colorify.Wrap($" {msg}", txtDefault);
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel", 82}", txtDanger);
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
 
                 _colorify.BlankLines();
                 _colorify.DivisionLine('=', bgWarning);
@@ -101,14 +109,13 @@ namespace dein.tools
 
                 _colorify.Write($" [Y] Yes or [N] No: ", txtWarning);
 
-                string opt = Console.ReadLine();
-                switch (opt?.ToLower())
+                string opt = Console.ReadLine()?.ToLower();
+
+                switch (opt)
                 {
                     case "y":
-                        opt_cnf = true;
-                        break;
                     case "n":
-                        opt_cnf = false;
+                        sel = (opt == "y");
                         break;
                     case "":
                         break;
@@ -117,10 +124,11 @@ namespace dein.tools
                         break;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
-            return opt_cnf;
+            return sel;
         }
     }
 }

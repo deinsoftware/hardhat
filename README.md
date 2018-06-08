@@ -1,6 +1,5 @@
 # HardHat [ for Win & Mac ]
 
-
 **HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
@@ -62,7 +61,6 @@ Windows only
 Optional
 
 * [.Net Core](https://www.microsoft.com/net/download/core#/runtime)
-
 
 ### Installing
 
@@ -129,9 +127,13 @@ export PATH="$ANDROID_SDK_ROOT/tools:$PATH"
 export PATH="$ANDROID_NDK_HOME/:$PATH"
 export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
+
+alias hh="sh ~/Applications/HardHat/mac.sh"
 ```
 
 On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. And omit `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
+
+With **HardHat** alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
 > **Where are environment variables?**  
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
@@ -455,7 +457,6 @@ This project is licensed under the GNU GPLv3 License - see the [LICENSE](LICENSE
 
 ### Acknowledgments
 
-* Beta testers: [Ricardo Mesa](https://github.com/rmesaf) and [Sebastian Loaiza](https://github.com/slmartinez).
 * [StackOverflow](http://stackoverflow.com): The largest online community for programmers.
 * [XKCD](https://xkcd.com/): A web comic of romance, sarcasm, math and language... for making his [font](https://github.com/ipython/xkcd-font) available.
 

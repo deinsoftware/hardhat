@@ -13,42 +13,42 @@ namespace HardHat
 
         public static void List(ref List<Option> opts)
         {
-            opts.Add(new Option { opt = "b", stt = false, act = Build.Select });
-            opts.Add(new Option { opt = "b>d", stt = false, act = Build.Dimension });
-            opts.Add(new Option { opt = "b>f", stt = false, act = Build.Flavor });
-            opts.Add(new Option { opt = "b>m", stt = false, act = Build.Mode });
-            opts.Add(new Option { opt = "bp", stt = false, act = Build.Properties });
-            opts.Add(new Option { opt = "bc", stt = false, act = Build.Clean });
-            opts.Add(new Option { opt = "bg", stt = false, act = Build.Gradle });
+            opts.Add(new Option { opt = "b", status = false, action = Build.Select });
+            opts.Add(new Option { opt = "b>d", status = false, action = Build.Dimension });
+            opts.Add(new Option { opt = "b>f", status = false, action = Build.Flavor });
+            opts.Add(new Option { opt = "b>m", status = false, action = Build.Mode });
+            opts.Add(new Option { opt = "bp", status = false, action = Build.Properties });
+            opts.Add(new Option { opt = "bc", status = false, action = Build.Clean });
+            opts.Add(new Option { opt = "bg", status = false, action = Build.Gradle });
         }
 
         public static void Status()
         {
-            StringBuilder b_cnf = new StringBuilder();
-            b_cnf.Append(_config.personal.gdl.dmn ?? "");
-            b_cnf.Append(Selector.Name(Selector.Flavor, _config.personal.gdl.flv));
-            b_cnf.Append(Modes.Name(_config.personal.gdl.mde));
-            _config.personal.mnu.b_cnf = b_cnf.ToString();
-            _config.personal.mnu.b_val = !Strings.SomeNullOrEmpty(_config.personal.spr, _config.personal.gdl.mde, _config.personal.gdl.flv, _config.personal.mnu.b_cnf);
+            StringBuilder buildConfiguration = new StringBuilder();
+            buildConfiguration.Append(_config.personal.gradle.dimension ?? "");
+            buildConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.gradle.flavor));
+            buildConfiguration.Append(Selector.Name(Selector.Mode, _config.personal.gradle.mode));
+            _config.personal.menu.buildConfiguration = buildConfiguration.ToString();
+            _config.personal.menu.buildValidation = !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.gradle.mode, _config.personal.gradle.flavor, _config.personal.menu.buildConfiguration);
             Options.Valid("b", Variables.Valid("gh"));
             Options.Valid("b>d", Variables.Valid("gh"));
             Options.Valid("b>f", Variables.Valid("gh"));
             Options.Valid("b>m", Variables.Valid("gh"));
-            Options.Valid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.spr));
-            Options.Valid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.spr));
-            Options.Valid("bg", Variables.Valid("gh") && _config.personal.mnu.b_val);
+            Options.Valid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
         }
 
         public static void Start()
         {
-            if (String.IsNullOrEmpty(_config.personal.mnu.b_cnf))
+            if (String.IsNullOrEmpty(_config.personal.menu.buildConfiguration))
             {
                 _colorify.WriteLine($" [B] Build", txtStatus(Options.Valid("b")));
             }
             else
             {
                 _colorify.Write($" [B] Build: ", txtStatus(Options.Valid("b")));
-                Section.Configuration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
             _colorify.Write($"{"   [P] Properties",-34}", txtStatus(Options.Valid("bp")));
             _colorify.Write($"{"[C] Clean",-34}", txtStatus(Options.Valid("bc")));
@@ -64,29 +64,29 @@ namespace HardHat
             {
                 Section.Header("BUILD CONFIGURATION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
                 _colorify.BlankLines();
-                _colorify.Write($"{" [D] Dimension:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.gdl.dmn}");
-                string b_flv = Selector.Name(Selector.Flavor, _config.personal.gdl.flv);
-                _colorify.Write($"{" [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{b_flv}");
-                string b_mde = Modes.Name(_config.personal.gdl.mde);
-                _colorify.Write($"{" [M] Mode:",-25}", txtPrimary); _colorify.WriteLine($"{b_mde}");
+                _colorify.Write($"{" [D] Dimension:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.gradle.dimension}");
+                string buildFlavor = Selector.Name(Selector.Flavor, _config.personal.gradle.flavor);
+                _colorify.Write($"{" [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{buildFlavor}");
+                string buildMode = Selector.Name(Selector.Mode, _config.personal.gradle.mode);
+                _colorify.Write($"{" [M] Mode:",-25}", txtPrimary); _colorify.WriteLine($"{buildMode}");
 
                 _colorify.WriteLine($"{"[EMPTY] Exit",82}", txtDanger);
 
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine()?.ToLower();
 
-                if (String.IsNullOrEmpty(opt?.ToLower()))
+                if (String.IsNullOrEmpty(opt))
                 {
                     Menu.Start();
                 }
                 else
                 {
-                    Menu.Route($"b>{opt?.ToLower()}", "b");
+                    Menu.Route($"b>{opt}", "b");
                 }
                 Message.Error();
             }
@@ -102,9 +102,9 @@ namespace HardHat
 
             try
             {
-                Section.Header("BUILD CONFIGURATION > DIMENSION");
+                Section.Header("BUILD CONFIGURATION", "DIMENSION");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write a project dimension:", txtPrimary);
@@ -116,14 +116,14 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt_dmn = Console.ReadLine();
-                if (!String.IsNullOrEmpty(opt_dmn))
+                string opt = Console.ReadLine();
+                if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.personal.gdl.dmn = $"{opt_dmn}";
+                    _config.personal.gradle.dimension = $"{opt}";
                 }
                 else
                 {
-                    _config.personal.gdl.dmn = $"";
+                    _config.personal.gradle.dimension = $"";
                 }
 
                 Menu.Status();
@@ -141,31 +141,11 @@ namespace HardHat
 
             try
             {
-                Section.Header("BUILD CONFIGURATION > FLAVOR");
+                Section.Header("BUILD CONFIGURATION", "FLAVOR");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
-                Selector.Start(Selector.Flavor, "a");
-
-                string opt_flv = Console.ReadLine();
-                opt_flv = opt_flv.ToLower();
-
-                switch (opt_flv)
-                {
-                    case "a":
-                    case "b":
-                    case "s":
-                    case "p":
-                    case "d":
-                        _config.personal.gdl.flv = opt_flv;
-                        break;
-                    case "":
-                        _config.personal.gdl.flv = "a";
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
+                _config.personal.gradle.flavor = Selector.Start(Selector.Flavor, "a");
 
                 Menu.Status();
                 Select();
@@ -182,35 +162,11 @@ namespace HardHat
 
             try
             {
-                Section.Header("BUILD CONFIGURATION > MODE");
+                Section.Header("BUILD CONFIGURATION", "MODE");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
-                _colorify.BlankLines();
-                _colorify.Write($" {"D",2}] Debug", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
-                _colorify.WriteLine($" {"R",2}] Release", txtPrimary);
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt_mde = Console.ReadLine();
-                opt_mde = opt_mde.ToLower();
-
-                switch (opt_mde)
-                {
-                    case "d":
-                    case "r":
-                        _config.personal.gdl.mde = opt_mde;
-                        break;
-                    case "":
-                        _config.personal.gdl.mde = "d";
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
+                _config.personal.gradle.mode = Selector.Start(Selector.Mode, "d");
 
                 Menu.Status();
                 Select();
@@ -229,8 +185,8 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj);
-                CmdGradle(dirPath, _config.personal.mnu.b_cnf);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
+                CmdGradle(dirPath, _config.personal.menu.buildConfiguration);
 
                 Menu.Start();
             }
@@ -248,7 +204,7 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -265,12 +221,12 @@ namespace HardHat
 
             try
             {
-                Section.Header("BUILD CONFIGURATION > PROPERTIES");
+                Section.Header("BUILD CONFIGURATION", "PROPERTIES");
                 Section.SelectedProject();
-                Section.CurrentConfiguration(_config.personal.mnu.b_val, _config.personal.mnu.b_cnf);
+                Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
                 string sourcePath = propertiesSource();
-                string destinationPath = _path.Combine(_config.path.dir, _config.path.bsn, _config.path.prj, _config.personal.spr, _config.android.prj);
+                string destinationPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
 
                 _colorify.BlankLines();
                 List<string> filter = _disk.FilterCreator(true, ".properties");
@@ -295,14 +251,14 @@ namespace HardHat
         private static string propertiesSource()
         {
             string sourcePath = _path.Combine(Variables.Value("bp"));
-            string bussinessPath = _path.Combine(sourcePath, _config.path.bsn);
-            if (String.IsNullOrEmpty(_config.personal.gdl.dmn))
+            string bussinessPath = _path.Combine(sourcePath, _config.path.workspace);
+            if (String.IsNullOrEmpty(_config.personal.gradle.dimension))
             {
                 sourcePath = bussinessPath;
             }
             else
             {
-                string sourceDimensionPath = _path.Combine(sourcePath, $"{_config.path.bsn}_{_config.personal.gdl.dmn}");
+                string sourceDimensionPath = _path.Combine(sourcePath, $"{_config.path.workspace}_{_config.personal.gradle.dimension}");
                 if (_fileSystem.DirectoryExists(sourceDimensionPath))
                 {
                     sourcePath = sourceDimensionPath;

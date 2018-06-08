@@ -13,7 +13,8 @@ namespace dein.tools
         {
             try
             {
-                if (!_fileSystem.DirectoryExists(path)){
+                if (!_fileSystem.DirectoryExists(path))
+                {
                     StringBuilder msg = new StringBuilder();
                     msg.Append($" Path not found:{Environment.NewLine}");
                     msg.Append($" '{path}'{Environment.NewLine}");
@@ -28,12 +29,14 @@ namespace dein.tools
                     );
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static List<string> Directories(this string path, string filter, string type){
+        public static List<string> Directories(this string path, string filter, string type)
+        {
             List<string> dirs = new List<string>();
             try
             {
@@ -43,7 +46,7 @@ namespace dein.tools
                     StringBuilder msg = new StringBuilder();
                     msg.Append($" There is no {type} in current location:{Environment.NewLine}");
                     msg.Append($" '{path}'");
-                    
+
                     Message.Alert(msg.ToString());
                 }
             }
@@ -55,13 +58,15 @@ namespace dein.tools
             {
                 Exceptions.General(PathEx.Message);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return dirs;
         }
-    
-        public static List<string> Files(this string path, string filter, string message = null){
+
+        public static List<string> Files(this string path, string filter, string message = null)
+        {
             List<string> files = new List<string>();
             try
             {
@@ -88,7 +93,8 @@ namespace dein.tools
             {
                 Exceptions.General(PathEx.Message);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return files;

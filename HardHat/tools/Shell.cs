@@ -12,13 +12,15 @@ using static Colorify.Colors;
 
 namespace dein.tools
 {
-    public class Response {
+    public class Response
+    {
         public int code { get; set; }
         public string stdout { get; set; }
         public string stderr { get; set; }
     }
 
-    public enum Output {
+    public enum Output
+    {
         Hidden,
         Internal,
         External
@@ -26,7 +28,7 @@ namespace dein.tools
 
     public static class Shell
     {
-        private static void Args (ref string fnm, ref string cmd, Output? output = Output.Hidden, string dir = "")
+        private static void Args(ref string fnm, ref string cmd, Output? output = Output.Hidden, string dir = "")
         {
             try
             {
@@ -68,7 +70,8 @@ namespace dein.tools
             }
         }
 
-        public static Response Term (this string cmd, Output? output = Output.Hidden, string dir = ""){
+        public static Response Term(this string cmd, Output? output = Output.Hidden, string dir = "")
+        {
             var result = new Response();
             var stderr = new StringBuilder();
             var stdout = new StringBuilder();
@@ -85,7 +88,8 @@ namespace dein.tools
                 startInfo.RedirectStandardError = (output != Output.External);
                 startInfo.UseShellExecute = false;
                 startInfo.CreateNoWindow = (output != Output.External);
-                if (!String.IsNullOrEmpty(dir) && output != Output.External){
+                if (!String.IsNullOrEmpty(dir) && output != Output.External)
+                {
                     startInfo.WorkingDirectory = dir;
                 }
 
@@ -96,13 +100,15 @@ namespace dein.tools
                         case Output.Internal:
                             _colorify.BlankLines();
 
-                            while (!process.StandardOutput.EndOfStream) {
+                            while (!process.StandardOutput.EndOfStream)
+                            {
                                 string line = process.StandardOutput.ReadLine();
                                 stdout.AppendLine(line);
                                 _colorify.Wrap($" {line}", txtPrimary);
                             }
-                            
-                            while (!process.StandardError.EndOfStream) {
+
+                            while (!process.StandardError.EndOfStream)
+                            {
                                 string line = process.StandardError.ReadLine();
                                 stderr.AppendLine(line);
                                 _colorify.Wrap($" {line}", txtDanger);
@@ -113,7 +119,7 @@ namespace dein.tools
                             stderr.AppendLine(process.StandardError.ReadToEnd());
                             break;
                     }
-                    
+
                     process.WaitForExit();
                     result.stdout = stdout.ToString();
                     result.stderr = stderr.ToString();
@@ -154,48 +160,58 @@ namespace dein.tools
             }
         }
 
-        public static void Result(string response){
+        public static void Result(string response)
+        {
             response = response
-                .Replace("\r","")
-                .Replace("\n","");
-            if (!String.IsNullOrEmpty(response)){
+                .Replace("\r", "")
+                .Replace("\n", "");
+            if (!String.IsNullOrEmpty(response))
+            {
                 _colorify.WriteLine(response);
-            } else {
+            }
+            else
+            {
                 _colorify.WriteLine("is not installed", txtWarning);
             }
         }
 
-        public static string GetWord(string request, int wordPosition){
+        public static string GetWord(string request, int wordPosition)
+        {
             string response = "";
             try
             {
                 string[] stringSeparators = new string[] { " " };
                 string[] words = request.Split(stringSeparators, StringSplitOptions.None);
-                if (!String.IsNullOrEmpty(request)){
+                if (!String.IsNullOrEmpty(request))
+                {
                     response = words[wordPosition];
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
         }
 
-        public static string[] SplitLines(string request) {
-            string[] response = new string[] {};
+        public static string[] SplitLines(string request)
+        {
+            string[] response = new string[] { };
             try
             {
                 string[] stringSeparators = new string[] { Environment.NewLine, "\n" };
                 string[] lines = request.Split(stringSeparators, StringSplitOptions.None);
                 response = lines;
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
         }
 
-        public static string ExtractLine(string request, string search, params string[] remove) {
+        public static string ExtractLine(string request, string search, params string[] remove)
+        {
             string response = "";
             try
             {
@@ -210,7 +226,8 @@ namespace dein.tools
                     }
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;

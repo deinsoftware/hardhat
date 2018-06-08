@@ -8,25 +8,27 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 
-namespace HardHat {
-    
-    public class Option {
-        public string   opt { get; set; }       //Key Combination
-        public bool     stt { get; set; }       //Status (Dis/Enable)
-        public Action   act { get; set; }       //Class.Method
+namespace HardHat
+{
+
+    public class Option
+    {
+        public string opt { get; set; }
+        public bool status { get; set; }
+        public Action action { get; set; }
     }
 
     public static class Options
     {
         public static IEnumerable<Option> list { get; set; }
-        
+
         static Options()
         {
             var opts = new List<Option>();
             try
             {
                 // Main
-                opts.Add(new Option{opt="m"   , stt=true , act=Menu.Start                       });
+                opts.Add(new Option { opt = "m", status = true, action = Menu.Start });
 
                 // Views
                 Project.List(ref opts);
@@ -37,13 +39,14 @@ namespace HardHat {
                 Adb.List(ref opts);
                 Configuration.List(ref opts);
                 Information.List(ref opts);
-                
+
                 // Extras
-                opts.Add(new Option{opt="x"   , stt=true , act=Program.Exit                     });
+                opts.Add(new Option { opt = "x", status = true, action = Program.Exit });
 
                 list = opts;
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
@@ -56,10 +59,11 @@ namespace HardHat {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    response = option.stt;
+                    response = option.status;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;
@@ -72,10 +76,11 @@ namespace HardHat {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    option.stt = stt;
+                    option.status = stt;
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
@@ -88,12 +93,15 @@ namespace HardHat {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    response = option.act;
-                } else {
+                    response = option.action;
+                }
+                else
+                {
                     Message.Error();
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
             return response;

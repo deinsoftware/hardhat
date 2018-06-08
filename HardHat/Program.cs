@@ -11,12 +11,12 @@ namespace HardHat
 {
     static class Program
     {
-        public static Config _config  { get; set; }
-        public static IFileSystem _fileSystem {get; set;}
-        public static DiskConfigurator _disk {get; set;}
-        public static PathsConfigurator _path {get; set;}
-        public static Format _colorify {get; set;}
-        public static ILogSystem _logSystem {get; set;}
+        public static Config _config { get; set; }
+        public static IFileSystem _fileSystem { get; set; }
+        public static DiskConfigurator _disk { get; set; }
+        public static PathsConfigurator _path { get; set; }
+        public static Format _colorify { get; set; }
+        public static ILogSystem _logSystem { get; set; }
 
         static void Main(string[] args)
         {
@@ -25,7 +25,7 @@ namespace HardHat
                 Factory();
                 Config();
                 Upgrade();
-                
+
                 Menu.Start();
                 _colorify.ResetColor();
             }
@@ -33,14 +33,15 @@ namespace HardHat
             {
                 Exceptions.General(Ex.Message);
                 Message.Error(
-                    msg: Ex.Message, 
-                    replace: true, 
+                    msg: Ex.Message,
+                    replace: true,
                     exit: true);
                 Exit();
             }
         }
 
-        private static void Factory(){
+        private static void Factory()
+        {
             _fileSystem = FileSystem.Default;
             _disk = new DiskConfigurator(_fileSystem, new ConsoleNotificationSystem());
             switch (OS.GetCurrent())
@@ -56,18 +57,33 @@ namespace HardHat
             }
         }
 
-        private static void Config(){
+        private static void Config()
+        {
             _config = Settings.Read();
-            _config.personal.hst = User.GetMachine();
+            _config.personal.hostName = User.GetMachine();
+            if (!String.IsNullOrEmpty(_config.personal.theme))
+            {
+                switch (_config.personal.theme)
+                {
+                    case "d":
+                        _colorify = new Format(Theme.Dark);
+                        break;
+                    case "l":
+                        _colorify = new Format(Theme.Light);
+                        break;
+                }
+            }
         }
 
-        private static void Upgrade(){
+        private static void Upgrade()
+        {
             Variables.Upgrade();
             Variables.Update();
             Gulp.Check();
         }
-        
-        public static void Exit(){
+
+        public static void Exit()
+        {
             Settings.Save(_config);
             _colorify.ResetColor();
             Environment.Exit(0);

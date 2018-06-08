@@ -5,11 +5,13 @@ using dein.tools;
 using ToolBox.Platform;
 using ToolBox.Validations;
 
-namespace HardHat 
+namespace HardHat
 {
-    public static partial class Sonar {
+    public static partial class Sonar
+    {
 
-        public static void CmdQube(){
+        public static void CmdQube()
+        {
             try
             {
                 StringBuilder cmd = new StringBuilder();
@@ -24,28 +26,33 @@ namespace HardHat
                 }
                 cmd.ToString().Term(Output.External);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CmdScanner(string dir){
+        public static void CmdScanner(string dir)
+        {
             try
             {
                 $"sonar-scanner".Term(Output.External, dir);
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
 
-        public static void CmdBrowse(string url){
+        public static void CmdBrowse(string url)
+        {
             try
             {
                 Web.IsUrl(url);
                 $"{url}".Browse();
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex.Message);
             }
         }
