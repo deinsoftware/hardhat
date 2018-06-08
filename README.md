@@ -377,7 +377,7 @@ Highly recommend this file and directory structure:
 
 ```dir
 Developer
-├── Business_1
+├── Workspace1
 │   └── Projects
 │       ├── _devBranch_1
 │       │   ├── android
@@ -395,29 +395,42 @@ Developer
 │           ├── android
 │           ├── ios
 │           └── web
-├── Business_2
+├── Workspace2
 │   └── ...
-├── Business_n
+├── WorkspaceN
 │   └── ...
 │
 Applications
 ├── Android
 │   ├── Gradle
 │   ├── Keystore
-│   │   ├── dev.jks
-│   │   └── prd.jks
+│   │   ├── Workspace1
+│   │   │   ├── dev.jks
+│   │   │   └── prd.jks
+│   │   ├── Workspace1_Flavor1
+│   │   │   └── ...
+│   │   ├── Workspace1_Flavor2
+│   │   │   └── ...
+│   │   ├── Workspace2
+│   │   │   └── ...
+│   │   └── WorkspaceN
+│   │       └── ...
 │   ├── PlayStore
 │   ├── SDK
 │   └── Properties
-│       ├── Business_1
+│       ├── Workspace1
 │       │   ├── gradle.properties
 │       │   ├── local.properties
 |       │   └── Keystore
 │       │       ├── development.properties
 │       │       └── production.properties
-│       ├── Business_2
+│       ├── Workspace1_Flavor1
 │       │   └── ...
-│       └── Business_n
+│       ├── Workspace1_Flavor2
+│       │   └── ...
+│       ├── Workspace2
+│       │   └── ...
+│       └── WorkspaceN
 │           └── ...
 ├── Gulp
 ├── HardHat
