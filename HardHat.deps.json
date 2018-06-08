@@ -7,9 +7,9 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/osx.10.12-x64": {
-      "HardHat/6.0.1": {
+      "HardHat/6.0.2": {
         "dependencies": {
-          "Colorify": "1.0.4",
+          "Colorify": "1.0.5",
           "Microsoft.NETCore.App": "2.0.0",
           "Newtonsoft.Json": "10.0.3",
           "ToolBox": "1.1.4"
@@ -756,7 +756,7 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "Colorify/1.0.4": {
+      "Colorify/1.0.5": {
         "dependencies": {
           "ToolBox": "1.1.4"
         },
@@ -775,7 +775,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.0.1": {
+    "HardHat/6.0.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -1375,7 +1375,7 @@
       "path": "system.xml.xmldocument/4.3.0",
       "hashPath": "system.xml.xmldocument.4.3.0.nupkg.sha512"
     },
-    "Colorify/1.0.4": {
+    "Colorify/1.0.5": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
