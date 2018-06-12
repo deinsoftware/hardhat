@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-* Config option to enable log file in order to trace development issues.
+* Config option to enable log file in order to trace development issues. [\#18](https://github.com/equiman/hardhat/issues/18)
 
 ## [6.0.2] - 2018-06-08
 

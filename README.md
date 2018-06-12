@@ -339,37 +339,41 @@ If you have some pre-configured files to be copied to project path, add it on `A
 
 Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 
-#### Path Variables
+#### Main Path
 
-| var | description |
+| combination | action |
 | --- | --- |
-| `dir` | Development path |
-| `bsn` | Business folder inside `dir` path  |
-| `prd` | Project folder inside `bsn` path |
-| `flt` | Filter name folder for projects list |
+| <kbd>md</kbd> | Development path |
+| <kbd>mw</kbd> | Choose workspace folder inside development path. |
+| <kbd>mp</kbd> | Projects folder name inside workspace folder path. |
+| <kbd>mf</kbd> | Filter name for project listing. |
 
-#### Android Variables
 
-| var | description |
+#### Android Path
+
+| combination | action |
 | --- | --- |
-| `prj` | Android folder name inside selected project |
-| `bld` | Build path inside `prj` path |
-| `ext` | APK extension name |
-| `cmp` | Files path inside `prj` path to be compacted with gulp |
-| `flt` | Filter extension name to be compacted with gulp |
+| <kbd>ap</kbd> | Android folder path inside project |
+| <kbd>ab</kbd> | Build folder path inside android project. |
+| <kbd>ae</kbd> | Extension name for android application. |
+| <kbd>ac</kbd> | Hybrid folder to be processed with Gulp (Uglify & Minify). |
+| <kbd>af</kbd> | Filter extension name for files to be processed. |
 
-#### Gulp Variables
+#### Gulp Path
 
-| var | description |
+| combination | action |
 | --- | --- |
-| `srv` | Server folder name inside `GULP_PROJECT` |
-| `ext` | Filter extension name for server configuration |
+| <kbd>gw</kbd> | Web Server path with configurations. |
+| <kbd>gl</kbd> | Log path with configurations. |
+| <kbd>ge</kbd> | Extension name for configurations. |
 
-#### VPN Variables
+#### Other Variables
 
-| var | description |
+| combination | action |
 | --- | --- |
-| `snm` | Site name for `VPN_HOME` |
+| <kbd>v</kbd> | VPN Site Name (only for Windows). |
+| <kbd>t</kbd> | Theme chooser. |
+| <kbd>l</kbd> | Enable or disable log on exceptions. |
 
 ### Recommendations
 
