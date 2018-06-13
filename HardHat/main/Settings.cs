@@ -52,6 +52,7 @@ namespace HardHat
             config.personal.ipAddress = "";
             config.personal.ipAddressBase = "";
             config.personal.selectedProject = "";
+            config.personal.selectedPath = "";
             config.personal.selectedFile = "";
             config.personal.sonar = new SonarConfiguration();
             config.personal.sonar.protocol = "https";
