@@ -156,6 +156,7 @@ namespace HardHat
         public string ipAddress { get; set; }
         public string ipAddressBase { get; set; }
         public string selectedProject { get; set; }
+        public string selectedPath { get; set; }
         public string selectedFile { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }

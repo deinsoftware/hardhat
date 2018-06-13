@@ -34,9 +34,10 @@ namespace HardHat
                 _config.personal.selectedProject = "";
             }
             Options.Valid("p", true);
-            string filePath = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedFile ?? "");
+            string filePath = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath, _config.personal.selectedFile);
             if (!File.Exists(filePath))
             {
+                _config.personal.selectedPath = "";
                 _config.personal.selectedFile = "";
             }
             Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
@@ -141,10 +142,11 @@ namespace HardHat
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
                 dirPath.Exists("Please review your configuration file or make a build first.");
-                List<string> files = dirPath.Files($"*{_config.android.buildExtension}", "Please make a build first.");
+                List<string> files = dirPath.Files($"*{_config.android.buildExtension}", "Please make a build first.", SearchOption.AllDirectories);
 
                 if (files.Count < 1)
                 {
+                    _config.personal.selectedPath = "";
                     _config.personal.selectedFile = "";
                 }
                 else
@@ -170,6 +172,7 @@ namespace HardHat
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
                     var sel = files[Convert.ToInt32(opt) - 1];
+                    _config.personal.selectedPath = _path.Split(_path.GetDirectoryName(sel), dirPath);
                     _config.personal.selectedFile = _path.GetFileName(sel);
                 }
 
@@ -185,7 +188,7 @@ namespace HardHat
         {
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath);
                 Clipboard.Copy(dirPath);
                 Menu.Start();
             }
@@ -200,7 +203,7 @@ namespace HardHat
             try
             {
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
-                Clipboard.Copy(_path.Combine(dirPath, _config.personal.selectedFile));
+                Clipboard.Copy(_path.Combine(dirPath, _config.personal.selectedPath, _config.personal.selectedFile));
                 Menu.Start();
             }
             catch (Exception Ex)
@@ -234,7 +237,8 @@ namespace HardHat
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selectedFile), _path.Combine(dirPath, $"{opt}{_config.android.buildExtension}"));
+                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selectedPath, _config.personal.selectedFile), _path.Combine(dirPath, $"{opt}{_config.android.buildExtension}"));
+                    _config.personal.selectedPath = "";
                     _config.personal.selectedFile = $"{opt}{_config.android.buildExtension}";
                 }
 
@@ -254,12 +258,16 @@ namespace HardHat
             {
                 Section.Header("FILE PATH");
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
+                string developmentPath = _path.Combine(_config.path.development);
+                string workspacePath = _path.Combine(_config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath);
 
-                _colorify.Write($"{" Path:",-10}", txtMuted);
-                _colorify.WriteLine($"{dirPath}");
+                _colorify.Write($"{" Path:",-15}", txtMuted);
+                _colorify.WriteLine($"{developmentPath}");
 
-                _colorify.Write($"{" File:",-10}", txtMuted);
+                _colorify.Write($"{" Project:",-15}", txtMuted);
+                _colorify.WriteLine($"{workspacePath}");
+
+                _colorify.Write($"{" File:",-15}", txtMuted);
                 _colorify.WriteLine($"{_config.personal.selectedFile}");
 
                 _colorify.BlankLines();

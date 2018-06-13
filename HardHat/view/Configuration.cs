@@ -608,7 +608,7 @@ namespace HardHat
             {
                 Section.Header("CONFIGURATION", "THEME");
 
-                string defaultColor = String.Empty;
+                string defaultColor = "";
                 switch (OS.GetCurrent())
                 {
                     case "win":

@@ -72,7 +72,11 @@ namespace dein.tools
                 _colorify.Write($" Press [Any] key to continue...", txtWarning);
                 Console.ReadKey();
 
-                if (exit)
+                if (!exit)
+                {
+                    Menu.Route();
+                }
+                else
                 {
                     Program.Exit();
                 }

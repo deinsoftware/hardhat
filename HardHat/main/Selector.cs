@@ -71,7 +71,7 @@ namespace HardHat
 
         public static string Start(IReadOnlyDictionary<string, string> sel, string dfl)
         {
-            string opt = String.Empty;
+            string opt = "";
 
             try
             {

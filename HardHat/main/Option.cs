@@ -64,14 +64,14 @@ namespace HardHat
             return response;
         }
 
-        public static void Valid(string opt, bool stt)
+        public static void Valid(string opt, bool status)
         {
             try
             {
                 var option = list.FirstOrDefault(x => x.opt == opt);
                 if (option != null)
                 {
-                    option.status = stt;
+                    option.status = status;
                 }
             }
             catch (Exception Ex)
@@ -80,7 +80,7 @@ namespace HardHat
             }
         }
 
-        public static Action Action(string opt, string dfl = "m")
+        public static Action Action(string opt, string defaultValue = "m")
         {
             Action response = Menu.Start;
             try

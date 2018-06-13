@@ -59,7 +59,7 @@ namespace HardHat
                 Section.Header("INSTALL FILE");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedFile);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath, _config.personal.selectedFile);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Checking devices...", txtInfo);

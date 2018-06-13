@@ -9,6 +9,20 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.2.0] - 2018-06-12
+
+**Fixed:**
+
+* Route on alert message.
+
+**Added:**
+
+* Compatibility to Gradle 4 build system path folder.
+
+**Changed:**
+
+* Updated library references for [ToolBox](https://github.com/equiman/toolbox) 1.2.0 and [Colorify](https://github.com/equiman/colorify) 1.0.6.
+
 ## [6.1.0] - 2018-06-08
 
 **Added:**

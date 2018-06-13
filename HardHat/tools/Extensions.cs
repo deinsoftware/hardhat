@@ -64,12 +64,12 @@ namespace dein.tools
             return dirs;
         }
 
-        public static List<string> Files(this string path, string filter, string message = null)
+        public static List<string> Files(this string path, string filter, string message = null, SearchOption search = SearchOption.TopDirectoryOnly)
         {
             List<string> files = new List<string>();
             try
             {
-                files = _path.GetFiles(path, filter);
+                files = _path.GetFiles(path, filter, search);
                 if (files.Count < 1)
                 {
                     StringBuilder msg = new StringBuilder();
