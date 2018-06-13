@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Selected path bt default on config file.
+* Selected path by default on config file.
 
 ## [6.2.0] - 2018-06-12
 
