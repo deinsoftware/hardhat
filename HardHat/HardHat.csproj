@@ -3,6 +3,7 @@
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
     <VersionPrefix>6.2.1</VersionPrefix>
+    <ProjectGuid>{b407f8af-bade-4c29-a9e6-11547ca64281}</ProjectGuid>
     
     <Authors>Camilo Martinez</Authors>
     <Company>dein Software</Company>
