@@ -4,7 +4,7 @@
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 
-**HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
+**HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) [![NuGet](https://img.shields.io/nuget/v/dein.ToolBox.svg)](https://www.nuget.org/packages/dein.Colorify/) and [Colorify](https://github.com/deinsoftware/colorify) [![NuGet](https://img.shields.io/nuget/v/dein.Colorify.svg)](https://www.nuget.org/packages/dein.Colorify/) libraries.
 
 Previously had create the same app making a [Batch (for Windows)](https://github.com/equiman/hardhatwin/) and a [Bash (for macOS)](https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
@@ -455,6 +455,7 @@ Applications
 
 ### Built With
 
+* [.Net Core](https://dotnet.github.io/) - ASP.NET Core is a free and open-source web framework, and the next generation of ASP.NET, developed by Microsoft and the community.
 * [VS Code](https://code.visualstudio.com/) - Code editing redefined.
 * [SonarQube](https://sonarcloud.io/dashboard/index/dein:hardhat) - Continuous code quality.
 
