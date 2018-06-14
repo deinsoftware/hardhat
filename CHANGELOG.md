@@ -53,7 +53,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.0.1] - 2018-06-08
 
-**Fix:**
+**Fixed:**
 
 * Error when select web server protocol
 
