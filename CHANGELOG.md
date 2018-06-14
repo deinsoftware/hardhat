@@ -67,13 +67,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Entire configuration menu, file and options. This change delete your current saved configuration.
 
-**Fix:**
+**Fixed:**
 
 * Error when configuration file can't load saved values. [\#20](https://github.com/equiman/hardhat/issues/20)
 
 ## [5.2.1] - 2018-06-07
 
-**Fix:**
+**Fixed:**
 
 * Gulp Uglify error when www folder don't exists. [\#21](https://github.com/equiman/hardhat/issues/21)
 
