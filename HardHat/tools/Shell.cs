@@ -179,7 +179,7 @@ namespace dein.tools
             {
                 string[] stringSeparators = new string[] { " " };
                 string[] words = request.Split(stringSeparators, StringSplitOptions.None);
-                if (!String.IsNullOrEmpty(request))
+                if (wordPosition <= words.Length)
                 {
                     response = words[wordPosition];
                 }

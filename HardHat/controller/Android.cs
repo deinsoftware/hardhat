@@ -39,8 +39,7 @@ namespace HardHat
 
         public static Response CmdState(string device)
         {
-            Response result = new Response();
-            result = $"adb -s {device} get-state".Term();
+            Response result = $"adb -s {device} get-state".Term();
             if (result.stdout.Contains("not found"))
             {
                 result.code = 0;
@@ -184,8 +183,7 @@ namespace HardHat
             bool connected = false;
             try
             {
-                Response result = new Response();
-                result = $"adb disconnect {ip}:{port}".Term(Output.Internal);
+                $"adb disconnect {ip}:{port}".Term(Output.Internal);
             }
             catch (Exception Ex)
             {

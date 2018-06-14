@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.2.2] - 2018-06-14
+
+**Fixed:**
+
+* Code smells reported by SonarQube.
+
+**Changed:**
+
+* Update Newtonsoft.Json library to 11.0.2, ToolBox library to 1.2.1 and Colorify to 1.0.7.
+
 ## [6.2.1] - 2018-06-12
 
 **Fixed:**
