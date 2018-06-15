@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using dein.tools;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -11,23 +12,27 @@ namespace HardHat
             try
             {
                 $"gradle -p {path} clean".Term(Output.External);
+                _config.personal.selectedPath = "";
+                _config.personal.selectedFile = "";
             }
             catch (Exception Ex)
             {
                 Exceptions.General(Ex);
             }
         }
+
         public static void CmdGradle(string path, string conf, string device = null)
         {
             try
             {
-                $"gradle -p {path} clean assemble{conf}".Term(Output.External);
+                $"gradle -p {path} assemble{conf}".Term(Output.External);
             }
             catch (Exception Ex)
             {
                 Exceptions.General(Ex);
             }
         }
+
         public static void CmdRefresh(string path, string conf, string device = null)
         {
             try

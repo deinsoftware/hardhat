@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.2.3] - 2018-06-15
+
+**Removed:**
+
+* Clean before build. Now yow can have different builds on same project.
+
+**Changed:**
+
+* Clean need to be launched manually and also clean selected file.
+
 ## [6.2.2] - 2018-06-14
 
 **Fixed:**
