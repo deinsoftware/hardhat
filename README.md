@@ -136,17 +136,19 @@ alias hh="sh ~/Applications/HardHat/mac.sh"
 alias x="exit"
 ```
 
-> **How to auto close terminal on exit for macOS?**  
-> Open a terminal window, goto 'Preference > Profiles > Shell' and select "Close if the shell exited cleanly" on "When the shell exits" option.
-
-Highly recomend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
-
 On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. And omit `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
 
 With **H**ard**H**at alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
 > **Where are environment variables?**  
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
+
+Highly recomend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
+
+> **Recommended terminal configurations on macOS?**  
+> Open a terminal window, go to 'Preference > Profiles.
+> Auto close terminal on exit: Inside 'Shell' tab, select "Close if the shell exited cleanly" on "When the shell exits" option.
+> Enable Numpad keys: Inside 'Advance' tab, deselect (turn off) "Allow VT100 application keypad mode" option.
 
 ⇧ [Back to menu](#menu)
 
