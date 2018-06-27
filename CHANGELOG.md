@@ -15,6 +15,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Logcat option with Android Debug Bridge.
 
+**Fixed:**
+
+* File path on signer and values for files.
+
 ## [6.2.3] - 2018-06-15
 
 **Removed:**
