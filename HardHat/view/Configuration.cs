@@ -36,6 +36,11 @@ namespace HardHat
             opts.Add(new Option { opt = "c>l", status = true, action = Configuration.Log });
         }
 
+        public static void Status()
+        {
+            Options.Valid("c>v", OS.IsWin());
+        }
+
         public static void Select()
         {
             _colorify.Clear();
@@ -59,7 +64,7 @@ namespace HardHat
             _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.extension}");
 
             _colorify.BlankLines();
-            _colorify.Write($"{" [V] VPN",-25}", txtPrimary); _colorify.WriteLine($"{_config.vpn.siteName}");
+            _colorify.Write($"{" [V] VPN",-25}", txtStatus(OS.IsWin())); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
             string statusLog = Selector.Name(Selector.Status, (_config.personal.log ? "e" : "d"));
@@ -263,7 +268,7 @@ namespace HardHat
 
                 _colorify.WriteLine($" Filter for folders inside Projects path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
-                _colorify.WriteLine($" Can use wildcard.", txtPrimary);
+                _colorify.WriteLine($" Can use * as wildcard.", txtPrimary);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);

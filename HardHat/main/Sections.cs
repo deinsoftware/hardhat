@@ -39,10 +39,10 @@ namespace HardHat
             _colorify.WriteLine($"{"[X] Exit",-17}", txtDanger);
         }
 
-        public static void SelectedProject()
+        public static void CurrentIP()
         {
-            _colorify.Write($"{" Selected Project:",-25}", txtMuted);
-            _colorify.WriteLine($"{_config.personal.selectedProject}");
+            _colorify.Write($"{" Current IP:",-25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.ipAddress}");
         }
 
         public static void CurrentConfiguration(bool val, string cnf)
@@ -66,10 +66,22 @@ namespace HardHat
             }
         }
 
+        public static void SelectedProject()
+        {
+            _colorify.Write($"{" Selected Project:",-25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.selectedProject}");
+        }
+
         public static void SelectedFile()
         {
             _colorify.Write($"{" Selected File:",-25}", txtMuted);
             _colorify.WriteLine($"{_config.personal.selectedFile}");
+        }
+
+        public static void SelectedPackageName()
+        {
+            _colorify.Write($"{" File Package Name:",-25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.selectedPackageName}");
         }
 
         public static void HorizontalRule()

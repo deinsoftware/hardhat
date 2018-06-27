@@ -88,18 +88,30 @@ namespace HardHat
             return result;
         }
 
+        public static string CmdGetPid(string packagename)
+        {
+            string result = "";
+            try
+            {
+                Response pid = $"adb shell pidof -s {packagename}".Term();
+                pid.stdout = pid.stdout
+                    .Replace("\r", "")
+                    .Replace("\n", "");
+                result = pid.stdout;
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+            return result;
+        }
+
         public static void CmdLaunch(string path, string device)
         {
             try
             {
-                Response result = $"aapt dump badging {path}".Term();
-                string packagename = Shell.ExtractLine(result.stdout, "package:");
-                if (!String.IsNullOrEmpty(packagename))
-                {
-                    packagename = Shell.GetWord(packagename, 1);
-                    packagename = Strings.RemoveWords(packagename, "name=", "'");
-                }
-
+                Response result = new Response();
+                string packagename = BuildTools.CmdGetPackageName(path);
                 if (!String.IsNullOrEmpty(packagename))
                 {
                     StringBuilder cmd = new StringBuilder();
@@ -115,6 +127,46 @@ namespace HardHat
                     cmd.Append($" shell monkey -p {packagename} 1");
                     cmd.ToString().Term();
                 }
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void CmdLogcat(string device, string priority, string pid = "")
+        {
+            try
+            {
+                Response result = new Response();
+
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append("adb");
+                if (!String.IsNullOrEmpty(device))
+                {
+                    result = CmdState(device);
+                    if (result.code == 0)
+                    {
+                        cmd.Append($" -s {device}");
+                    }
+                }
+                cmd.Append(" logcat");
+                cmd.Append($" *:");
+                if (!String.IsNullOrEmpty(priority))
+                {
+                    cmd.Append($"{priority.ToUpper()}");
+                }
+                else
+                {
+                    cmd.Append($"V");
+                }
+
+                cmd.Append(" -v color");
+                if (!String.IsNullOrEmpty(pid))
+                {
+                    cmd.Append($" --pid={pid}");
+                }
+                cmd.ToString().Term(Output.External);
             }
             catch (Exception Ex)
             {
@@ -218,69 +270,11 @@ namespace HardHat
 
         public static string CmdList()
         {
-            string response = "";
+            string result = "";
             try
             {
-                Response result = $"adb devices -l".Term();
-                response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}");
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-            return response;
-        }
-    }
-
-    public static partial class BuildTools
-    {
-        public static void CmdSignerVerify(string path)
-        {
-            try
-            {
-                $"apksigner verify --print-certs {path}".Term(Output.Internal);
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void CmdInformation(string path)
-        {
-            try
-            {
-                $"aapt dump badging {path}".Term(Output.Internal);
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static Response CmdSha(string path)
-        {
-            Response result = new Response();
-            try
-            {
-                switch (OS.GetCurrent())
-                {
-                    case "win":
-                        result = $"sigcheck -h {path}".Term();
-                        result.stdout = Shell.ExtractLine(result.stdout, "SHA256:", "\tSHA256:\t");
-                        break;
-                    case "mac":
-                        result = $"shasum -a 256 {path}".Term();
-                        result.stdout = Shell.GetWord(result.stdout, 0);
-                        break;
-                }
-                result.stdout = result.stdout
-                    .Replace("\r", "")
-                    .Replace("\n", "");
-                if (!String.IsNullOrEmpty(result.stdout))
-                {
-                    result.code = 0;
-                }
+                Response response = $"adb devices -l".Term();
+                result = Strings.RemoveWords(response.stdout, $"List of devices attached{Environment.NewLine}");
             }
             catch (Exception Ex)
             {

@@ -52,6 +52,7 @@ namespace HardHat
             config.personal.ipAddress = "";
             config.personal.ipAddressBase = "";
             config.personal.selectedProject = "";
+            config.personal.selectedPackageName = "";
             config.personal.selectedPath = "";
             config.personal.selectedFile = "";
             config.personal.sonar = new SonarConfiguration();
@@ -76,6 +77,9 @@ namespace HardHat
             config.personal.adb.wifiIpAddress = "";
             config.personal.adb.wifiPort = "";
             config.personal.adb.wifiStatus = false;
+            config.personal.logcat = new LogcatConfiguration();
+            config.personal.logcat.packageName = "";
+            config.personal.logcat.priority = "V";
             config.personal.menu = new MenuConfiguration();
             config.personal.menu.selectedOption = "";
             config.personal.menu.currentBranch = "";
@@ -157,12 +161,14 @@ namespace HardHat
         public string ipAddress { get; set; }
         public string ipAddressBase { get; set; }
         public string selectedProject { get; set; }
+        public string selectedPackageName { get; set; }
         public string selectedPath { get; set; }
         public string selectedFile { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
         public BuildConfiguration gradle { get; set; }
         public AdbConfiguration adb { get; set; }
+        public LogcatConfiguration logcat { get; set; }
         public MenuConfiguration menu { get; set; }
         public string theme { get; set; }
         public bool log { get; set; }
@@ -200,6 +206,12 @@ namespace HardHat
         public string wifiIpAddress { get; set; }
         public string wifiPort { get; set; }
         public bool wifiStatus { get; set; }
+    }
+
+    class LogcatConfiguration
+    {
+        public string packageName { get; set; }
+        public string priority { get; set; }
     }
 
     public class MenuConfiguration

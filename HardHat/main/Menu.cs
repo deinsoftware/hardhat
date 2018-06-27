@@ -28,6 +28,7 @@ namespace HardHat
                 Sonar.Status();
                 Gulp.Status();
                 Build.Status();
+                Configuration.Status();
             }
             catch (Exception Ex)
             {

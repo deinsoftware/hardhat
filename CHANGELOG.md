@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.3.0] - 2018-06-26
+
+**Added:**
+
+* Logcat option with Android Debug Bridge.
+
 ## [6.2.3] - 2018-06-15
 
 **Removed:**

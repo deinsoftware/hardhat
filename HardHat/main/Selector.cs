@@ -30,6 +30,17 @@ namespace HardHat
             {"r", "Release"}
         };
 
+        public static readonly IReadOnlyDictionary<string, string> Priority = new Dictionary<string, string>
+        {
+            {"v", "Verbouse"},
+            {"d", "Debug"},
+            {"i", "Info"},
+            {"w", "Warning"},
+            {"e", "Error"},
+            {"f", "Fatal"},
+            {"s", "Silence"},
+        };
+
         public static readonly IReadOnlyDictionary<string, string> Protocol = new Dictionary<string, string>
         {
             {"1", "http"},

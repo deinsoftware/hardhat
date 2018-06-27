@@ -9,11 +9,8 @@ using static Colorify.Colors;
 
 namespace HardHat
 {
-
     public static class Project
     {
-
-
         public static void List(ref List<Option> opts)
         {
             opts.Add(new Option { opt = "p", status = true, action = Project.Select });
@@ -32,6 +29,7 @@ namespace HardHat
             if (!_fileSystem.DirectoryExists(dirPath))
             {
                 _config.personal.selectedProject = "";
+                _config.personal.selectedPackageName = "";
             }
             Options.Valid("p", true);
             string filePath = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath, _config.personal.selectedFile);
@@ -148,6 +146,7 @@ namespace HardHat
                 {
                     _config.personal.selectedPath = "";
                     _config.personal.selectedFile = "";
+                    _config.personal.selectedPackageName = "";
                 }
                 else
                 {
@@ -174,6 +173,7 @@ namespace HardHat
                     var sel = files[Convert.ToInt32(opt) - 1];
                     _config.personal.selectedPath = _path.Split(_path.GetDirectoryName(sel), dirPath);
                     _config.personal.selectedFile = _path.GetFileName(sel);
+                    _config.personal.selectedPackageName = BuildTools.CmdGetPackageName(sel);
                 }
 
                 Menu.Start();
