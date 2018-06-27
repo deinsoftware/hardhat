@@ -332,6 +332,7 @@ If you have some pre-configured files to be copied to project path, add it on `A
 | combination | action |
 | --- | --- |
 | <kbd>ad</kbd> | Show device/emulator list. |
+| <kbd>ad</kbd> | Make ADB launch logcat. |
 | <kbd>aw</kbd> | Make a ADB device dis/connection over Wifi. |
 | <kbd>ar</kbd> | Kill and Restart ADB server. |
 
