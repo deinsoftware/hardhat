@@ -110,7 +110,6 @@ namespace HardHat
         {
             try
             {
-                Response result = new Response();
                 string packagename = BuildTools.CmdGetPackageName(path);
                 if (!String.IsNullOrEmpty(packagename))
                 {
@@ -118,7 +117,7 @@ namespace HardHat
                     cmd.Append("adb");
                     if (!String.IsNullOrEmpty(device))
                     {
-                        result = CmdState(device);
+                        Response result = CmdState(device);
                         if (result.code == 0)
                         {
                             cmd.Append($" -s {device}");
@@ -138,13 +137,11 @@ namespace HardHat
         {
             try
             {
-                Response result = new Response();
-
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append("adb");
                 if (!String.IsNullOrEmpty(device))
                 {
-                    result = CmdState(device);
+                    Response result = CmdState(device);
                     if (result.code == 0)
                     {
                         cmd.Append($" -s {device}");
