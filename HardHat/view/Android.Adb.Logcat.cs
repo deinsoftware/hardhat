@@ -81,7 +81,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Write your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
                 _config.personal.logcat.packageName = opt;
 
                 Menu.Status();

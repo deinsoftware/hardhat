@@ -69,19 +69,19 @@ namespace HardHat
         public static void SelectedProject()
         {
             _colorify.Write($"{" Selected Project:",-25}", txtMuted);
-            _colorify.WriteLine($"{_config.personal.selectedProject}");
+            _colorify.WriteLine($"{_config.personal.selected.project}");
         }
 
         public static void SelectedFile()
         {
             _colorify.Write($"{" Selected File:",-25}", txtMuted);
-            _colorify.WriteLine($"{_config.personal.selectedFile}");
+            _colorify.WriteLine($"{_config.personal.selected.file}");
         }
 
         public static void SelectedPackageName()
         {
             _colorify.Write($"{" File Package Name:",-25}", txtMuted);
-            _colorify.WriteLine($"{_config.personal.selectedPackageName}");
+            _colorify.WriteLine($"{_config.personal.selected.packageName}");
         }
 
         public static void HorizontalRule()

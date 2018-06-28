@@ -29,13 +29,13 @@ namespace HardHat
             buildConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.gradle.flavor));
             buildConfiguration.Append(Selector.Name(Selector.Mode, _config.personal.gradle.mode));
             _config.personal.menu.buildConfiguration = buildConfiguration.ToString();
-            _config.personal.menu.buildValidation = !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.gradle.mode, _config.personal.gradle.flavor, _config.personal.menu.buildConfiguration);
+            _config.personal.menu.buildValidation = !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.gradle.mode, _config.personal.gradle.flavor, _config.personal.menu.buildConfiguration);
             Options.Valid("b", Variables.Valid("gh"));
             Options.Valid("b>d", Variables.Valid("gh"));
             Options.Valid("b>f", Variables.Valid("gh"));
             Options.Valid("b>m", Variables.Valid("gh"));
-            Options.Valid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
-            Options.Valid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
         }
 
@@ -116,7 +116,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.personal.gradle.dimension = $"{opt}";
@@ -185,7 +185,7 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
                 CmdGradle(dirPath, _config.personal.menu.buildConfiguration);
 
                 Menu.Start();
@@ -204,7 +204,7 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -226,7 +226,7 @@ namespace HardHat
                 Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
                 string sourcePath = propertiesSource();
-                string destinationPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath);
+                string destinationPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
 
                 _colorify.BlankLines();
                 List<string> filter = _disk.FilterCreator(true, ".properties");

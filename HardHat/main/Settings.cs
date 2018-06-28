@@ -36,6 +36,7 @@ namespace HardHat
             config.android.projectPath = "android";
             config.android.buildPath = "build/outputs/apk";
             config.android.buildExtension = ".apk";
+            config.android.mappingSuffix = "-mapping.txt";
             config.android.hybridFiles = "assets/www";
             config.android.filterFiles = new string[] { ".js", ".css" };
 
@@ -51,10 +52,13 @@ namespace HardHat
             config.personal.hostName = "";
             config.personal.ipAddress = "";
             config.personal.ipAddressBase = "";
-            config.personal.selectedProject = "";
-            config.personal.selectedPackageName = "";
-            config.personal.selectedPath = "";
-            config.personal.selectedFile = "";
+            config.personal.selected = new SelectedConfiguration();
+            config.personal.selected.project = "";
+            config.personal.selected.packageName = "";
+            config.personal.selected.path = "";
+            config.personal.selected.file = "";
+            config.personal.selected.mapping = "";
+            config.personal.selected.mappingStatus = false;
             config.personal.sonar = new SonarConfiguration();
             config.personal.sonar.protocol = "https";
             config.personal.sonar.domain = "localhost";
@@ -139,6 +143,7 @@ namespace HardHat
         public string projectPath { get; set; }
         public string buildPath { get; set; }
         public string buildExtension { get; set; }
+        public string mappingSuffix { get; set; }
         public string hybridFiles { get; set; }
         public string[] filterFiles { get; set; }
     }
@@ -160,10 +165,7 @@ namespace HardHat
         public string hostName { get; set; }
         public string ipAddress { get; set; }
         public string ipAddressBase { get; set; }
-        public string selectedProject { get; set; }
-        public string selectedPackageName { get; set; }
-        public string selectedPath { get; set; }
-        public string selectedFile { get; set; }
+        public SelectedConfiguration selected { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
         public BuildConfiguration gradle { get; set; }
@@ -172,6 +174,16 @@ namespace HardHat
         public MenuConfiguration menu { get; set; }
         public string theme { get; set; }
         public bool log { get; set; }
+    }
+
+    class SelectedConfiguration
+    {
+        public string project { get; set; }
+        public string path { get; set; }
+        public string file { get; set; }
+        public string packageName { get; set; }
+        public string mapping { get; set; }
+        public bool mappingStatus { get; set; }
     }
 
     class SonarConfiguration

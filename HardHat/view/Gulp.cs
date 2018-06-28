@@ -48,7 +48,7 @@ namespace HardHat
             }
             gulpConfiguration.Append(_config.personal.webServer.sync ? "+Sync" : "");
             _config.personal.menu.gulpConfiguration = gulpConfiguration.ToString();
-            _config.personal.menu.gulpValidation = !Validation.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.webServer.dimension, _config.personal.menu.gulpConfiguration);
+            _config.personal.menu.gulpValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.dimension, _config.personal.menu.gulpConfiguration);
             Options.Valid("g", Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
             Options.Valid("g>d", Variables.Valid("gp"));
@@ -57,9 +57,9 @@ namespace HardHat
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
-            Options.Valid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
-            Options.Valid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
-            Options.Valid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("gs", Variables.Valid("gp") && _config.personal.menu.gulpValidation);
             Options.Valid("gl", Variables.Valid("gp") && _config.personal.menu.gulpValidation);
         }
@@ -169,7 +169,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
                 _config.personal.webServer.internalPath = $"{opt}";
 
                 Menu.Status();
@@ -218,7 +218,7 @@ namespace HardHat
                     Section.HorizontalRule();
 
                     _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                    string opt = Console.ReadLine();
+                    string opt = Console.ReadLine().Trim();
 
                     if (!String.IsNullOrEmpty(opt))
                     {
@@ -285,7 +285,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -356,7 +356,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Making...", txtInfo);
@@ -383,7 +383,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.hybridFiles);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.hybridFiles);
 
                 string[] dirs = new string[] {
                     _path.Combine(Variables.Value("gp"),"www"),
@@ -439,7 +439,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.hybridFiles);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.hybridFiles);
                 string dirSource = _path.Combine(Variables.Value("gp"), "www");
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Reverting...", txtInfo);
@@ -464,7 +464,7 @@ namespace HardHat
 
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
                 CmdServer(
                     dirPath,
                     _path.Combine(Variables.Value("gp")),

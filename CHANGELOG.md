@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.4.0] - 2018-06-28
+
+**Added:**
+
+* Mapping status on selected file.
+* Duplicate mapping when exists.
+
+**Fixed:**
+
+* Avoid empty spaces on response.
+
 ## [6.3.0] - 2018-06-26
 
 **Added:**

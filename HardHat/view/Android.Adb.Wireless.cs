@@ -86,7 +86,7 @@ namespace HardHat
 
                 _config.personal.ipAddressBase = Network.RemoveLastOctetIPv4(_config.personal.ipAddress);
                 _colorify.Write($"{$" {_config.personal.ipAddressBase} ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -120,7 +120,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {

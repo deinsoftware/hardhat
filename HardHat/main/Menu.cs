@@ -22,7 +22,7 @@ namespace HardHat
                     _config.personal.menu.selectedOption = sel;
                 }
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
                 Project.Status(dirPath);
                 Vcs.Status(dirPath);
                 Sonar.Status();
@@ -57,7 +57,7 @@ namespace HardHat
             Section.HorizontalRule();
 
             _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-            string opt = Console.ReadLine();
+            string opt = Console.ReadLine().Trim();
             _colorify.Clear();
             Route(opt);
         }

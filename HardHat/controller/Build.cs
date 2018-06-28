@@ -12,8 +12,9 @@ namespace HardHat
             try
             {
                 $"gradle -p {path} clean".Term(Output.External);
-                _config.personal.selectedPath = "";
-                _config.personal.selectedFile = "";
+                _config.personal.selected.path = "";
+                _config.personal.selected.file = "";
+                _config.personal.selected.mapping = "";
             }
             catch (Exception Ex)
             {

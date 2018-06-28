@@ -45,7 +45,7 @@ namespace HardHat
             _config.personal.menu.sonarValidation = !Strings.SomeNullOrEmpty(_config.personal.sonar.protocol, _config.personal.sonar.domain, _config.personal.menu.sonarConfiguration);
             Options.Valid("s", Variables.Valid("sq"));
             Options.Valid("sq", Variables.Valid("sq"));
-            Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
+            Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("sb", _config.personal.menu.sonarValidation);
         }
 
@@ -197,7 +197,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -232,7 +232,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -273,7 +273,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
                 _config.personal.sonar.internalPath = $"{opt}";
 
                 Menu.Status();
@@ -306,7 +306,7 @@ namespace HardHat
 
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.personal.sonar.internalPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.personal.sonar.internalPath);
                 CmdScanner(dirPath);
                 Menu.Start();
             }

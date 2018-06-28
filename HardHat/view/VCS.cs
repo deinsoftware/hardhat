@@ -23,7 +23,7 @@ namespace HardHat
         public static void Status(string dirPath)
         {
             _config.personal.menu.currentBranch = "";
-            if (!String.IsNullOrEmpty(_config.personal.selectedProject))
+            if (!String.IsNullOrEmpty(_config.personal.selected.project))
             {
                 string bnc = Git.CmdBranch(dirPath);
                 if (!String.IsNullOrEmpty(bnc))
@@ -31,12 +31,12 @@ namespace HardHat
                     _config.personal.menu.currentBranch = $"git://{Git.CmdBranch(dirPath)}";
                 }
             }
-            Options.Valid("v", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
-            Options.Valid("vd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
-            Options.Valid("vp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
-            Options.Valid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
-            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
-            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.menu.currentBranch));
+            Options.Valid("v", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
         }
 
         public static void Start()
@@ -90,7 +90,7 @@ namespace HardHat
                 Section.Header("GIT");
                 Section.SelectedProject();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
 
                 if (discard)
                 {

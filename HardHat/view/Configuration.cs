@@ -26,6 +26,7 @@ namespace HardHat
             opts.Add(new Option { opt = "c>ap", status = true, action = Configuration.AndroidProject });
             opts.Add(new Option { opt = "c>ab", status = true, action = Configuration.AndroidBuild });
             opts.Add(new Option { opt = "c>ae", status = true, action = Configuration.AndroidExtension });
+            opts.Add(new Option { opt = "c>am", status = true, action = Configuration.AndroidMappingSuffix });
             opts.Add(new Option { opt = "c>ac", status = true, action = Configuration.AndroidCompact });
             opts.Add(new Option { opt = "c>af", status = true, action = Configuration.AndroidFilter });
             opts.Add(new Option { opt = "c>gw", status = true, action = Configuration.GulpServer });
@@ -56,14 +57,13 @@ namespace HardHat
             _colorify.Write($"{"   [P] Project",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.projectPath}");
             _colorify.Write($"{"   [B] Build",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.buildPath}");
             _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.buildExtension}");
+            _colorify.Write($"{"   [M] Mapping",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.mappingSuffix}");
             _colorify.Write($"{"   [C] Compact",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.hybridFiles}");
             _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{string.Join(",", _config.android.filterFiles)}");
             _colorify.WriteLine($" [G] Gulp Path", txtMuted);
             _colorify.Write($"{"   [W] Web Server",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.webFolder}");
             _colorify.Write($"{"   [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.logFolder}");
             _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.extension}");
-
-            _colorify.BlankLines();
             _colorify.Write($"{" [V] VPN",-25}", txtStatus(OS.IsWin())); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
@@ -108,7 +108,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     string dirPath = _path.Combine(opt);
@@ -185,7 +185,7 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
@@ -227,8 +227,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     string dirPath = _path.Combine(_config.path.development, _config.path.workspace, opt);
@@ -275,8 +275,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.path.filter = $"{opt}";
@@ -309,8 +309,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     string dirPath = _path.Combine(_config.path.development, _config.path.workspace, opt);
@@ -356,8 +356,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.android.buildPath = $"{opt}";
@@ -388,11 +388,42 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.android.buildExtension = $".{opt}";
+                }
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void AndroidMappingSuffix()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("CONFIGURATION", "ANDROID MAPPING SUFFIX");
+
+                _colorify.WriteLine($" Suffix name and extension inside Build folder.", txtPrimary);
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
+
+                Section.HorizontalRule();
+
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
+                if (!String.IsNullOrEmpty(opt))
+                {
+                    _config.android.mappingSuffix = $"{opt}";
                 }
 
                 Menu.Status();
@@ -420,8 +451,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.android.hybridFiles = $"{opt}";
@@ -453,8 +484,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     var list = opt.Split(',');
@@ -492,8 +523,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.gulp.webFolder = $"{opt}";
@@ -524,8 +555,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.gulp.logFolder = $"{opt}";
@@ -556,8 +587,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.gulp.extension = $".{opt}";
@@ -589,8 +620,8 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
                     _config.vpn.siteName = $"{opt}";

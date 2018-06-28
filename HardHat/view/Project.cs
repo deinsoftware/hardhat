@@ -9,7 +9,7 @@ using static Colorify.Colors;
 
 namespace HardHat
 {
-    public static class Project
+    public static partial class Project
     {
         public static void List(ref List<Option> opts)
         {
@@ -18,8 +18,9 @@ namespace HardHat
             opts.Add(new Option { opt = "pi", status = false, action = Adb.Install });
             opts.Add(new Option { opt = "pd", status = false, action = Project.Duplicate });
             opts.Add(new Option { opt = "pp", status = false, action = Project.FilePath });
-            opts.Add(new Option { opt = "pp>p", status = false, action = Project.CopyFilePath });
-            opts.Add(new Option { opt = "pp>f", status = false, action = Project.CopyFullPath });
+            opts.Add(new Option { opt = "pp>p", status = false, action = Project.CopyPath });
+            opts.Add(new Option { opt = "pp>f", status = false, action = Project.CopyFilePath });
+            opts.Add(new Option { opt = "pp>m", status = false, action = Project.CopyMappingPath });
             opts.Add(new Option { opt = "ps", status = false, action = BuildTools.SignerVerify });
             opts.Add(new Option { opt = "pv", status = false, action = BuildTools.Information });
         }
@@ -28,46 +29,54 @@ namespace HardHat
         {
             if (!_fileSystem.DirectoryExists(dirPath))
             {
-                _config.personal.selectedProject = "";
-                _config.personal.selectedPackageName = "";
+                _config.personal.selected.project = "";
+                _config.personal.selected.file = "";
             }
             Options.Valid("p", true);
-            string filePath = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath, _config.personal.selectedFile);
-            if (!File.Exists(filePath))
+            string selectedFile = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.file);
+            if (!File.Exists(selectedFile))
             {
-                _config.personal.selectedPath = "";
-                _config.personal.selectedFile = "";
+                _config.personal.selected.path = "";
+                _config.personal.selected.file = "";
+                _config.personal.selected.packageName = "";
+                _config.personal.selected.mapping = "";
+                _config.personal.selected.mappingStatus = false;
             }
-            Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selectedProject));
-            Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("pd", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("ps", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
-            Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.selectedProject, _config.personal.selectedFile));
+            string selectedFileMapping = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.mapping);
+            _config.personal.selected.mappingStatus = File.Exists(selectedFileMapping);
+            Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pd", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pp>m", _config.personal.selected.mappingStatus);
+            Options.Valid("ps", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
         }
 
         public static void Start()
         {
-            if (String.IsNullOrEmpty(_config.personal.selectedProject))
+            if (String.IsNullOrEmpty(_config.personal.selected.project))
             {
                 _colorify.WriteLine($" [P] Select Project", txtPrimary);
             }
             else
             {
                 _colorify.Write($" [P] Selected Project: ", txtPrimary);
-                _colorify.WriteLine($"{_config.personal.selectedProject}");
+                _colorify.WriteLine($"{_config.personal.selected.project}");
             }
 
-            if (String.IsNullOrEmpty(_config.personal.selectedProject))
+            if (String.IsNullOrEmpty(_config.personal.selected.project))
             {
                 _colorify.WriteLine($"   [F] Select File", txtStatus(Options.Valid("pf")));
             }
             else
             {
                 _colorify.Write($"   [F] Selected File:  ", txtPrimary);
-                _colorify.WriteLine($"{_config.personal.selectedFile}");
+                _colorify.Write($"{_config.personal.selected.file}");
+                string mappingStatus = (_config.personal.selected.mappingStatus ? "(M)" : "");
+                _colorify.WriteLine($" {mappingStatus}", txtWarning);
             }
 
             _colorify.Write($"{"   [I] Install",-17}", txtStatus(Options.Valid("pi")));
@@ -93,7 +102,7 @@ namespace HardHat
 
                 if (dirs.Count < 1)
                 {
-                    _config.personal.selectedProject = "";
+                    _config.personal.selected.project = "";
                 }
                 else
                 {
@@ -112,14 +121,14 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), dirs.Count);
 
                     var sel = dirs[Convert.ToInt32(opt) - 1];
-                    _config.personal.selectedProject = _path.GetFileName(sel);
+                    _config.personal.selected.project = _path.GetFileName(sel);
                 }
 
                 Menu.Start();
@@ -136,17 +145,17 @@ namespace HardHat
 
             try
             {
-                Section.Header("SELECT FILE");
+                Section.Header("PROJECT", "SELECT FILE");
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath);
                 dirPath.Exists("Please review your configuration file or make a build first.");
                 List<string> files = dirPath.Files($"*{_config.android.buildExtension}", "Please make a build first.", SearchOption.AllDirectories);
 
                 if (files.Count < 1)
                 {
-                    _config.personal.selectedPath = "";
-                    _config.personal.selectedFile = "";
-                    _config.personal.selectedPackageName = "";
+                    _config.personal.selected.path = "";
+                    _config.personal.selected.file = "";
+                    _config.personal.selected.packageName = "";
                 }
                 else
                 {
@@ -165,129 +174,19 @@ namespace HardHat
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine();
+                string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))
                 {
                     Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
                     var sel = files[Convert.ToInt32(opt) - 1];
-                    _config.personal.selectedPath = _path.Split(_path.GetDirectoryName(sel), dirPath);
-                    _config.personal.selectedFile = _path.GetFileName(sel);
-                    _config.personal.selectedPackageName = BuildTools.CmdGetPackageName(sel);
+                    _config.personal.selected.path = _path.Split(_path.GetDirectoryName(sel), dirPath);
+                    _config.personal.selected.file = _path.GetFileName(sel);
+                    _config.personal.selected.mapping = _config.personal.selected.file.Replace(_config.android.buildExtension, _config.android.mappingSuffix);
+                    _config.personal.selected.packageName = BuildTools.CmdGetPackageName(sel);
                 }
 
                 Menu.Start();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void CopyFilePath()
-        {
-            try
-            {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath);
-                Clipboard.Copy(dirPath);
-                Menu.Start();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void CopyFullPath()
-        {
-            try
-            {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
-                Clipboard.Copy(_path.Combine(dirPath, _config.personal.selectedPath, _config.personal.selectedFile));
-                Menu.Start();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-
-        public static void Duplicate()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("DUPLICATE FILE");
-                Section.SelectedFile();
-
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($" Write a new name, without include his extension.", txtPrimary);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine();
-
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selectedPath, _config.personal.selectedFile), _path.Combine(dirPath, $"{opt}{_config.android.buildExtension}"));
-                    _config.personal.selectedPath = "";
-                    _config.personal.selectedFile = $"{opt}{_config.android.buildExtension}";
-                }
-
-                Menu.Start();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void FilePath()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("FILE PATH");
-
-                string developmentPath = _path.Combine(_config.path.development);
-                string workspacePath = _path.Combine(_config.path.workspace, _config.path.project, _config.personal.selectedProject, _config.android.projectPath, _config.android.buildPath, _config.personal.selectedPath);
-
-                _colorify.Write($"{" Path:",-15}", txtMuted);
-                _colorify.WriteLine($"{developmentPath}");
-
-                _colorify.Write($"{" Project:",-15}", txtMuted);
-                _colorify.WriteLine($"{workspacePath}");
-
-                _colorify.Write($"{" File:",-15}", txtMuted);
-                _colorify.WriteLine($"{_config.personal.selectedFile}");
-
-                _colorify.BlankLines();
-                _colorify.Write($"{" [P] Copy Path",-34}", txtInfo);
-                _colorify.Write($"{"[F] Copy Full Path",-34}", txtInfo);
-                _colorify.WriteLine($"{"[EMPTY] Cancel",-17}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Make your choice:",-25}", txtInfo);
-                string opt = Console.ReadLine()?.ToLower();
-
-                if (String.IsNullOrEmpty(opt))
-                {
-                    Menu.Start();
-                }
-                else
-                {
-                    Menu.Route($"pp>{opt}", "pp");
-                }
             }
             catch (Exception Ex)
             {
