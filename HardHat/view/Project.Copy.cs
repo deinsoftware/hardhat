@@ -31,23 +31,16 @@ namespace HardHat
                 _colorify.Write($"{" File:",-15}", txtMuted);
                 _colorify.WriteLine($"{_config.personal.selected.file}");
 
+                _colorify.Write($"{" Mapping:",-15}", txtMuted);
                 if (_config.personal.selected.mappingStatus)
                 {
-                    _colorify.Write($"{" Mapping:",-15}", txtMuted);
                     _colorify.WriteLine($"{_config.personal.selected.mapping}");
                 }
 
                 _colorify.BlankLines();
-                _colorify.Write($"{" [P] Project",-17}", txtInfo);
-                if (_config.personal.selected.mappingStatus)
-                {
-                    _colorify.Write($"{"[F] File",-17}", txtInfo);
-                    _colorify.Write($"{"[M] Mapping",-34}", txtInfo);
-                }
-                else
-                {
-                    _colorify.Write($"{"[F] File",-51}", txtInfo);
-                }
+                _colorify.Write($"{" [P] Project",-17}", txtPrimary);
+                _colorify.Write($"{"[F] File",-17}", txtPrimary);
+                _colorify.Write($"{"[M] Mapping",-34}", txtStatus(_config.personal.selected.mappingStatus));
                 _colorify.WriteLine($"{"[EMPTY] Cancel",-17}", txtDanger);
 
                 Section.HorizontalRule();

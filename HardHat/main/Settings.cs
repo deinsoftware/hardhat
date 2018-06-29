@@ -82,7 +82,7 @@ namespace HardHat
             config.personal.adb.wifiPort = "";
             config.personal.adb.wifiStatus = false;
             config.personal.logcat = new LogcatConfiguration();
-            config.personal.logcat.packageName = "";
+            config.personal.logcat.application = "";
             config.personal.logcat.priority = "V";
             config.personal.menu = new MenuConfiguration();
             config.personal.menu.selectedOption = "";
@@ -222,7 +222,7 @@ namespace HardHat
 
     class LogcatConfiguration
     {
-        public string packageName { get; set; }
+        public string application { get; set; }
         public string priority { get; set; }
     }
 

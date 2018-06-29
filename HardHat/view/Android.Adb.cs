@@ -25,7 +25,7 @@ namespace HardHat
             opts.Add(new Option { opt = "aw>p", status = true, action = Adb.Port });
             opts.Add(new Option { opt = "aw>c", status = true, action = Adb.Connect });
             opts.Add(new Option { opt = "al", status = true, action = Adb.Logcat });
-            opts.Add(new Option { opt = "al>n", status = true, action = Adb.PackageName });
+            opts.Add(new Option { opt = "al>a", status = true, action = Adb.Application });
             opts.Add(new Option { opt = "al>p", status = true, action = Adb.Priority });
             opts.Add(new Option { opt = "al>s", status = true, action = Adb.Show });
         }

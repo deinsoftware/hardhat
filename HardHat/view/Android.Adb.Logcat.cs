@@ -31,7 +31,7 @@ namespace HardHat
                 Section.SelectedPackageName();
 
                 _colorify.BlankLines();
-                _colorify.Write($"{" [N] Package Name:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.logcat.packageName}");
+                _colorify.Write($"{" [A] Application:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.logcat.application}");
                 string logcatPriority = Selector.Name(Selector.Priority, _config.personal.logcat.priority);
                 _colorify.Write($"{" [P] Priority:",-25}", txtPrimary); _colorify.WriteLine($"{logcatPriority}");
 
@@ -60,29 +60,38 @@ namespace HardHat
             }
         }
 
-        public static void PackageName()
+        public static void Application()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("LOGCAT", "PACKAGE NAME");
+                Section.Header("LOGCAT", "APPLICATION NAME");
 
                 Section.SelectedFile();
                 Section.SelectedPackageName();
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($" Write Application Package Name.", txtPrimary);
+                _colorify.WriteLine($" Write Application Name.", txtPrimary);
                 _colorify.WriteLine($" Avoid using wildcards.", txtPrimary);
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
+                _colorify.Write($"{" [C] Copy",-17}", txtStatus(!String.IsNullOrEmpty(_config.personal.selected.packageName)));
+                _colorify.WriteLine($"{"[EMPTY] Cancel",65}", txtDanger);
 
                 Section.HorizontalRule();
 
                 _colorify.Write($"{" Write your choice:",-25}", txtInfo);
                 string opt = Console.ReadLine().Trim();
-                _config.personal.logcat.packageName = opt;
+
+                if (opt.ToLower() == "c")
+                {
+                    _config.personal.logcat.application = _config.personal.selected.packageName;
+                }
+                else
+                {
+                    _config.personal.logcat.application = opt;
+                }
 
                 Menu.Status();
                 SelectLogcat();
@@ -126,12 +135,12 @@ namespace HardHat
                     if (CmdDevices())
                     {
                         string pid = "";
-                        if (!String.IsNullOrEmpty(_config.personal.logcat.packageName))
+                        if (!String.IsNullOrEmpty(_config.personal.logcat.application))
                         {
-                            pid = CmdGetPid(_config.personal.logcat.packageName);
+                            pid = CmdGetPid(_config.personal.logcat.application);
                             if (String.IsNullOrEmpty(pid))
                             {
-                                Message.Alert($" There is no app running with {_config.personal.logcat.packageName} package name.");
+                                Message.Alert($" There is no app running with {_config.personal.logcat.application} package name.");
                             }
                         }
                         CmdLogcat(_config.personal.adb.deviceName, _config.personal.logcat.priority, pid);

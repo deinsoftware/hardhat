@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.4.1] - 2018-06-29
+
+**Added:**
+
+* Option to copy Package Name to Application on logcat.
+
+**Fixed:**
+
+* Mapping identifier on duplicate file.
+
 ## [6.4.0] - 2018-06-28
 
 **Added:**

@@ -42,6 +42,7 @@ namespace HardHat
                     }
                     _config.personal.selected.path = "";
                     _config.personal.selected.file = $"{opt}{_config.android.buildExtension}";
+                    _config.personal.selected.mapping = $"{opt}{_config.android.mappingSuffix}";
                 }
 
                 Menu.Start();
