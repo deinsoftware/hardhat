@@ -13,6 +13,7 @@ namespace HardHat
         {
             {"a", "Alfa"},
             {"b", "Beta"},
+            {"m", "Mntn"},
             {"s", "Stag"},
             {"p", "Prod"},
             {"d", "Desk"}
