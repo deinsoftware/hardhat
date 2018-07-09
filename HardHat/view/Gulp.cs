@@ -19,12 +19,13 @@ namespace HardHat
         {
             opts.Add(new Option { opt = "g", status = false, action = Gulp.Select });
             opts.Add(new Option { opt = "g>i", status = false, action = Gulp.InternalPath });
-            opts.Add(new Option { opt = "g>d", status = false, action = Gulp.Dimension });
+            opts.Add(new Option { opt = "g>s", status = false, action = Gulp.ServerFile });
             opts.Add(new Option { opt = "g>f", status = false, action = Gulp.Flavor });
             opts.Add(new Option { opt = "g>n", status = false, action = Gulp.ServerNumber });
             opts.Add(new Option { opt = "g>s", status = false, action = Gulp.Sync });
             opts.Add(new Option { opt = "g>p", status = false, action = Gulp.Protocol });
             opts.Add(new Option { opt = "g>o", status = false, action = Gulp.Open });
+            opts.Add(new Option { opt = "gw", status = false, action = Gulp.Watch });
             opts.Add(new Option { opt = "gm", status = false, action = Gulp.Make });
             opts.Add(new Option { opt = "gu", status = false, action = Gulp.Uglify });
             opts.Add(new Option { opt = "gr", status = false, action = Gulp.Revert });
@@ -36,9 +37,9 @@ namespace HardHat
         {
             StringBuilder gulpConfiguration = new StringBuilder();
             gulpConfiguration.Append($"{_config.personal.webServer.protocol}://");
-            if (!String.IsNullOrEmpty(_config.personal.webServer.dimension))
+            if (!String.IsNullOrEmpty(_config.personal.webServer.file))
             {
-                gulpConfiguration.Append($"{_config.personal.webServer.dimension}/");
+                gulpConfiguration.Append($"{_config.personal.webServer.file}/");
             }
             gulpConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.webServer.flavor));
             gulpConfiguration.Append(_config.personal.webServer.number);
@@ -48,15 +49,16 @@ namespace HardHat
             }
             gulpConfiguration.Append(_config.personal.webServer.sync ? "+Sync" : "");
             _config.personal.menu.gulpConfiguration = gulpConfiguration.ToString();
-            _config.personal.menu.gulpValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.dimension, _config.personal.menu.gulpConfiguration);
+            _config.personal.menu.gulpValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.gulpConfiguration);
             Options.Valid("g", Variables.Valid("gp"));
             Options.Valid("g>i", Variables.Valid("gp"));
-            Options.Valid("g>d", Variables.Valid("gp"));
+            Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>f", Variables.Valid("gp"));
             Options.Valid("g>n", Variables.Valid("gp"));
             Options.Valid("g>s", Variables.Valid("gp"));
             Options.Valid("g>p", Variables.Valid("gp"));
             Options.Valid("g>o", Variables.Valid("gp"));
+            Options.Valid("gw", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
@@ -75,11 +77,15 @@ namespace HardHat
                 _colorify.Write($" [G] Gulp: ", txtStatus(Options.Valid("g")));
                 Section.Configuration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
             }
-            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.Valid("gm")));
-            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.Valid("gu")));
-            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.Valid("gr")));
+            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.Valid("gw")));
+            _colorify.Write($"{"[U] Uglify",-34}", txtStatus(Options.Valid("gu")));
             _colorify.Write($"{"[S] Server",-17}", txtStatus(Options.Valid("gs")));
+            _colorify.WriteLine($"{"[F] FTP",-17}", txtStatus(Options.Valid("gf")));
+
+            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.Valid("gm")));
+            _colorify.Write($"{"[R] Revert",-34}", txtStatus(Options.Valid("gr")));
             _colorify.WriteLine($"{"[L] Log",-17}", txtStatus(Options.Valid("gl")));
+
             _colorify.BlankLines();
         }
 
@@ -96,7 +102,7 @@ namespace HardHat
                 _colorify.BlankLines();
                 _colorify.Write($"{" [P] Protocol:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.protocol}");
                 _colorify.Write($"{" [I] Internal Path:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.internalPath}");
-                _colorify.Write($"{" [D] Dimension:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.dimension}");
+                _colorify.Write($"{" [S] Server:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.file}");
                 string gulpConfiguration = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
                 _colorify.Write($"{" [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{gulpConfiguration}");
                 _colorify.Write($"{" [N] Number:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.number}");
@@ -181,13 +187,13 @@ namespace HardHat
             }
         }
 
-        public static void Dimension()
+        public static void ServerFile()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("GULP", "SERVER", "DIMENSION");
+                Section.Header("GULP", "SERVER", "FILE");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.gulpValidation, _config.personal.menu.gulpConfiguration);
 
@@ -198,7 +204,7 @@ namespace HardHat
 
                 if (files.Count < 1)
                 {
-                    _config.personal.webServer.dimension = "";
+                    _config.personal.webServer.file = "";
                 }
                 else
                 {
@@ -209,7 +215,7 @@ namespace HardHat
                         _colorify.WriteLine($" {i,2}] {Transform.RemoveWords(_path.GetFileName(f), _config.gulp.extension)}", txtPrimary);
                         i++;
                     }
-                    if (!String.IsNullOrEmpty(_config.personal.webServer.dimension))
+                    if (!String.IsNullOrEmpty(_config.personal.webServer.file))
                     {
                         _colorify.BlankLines();
                         _colorify.WriteLine($"{"[EMPTY] Current",82}", txtInfo);
@@ -224,11 +230,11 @@ namespace HardHat
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt), files.Count);
                         var sel = files[Convert.ToInt32(opt) - 1];
-                        _config.personal.webServer.dimension = Transform.RemoveWords(_path.GetFileName(sel), _config.gulp.extension);
+                        _config.personal.webServer.file = Transform.RemoveWords(_path.GetFileName(sel), _config.gulp.extension);
                     }
                     else
                     {
-                        if (String.IsNullOrEmpty(_config.personal.webServer.dimension))
+                        if (String.IsNullOrEmpty(_config.personal.webServer.file))
                         {
                             Message.Error();
                         }
@@ -339,6 +345,23 @@ namespace HardHat
 
                 Menu.Status();
                 Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Watch()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
+                CmdWatch(dirPath, _path.Combine(Variables.Value("gp")));
+
+                Menu.Start();
             }
             catch (Exception Ex)
             {

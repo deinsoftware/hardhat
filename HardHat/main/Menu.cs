@@ -48,9 +48,9 @@ namespace HardHat
             Status("m");
             Project.Start();
             Vcs.Start();
-            Sonar.Start();
             Gulp.Start();
             Build.Start();
+            Sonar.Start();
             Adb.Start();
             Section.Footer();
 

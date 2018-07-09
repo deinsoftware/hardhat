@@ -65,7 +65,7 @@ namespace HardHat
             config.personal.sonar.port = "9000";
             config.personal.sonar.internalPath = "";
             config.personal.webServer = new WebConfiguration();
-            config.personal.webServer.dimension = "";
+            config.personal.webServer.file = "";
             config.personal.webServer.flavor = "";
             config.personal.webServer.number = "";
             config.personal.webServer.sync = false;
@@ -198,7 +198,7 @@ namespace HardHat
     {
         public string protocol { get; set; }
         public string internalPath { get; set; }
-        public string dimension { get; set; }
+        public string file { get; set; }
         public string flavor { get; set; }
         public string number { get; set; }
         public bool sync { get; set; }

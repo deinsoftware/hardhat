@@ -9,12 +9,22 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.6.0] - 2018-07-09
+
+**Added:**
+
+* Watch option on gulp.
+
+**Changed:**
+
+* Sonar menu order.
+* Gulp Server name configuration.
+
 ## [6.5.0] - 2018-07-04
 
 **Added:**
 
 * Maintenance flavor.
-
 
 ## [6.4.1] - 2018-06-29
 

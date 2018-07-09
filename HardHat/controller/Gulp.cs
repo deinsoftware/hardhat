@@ -20,6 +20,24 @@ namespace HardHat
             }
         }
 
+        public static void CmdWatch(string path, string dir, string ptf = "")
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"gulp watch --prj {path}/");
+                if (!String.IsNullOrEmpty(ptf))
+                {
+                    cmd.Append($" --ptf {ptf}");
+                }
+                cmd.ToString().Term(Output.External, dir);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         public static void CmdMake(string path, string dir, string ptf = "")
         {
             try
@@ -52,7 +70,7 @@ namespace HardHat
                 {
                     cmd.Append($" --ipt {gbs.internalPath}");
                 }
-                cmd.Append($" --dmn {gbs.dimension}");
+                cmd.Append($" --dmn {gbs.file}");
                 cmd.Append($" --ptc {gbs.protocol}");
                 if (!String.IsNullOrEmpty(gbs.flavor))
                 {
@@ -80,7 +98,7 @@ namespace HardHat
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"gulp log");
-                cmd.Append($" --dmn {gbs.dimension}");
+                cmd.Append($" --dmn {gbs.file}");
                 if (!String.IsNullOrEmpty(gbs.flavor))
                 {
                     cmd.Append($" --flv {gbs.flavor.ToUpper()}");
