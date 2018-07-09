@@ -6,7 +6,7 @@ set dbg=%1
 :start
 :: Resize
 cls
-mode con:cols=86 lines=30
+mode con:cols=86 lines=31
 if defined dbg (
     goto debug
 ) else (
@@ -30,6 +30,7 @@ if %errorlevel% == 0 (
     call color E0
     git config --local core.filemode false
     git reset --hard HEAD
+    echo. 
     git pull
     echo. 
     echo ======================================================================================
