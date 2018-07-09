@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/osx.10.12-x64": {
-      "HardHat/6.5.0": {
+      "HardHat/6.6.0": {
         "dependencies": {
           "Colorify": "1.0.7",
           "Microsoft.NETCore.App": "2.0.0",
@@ -269,7 +269,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.5.0": {
+    "HardHat/6.6.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

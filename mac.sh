@@ -3,7 +3,7 @@
 function fxStart() {
     #Resize
     clear
-    resize -s 30 88
+    resize -s 31 88
     tell application "Terminal" to set bounds of front window to {22, 44, 650, 500}
     clear
     #Git
@@ -27,6 +27,7 @@ function fxUpdate() {
     echo "================================================================================"
     echo "";
     echo " --> Updating... "
+    echo ""
     updated="$(git pull)"
     if [ "${updated}" == "Already up-to-date." ] || [ "${updated}" == "Already up to date." ] ; then
         fxRun
