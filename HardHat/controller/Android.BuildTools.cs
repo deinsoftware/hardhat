@@ -9,7 +9,7 @@ namespace HardHat
 {
     public static partial class BuildTools
     {
-        public static string CmdGetPackageName(string path)
+        public static string CmdGetPackage(string path, string value, int word)
         {
             string result = "";
             try
@@ -18,8 +18,8 @@ namespace HardHat
                 string packagename = Shell.ExtractLine(aapt.stdout, "package:");
                 if (!String.IsNullOrEmpty(packagename))
                 {
-                    packagename = Shell.GetWord(packagename, 1);
-                    packagename = Strings.RemoveWords(packagename, "name=", "'");
+                    packagename = Shell.GetWord(packagename, word);
+                    packagename = Strings.RemoveWords(packagename, $"{value}=", "'");
                 }
                 result = packagename;
             }

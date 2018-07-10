@@ -29,9 +29,6 @@ namespace HardHat
             opts.Add(new Option { opt = "c>am", status = true, action = Configuration.AndroidMappingSuffix });
             opts.Add(new Option { opt = "c>ac", status = true, action = Configuration.AndroidCompact });
             opts.Add(new Option { opt = "c>af", status = true, action = Configuration.AndroidFilter });
-            opts.Add(new Option { opt = "c>gw", status = true, action = Configuration.GulpServer });
-            opts.Add(new Option { opt = "c>gl", status = true, action = Configuration.GulpLog });
-            opts.Add(new Option { opt = "c>ge", status = true, action = Configuration.GulpExtension });
             opts.Add(new Option { opt = "c>v", status = true, action = Configuration.SiteName });
             opts.Add(new Option { opt = "c>t", status = true, action = Configuration.ThemeSelector });
             opts.Add(new Option { opt = "c>l", status = true, action = Configuration.Log });
@@ -53,6 +50,8 @@ namespace HardHat
             _colorify.Write($"{"   [W] Workspace",-25}", txtPrimary); _colorify.WriteLine($"{_config.path.workspace}");
             _colorify.Write($"{"   [P] Projects",-25}", txtPrimary); _colorify.WriteLine($"{_config.path.project}");
             _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{_config.path.filter}");
+
+            _colorify.BlankLines();
             _colorify.WriteLine($" [A] Android Path", txtMuted);
             _colorify.Write($"{"   [P] Project",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.projectPath}");
             _colorify.Write($"{"   [B] Build",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.buildPath}");
@@ -60,10 +59,8 @@ namespace HardHat
             _colorify.Write($"{"   [M] Mapping",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.mappingSuffix}");
             _colorify.Write($"{"   [C] Compact",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.hybridFiles}");
             _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{string.Join(",", _config.android.filterFiles)}");
-            _colorify.WriteLine($" [G] Gulp Path", txtMuted);
-            _colorify.Write($"{"   [W] Web Server",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.webFolder}");
-            _colorify.Write($"{"   [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.logFolder}");
-            _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.extension}");
+
+            _colorify.BlankLines();
             _colorify.Write($"{" [V] VPN",-25}", txtStatus(OS.IsWin())); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
@@ -97,7 +94,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "PATH DEVELOPMENT");
+                Section.Header("CONFIGURATION", "PATH", "DEVELOPMENT");
 
                 _colorify.WriteLine($" Write main Development path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at end.", txtPrimary);
@@ -145,7 +142,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "PATH WORKSPACE");
+                Section.Header("CONFIGURATION", "PATH", "WORKSPACE");
 
                 string dirPath = _path.Combine(_config.path.development);
 
@@ -217,7 +214,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "PATH PROJECTS");
+                Section.Header("CONFIGURATION", "PATH", "PROJECTS");
 
                 _colorify.WriteLine($" Projects folder inside Workspace path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -264,7 +261,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "PATH FILTER");
+                Section.Header("CONFIGURATION", "PATH", "FILTER");
 
                 _colorify.WriteLine($" Filter for folders inside Projects path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -299,7 +296,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID PROJECT");
+                Section.Header("CONFIGURATION", "ANDROID", "PROJECT");
 
                 _colorify.WriteLine($" Android folder inside selected project path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -346,7 +343,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID BUILD");
+                Section.Header("CONFIGURATION", "ANDROID", "BUILD");
 
                 _colorify.WriteLine($" Build path inside Android Project folder.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -378,7 +375,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID EXTENSION");
+                Section.Header("CONFIGURATION", "ANDROID", "EXTENSION");
 
                 _colorify.WriteLine($" File extension inside Build folder.", txtPrimary);
                 _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
@@ -410,7 +407,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID MAPPING SUFFIX");
+                Section.Header("CONFIGURATION", "ANDROID", "MAPPING SUFFIX");
 
                 _colorify.WriteLine($" Suffix name and extension inside Build folder.", txtPrimary);
 
@@ -441,7 +438,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID COMPACT");
+                Section.Header("CONFIGURATION", "ANDROID", "COMPACT");
 
                 _colorify.WriteLine($" Files path inside Selected Project to be compacted with gulp.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -473,7 +470,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID FILTER");
+                Section.Header("CONFIGURATION", "ANDROID", "FILTER");
 
                 _colorify.WriteLine($" Filter extension name to be proccessed with gulp.", txtPrimary);
                 _colorify.WriteLine($" List separated by , (comma character).", txtPrimary);
@@ -494,104 +491,6 @@ namespace HardHat
                         list[i] = $".{list[i]}";
                     }
                     _config.android.filterFiles = list;
-                }
-
-                Menu.Status();
-                Select();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-        #endregion
-
-        #region Gulp
-        public static void GulpServer()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("CONFIGURATION", "GULP WEB SERVER");
-
-                _colorify.WriteLine($" Web Server configuration path inside Gulp path.", txtPrimary);
-                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine().Trim();
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    _config.gulp.webFolder = $"{opt}";
-                }
-
-                Menu.Status();
-                Select();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void GulpLog()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("CONFIGURATION", "GULP LOG");
-
-                _colorify.WriteLine($" Log configuration path inside Gulp path.", txtPrimary);
-                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine().Trim();
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    _config.gulp.logFolder = $"{opt}";
-                }
-
-                Menu.Status();
-                Select();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void GulpExtension()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("CONFIGURATION", "GULP EXTENSION");
-
-                _colorify.WriteLine($" File extension inside Server folder.", txtPrimary);
-                _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine().Trim();
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    _config.gulp.extension = $".{opt}";
                 }
 
                 Menu.Status();

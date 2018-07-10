@@ -3,16 +3,22 @@ using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
 using ToolBox.Platform;
+using static HardHat.Program;
 
 namespace HardHat
 {
     public static partial class Gulp
     {
-        public static void CmdUglify(string dir)
+        private static string DirPath()
+        {
+            return _path.Combine(Variables.Value("gp"));
+        }
+
+        public static void CmdUglify()
         {
             try
             {
-                $"gulp build".Term(Output.Internal, dir);
+                $"gulp build".Term(Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {
@@ -20,17 +26,17 @@ namespace HardHat
             }
         }
 
-        public static void CmdWatch(string path, string dir, string ptf = "")
+        public static void CmdWatch(string path, string platform = "")
         {
             try
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"gulp watch --prj {path}/");
-                if (!String.IsNullOrEmpty(ptf))
+                if (!String.IsNullOrEmpty(platform))
                 {
-                    cmd.Append($" --ptf {ptf}");
+                    cmd.Append($" --ptf {platform}");
                 }
-                cmd.ToString().Term(Output.External, dir);
+                cmd.ToString().Term(Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -38,17 +44,17 @@ namespace HardHat
             }
         }
 
-        public static void CmdMake(string path, string dir, string ptf = "")
+        public static void CmdMake(string path, string platform = "")
         {
             try
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"gulp make --prj {path}/");
-                if (!String.IsNullOrEmpty(ptf))
+                if (!String.IsNullOrEmpty(platform))
                 {
-                    cmd.Append($" --ptf {ptf}");
+                    cmd.Append($" --ptf {platform}");
                 }
-                cmd.ToString().Term(Output.Internal, dir);
+                cmd.ToString().Term(Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {
@@ -56,7 +62,7 @@ namespace HardHat
             }
         }
 
-        public static void CmdServer(string path, string dir, WebConfiguration gbs, string lip)
+        public static void CmdServer(string path, WebConfiguration webServer, string localIp)
         {
             try
             {
@@ -66,25 +72,25 @@ namespace HardHat
                     cmd.Append($"sudo ");
                 }
                 cmd.Append($"gulp --pth {path}/");
-                if (!String.IsNullOrEmpty(gbs.internalPath))
+                if (!String.IsNullOrEmpty(webServer.internalPath))
                 {
-                    cmd.Append($" --ipt {gbs.internalPath}");
+                    cmd.Append($" --ipt {webServer.internalPath}");
                 }
-                cmd.Append($" --dmn {gbs.file}");
-                cmd.Append($" --ptc {gbs.protocol}");
-                if (!String.IsNullOrEmpty(gbs.flavor))
+                cmd.Append($" --dmn {webServer.file}");
+                cmd.Append($" --ptc {webServer.protocol}");
+                if (!String.IsNullOrEmpty(webServer.flavor))
                 {
-                    cmd.Append($" --flv {gbs.flavor.ToUpper()}");
+                    cmd.Append($" --flv {webServer.flavor.ToUpper()}");
                 }
-                if (!String.IsNullOrEmpty(gbs.number))
+                if (!String.IsNullOrEmpty(webServer.number))
                 {
-                    cmd.Append($" --srv {gbs.number}");
+                    cmd.Append($" --srv {webServer.number}");
                 }
-                cmd.Append($" --host {lip}");
-                cmd.Append($" --sync {(gbs.sync ? "Y" : "N")}");
-                cmd.Append($" --open {(gbs.open ? "Y" : "N")}");
+                cmd.Append($" --host {localIp}");
+                cmd.Append($" --sync {(webServer.sync ? "Y" : "N")}");
+                cmd.Append($" --open {(webServer.open ? "Y" : "N")}");
                 cmd.Append($" --os {OS.GetCurrent()}");
-                cmd.ToString().Term(Output.External, dir);
+                cmd.ToString().Term(Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -92,22 +98,48 @@ namespace HardHat
             }
         }
 
-        public static void CmdLog(string dir, WebConfiguration gbs)
+        public static void CmdFtp(string path, FtpConfiguration ftpServer)
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"gulp sftp");
+                cmd.Append($" --hst {ftpServer.host}");
+                cmd.Append($" --prt {ftpServer.port}");
+                if (!String.IsNullOrEmpty(ftpServer.authenticationPath))
+                {
+                    cmd.Append($" --atp {ftpServer.authenticationPath}");
+                }
+                if (!String.IsNullOrEmpty(ftpServer.authenticationKey))
+                {
+                    cmd.Append($" --atk {ftpServer.authenticationKey}");
+                }
+                cmd.Append($" --lcp {path}");
+                cmd.Append($" --rmp {_path.Combine(ftpServer.remotePath, ftpServer.dimension, ftpServer.resourcePath)}");
+                cmd.ToString().Term(Output.External, DirPath());
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void CmdLog(WebConfiguration webServer)
         {
             try
             {
                 StringBuilder cmd = new StringBuilder();
                 cmd.Append($"gulp log");
-                cmd.Append($" --dmn {gbs.file}");
-                if (!String.IsNullOrEmpty(gbs.flavor))
+                cmd.Append($" --dmn {webServer.file}");
+                if (!String.IsNullOrEmpty(webServer.flavor))
                 {
-                    cmd.Append($" --flv {gbs.flavor.ToUpper()}");
+                    cmd.Append($" --flv {webServer.flavor.ToUpper()}");
                 }
-                if (!String.IsNullOrEmpty(gbs.number))
+                if (!String.IsNullOrEmpty(webServer.number))
                 {
-                    cmd.Append($" --srv {gbs.number}");
+                    cmd.Append($" --srv {webServer.number}");
                 }
-                cmd.ToString().Term(Output.External, dir);
+                cmd.ToString().Term(Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -115,11 +147,11 @@ namespace HardHat
             }
         }
 
-        public static void CmdInstall(string dir)
+        public static void CmdInstall()
         {
             try
             {
-                $"npm i".Term(Output.Hidden, dir);
+                $"npm i".Term(Output.Hidden, DirPath());
             }
             catch (Exception Ex)
             {

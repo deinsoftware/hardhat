@@ -84,6 +84,18 @@ namespace HardHat
             _colorify.WriteLine($"{_config.personal.selected.packageName}");
         }
 
+        public static void SelectedPackageVersionCode()
+        {
+            _colorify.Write($"{" File Package Version Code:",-25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.selected.versionCode}");
+        }
+
+        public static void SelectedPackageVersionName()
+        {
+            _colorify.Write($"{" File Package Version Name:",-25}", txtMuted);
+            _colorify.WriteLine($"{_config.personal.selected.versionName}");
+        }
+
         public static void HorizontalRule()
         {
             _colorify.BlankLines();

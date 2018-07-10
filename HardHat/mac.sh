@@ -3,8 +3,8 @@
 function fxStart() {
     #Resize
     clear
-    resize -s 31 88
-    tell application "Terminal" to set bounds of front window to {22, 44, 650, 500}
+    resize -s 30 88
+    tell application "Terminal" to set bounds of front window to {22, 44, 650, 530}
     clear
     #Git
     git config --local core.filemode false
@@ -78,7 +78,7 @@ function fxRun() {
     fxPermission
 osascript <<EOF
     tell application "Terminal" to do script "source ~/.bash_profile; cd ~/Applications/HardHat/; clear; resize -s 30 88; clear; ./HardHat; clear; exit;"
-    tell application "Terminal" to set bounds of front window to {22, 44, 650, 500}
+    tell application "Terminal" to set bounds of front window to {22, 44, 650, 530}
 EOF
     fxExit
 }

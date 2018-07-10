@@ -39,6 +39,8 @@ namespace HardHat
                 _config.personal.selected.path = "";
                 _config.personal.selected.file = "";
                 _config.personal.selected.packageName = "";
+                _config.personal.selected.versionCode = "";
+                _config.personal.selected.versionName = "";
                 _config.personal.selected.mapping = "";
                 _config.personal.selected.mappingStatus = false;
             }
@@ -156,6 +158,8 @@ namespace HardHat
                     _config.personal.selected.path = "";
                     _config.personal.selected.file = "";
                     _config.personal.selected.packageName = "";
+                    _config.personal.selected.versionCode = "";
+                    _config.personal.selected.versionName = "";
                 }
                 else
                 {
@@ -183,7 +187,9 @@ namespace HardHat
                     _config.personal.selected.path = _path.Split(_path.GetDirectoryName(sel), dirPath);
                     _config.personal.selected.file = _path.GetFileName(sel);
                     _config.personal.selected.mapping = _config.personal.selected.file.Replace(_config.android.buildExtension, _config.android.mappingSuffix);
-                    _config.personal.selected.packageName = BuildTools.CmdGetPackageName(sel);
+                    _config.personal.selected.packageName = BuildTools.CmdGetPackage(sel, "name", 1);
+                    _config.personal.selected.versionCode = BuildTools.CmdGetPackage(sel, "versionCode", 2);
+                    _config.personal.selected.versionName = BuildTools.CmdGetPackage(sel, "versionName", 3);
                 }
 
                 Menu.Start();

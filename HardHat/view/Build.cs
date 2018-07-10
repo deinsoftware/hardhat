@@ -108,10 +108,9 @@ namespace HardHat
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write a project dimension:", txtPrimary);
-                _colorify.Write($" EMPTY", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
+                _colorify.WriteLine($"{"[EMPTY] Remove",82}", txtWarning);
 
                 Section.HorizontalRule();
 

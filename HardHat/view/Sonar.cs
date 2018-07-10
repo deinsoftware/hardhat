@@ -225,6 +225,7 @@ namespace HardHat
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write server port.", txtPrimary);
+                _colorify.Write($" Between 0 and 65536.", txtPrimary); _colorify.Write($" 9000 (Default)", txtInfo);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
@@ -268,7 +269,7 @@ namespace HardHat
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
+                _colorify.WriteLine($"{"[EMPTY] Remove",82}", txtWarning);
 
                 Section.HorizontalRule();
 

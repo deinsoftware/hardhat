@@ -55,6 +55,8 @@ namespace HardHat
             config.personal.selected = new SelectedConfiguration();
             config.personal.selected.project = "";
             config.personal.selected.packageName = "";
+            config.personal.selected.versionCode = "";
+            config.personal.selected.versionName = "";
             config.personal.selected.path = "";
             config.personal.selected.file = "";
             config.personal.selected.mapping = "";
@@ -72,6 +74,14 @@ namespace HardHat
             config.personal.webServer.protocol = "http";
             config.personal.webServer.internalPath = "";
             config.personal.webServer.open = true;
+            config.personal.ftpServer = new FtpConfiguration();
+            config.personal.ftpServer.host = "";
+            config.personal.ftpServer.port = 22;
+            config.personal.ftpServer.authenticationPath = "../FTP/.ftppass";
+            config.personal.ftpServer.authenticationKey = "keyMain";
+            config.personal.ftpServer.remotePath = "/";
+            config.personal.ftpServer.dimension = "";
+            config.personal.ftpServer.resourcePath = "";
             config.personal.gradle = new BuildConfiguration();
             config.personal.gradle.mode = "";
             config.personal.gradle.dimension = "";
@@ -88,7 +98,12 @@ namespace HardHat
             config.personal.menu.selectedOption = "";
             config.personal.menu.currentBranch = "";
             config.personal.menu.sonarConfiguration = "";
-            config.personal.menu.gulpConfiguration = "";
+            config.personal.menu.serverConfiguration = "";
+            config.personal.menu.serverValidation = false;
+            config.personal.menu.ftpConfiguration = "";
+            config.personal.menu.ftpValidation = false;
+            config.personal.menu.logConfiguration = "";
+            config.personal.menu.logValidation = false;
             config.personal.menu.buildConfiguration = "";
             config.personal.theme = "";
             config.personal.log = false;
@@ -168,6 +183,7 @@ namespace HardHat
         public SelectedConfiguration selected { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
+        public FtpConfiguration ftpServer { get; set; }
         public BuildConfiguration gradle { get; set; }
         public AdbConfiguration adb { get; set; }
         public LogcatConfiguration logcat { get; set; }
@@ -182,6 +198,8 @@ namespace HardHat
         public string path { get; set; }
         public string file { get; set; }
         public string packageName { get; set; }
+        public string versionCode { get; set; }
+        public string versionName { get; set; }
         public string mapping { get; set; }
         public bool mappingStatus { get; set; }
     }
@@ -203,6 +221,17 @@ namespace HardHat
         public string number { get; set; }
         public bool sync { get; set; }
         public bool open { get; set; }
+    }
+
+    public class FtpConfiguration
+    {
+        public string host { get; set; }
+        public int port { get; set; }
+        public string authenticationPath { get; set; }
+        public string authenticationKey { get; set; }
+        public string remotePath { get; set; }
+        public string dimension { get; set; }
+        public string resourcePath { get; set; }
     }
 
     class BuildConfiguration
@@ -232,8 +261,12 @@ namespace HardHat
         public string currentBranch { get; set; }
         public string sonarConfiguration { get; set; }
         public bool sonarValidation { get; set; }
-        public string gulpConfiguration { get; set; }
-        public bool gulpValidation { get; set; }
+        public string serverConfiguration { get; set; }
+        public bool serverValidation { get; set; }
+        public string ftpConfiguration { get; set; }
+        public bool ftpValidation { get; set; }
+        public string logConfiguration { get; set; }
+        public bool logValidation { get; set; }
         public string buildConfiguration { get; set; }
         public bool buildValidation { get; set; }
     }

@@ -4,6 +4,7 @@ using System.Text;
 using dein.tools;
 using ToolBox.Platform;
 using ToolBox.Transform;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -110,7 +111,7 @@ namespace HardHat
         {
             try
             {
-                string packagename = BuildTools.CmdGetPackageName(path);
+                string packagename = _config.personal.selected.packageName;
                 if (!String.IsNullOrEmpty(packagename))
                 {
                     StringBuilder cmd = new StringBuilder();
