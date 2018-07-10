@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.7.0] - 2018-07-10
+
+**Added:**
+
+* FTP option on gulp.
+
+**Changed:**
+
+* Gulp menu order and configuration.
+
 ## [6.6.0] - 2018-07-09
 
 **Added:**
