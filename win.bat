@@ -6,7 +6,7 @@ set dbg=%1
 :start
 :: Resize
 cls
-mode con:cols=86 lines=31
+mode con:cols=86 lines=32
 if defined dbg (
     goto debug
 ) else (
