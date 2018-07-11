@@ -15,6 +15,15 @@ namespace HardHat
 
     public static partial class Adb
     {
+        public static void WirelessList(ref List<Option> opts)
+        {
+            opts.Add(new Option { opt = "aw", status = true, action = Adb.Wireless });
+            opts.Add(new Option { opt = "aw>i", status = true, action = Adb.Base });
+            opts.Add(new Option { opt = "aw>p", status = true, action = Adb.Port });
+            opts.Add(new Option { opt = "aw>c", status = true, action = Adb.Connect });
+        }
+
+
         public static void Wireless()
         {
             if (!_config.personal.adb.wifiStatus)

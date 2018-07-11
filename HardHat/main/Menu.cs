@@ -52,6 +52,7 @@ namespace HardHat
             Build.Start();
             Sonar.Start();
             Adb.Start();
+
             Section.Footer();
 
             Section.HorizontalRule();

@@ -15,6 +15,14 @@ namespace HardHat
 
     public static partial class Adb
     {
+        public static void LogcatList(ref List<Option> opts)
+        {
+            opts.Add(new Option { opt = "al", status = true, action = Adb.Logcat });
+            opts.Add(new Option { opt = "al>a", status = true, action = Adb.Application });
+            opts.Add(new Option { opt = "al>p", status = true, action = Adb.Priority });
+            opts.Add(new Option { opt = "al>s", status = true, action = Adb.Show });
+        }
+
         public static void Logcat()
         {
             Adb.SelectLogcat();

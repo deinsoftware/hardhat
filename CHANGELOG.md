@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.7.1] - 2018-07-11
+
+**Fixed:**
+
+* Show option on Logcat.
+
 ## [6.7.0] - 2018-07-10
 
 **Added:**

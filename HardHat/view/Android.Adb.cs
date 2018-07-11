@@ -20,14 +20,8 @@ namespace HardHat
         {
             opts.Add(new Option { opt = "ar", status = true, action = Adb.Restart });
             opts.Add(new Option { opt = "ad", status = true, action = Adb.Devices });
-            opts.Add(new Option { opt = "aw", status = true, action = Adb.Wireless });
-            opts.Add(new Option { opt = "aw>i", status = true, action = Adb.Base });
-            opts.Add(new Option { opt = "aw>p", status = true, action = Adb.Port });
-            opts.Add(new Option { opt = "aw>c", status = true, action = Adb.Connect });
-            opts.Add(new Option { opt = "al", status = true, action = Adb.Logcat });
-            opts.Add(new Option { opt = "al>a", status = true, action = Adb.Application });
-            opts.Add(new Option { opt = "al>p", status = true, action = Adb.Priority });
-            opts.Add(new Option { opt = "al>s", status = true, action = Adb.Show });
+            WirelessList(ref opts);
+            LogcatList(ref opts);
         }
 
         public static void Start()
