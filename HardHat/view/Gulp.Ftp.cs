@@ -29,6 +29,7 @@ namespace HardHat
         public static void FtpStatus()
         {
             StringBuilder ftpConfiguration = new StringBuilder();
+            ftpConfiguration.Append($"sftp://");
             if (!String.IsNullOrEmpty(_config.personal.ftpServer.host))
             {
                 ftpConfiguration.Append($"sftp://{_config.personal.ftpServer.host}");

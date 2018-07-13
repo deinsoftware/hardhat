@@ -10,7 +10,6 @@ namespace HardHat
     public static class Vcs
     {
 
-
         public static void List(ref List<Option> opts)
         {
             opts.Add(new Option { opt = "vd", status = false, action = Vcs.Discard });
@@ -18,6 +17,7 @@ namespace HardHat
             opts.Add(new Option { opt = "vr", status = false, action = Vcs.Reset });
             opts.Add(new Option { opt = "vd+p", status = false, action = Vcs.DiscardPull });
             opts.Add(new Option { opt = "vr+p", status = false, action = Vcs.ResetPull });
+            opts.Add(new Option { opt = "vo", status = false, action = Vcs.Original });
         }
 
         public static void Status(string dirPath)
@@ -37,6 +37,7 @@ namespace HardHat
             Options.Valid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
             Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
             Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.Valid("vo", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
         }
 
         public static void Start()
@@ -50,38 +51,44 @@ namespace HardHat
                 _colorify.Write($" [V] VCS: ", txtMuted);
                 _colorify.WriteLine($"{_config.personal.menu.currentBranch}");
             }
-            _colorify.Write($"{"   [D] Discard",-34}", txtStatus(Options.Valid("vd")));
-            _colorify.Write($"{"[P] Pull",-34}", txtStatus(Options.Valid("vp")));
-            _colorify.WriteLine($"{"[R] Reset",-17}", txtStatus(Options.Valid("vr")));
+            _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.Valid("vp")));
+            _colorify.Write($"{"[D] Discard",-17}", txtStatus(Options.Valid("vd")));
+            _colorify.Write($"{"[R] Reset",-17}", txtStatus(Options.Valid("vr")));
+            _colorify.WriteLine($"{"[O] Original",-17}", txtStatus(Options.Valid("vo")));
             _colorify.BlankLines();
         }
 
         public static void Discard()
         {
-            Vcs.Actions(true, false, false);
+            Vcs.Actions(true, false, false, false);
         }
 
         public static void Pull()
         {
-            Vcs.Actions(false, true, false);
+            Vcs.Actions(false, true, false, false);
         }
 
         public static void Reset()
         {
-            Vcs.Actions(false, false, true);
+            Vcs.Actions(false, false, true, false);
         }
 
         public static void DiscardPull()
         {
-            Vcs.Actions(true, true, false);
+            Vcs.Actions(true, true, false, false);
         }
 
         public static void ResetPull()
         {
-            Vcs.Actions(false, true, true);
+            Vcs.Actions(false, true, true, false);
         }
 
-        public static void Actions(bool discard, bool pull, bool reset)
+        public static void Original()
+        {
+            Vcs.Actions(true, true, true, true);
+        }
+
+        public static void Actions(bool discard, bool pull, bool reset, bool confirm)
         {
             _colorify.Clear();
 
@@ -110,6 +117,13 @@ namespace HardHat
                 {
                     _colorify.BlankLines();
                     _colorify.WriteLine($" --> Updating...", txtInfo);
+                    Git.CmdPull(dirPath);
+                }
+
+                if (confirm)
+                {
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Confirm update...", txtInfo);
                     Git.CmdPull(dirPath);
                 }
 

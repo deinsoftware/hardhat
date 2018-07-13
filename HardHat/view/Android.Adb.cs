@@ -36,16 +36,16 @@ namespace HardHat
                 _colorify.WriteLine($"{_config.personal.adb.deviceName}");
             }
             _colorify.Write($"{"   [D] Devices",-17}", txtPrimary);
+            _colorify.Write($"{"[R] Restart",-17}", txtPrimary);
             _colorify.Write($"{"[L] Logcat",-17}", txtPrimary);
             if (!_config.personal.adb.wifiStatus)
             {
-                _colorify.Write($"{"[W] WiFi Connect",-34}", txtPrimary);
+                _colorify.WriteLine($"{"[W] WiFi Connect",-17}", txtPrimary);
             }
             else
             {
-                _colorify.Write($"{"[W] WiFi Disconnect",-34}", txtPrimary);
+                _colorify.WriteLine($"{"[W] WiFi Disconnect",-17}", txtPrimary);
             }
-            _colorify.WriteLine($"{"[R] Restart",-17}", txtPrimary);
             _colorify.BlankLines();
         }
 

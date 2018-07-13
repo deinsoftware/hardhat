@@ -50,9 +50,9 @@ namespace HardHat
                 _colorify.Write($" [B] Build: ", txtStatus(Options.Valid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
-            _colorify.Write($"{"   [P] Properties",-34}", txtStatus(Options.Valid("bp")));
-            _colorify.Write($"{"[C] Clean",-34}", txtStatus(Options.Valid("bc")));
-            _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.Valid("bg")));
+            _colorify.Write($"{"   [C] Clean",-17}", txtStatus(Options.Valid("bc")));
+            _colorify.Write($"{"[G] Gradle",-17}", txtStatus(Options.Valid("bg")));
+            _colorify.WriteLine($"{"[P] Properties",-17}", txtStatus(Options.Valid("bp")));
             _colorify.BlankLines();
         }
 

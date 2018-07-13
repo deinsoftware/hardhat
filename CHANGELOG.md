@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.7.2] - 2018-07-13
+
+**Changed:**
+
+* Menu reorder.
+
 ## [6.7.1] - 2018-07-11
 
 **Fixed:**

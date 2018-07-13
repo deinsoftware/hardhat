@@ -133,37 +133,34 @@ namespace HardHat
 
         public static void Show()
         {
-            if (!String.IsNullOrEmpty(_config.personal.adb.wifiIpAddress))
+            _colorify.Clear();
+
+            try
             {
-                _colorify.Clear();
-
-                try
+                _colorify.BlankLines();
+                if (CmdDevices())
                 {
-                    _colorify.BlankLines();
-                    if (CmdDevices())
+                    string pid = "";
+                    if (!String.IsNullOrEmpty(_config.personal.logcat.application))
                     {
-                        string pid = "";
-                        if (!String.IsNullOrEmpty(_config.personal.logcat.application))
+                        pid = CmdGetPid(_config.personal.logcat.application);
+                        if (String.IsNullOrEmpty(pid))
                         {
-                            pid = CmdGetPid(_config.personal.logcat.application);
-                            if (String.IsNullOrEmpty(pid))
-                            {
-                                Message.Alert($" There is no app running with {_config.personal.logcat.application} package name.");
-                            }
+                            Message.Alert($" There is no app running with {_config.personal.logcat.application} package name.");
                         }
-                        CmdLogcat(_config.personal.adb.deviceName, _config.personal.logcat.priority, pid);
                     }
-                    else
-                    {
-                        Message.Alert(" No device/emulators found");
-                    }
-
-                    Menu.Start();
+                    CmdLogcat(_config.personal.adb.deviceName, _config.personal.logcat.priority, pid);
                 }
-                catch (Exception Ex)
+                else
                 {
-                    Exceptions.General(Ex);
+                    Message.Alert(" No device/emulators found");
                 }
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
             }
         }
     }

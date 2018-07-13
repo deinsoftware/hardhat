@@ -60,10 +60,10 @@ namespace HardHat
                 _colorify.Write($" [S] Sonar: ", txtStatus(Options.Valid("s")));
                 Section.Configuration(_config.personal.menu.sonarValidation, _config.personal.menu.sonarConfiguration);
             }
-            _colorify.Write($"{"   [Q] Qube",-34}", txtStatus(Options.Valid("sq")));
+            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.Valid("sq")));
             if (String.IsNullOrEmpty(_config.personal.sonar.internalPath))
             {
-                _colorify.Write($"{"[S] Scanner",-34}", txtStatus(Options.Valid("ss")));
+                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.Valid("ss")));
             }
             else
             {
