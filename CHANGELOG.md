@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.7.3] - 2018-07-16
+
+**Changed:**
+
+* npm install command with force.
+
 ## [6.7.2] - 2018-07-13
 
 **Changed:**

@@ -151,7 +151,7 @@ namespace HardHat
         {
             try
             {
-                $"npm i".Term(Output.Hidden, DirPath());
+                $"npm i -f".Term(Output.Hidden, DirPath());
             }
             catch (Exception Ex)
             {
