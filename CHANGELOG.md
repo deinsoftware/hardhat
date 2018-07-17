@@ -9,6 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.7.4] - 2018-07-17
+
+**Changed:**
+
+* Build menu reorder.
+* Properties options to short name.
+
 ## [6.7.3] - 2018-07-16
 
 **Changed:**
