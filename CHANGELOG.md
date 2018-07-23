@@ -1,4 +1,4 @@
-# Change log
+# Change Log
 
 <!-- http://keepachangelog.com/en/0.3.0/ 
 Added       for new features.
@@ -15,6 +15,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Project menu option to open selected project in File Explorer or open in Editor.
 * Configuration option to change Editor command.
+* Readme and Change Log options on information option.
 
 **Changed:**
 

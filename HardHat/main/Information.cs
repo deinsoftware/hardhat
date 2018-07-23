@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using dein.tools;
 using static Colorify.Colors;
 using static HardHat.Program;
 
@@ -11,6 +13,8 @@ namespace HardHat
         public static void List(ref List<Option> opts)
         {
             opts.Add(new Option { opt = "i", status = true, action = Information.Versions });
+            opts.Add(new Option { opt = "i>r", status = true, action = Information.Readme });
+            opts.Add(new Option { opt = "i>c", status = true, action = Information.Changelog });
             opts.Add(new Option { opt = "e", status = true, action = Information.Environment });
         }
 
@@ -18,7 +22,7 @@ namespace HardHat
         {
             _colorify.Clear();
 
-            Section.Header("COMMANDS");
+            Section.Header("INFORMATION");
 
             _colorify.WriteLine(" Required", txtInfo);
             _colorify.Write($"{" Gradle",-25}", txtPrimary); Version.CmdGradle();
@@ -35,10 +39,25 @@ namespace HardHat
             _colorify.Write($"{" TypeScript",-25}", txtPrimary); Version.CmdTypescript();
             _colorify.Write($"{" SonarScanner",-25}", txtPrimary); Version.CmdSonarScanner();
 
-            Section.HorizontalRule();
-            Section.Pause();
+            _colorify.BlankLines();
+            _colorify.Write($"{" [R] Readme",-17}", txtInfo);
+            _colorify.Write($"{"[C] Changelog",-51}", txtInfo);
+            _colorify.WriteLine($"{"[EMPTY] Cancel",-17}", txtDanger);
 
-            Menu.Start();
+            Section.HorizontalRule();
+
+            _colorify.Write($"{" Make your choice:",-25}", txtInfo);
+            string opt = Console.ReadLine()?.ToLower();
+
+            if (String.IsNullOrEmpty(opt))
+            {
+                Menu.Start();
+            }
+            else
+            {
+                Menu.Route($"i>{opt}", "i");
+            }
+            Message.Error();
         }
 
         public static void Environment()
@@ -67,6 +86,36 @@ namespace HardHat
             Section.Pause();
 
             Menu.Start();
+        }
+
+        public static void Readme()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Browser.CmdOpen("https://github.com/deinsoftware/hardhat/blob/master/README.md");
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Changelog()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Browser.CmdOpen("https://github.com/deinsoftware/hardhat/blob/master/CHANGELOG.md");
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
         }
     }
 }

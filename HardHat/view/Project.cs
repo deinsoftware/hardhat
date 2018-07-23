@@ -48,8 +48,8 @@ namespace HardHat
             string selectedFileMapping = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.mapping);
             _config.personal.selected.mappingStatus = File.Exists(selectedFileMapping);
             Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));

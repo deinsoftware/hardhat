@@ -323,7 +323,7 @@ namespace HardHat
 
             try
             {
-                CmdBrowse(_config.personal.menu.sonarConfiguration);
+                Browser.CmdOpen(_config.personal.menu.sonarConfiguration);
                 Menu.Start();
             }
             catch (Exception Ex)
