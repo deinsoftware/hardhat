@@ -45,6 +45,9 @@ namespace HardHat
             config.gulp.logFolder = "ssh";
             config.gulp.extension = ".json";
 
+            config.editor = new EditorConfiguration();
+            config.editor.open = "code";
+
             config.vpn = new VpnConfiguration();
             config.vpn.siteName = "";
 
@@ -141,6 +144,7 @@ namespace HardHat
         public PathConfiguration path { get; set; }
         public AndroidConfiguration android { get; set; }
         public GulpConfiguration gulp { get; set; }
+        public EditorConfiguration editor { get; set; }
         public VpnConfiguration vpn { get; set; }
         public PersonalConfiguration personal { get; set; }
     }
@@ -168,6 +172,11 @@ namespace HardHat
         public string webFolder { get; set; }
         public string logFolder { get; set; }
         public string extension { get; set; }
+    }
+
+    class EditorConfiguration
+    {
+        public string open { get; set; }
     }
 
     class VpnConfiguration

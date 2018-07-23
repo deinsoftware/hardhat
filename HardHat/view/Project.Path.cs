@@ -11,13 +11,13 @@ namespace HardHat
 {
     public static partial class Project
     {
-        public static void FilePath()
+        public static void Path()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("PROJECT", "PATH COPY");
+                Section.Header("PROJECT", "PATH");
 
                 string developmentPath = _path.Combine(_config.path.development);
                 string workspacePath = _path.Combine(_config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path);
@@ -40,7 +40,8 @@ namespace HardHat
                 _colorify.BlankLines();
                 _colorify.Write($"{" [P] Project",-17}", txtPrimary);
                 _colorify.Write($"{"[F] File",-17}", txtPrimary);
-                _colorify.Write($"{"[M] Mapping",-34}", txtStatus(_config.personal.selected.mappingStatus));
+                _colorify.Write($"{"[M] Mapping",-17}", txtStatus(_config.personal.selected.mappingStatus));
+                _colorify.Write($"{"[D] Duplicate",-17}", txtPrimary);
                 _colorify.WriteLine($"{"[EMPTY] Cancel",-17}", txtDanger);
 
                 Section.HorizontalRule();

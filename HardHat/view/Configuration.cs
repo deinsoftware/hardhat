@@ -29,7 +29,8 @@ namespace HardHat
             opts.Add(new Option { opt = "c>am", status = true, action = Configuration.AndroidMappingSuffix });
             opts.Add(new Option { opt = "c>ac", status = true, action = Configuration.AndroidCompact });
             opts.Add(new Option { opt = "c>af", status = true, action = Configuration.AndroidFilter });
-            opts.Add(new Option { opt = "c>v", status = true, action = Configuration.SiteName });
+            opts.Add(new Option { opt = "c>e", status = true, action = Configuration.EditorOpenCommand });
+            opts.Add(new Option { opt = "c>v", status = true, action = Configuration.VpnSiteName });
             opts.Add(new Option { opt = "c>t", status = true, action = Configuration.ThemeSelector });
             opts.Add(new Option { opt = "c>l", status = true, action = Configuration.Log });
         }
@@ -61,6 +62,9 @@ namespace HardHat
             _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{string.Join(",", _config.android.filterFiles)}");
 
             _colorify.BlankLines();
+            _colorify.Write($"{" [E] Editor",-25}", txtPrimary); _colorify.WriteLine($"{_config.editor.open}");
+
+
             _colorify.Write($"{" [V] VPN",-25}", txtStatus(OS.IsWin())); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
@@ -504,13 +508,44 @@ namespace HardHat
         #endregion
 
         #region Others
-        public static void SiteName()
+
+        public static void EditorOpenCommand()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("CONFIGURATION", "VPN SITE NAME");
+                Section.Header("CONFIGURATION", "EDITOR");
+
+                _colorify.WriteLine($" Open command for Editor.", txtPrimary);
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
+
+                Section.HorizontalRule();
+
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
+                if (!String.IsNullOrEmpty(opt))
+                {
+                    _config.editor.open = $"{opt}";
+                }
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+        public static void VpnSiteName()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("CONFIGURATION", "VPN");
 
                 _colorify.WriteLine($" Site name for VPN connection.", txtPrimary);
 

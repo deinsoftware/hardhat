@@ -15,14 +15,15 @@ namespace HardHat
         {
             opts.Add(new Option { opt = "p", status = true, action = Project.Select });
             opts.Add(new Option { opt = "pf", status = false, action = Project.SelectFile });
+            opts.Add(new Option { opt = "po", status = false, action = Project.Open });
+            opts.Add(new Option { opt = "pe", status = false, action = Project.Editor });
             opts.Add(new Option { opt = "pi", status = false, action = Adb.Install });
-            opts.Add(new Option { opt = "pd", status = false, action = Project.Duplicate });
-            opts.Add(new Option { opt = "pp", status = false, action = Project.FilePath });
+            opts.Add(new Option { opt = "pp", status = false, action = Project.Path });
             opts.Add(new Option { opt = "pp>p", status = false, action = Project.CopyPath });
             opts.Add(new Option { opt = "pp>f", status = false, action = Project.CopyFilePath });
             opts.Add(new Option { opt = "pp>m", status = false, action = Project.CopyMappingPath });
-            opts.Add(new Option { opt = "ps", status = false, action = BuildTools.SignerVerify });
-            opts.Add(new Option { opt = "pv", status = false, action = BuildTools.Information });
+            opts.Add(new Option { opt = "pp>d", status = false, action = Project.Duplicate });
+            opts.Add(new Option { opt = "pv", status = false, action = BuildTools.Values });
         }
 
         public static void Status(string dirPath)
@@ -47,13 +48,14 @@ namespace HardHat
             string selectedFileMapping = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.mapping);
             _config.personal.selected.mappingStatus = File.Exists(selectedFileMapping);
             Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.Valid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pd", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pp>m", _config.personal.selected.mappingStatus);
-            Options.Valid("ps", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.Valid("pp>d", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
         }
 
@@ -81,10 +83,10 @@ namespace HardHat
                 _colorify.WriteLine($" {mappingStatus}", txtWarning);
             }
 
-            _colorify.Write($"{"   [I] Install",-17}", txtStatus(Options.Valid("pi")));
-            _colorify.Write($"{"[D] Duplicate",-17}", txtStatus(Options.Valid("pd")));
+            _colorify.Write($"{"   [O] Open",-17}", txtStatus(Options.Valid("pp")));
+            _colorify.Write($"{"[E] Editor",-17}", txtStatus(Options.Valid("pp")));
+            _colorify.Write($"{"[I] Install",-17}", txtStatus(Options.Valid("pi")));
             _colorify.Write($"{"[P] Path",-17}", txtStatus(Options.Valid("pp")));
-            _colorify.Write($"{"[S] Signer",-17}", txtStatus(Options.Valid("ps")));
             _colorify.WriteLine($"{"[V] Values",-17}", txtStatus(Options.Valid("pv")));
 
             _colorify.BlankLines();
@@ -191,6 +193,40 @@ namespace HardHat
                     _config.personal.selected.versionCode = BuildTools.CmdGetPackage(sel, "versionCode", 2);
                     _config.personal.selected.versionName = BuildTools.CmdGetPackage(sel, "versionName", 3);
                 }
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Open()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
+                CmdOpen(dirPath);
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Editor()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
+                CmdEditor(dirPath);
 
                 Menu.Start();
             }

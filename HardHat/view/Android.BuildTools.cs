@@ -15,40 +15,13 @@ namespace HardHat
 
     public static partial class BuildTools
     {
-
-        public static void SignerVerify()
+        public static void Values()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("FILE", "SIGNER VERIFY");
-                Section.SelectedFile();
-
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.file);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($" --> Verifying...", txtInfo);
-                CmdSignerVerify(dirPath);
-
-                Section.HorizontalRule();
-                Section.Pause();
-
-                Menu.Start();
-            }
-            catch (Exception Ex)
-            {
-                Exceptions.General(Ex);
-            }
-        }
-
-        public static void Information()
-        {
-            _colorify.Clear();
-
-            try
-            {
-                Section.Header("FILE", "VALUES");
+                Section.Header("FILE", "INFORMATION");
                 Section.SelectedFile();
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.file);
@@ -56,6 +29,10 @@ namespace HardHat
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Dump Badging...", txtInfo);
                 CmdInformation(dirPath);
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Signer Verify...", txtInfo);
+                CmdSignerVerify(dirPath);
 
                 if ((OS.IsWin() && Variables.Valid("sh")) || OS.IsMac())
                 {

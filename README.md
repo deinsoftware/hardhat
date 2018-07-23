@@ -116,6 +116,7 @@ export ANDROID_SDK_ROOT='/usr/local/share/android-sdk'
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
 export ANDROID_NDK_HOME='/usr/local/share/android-ndk'
 export ANDROID_BT_VERSION="$(ls -tr $ANDROID_SDK_ROOT/build-tools | sort | tail -1)"
+export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
 export GULP_PROJECT="~/Applications/Gulp"
@@ -134,6 +135,7 @@ export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
 
 alias hh="sh ~/Applications/HardHat/mac.sh"
 alias x="exit"
+alias sb="source ~/.bash_profile"
 ```
 
 On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. And omit `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
@@ -214,11 +216,97 @@ Choose desired letter combination and let **HardHat** work for you.
 | --- | --- |
 | <kbd>p</kbd> | Select a project inside `path.dir/bsn/prd` path (_see [Setup > Path Variables](#path-variables) section_) that starts with `flt` folder name. This project required to have an `android.prj` folder inside. |
 | <kbd>pf</kbd> | Select an APK file generated inside selected project on `android.bld` path with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
+| <kbd>po</kbd> | Open selected project in File Explorer. |
+| <kbd>pe</kbd> | Open selected project on Editor. (_see [Usage > Configuration > Other Variable](#other-variables) section_). |
 | <kbd>pi</kbd> | Install selected file on an Android device. |
-| <kbd>pd</kbd> | Make a copy of selected file and choose a new name. |
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
-| <kbd>ps</kbd> | Show signature information about selected file. |
-| <kbd>pv</kbd> | Show full information, values and hash about selected file. |
+| <kbd>pv</kbd> | Show full information, values, signature and hash about selected file. |
+
+Editor can be configured in Config section:
+
+| command | editor |
+| --- | --- |
+| code | Visual Studio Code. |
+| studio | Android Studio. **\*** |
+| sublime | Sublime Text 3. |
+| wstorm | Web Storm. **\*** |
+
+**\*** Requires enable `Tools -> Create Command-line Launcher` and works only for Linux / MacOS.
+
+##### Path
+
+| <kbd>pp>p</kbd> | Copy project path to clipboard. |
+| <kbd>pp>f</kbd> | Copy file path to clipboard. |
+| <kbd>pp>m</kbd> | Copy mapping file path to clipboard. |
+| <kbd>pp>d</kbd> | Duplicate and rename selected file. |
+
+#### Version Control System
+
+| combination | action |
+| --- | --- |
+| <kbd>v</kbd> | Show current GIT branch. |
+| <kbd>vd</kbd> | Discard files. Launch `reset` command over selected project. |
+| <kbd>vp</kbd> | Pull files. Launch `pull` command over selected project. |
+| <kbd>vc</kbd> | Clean files. Launch `clean` command over selected project and delete unversioned files over selected project. |
+| <kbd>vd+p</kbd> | Discard and Pull files over selected project. |
+| <kbd>vr+p</kbd> | Clean and Pull files over selected project. |
+| <kbd>vo</kbd> | Discard, Clean and Pull (x2) files over selected project. |
+
+#### Gulp
+
+| combination | action |
+| --- | --- |
+| <kbd>g</kbd> | Gulp paths, Server, Log and FTP configuration. |
+| <kbd>gw</kbd> | Launch `gulp watch` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>gr</kbd> | Revert original files to selected project. |
+| <kbd>gs</kbd> | Launch `gulp default` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
+| <kbd>gl</kbd> | Launch `gulp log` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+
+##### Path Configuration
+
+| <kbd>g>pw</kbd> | Web Server path with configurations. |
+| <kbd>g>pl</kbd> | Log path with configurations. |
+| <kbd>g>pe</kbd> | Extension name for configurations. |
+
+##### Server (Web/Log) Configuration
+
+| <kbd>g>sp</kbd> | Protocol. |
+| <kbd>g>si</kbd> | Internal Path inside server configuration. |
+| <kbd>g>sc</kbd> | Configuration file with web server configuration. |
+| <kbd>g>sf</kbd> | Flavor. |
+| <kbd>g>sn</kbd> | Number. |
+| <kbd>g>ss</kbd> | Sync Browser on save. |
+| <kbd>g>sp</kbd> | Open shortcut in browser at start. |
+
+##### FTP Configuration
+
+| <kbd>g>fh</kbd> | Host. |
+| <kbd>g>fp</kbd> | Port. |
+| <kbd>g>fa</kbd> | Authentication file path. |
+| <kbd>g>fk</kbd> | Key name inside authentication file. |
+| <kbd>g>fr</kbd> | Remote Path. |
+| <kbd>g>fd</kbd> | Dimension. |
+
+#### Build
+
+| combination | action |
+| --- | --- |
+| <kbd>b</kbd> | Configure your build type, flavor and dimensions. |
+| <kbd>b>d</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
+| <kbd>b>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
+| <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
+| <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
+| <kbd>bc</kbd> | Make `clean` project with gradle command line. |
+| <kbd>bg</kbd> | Make `build` project with gradle command line. |
+
+If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
+
+* local.properties
+* gradle.properties
+* keystore/development.properties
+* keystore/production.properties
 
 #### Sonar
 
@@ -234,114 +322,14 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>ss</kbd> | Launch `sonar-scanner` over `SONAR_SCANNER_HOME` (_see [Environment Variables](#environment-variables) section_) inside selected project or his internal path. |s
 | <kbd>sb</kbd> | Open sonar configuration on browser. |
 
-#### Version Control System
-
-| combination | action |
-| --- | --- |
-| <kbd>v</kbd> | Show current GIT branch. |
-| <kbd>vd</kbd> | Discard files. Launch `reset` command over selected project. |
-| <kbd>vp</kbd> | Pull files. Launch `pull` command over selected project. |
-| <kbd>vc</kbd> | Clean files. Launch `clean` command over selected project and delete unversioned files over selected project. |
-| <kbd>vd+p</kbd> | Discard and Pull files over selected project. |
-| <kbd>vr+p</kbd> | Clean and Pull files over selected project. |
-
-#### Gulp
-
-| combination | action |
-| --- | --- |
-| <kbd>g</kbd> | Select and show development server configuration. |
-| <kbd>g>i</kbd> | Internal Path shortcut inside server configuration. |
-| <kbd>g>d</kbd> | Dimension shortcut inside server configuration. |
-| <kbd>g>f</kbd> | Flavor shortcut inside server configuration. |
-| <kbd>g>n</kbd> | Number shortcut inside server configuration. |
-| <kbd>g>s</kbd> | Sync shortcut inside server configuration. |
-| <kbd>g>p</kbd> | Protocol shortcut inside server configuration. |
-| <kbd>gw</kbd> | Launch `gulp watch` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gr</kbd> | Revert original files to selected project. |
-| <kbd>gs</kbd> | Launch `gulp default` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
-| <kbd>gl</kbd> | Launch `gulp log` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-
-Gulp Uglify process was create under `build` task and configured to use some folders. We recommend follow the same structure.
-
-| folder | description |
-| --- | --- |
-| `bld` | Result from magic |
-| `www` | Original project files |
-
-Gulp Watch process was created under `watch` task and follow this command help:
-
-~~~console
-gulp watch --prj path_value [--ptf platform_value]
-~~~
-
-Gulp Make process was created under `make` task and follow this command help:
-
-~~~console
-gulp make --prj path_value [--ptf platform_value]
-~~~
-
-Gulp Browser process was created under `default` task and follow this command help:
-
-~~~console
-gulp [default] --pth path_value [--ipt internalPath_value] --dmn dimension_value [--ptc http/https --flv flavor_value --srv server_number --host ip_value --sync Y/N --open Y/N --os os_name]
-~~~
-
-| parameter | description |
-| --- | --- |
-| `pth` | Selected project path |
-| `ipt` | web files path inside `pth` |
-| `dmn` | Server configuration file name under `server` folder |
-| `flv` | Flavor **A**lfa/**B**eta/**S**tag/**P**rod.|
-| `srv` | Server Number (if have multiple servers with same flavor) |
-| `sync` | (**Y**) Enable or (**N**) Disable Browser Sync. |
-| `host` | External IP address access |
-| `ptc` | **http** or **https**. |
-| `os` | **win** or **mac**. |
-
-Gulp Log process was created under `log` task and follow this command help:
-
-~~~console
-gulp log --dmn dimension_value [--flv flavor_value --srv server_number]
-~~~
-
-| parameter | description |
-| --- | --- |
-| `pth` | Selected project path |
-| `dmn` | Server configuration file name under server folder |
-| `flv` | Flavor |
-| `flv` | Server Number (if have multiple servers with same flavor) |
-| `sync` | Enable or disable browserSync task |
-| `host` | External IP address access |
-
-#### Build
-
-| combination | action |
-| --- | --- |
-| <kbd>b</kbd> | Configure your build type, flavor and dimensions. |
-| <kbd>b>d</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
-| <kbd>b>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
-| <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
-| <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
-| <kbd>bc</kbd> | Make `clean` project with gradle command line. |
-| <kbd>bg</kbd> | Make `clean` and `build` project with gradle command line. |
-
-If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
-
-* local.properties
-* gradle.properties
-* keystore/development.properties
-* keystore/production.properties
-
 #### Android Debug Bridge
 
 | combination | action |
 | --- | --- |
 | <kbd>ad</kbd> | Show device/emulator list. |
+| <kbd>ar</kbd> | Kill and Restart ADB server. |
 | <kbd>ad</kbd> | Make ADB launch logcat. |
 | <kbd>aw</kbd> | Make a ADB device dis/connection over Wifi. |
-| <kbd>ar</kbd> | Kill and Restart ADB server. |
 
 #### Extra
 
@@ -352,7 +340,7 @@ If you have some pre-configured files to be copied to project path, add it on `A
 | <kbd>e</kbd> | Show information about environmental variables. |
 | <kbd>x</kbd> | Exit application, save progress and close terminal window. |
 
-### Setup
+### Configuration
 
 Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 
@@ -376,18 +364,11 @@ Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 | <kbd>ac</kbd> | Hybrid folder to be processed with Gulp (Uglify & Minify). |
 | <kbd>af</kbd> | Filter extension name for files to be processed. |
 
-#### Gulp Path
-
-| combination | action |
-| --- | --- |
-| <kbd>gw</kbd> | Web Server path with configurations. |
-| <kbd>gl</kbd> | Log path with configurations. |
-| <kbd>ge</kbd> | Extension name for configurations. |
-
 #### Other Variables
 
 | combination | action |
 | --- | --- |
+| <kbd>e</kbd> | Command to open editor. |
 | <kbd>v</kbd> | VPN Site Name (only for Windows). |
 | <kbd>t</kbd> | Theme chooser. |
 | <kbd>l</kbd> | Enable or disable log on exceptions. |
@@ -453,6 +434,8 @@ Applications
 │       │   └── ...
 │       └── WorkspaceN
 │           └── ...
+├── FTP
+│   └── .ftppass
 ├── Gulp
 ├── HardHat
 └── Sonar

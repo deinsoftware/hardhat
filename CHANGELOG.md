@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.8.0] - 2018-07-23
+
+**Added:**
+
+* Project menu option to open selected project in File Explorer or open in Editor.
+* Configuration option to change Editor command.
+
+**Changed:**
+
+* Project menu reorder. Duplicate file inside path and merge Sign inside Values.
+
 ## [6.7.4] - 2018-07-17
 
 **Changed:**
