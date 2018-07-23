@@ -13,6 +13,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
+* Avoid return main menu on error, now return to previous menu.
+
+## [6.8.1] - 2018-07-23
+
+**Fixed:**
+
 * Open and Edit permissions.
 
 **Added:**
