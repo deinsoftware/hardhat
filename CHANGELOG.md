@@ -17,7 +17,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-* Project menu option to open selected project in File Explorer or open in Editor.
+* Readme and Change Log options on information option.
 
 ## [6.8.0] - 2018-07-23
 
@@ -25,7 +25,6 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 * Project menu option to open selected project in File Explorer or open in Editor.
 * Configuration option to change Editor command.
-* Readme and Change Log options on information option.
 
 **Changed:**
 
