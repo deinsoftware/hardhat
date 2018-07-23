@@ -83,8 +83,8 @@ namespace HardHat
                 _colorify.WriteLine($" {mappingStatus}", txtWarning);
             }
 
-            _colorify.Write($"{"   [O] Open",-17}", txtStatus(Options.Valid("pp")));
-            _colorify.Write($"{"[E] Editor",-17}", txtStatus(Options.Valid("pp")));
+            _colorify.Write($"{"   [O] Open",-17}", txtPrimary);
+            _colorify.Write($"{"[E] Editor",-17}", txtPrimary);
             _colorify.Write($"{"[I] Install",-17}", txtStatus(Options.Valid("pi")));
             _colorify.Write($"{"[P] Path",-17}", txtStatus(Options.Valid("pp")));
             _colorify.WriteLine($"{"[V] Values",-17}", txtStatus(Options.Valid("pv")));
