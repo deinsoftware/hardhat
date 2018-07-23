@@ -18,6 +18,14 @@ namespace HardHat
         {
             Config config = new Config();
 
+            config.project = new ProjectConfiguration();
+            config.project.url = "github.com";
+            config.project.user = "deinsoftware";
+            config.project.name = "hardhat";
+            config.project.content = "blob/master";
+            config.project.readme = "README.md";
+            config.project.changelog = "CHANGELOG.md";
+
             config.path = new PathConfiguration();
             switch (OS.GetCurrent())
             {
@@ -141,12 +149,23 @@ namespace HardHat
 
     class Config
     {
+        public ProjectConfiguration project { get; set; }
         public PathConfiguration path { get; set; }
         public AndroidConfiguration android { get; set; }
         public GulpConfiguration gulp { get; set; }
         public EditorConfiguration editor { get; set; }
         public VpnConfiguration vpn { get; set; }
         public PersonalConfiguration personal { get; set; }
+    }
+
+    class ProjectConfiguration
+    {
+        public string url { get; set; }
+        public string user { get; set; }
+        public string name { get; set; }
+        public string content { get; set; }
+        public string readme { get; set; }
+        public string changelog { get; set; }
     }
 
     class PathConfiguration

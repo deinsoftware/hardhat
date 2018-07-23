@@ -4,22 +4,22 @@
     <PackageId>HardHat</PackageId>
     <VersionPrefix>6.8.2</VersionPrefix>
     <ProjectGuid>{b407f8af-bade-4c29-a9e6-11547ca64281}</ProjectGuid>
-    
+
     <Authors>Camilo Martinez</Authors>
     <Company>dein Software</Company>
     <NeutralLanguage>en-US</NeutralLanguage>
     <AssemblyTitle>Hard Hat</AssemblyTitle>
     <Description>Hard Hat - Development Building Tools</Description>
-    <Copyright>dein Software © 2017</Copyright>
+    <Copyright>dein Software © 2018</Copyright>
 
     <PackageTags>dotnet;core;win10-x64;osx.10.12-x64</PackageTags>
-    <PackageIconUrl>https://github.com/equiman/hardhat/blob/master/icon.png</PackageIconUrl>
-    <PackageProjectUrl>https://github.com/equiman/hardhat</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/equiman/hardhat/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://github.com/deinsoftware/hardhat/blob/master/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/deinsoftware/hardhat</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/deinsoftware/hardhat/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <RepositoryUrl>https://github.com/equiman/hardhat</RepositoryUrl>
-    
+    <RepositoryUrl>https://github.com/deinsoftware/hardhat</RepositoryUrl>
+
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <RuntimeIdentifiers>win10-x64;osx.10.12-x64</RuntimeIdentifiers>

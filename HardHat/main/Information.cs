@@ -88,13 +88,24 @@ namespace HardHat
             Menu.Start();
         }
 
+        private static string SiteUrl(string page)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+            uriBuilder.Scheme = "https";
+            uriBuilder.Host = _config.project.url;
+            uriBuilder.Path = $"{_config.project.user}/{_config.project.name}/{_config.project.content}/{page}";
+            return uriBuilder.ToString();
+        }
+
         public static void Readme()
         {
             _colorify.Clear();
 
             try
             {
-                Browser.CmdOpen("https://github.com/deinsoftware/hardhat/blob/master/README.md");
+
+                string url = SiteUrl(_config.project.readme);
+                Browser.CmdOpen(url);
                 Menu.Start();
             }
             catch (Exception Ex)
@@ -109,7 +120,8 @@ namespace HardHat
 
             try
             {
-                Browser.CmdOpen("https://github.com/deinsoftware/hardhat/blob/master/CHANGELOG.md");
+                string url = SiteUrl(_config.project.changelog);
+                Browser.CmdOpen(url);
                 Menu.Start();
             }
             catch (Exception Ex)

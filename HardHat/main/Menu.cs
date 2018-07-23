@@ -41,7 +41,7 @@ namespace HardHat
             _colorify.Clear();
 
             string name = Assembly.GetEntryAssembly().GetName().Name.ToUpper().ToString();
-            string version = Assembly.GetEntryAssembly().GetName().Version.ToString();
+            string version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
 
             Section.Header($" {name} # {version}|{_config.personal.hostName} : {_config.personal.ipAddress} ");
 

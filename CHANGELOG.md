@@ -157,19 +157,19 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-* Updated library references for [ToolBox](https://github.com/equiman/toolbox) 1.2.0 and [Colorify](https://github.com/equiman/colorify) 1.0.6.
+* Updated library references for [ToolBox](https://github.com/deinsoftware/toolbox) 1.2.0 and [Colorify](https://github.com/deinsoftware/colorify) 1.0.6.
 
 ## [6.1.0] - 2018-06-08
 
 **Added:**
 
-* Config option to enable log file in order to trace development issues. [\#18](https://github.com/equiman/hardhat/issues/18)
+* Config option to enable log file in order to trace development issues. [\#18](https://github.com/deinsoftware/hardhat/issues/18)
 
 ## [6.0.2] - 2018-06-08
 
 **Changed:**
 
-* Updated library references for [Colorify](https://github.com/equiman/colorify) 1.0.5.
+* Updated library references for [Colorify](https://github.com/deinsoftware/colorify) 1.0.5.
 
 ## [6.0.1] - 2018-06-08
 
@@ -189,23 +189,23 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Error when configuration file can't load saved values. [\#20](https://github.com/equiman/hardhat/issues/20)
+* Error when configuration file can't load saved values. [\#20](https://github.com/deinsoftware/hardhat/issues/20)
 
 ## [5.2.1] - 2018-06-07
 
 **Fixed:**
 
-* Gulp Uglify error when www folder don't exists. [\#21](https://github.com/equiman/hardhat/issues/21)
+* Gulp Uglify error when www folder don't exists. [\#21](https://github.com/deinsoftware/hardhat/issues/21)
 
 **Changed:**
 
-* Updated library references for [ToolBox](https://github.com/equiman/toolbox) 1.1.4 and [Colorify](https://github.com/equiman/colorify) 1.0.4.
+* Updated library references for [ToolBox](https://github.com/deinsoftware/toolbox) 1.1.4 and [Colorify](https://github.com/deinsoftware/colorify) 1.0.4.
 
 ## [5.2.0] - 2018-04-30
 
 **Added:**
 
-* Copy properties configuration per dimension. [\#23](https://github.com/equiman/hardhat/issues/23)
+* Copy properties configuration per dimension. [\#23](https://github.com/deinsoftware/hardhat/issues/23)
 
 ## [5.1.1] - 2018-04-30
 
@@ -233,13 +233,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Update [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) library, that solves bug with text on resize window.
+* Update [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) library, that solves bug with text on resize window.
 
 ## [5.0.0] - 2017-12-28
 
 **Changed:**
 
-* Replace internal classes with [ToolBox](https://github.com/equiman/toolbox) and [Colorify](https://github.com/equiman/colorify) libraries.
+* Replace internal classes with [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
 
 ## [4.3.2] - 2017-12-14
 
@@ -280,7 +280,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Add white theme for mac. [\#14](https://github.com/equiman/hardhat/issues/14)
+* Add white theme for mac. [\#14](https://github.com/deinsoftware/hardhat/issues/14)
 
 ## [4.1.6] - 2017-11-23
 
@@ -302,7 +302,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Configuration name on empty value. [\#17](https://github.com/equiman/hardhat/issues/17)
+* Configuration name on empty value. [\#17](https://github.com/deinsoftware/hardhat/issues/17)
 
 ## [4.1.3] - 2017-11-16
 
@@ -331,7 +331,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-* Update notification for Gulp project. [\#3](https://github.com/equiman/hardhat/issues/3)
+* Update notification for Gulp project. [\#3](https://github.com/deinsoftware/hardhat/issues/3)
 * Open parameter on Gulp server configuration.
 
 **Fixed:**
@@ -343,13 +343,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-* Android Build Tools check and upgrade version process. [\#11](https://github.com/equiman/hardhat/issues/11)
+* Android Build Tools check and upgrade version process. [\#11](https://github.com/deinsoftware/hardhat/issues/11)
 
 ## [4.0.0] - 2017-10-25
 
 **Added:**
 
-* SonarQube section. [\#2](https://github.com/equiman/hardhat/issues/2)
+* SonarQube section. [\#2](https://github.com/deinsoftware/hardhat/issues/2)
 * Warning alert on Sonar, Gulp or Build incorrect configuration.
 
 **Change:**
@@ -360,17 +360,17 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-* Copy path and full path on Windows. [\#16](https://github.com/equiman/hardhat/issues/16)
+* Copy path and full path on Windows. [\#16](https://github.com/deinsoftware/hardhat/issues/16)
 
 ## [3.2.0] - 2017-10-13
 
 **Added:**
 
-* SignCheck for Windows and get SHA256 value from APK option. [\#13](https://github.com/equiman/hardhat/issues/13)
+* SignCheck for Windows and get SHA256 value from APK option. [\#13](https://github.com/deinsoftware/hardhat/issues/13)
 
 **Fixed:**
 
-* Option to remove selected device. [\#12](https://github.com/equiman/hardhat/issues/12)
+* Option to remove selected device. [\#12](https://github.com/deinsoftware/hardhat/issues/12)
 * Better code quality and fixes, due SonarQube analysis.
 
 **Changed:**
@@ -449,7 +449,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 One code to rule theme all... with .Net Core can share same code for multiple Operating Systems.
 
-This version are merging [HardHat [for Windows]](https://github.com/equiman/hardhatwin/) and [HardHat [for macOS])](https://github.com/equiman/hardhatwin/) projects.
+This version are merging [HardHat [for Windows]](https://github.com/deinsoftware/hardhatwin/) and [HardHat [for macOS])](https://github.com/deinsoftware/hardhatwin/) projects.
 
 **Added:**
 

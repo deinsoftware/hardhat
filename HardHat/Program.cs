@@ -9,6 +9,7 @@ using ToolBox.System;
 
 namespace HardHat
 {
+
     static class Program
     {
         public static Config _config { get; set; }

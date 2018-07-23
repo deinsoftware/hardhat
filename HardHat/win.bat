@@ -38,7 +38,7 @@ if %errorlevel% == 0 (
     echo  HardHat was updated.
     echo. 
     echo  Refer to CHANGELOG file for details
-    echo  or visit https://github.com/equiman/hardhat/
+    echo  or visit https://github.com/deinsoftware/hardhat/
     echo. 
     echo ======================================================================================
     echo.
