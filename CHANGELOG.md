@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.8.1] - 2018-07-23
+
+**Fixed:**
+
+* Open and Edit permissions.
+
+**Added:**
+
+* Project menu option to open selected project in File Explorer or open in Editor.
+
 ## [6.8.0] - 2018-07-23
 
 **Added:**
