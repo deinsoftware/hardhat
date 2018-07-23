@@ -40,7 +40,7 @@ namespace dein.tools
 
                 if (!exit)
                 {
-                    Menu.Route();
+                    Menu.Route(_config.personal.menu.selectedOption);
                 }
                 else
                 {

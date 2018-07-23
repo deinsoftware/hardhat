@@ -76,6 +76,7 @@ namespace HardHat
                 }
                 else
                 {
+                    _config.personal.menu.selectedOption = dfl;
                     Message.Error();
                 }
             }
