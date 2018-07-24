@@ -88,9 +88,7 @@ namespace HardHat
             try
             {
                 Section.Header("GULP", "CONFIGURATION");
-                Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
-                _colorify.BlankLines();
                 _colorify.WriteLine($" [P]", txtMuted);
                 _colorify.Write($"{"   [W] Web Server",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.webFolder}");
                 _colorify.Write($"{"   [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.logFolder}");
@@ -106,6 +104,8 @@ namespace HardHat
                 _colorify.Write($"{"   [N] Number:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.number}");
                 _colorify.Write($"{"   [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.sync ? "Yes" : "No")}");
                 _colorify.Write($"{"   [O] Open:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.open ? "Yes" : "No")}");
+
+                _colorify.BlankLines();
                 _colorify.WriteLine($" [F] FTP", txtMuted);
                 _colorify.Write($"{"   [H] Host:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.host}");
                 _colorify.Write($"{"   [P] Port:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.port}");
