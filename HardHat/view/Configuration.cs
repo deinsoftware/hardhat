@@ -57,7 +57,6 @@ namespace HardHat
             _colorify.WriteLine($" [P] Project Path", txtMuted);
             _colorify.Write($"{"   [I] iOS",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.iosPath}");
             _colorify.Write($"{"   [A] Android",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidPath}");
-            _colorify.Write($"{"   [A] Project",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidPath}");
             _colorify.Write($"{"   [B] Build",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidBuildPath}");
             _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidBuildExtension}");
             _colorify.Write($"{"   [M] Mapping",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidMappingSuffix}");
