@@ -317,22 +317,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    string dirPath = _path.Combine(_config.path.development, _config.path.workspace, opt);
-                    if (!_fileSystem.DirectoryExists(dirPath))
-                    {
-                        StringBuilder msg = new StringBuilder();
-                        msg.Append($" Path not found: {Environment.NewLine}");
-                        msg.Append($" '{dirPath}'{Environment.NewLine}");
-
-                        Message.Error(
-                            msg: msg.ToString(),
-                            replace: true
-                        );
-                    }
-                    else
-                    {
-                        _config.project.iosPath = $"{opt}";
-                    }
+                    _config.project.iosPath = $"{opt}";
                 }
 
                 Menu.Status();
@@ -363,22 +348,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    string dirPath = _path.Combine(_config.path.development, _config.path.workspace, opt);
-                    if (!_fileSystem.DirectoryExists(dirPath))
-                    {
-                        StringBuilder msg = new StringBuilder();
-                        msg.Append($" Path not found: {Environment.NewLine}");
-                        msg.Append($" '{dirPath}'{Environment.NewLine}");
-
-                        Message.Error(
-                            msg: msg.ToString(),
-                            replace: true
-                        );
-                    }
-                    else
-                    {
-                        _config.project.androidPath = $"{opt}";
-                    }
+                    _config.project.androidPath = $"{opt}";
                 }
 
                 Menu.Status();
