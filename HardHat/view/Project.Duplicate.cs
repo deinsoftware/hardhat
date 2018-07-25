@@ -20,7 +20,7 @@ namespace HardHat
                 Section.Header("PROJECT", "DUPLICATE FILE");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" Write a new name, without include his extension.", txtPrimary);
@@ -35,14 +35,14 @@ namespace HardHat
 
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selected.path, _config.personal.selected.file), _path.Combine(dirPath, $"{opt}{_config.android.buildExtension}"));
+                    System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selected.path, _config.personal.selected.file), _path.Combine(dirPath, $"{opt}{_config.project.androidBuildExtension}"));
                     if (_config.personal.selected.mappingStatus)
                     {
-                        System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selected.path, _config.personal.selected.mapping), _path.Combine(dirPath, $"{opt}{_config.android.mappingSuffix}"));
+                        System.IO.File.Copy(_path.Combine(dirPath, _config.personal.selected.path, _config.personal.selected.mapping), _path.Combine(dirPath, $"{opt}{_config.project.androidMappingSuffix}"));
                     }
                     _config.personal.selected.path = "";
-                    _config.personal.selected.file = $"{opt}{_config.android.buildExtension}";
-                    _config.personal.selected.mapping = $"{opt}{_config.android.mappingSuffix}";
+                    _config.personal.selected.file = $"{opt}{_config.project.androidBuildExtension}";
+                    _config.personal.selected.mapping = $"{opt}{_config.project.androidMappingSuffix}";
                 }
 
                 Menu.Start();

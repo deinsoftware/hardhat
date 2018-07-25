@@ -30,12 +30,12 @@ namespace HardHat
 
         public static void Status()
         {
-            Options.Valid("g", Variables.Valid("gp"));
+            Options.IsValid("g", Variables.Valid("gp"));
             PathStatus();
-            Options.Valid("gw", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("gw", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             ServerStatus();
             FtpStatus();
             LogStatus();
@@ -44,37 +44,37 @@ namespace HardHat
         public static void Start()
         {
 
-            _colorify.WriteLine($" [G] Gulp", txtStatus(Options.Valid("g")));
-            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.Valid("gw")));
-            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.Valid("gu")));
+            _colorify.WriteLine($" [G] Gulp", txtStatus(Options.IsValid("g")));
+            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("gw")));
+            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.IsValid("gu")));
             if (String.IsNullOrEmpty(_config.personal.menu.serverConfiguration))
             {
-                _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.Valid("gs")));
+                _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("gs")));
             }
             else
             {
-                _colorify.Write($"{"[S] Server: ",-12}", txtStatus(Options.Valid("gs")));
+                _colorify.Write($"{"[S] Server: ",-12}", txtStatus(Options.IsValid("gs")));
                 Section.Configuration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
             }
-            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.Valid("gm")));
-            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.Valid("gr")));
+            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("gm")));
+            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("gr")));
             if (String.IsNullOrEmpty(_config.personal.menu.ftpConfiguration))
             {
-                _colorify.WriteLine($"{"[F] FTP",-12}", txtStatus(Options.Valid("gs")));
+                _colorify.WriteLine($"{"[F] FTP",-12}", txtStatus(Options.IsValid("gs")));
             }
             else
             {
-                _colorify.Write($"{"[F] FTP: ",-12}", txtStatus(Options.Valid("gs")));
+                _colorify.Write($"{"[F] FTP: ",-12}", txtStatus(Options.IsValid("gs")));
                 Section.Configuration(_config.personal.menu.ftpValidation, _config.personal.menu.ftpConfiguration);
             }
             if (String.IsNullOrEmpty(_config.personal.menu.logConfiguration))
             {
-                _colorify.WriteLine($"{"[L] Log",41}", txtStatus(Options.Valid("gs")));
+                _colorify.WriteLine($"{"[L] Log",41}", txtStatus(Options.IsValid("gs")));
             }
             else
             {
-                _colorify.Write($"{" ",34}", txtStatus(Options.Valid("gs")));
-                _colorify.Write($"{"[L] Log: ",-12}", txtStatus(Options.Valid("gs")));
+                _colorify.Write($"{" ",34}", txtStatus(Options.IsValid("gs")));
+                _colorify.Write($"{"[L] Log: ",-12}", txtStatus(Options.IsValid("gs")));
                 Section.Configuration(_config.personal.menu.logValidation, _config.personal.menu.logConfiguration);
             }
 
@@ -191,7 +191,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.hybridFiles);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidHybridPath);
 
                 string[] dirs = new string[] {
                     _path.Combine(Variables.Value("gp"),"www"),
@@ -207,7 +207,7 @@ namespace HardHat
                 }
 
                 _colorify.BlankLines();
-                List<string> filter = _disk.FilterCreator(true, _config.android.filterFiles);
+                List<string> filter = _disk.FilterCreator(true, _config.project.filterFiles);
 
                 _colorify.WriteLine($" --> Copying...", txtInfo);
                 _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
@@ -247,7 +247,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.hybridFiles);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidHybridPath);
                 string dirSource = _path.Combine(Variables.Value("gp"), "www");
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Reverting...", txtInfo);

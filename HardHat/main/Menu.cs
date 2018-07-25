@@ -63,20 +63,22 @@ namespace HardHat
             Route(opt);
         }
 
-        public static void Route(string sel = "m", string dfl = "m")
+        public static void Route(string sel = "m", string main = "m")
         {
             _config.personal.menu.selectedOption = sel?.ToLower();
             if (!String.IsNullOrEmpty(_config.personal.menu.selectedOption))
             {
-                if (Options.Valid(_config.personal.menu.selectedOption))
+                if (Options.IsValid(_config.personal.menu.selectedOption))
                 {
-                    Action act = Options.Action(_config.personal.menu.selectedOption, dfl);
-                    _config.personal.menu.selectedOption = dfl;
+                    Action act = Options.GetAction(_config.personal.menu.selectedOption, main);
+                    _config.personal.menu.selectedVariant = Options.GetVariant(_config.personal.menu.selectedOption);
+                    _config.personal.menu.selectedOption = main;
                     act.Invoke();
                 }
                 else
                 {
-                    _config.personal.menu.selectedOption = dfl;
+                    _config.personal.menu.selectedVariant = "";
+                    _config.personal.menu.selectedOption = main;
                     Message.Error();
                 }
             }

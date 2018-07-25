@@ -31,6 +31,15 @@ namespace HardHat
             {"r", "Release"}
         };
 
+        public static readonly IReadOnlyDictionary<string, string> Editor = new Dictionary<string, string>
+        {
+            {"a", "Android Studio"},
+            {"c", "Visual Studio Code"},
+            {"s", "Sublime Text"},
+            {"w", "Web Storm"},
+            {"x", "Xcode"}
+        };
+
         public static readonly IReadOnlyDictionary<string, string> Priority = new Dictionary<string, string>
         {
             {"v", "Verbouse"},

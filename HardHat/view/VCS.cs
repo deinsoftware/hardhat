@@ -31,18 +31,18 @@ namespace HardHat
                     _config.personal.menu.currentBranch = $"git://{Git.CmdBranch(dirPath)}";
                 }
             }
-            Options.Valid("v", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.Valid("vo", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("v", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("vo", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
         }
 
         public static void Start()
         {
-            if (Options.Valid("v"))
+            if (Options.IsValid("v"))
             {
                 _colorify.WriteLine($" [V] VCS", txtMuted);
             }
@@ -51,10 +51,10 @@ namespace HardHat
                 _colorify.Write($" [V] VCS: ", txtMuted);
                 _colorify.WriteLine($"{_config.personal.menu.currentBranch}");
             }
-            _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.Valid("vp")));
-            _colorify.Write($"{"[D] Discard",-17}", txtStatus(Options.Valid("vd")));
-            _colorify.Write($"{"[R] Reset",-17}", txtStatus(Options.Valid("vr")));
-            _colorify.WriteLine($"{"[O] Original",-17}", txtStatus(Options.Valid("vo")));
+            _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.IsValid("vp")));
+            _colorify.Write($"{"[D] Discard",-17}", txtStatus(Options.IsValid("vd")));
+            _colorify.Write($"{"[R] Reset",-17}", txtStatus(Options.IsValid("vr")));
+            _colorify.WriteLine($"{"[O] Original",-17}", txtStatus(Options.IsValid("vo")));
             _colorify.BlankLines();
         }
 

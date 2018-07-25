@@ -33,7 +33,7 @@ namespace HardHat
             _config.personal.menu.logConfiguration = logConfiguration.ToString();
             _config.personal.menu.logValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.logConfiguration);
 
-            Options.Valid("gl", Variables.Valid("gp") && _config.personal.menu.logValidation);
+            Options.IsValid("gl", Variables.Valid("gp") && _config.personal.menu.logValidation);
         }
 
         public static void Log()

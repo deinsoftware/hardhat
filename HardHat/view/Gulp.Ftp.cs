@@ -49,13 +49,13 @@ namespace HardHat
             _config.personal.menu.ftpConfiguration = ftpConfiguration.ToString();
             _config.personal.menu.ftpValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.ftpServer.host, _config.personal.menu.ftpConfiguration);
 
-            Options.Valid("gf", Variables.Valid("gp") && _config.personal.menu.ftpValidation);
-            Options.Valid("g>fh", Variables.Valid("gp"));
-            Options.Valid("g>fp", Variables.Valid("gp"));
-            Options.Valid("g>fa", Variables.Valid("gp"));
-            Options.Valid("g>fk", Variables.Valid("gp"));
-            Options.Valid("g>fr", Variables.Valid("gp"));
-            Options.Valid("g>fd", Variables.Valid("gp"));
+            Options.IsValid("gf", Variables.Valid("gp") && _config.personal.menu.ftpValidation);
+            Options.IsValid("g>fh", Variables.Valid("gp"));
+            Options.IsValid("g>fp", Variables.Valid("gp"));
+            Options.IsValid("g>fa", Variables.Valid("gp"));
+            Options.IsValid("g>fk", Variables.Valid("gp"));
+            Options.IsValid("g>fr", Variables.Valid("gp"));
+            Options.IsValid("g>fd", Variables.Valid("gp"));
         }
 
         public static void Ftp()
@@ -64,7 +64,7 @@ namespace HardHat
             try
             {
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
-                string selectedPath = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path);
+                string selectedPath = _path.Combine(dirPath, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path);
                 _config.personal.ftpServer.resourcePath = _config.personal.selected.versionName;
                 CmdFtp(
                     selectedPath,

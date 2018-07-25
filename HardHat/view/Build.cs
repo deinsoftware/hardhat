@@ -16,7 +16,15 @@ namespace HardHat
             opts.Add(new Option { opt = "b", status = false, action = Build.Select });
             opts.Add(new Option { opt = "b>d", status = false, action = Build.Dimension });
             opts.Add(new Option { opt = "b>f", status = false, action = Build.Flavor });
+            opts.Add(new Option { opt = "b>f:a", status = false, action = Build.Quick, variant = "f:a" });
+            opts.Add(new Option { opt = "b>f:b", status = false, action = Build.Quick, variant = "f:b" });
+            opts.Add(new Option { opt = "b>f:m", status = false, action = Build.Quick, variant = "f:m" });
+            opts.Add(new Option { opt = "b>f:s", status = false, action = Build.Quick, variant = "f:s" });
+            opts.Add(new Option { opt = "b>f:p", status = false, action = Build.Quick, variant = "f:p" });
+            opts.Add(new Option { opt = "b>f:d", status = false, action = Build.Quick, variant = "f:d" });
             opts.Add(new Option { opt = "b>m", status = false, action = Build.Mode });
+            opts.Add(new Option { opt = "b>m:d", status = false, action = Build.Quick, variant = "m:d" });
+            opts.Add(new Option { opt = "b>m:r", status = false, action = Build.Quick, variant = "m:r" });
             opts.Add(new Option { opt = "bp", status = false, action = Build.Properties });
             opts.Add(new Option { opt = "bc", status = false, action = Build.Clean });
             opts.Add(new Option { opt = "bg", status = false, action = Build.Gradle });
@@ -30,29 +38,37 @@ namespace HardHat
             buildConfiguration.Append(Selector.Name(Selector.Mode, _config.personal.gradle.mode));
             _config.personal.menu.buildConfiguration = buildConfiguration.ToString();
             _config.personal.menu.buildValidation = !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.gradle.mode, _config.personal.gradle.flavor, _config.personal.menu.buildConfiguration);
-            Options.Valid("b", Variables.Valid("gh"));
-            Options.Valid("b>d", Variables.Valid("gh"));
-            Options.Valid("b>f", Variables.Valid("gh"));
-            Options.Valid("b>m", Variables.Valid("gh"));
-            Options.Valid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
+            Options.IsValid("b", Variables.Valid("gh"));
+            Options.IsValid("b>d", Variables.Valid("gh"));
+            Options.IsValid("b>f", Variables.Valid("gh"));
+            Options.IsValid("b>f:a", Variables.Valid("gh"));
+            Options.IsValid("b>f:b", Variables.Valid("gh"));
+            Options.IsValid("b>f:m", Variables.Valid("gh"));
+            Options.IsValid("b>f:s", Variables.Valid("gh"));
+            Options.IsValid("b>f:p", Variables.Valid("gh"));
+            Options.IsValid("b>f:d", Variables.Valid("gh"));
+            Options.IsValid("b>m", Variables.Valid("gh"));
+            Options.IsValid("b>m:d", Variables.Valid("gh"));
+            Options.IsValid("b>m:r", Variables.Valid("gh"));
+            Options.IsValid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
         }
 
         public static void Start()
         {
             if (String.IsNullOrEmpty(_config.personal.menu.buildConfiguration))
             {
-                _colorify.WriteLine($" [B] Build", txtStatus(Options.Valid("b")));
+                _colorify.WriteLine($" [B] Build", txtStatus(Options.IsValid("b")));
             }
             else
             {
-                _colorify.Write($" [B] Build: ", txtStatus(Options.Valid("b")));
+                _colorify.Write($" [B] Build: ", txtStatus(Options.IsValid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
-            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.Valid("bp")));
-            _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.Valid("bc")));
-            _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.Valid("bg")));
+            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("bp")));
+            _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.IsValid("bc")));
+            _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.IsValid("bg")));
             _colorify.BlankLines();
         }
 
@@ -184,7 +200,7 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
                 CmdGradle(dirPath, _config.personal.menu.buildConfiguration);
 
                 Menu.Start();
@@ -203,7 +219,7 @@ namespace HardHat
             {
                 Vpn.Verification();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
                 CmdClean(dirPath);
 
                 Menu.Start();
@@ -225,7 +241,7 @@ namespace HardHat
                 Section.CurrentConfiguration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
 
                 string sourcePath = propertiesSource();
-                string destinationPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath);
+                string destinationPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
 
                 _colorify.BlankLines();
                 List<string> filter = _disk.FilterCreator(true, ".properties");
@@ -268,6 +284,32 @@ namespace HardHat
                 }
             }
             return sourcePath;
+        }
+
+        public static void Quick()
+        {
+            try
+            {
+                string[] variant = _config.personal.menu.selectedVariant.Split(':');
+                string option = variant[0];
+                string value = variant[1];
+
+                switch (option)
+                {
+                    case "f":
+                        _config.personal.gradle.flavor = value;
+                        break;
+                    case "m":
+                        _config.personal.gradle.mode = value;
+                        break;
+                }
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
         }
     }
 }

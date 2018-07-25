@@ -14,6 +14,11 @@ namespace HardHat
             bool cnt = false;
             try
             {
+                if (dir == null)
+                {
+                    throw new ArgumentException(nameof(dir));
+                }
+
                 StringBuilder cmd = new StringBuilder();
                 switch (OS.GetCurrent())
                 {
@@ -33,11 +38,42 @@ namespace HardHat
             return cnt;
         }
 
-        public static void CmdEditor(string dir)
+        public static void CmdEditor(string editor, string dir)
         {
             try
             {
-                $"{_config.editor.open} {dir}".Term(Output.Hidden);
+                if (String.IsNullOrEmpty(editor))
+                {
+                    editor = _config.editor.selected;
+                }
+
+                if (dir == null)
+                {
+                    throw new ArgumentException(nameof(dir));
+                }
+
+                switch (editor)
+                {
+                    case "a":
+                        editor = "studio .";
+                        dir = _path.Combine(dir, _config.project.androidPath);
+                        break;
+                    case "c":
+                        editor = "code .";
+                        break;
+                    case "s":
+                        editor = "sublime .";
+                        break;
+                    case "w":
+                        editor = "wstorm .";
+                        break;
+                    case "x":
+                        editor = "open *.xcodeproj";
+                        dir = _path.Combine(dir, _config.project.iosPath);
+                        break;
+                }
+
+                $"{editor}".Term(Output.Hidden, dir);
             }
             catch (Exception Ex)
             {

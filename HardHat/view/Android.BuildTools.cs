@@ -24,7 +24,7 @@ namespace HardHat
                 Section.Header("FILE", "INFORMATION");
                 Section.SelectedFile();
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.file);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path, _config.personal.selected.file);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Dump Badging...", txtInfo);

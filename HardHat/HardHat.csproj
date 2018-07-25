@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-    <VersionPrefix>6.8.3</VersionPrefix>
+    <VersionPrefix>6.8.4</VersionPrefix>
     <ProjectGuid>{b407f8af-bade-4c29-a9e6-11547ca64281}</ProjectGuid>
 
     <Authors>Camilo Martinez</Authors>

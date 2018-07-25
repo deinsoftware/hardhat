@@ -43,34 +43,34 @@ namespace HardHat
             _config.personal.menu.sonarConfiguration = sonarConfiguration.ToString();
 
             _config.personal.menu.sonarValidation = !Strings.SomeNullOrEmpty(_config.personal.sonar.protocol, _config.personal.sonar.domain, _config.personal.menu.sonarConfiguration);
-            Options.Valid("s", Variables.Valid("sq"));
-            Options.Valid("sq", Variables.Valid("sq"));
-            Options.Valid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("sb", _config.personal.menu.sonarValidation);
+            Options.IsValid("s", Variables.Valid("sq"));
+            Options.IsValid("sq", Variables.Valid("sq"));
+            Options.IsValid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("sb", _config.personal.menu.sonarValidation);
         }
 
         public static void Start()
         {
             if (String.IsNullOrEmpty(_config.personal.menu.sonarConfiguration))
             {
-                _colorify.WriteLine($" [S] Sonar", txtStatus(Options.Valid("s")));
+                _colorify.WriteLine($" [S] Sonar", txtStatus(Options.IsValid("s")));
             }
             else
             {
-                _colorify.Write($" [S] Sonar: ", txtStatus(Options.Valid("s")));
+                _colorify.Write($" [S] Sonar: ", txtStatus(Options.IsValid("s")));
                 Section.Configuration(_config.personal.menu.sonarValidation, _config.personal.menu.sonarConfiguration);
             }
-            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.Valid("sq")));
+            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.IsValid("sq")));
             if (String.IsNullOrEmpty(_config.personal.sonar.internalPath))
             {
-                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.Valid("ss")));
+                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.IsValid("ss")));
             }
             else
             {
-                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.Valid("ss")));
+                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.IsValid("ss")));
                 _colorify.Write($"{_config.personal.sonar.internalPath,-21}", txtDefault);
             }
-            _colorify.WriteLine($"{"[B] Browse",-17}", txtStatus(Options.Valid("sb")));
+            _colorify.WriteLine($"{"[B] Browse",-17}", txtStatus(Options.IsValid("sb")));
             _colorify.BlankLines();
         }
 

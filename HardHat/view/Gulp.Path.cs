@@ -23,9 +23,9 @@ namespace HardHat
 
         public static void PathStatus()
         {
-            Options.Valid("g>pw", Variables.Valid("gp"));
-            Options.Valid("g>pl", Variables.Valid("gp"));
-            Options.Valid("g>pe", Variables.Valid("gp"));
+            Options.IsValid("g>pw", Variables.Valid("gp"));
+            Options.IsValid("g>pl", Variables.Valid("gp"));
+            Options.IsValid("g>pe", Variables.Valid("gp"));
         }
 
         public static void PathServer()

@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.8.4] - 2018-07-25
+
+**Changed:**
+
+* Project Editor can open in default or others with additional options.
+
+**Added:**
+
+* Quick access to gulp server and build configurations.
+
 ## [6.8.3] - 2018-07-24
 
 **Changed:**

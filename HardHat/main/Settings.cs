@@ -18,13 +18,13 @@ namespace HardHat
         {
             Config config = new Config();
 
-            config.project = new ProjectConfiguration();
-            config.project.url = "github.com";
-            config.project.user = "deinsoftware";
-            config.project.name = "hardhat";
-            config.project.content = "blob/master";
-            config.project.readme = "README.md";
-            config.project.changelog = "CHANGELOG.md";
+            config.about = new About();
+            config.about.url = "github.com";
+            config.about.user = "deinsoftware";
+            config.about.name = "hardhat";
+            config.about.content = "blob/master";
+            config.about.readme = "README.md";
+            config.about.changelog = "CHANGELOG.md";
 
             config.path = new PathConfiguration();
             switch (OS.GetCurrent())
@@ -40,13 +40,14 @@ namespace HardHat
             config.path.project = "Projects";
             config.path.filter = "_d*";
 
-            config.android = new AndroidConfiguration();
-            config.android.projectPath = "android";
-            config.android.buildPath = "build/outputs/apk";
-            config.android.buildExtension = ".apk";
-            config.android.mappingSuffix = "-mapping.txt";
-            config.android.hybridFiles = "assets/www";
-            config.android.filterFiles = new string[] { ".js", ".css" };
+            config.project = new ProjectConfiguration();
+            config.project.iosPath = "ios";
+            config.project.androidPath = "android";
+            config.project.androidBuildPath = "build/outputs/apk";
+            config.project.androidBuildExtension = ".apk";
+            config.project.androidMappingSuffix = "-mapping.txt";
+            config.project.androidHybridPath = "assets/www";
+            config.project.filterFiles = new string[] { ".js", ".css" };
 
             config.gulp = new GulpConfiguration();
             config.gulp.webFolder = "server";
@@ -54,7 +55,7 @@ namespace HardHat
             config.gulp.extension = ".json";
 
             config.editor = new EditorConfiguration();
-            config.editor.open = "code";
+            config.editor.selected = "c";
 
             config.vpn = new VpnConfiguration();
             config.vpn.siteName = "";
@@ -107,6 +108,7 @@ namespace HardHat
             config.personal.logcat.priority = "V";
             config.personal.menu = new MenuConfiguration();
             config.personal.menu.selectedOption = "";
+            config.personal.menu.selectedVariant = "";
             config.personal.menu.currentBranch = "";
             config.personal.menu.sonarConfiguration = "";
             config.personal.menu.serverConfiguration = "";
@@ -149,16 +151,16 @@ namespace HardHat
 
     class Config
     {
-        public ProjectConfiguration project { get; set; }
+        public About about { get; set; }
         public PathConfiguration path { get; set; }
-        public AndroidConfiguration android { get; set; }
+        public ProjectConfiguration project { get; set; }
         public GulpConfiguration gulp { get; set; }
         public EditorConfiguration editor { get; set; }
         public VpnConfiguration vpn { get; set; }
         public PersonalConfiguration personal { get; set; }
     }
 
-    class ProjectConfiguration
+    class About
     {
         public string url { get; set; }
         public string user { get; set; }
@@ -176,13 +178,14 @@ namespace HardHat
         public string filter { get; set; }
     }
 
-    class AndroidConfiguration
+    class ProjectConfiguration
     {
-        public string projectPath { get; set; }
-        public string buildPath { get; set; }
-        public string buildExtension { get; set; }
-        public string mappingSuffix { get; set; }
-        public string hybridFiles { get; set; }
+        public string iosPath { get; set; }
+        public string androidPath { get; set; }
+        public string androidBuildPath { get; set; }
+        public string androidBuildExtension { get; set; }
+        public string androidMappingSuffix { get; set; }
+        public string androidHybridPath { get; set; }
         public string[] filterFiles { get; set; }
     }
 
@@ -195,7 +198,7 @@ namespace HardHat
 
     class EditorConfiguration
     {
-        public string open { get; set; }
+        public string selected { get; set; }
     }
 
     class VpnConfiguration
@@ -286,6 +289,7 @@ namespace HardHat
     public class MenuConfiguration
     {
         public string selectedOption { get; set; }
+        public string selectedVariant { get; set; }
         public string currentBranch { get; set; }
         public string sonarConfiguration { get; set; }
         public bool sonarValidation { get; set; }

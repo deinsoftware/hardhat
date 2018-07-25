@@ -92,8 +92,8 @@ namespace HardHat
         {
             UriBuilder uriBuilder = new UriBuilder();
             uriBuilder.Scheme = "https";
-            uriBuilder.Host = _config.project.url;
-            uriBuilder.Path = $"{_config.project.user}/{_config.project.name}/{_config.project.content}/{page}";
+            uriBuilder.Host = _config.about.url;
+            uriBuilder.Path = $"{_config.about.user}/{_config.about.name}/{_config.about.content}/{page}";
             return uriBuilder.ToString();
         }
 
@@ -104,7 +104,7 @@ namespace HardHat
             try
             {
 
-                string url = SiteUrl(_config.project.readme);
+                string url = SiteUrl(_config.about.readme);
                 Browser.CmdOpen(url);
                 Menu.Start();
             }
@@ -120,7 +120,7 @@ namespace HardHat
 
             try
             {
-                string url = SiteUrl(_config.project.changelog);
+                string url = SiteUrl(_config.about.changelog);
                 Browser.CmdOpen(url);
                 Menu.Start();
             }

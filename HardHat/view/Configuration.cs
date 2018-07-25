@@ -23,12 +23,13 @@ namespace HardHat
             opts.Add(new Option { opt = "c>mw", status = true, action = Configuration.PathWorkspace });
             opts.Add(new Option { opt = "c>mp", status = true, action = Configuration.PathProjects });
             opts.Add(new Option { opt = "c>mf", status = true, action = Configuration.PathFilter });
-            opts.Add(new Option { opt = "c>ap", status = true, action = Configuration.AndroidProject });
-            opts.Add(new Option { opt = "c>ab", status = true, action = Configuration.AndroidBuild });
-            opts.Add(new Option { opt = "c>ae", status = true, action = Configuration.AndroidExtension });
-            opts.Add(new Option { opt = "c>am", status = true, action = Configuration.AndroidMappingSuffix });
-            opts.Add(new Option { opt = "c>ac", status = true, action = Configuration.AndroidCompact });
-            opts.Add(new Option { opt = "c>af", status = true, action = Configuration.AndroidFilter });
+            opts.Add(new Option { opt = "c>pi", status = true, action = Configuration.IosProject });
+            opts.Add(new Option { opt = "c>pa", status = true, action = Configuration.AndroidProject });
+            opts.Add(new Option { opt = "c>pb", status = true, action = Configuration.AndroidBuild });
+            opts.Add(new Option { opt = "c>pe", status = true, action = Configuration.AndroidExtension });
+            opts.Add(new Option { opt = "c>pm", status = true, action = Configuration.AndroidMappingSuffix });
+            opts.Add(new Option { opt = "c>pc", status = true, action = Configuration.AndroidCompact });
+            opts.Add(new Option { opt = "c>pf", status = true, action = Configuration.AndroidFilter });
             opts.Add(new Option { opt = "c>e", status = true, action = Configuration.EditorOpenCommand });
             opts.Add(new Option { opt = "c>v", status = true, action = Configuration.VpnSiteName });
             opts.Add(new Option { opt = "c>t", status = true, action = Configuration.ThemeSelector });
@@ -37,7 +38,7 @@ namespace HardHat
 
         public static void Status()
         {
-            Options.Valid("c>v", OS.IsWin());
+            Options.IsValid("c>v", OS.IsWin());
         }
 
         public static void Select()
@@ -53,18 +54,19 @@ namespace HardHat
             _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{_config.path.filter}");
 
             _colorify.BlankLines();
-            _colorify.WriteLine($" [A] Android Path", txtMuted);
-            _colorify.Write($"{"   [P] Project",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.projectPath}");
-            _colorify.Write($"{"   [B] Build",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.buildPath}");
-            _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.buildExtension}");
-            _colorify.Write($"{"   [M] Mapping",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.mappingSuffix}");
-            _colorify.Write($"{"   [C] Compact",-25}", txtPrimary); _colorify.WriteLine($"{_config.android.hybridFiles}");
-            _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{string.Join(",", _config.android.filterFiles)}");
+            _colorify.WriteLine($" [P] Project Path", txtMuted);
+            _colorify.Write($"{"   [I] iOS",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.iosPath}");
+            _colorify.Write($"{"   [A] Android",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidPath}");
+            _colorify.Write($"{"   [A] Project",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidPath}");
+            _colorify.Write($"{"   [B] Build",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidBuildPath}");
+            _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidBuildExtension}");
+            _colorify.Write($"{"   [M] Mapping",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidMappingSuffix}");
+            _colorify.Write($"{"   [C] Compact",-25}", txtPrimary); _colorify.WriteLine($"{_config.project.androidHybridPath}");
+            _colorify.Write($"{"   [F] Filter",-25}", txtPrimary); _colorify.WriteLine($"{string.Join(",", _config.project.filterFiles)}");
 
             _colorify.BlankLines();
-            _colorify.Write($"{" [E] Editor",-25}", txtPrimary); _colorify.WriteLine($"{_config.editor.open}");
-
-
+            string selectedEditor = Selector.Name(Selector.Editor, _config.editor.selected);
+            _colorify.Write($"{" [E] Editor",-25}", txtPrimary); _colorify.WriteLine($"{selectedEditor}");
             _colorify.Write($"{" [V] VPN",-25}", txtStatus(OS.IsWin())); _colorify.WriteLine($"{_config.vpn.siteName}");
             string selectedTheme = Selector.Name(Selector.Theme, _config.personal.theme);
             _colorify.Write($"{" [T] Theme",-25}", txtPrimary); _colorify.WriteLine($"{selectedTheme}");
@@ -293,14 +295,62 @@ namespace HardHat
         }
         #endregion
 
-        #region Android
+        #region Project
+
+
+        public static void IosProject()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("CONFIGURATION", "PROJECT", "IOS");
+
+                _colorify.WriteLine($" iOS folder inside selected project path.", txtPrimary);
+                _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
+
+                Section.HorizontalRule();
+
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
+                if (!String.IsNullOrEmpty(opt))
+                {
+                    string dirPath = _path.Combine(_config.path.development, _config.path.workspace, opt);
+                    if (!_fileSystem.DirectoryExists(dirPath))
+                    {
+                        StringBuilder msg = new StringBuilder();
+                        msg.Append($" Path not found: {Environment.NewLine}");
+                        msg.Append($" '{dirPath}'{Environment.NewLine}");
+
+                        Message.Error(
+                            msg: msg.ToString(),
+                            replace: true
+                        );
+                    }
+                    else
+                    {
+                        _config.project.iosPath = $"{opt}";
+                    }
+                }
+
+                Menu.Status();
+                Select();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
         public static void AndroidProject()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("CONFIGURATION", "ANDROID", "PROJECT");
+                Section.Header("CONFIGURATION", "PROJECT", "ANDROID");
 
                 _colorify.WriteLine($" Android folder inside selected project path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
@@ -328,7 +378,7 @@ namespace HardHat
                     }
                     else
                     {
-                        _config.android.projectPath = $"{opt}";
+                        _config.project.androidPath = $"{opt}";
                     }
                 }
 
@@ -361,7 +411,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.android.buildPath = $"{opt}";
+                    _config.project.androidBuildPath = $"{opt}";
                 }
 
                 Menu.Status();
@@ -393,7 +443,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.android.buildExtension = $".{opt}";
+                    _config.project.androidBuildExtension = $".{opt}";
                 }
 
                 Menu.Status();
@@ -424,7 +474,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.android.mappingSuffix = $"{opt}";
+                    _config.project.androidMappingSuffix = $"{opt}";
                 }
 
                 Menu.Status();
@@ -456,7 +506,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.android.hybridFiles = $"{opt}";
+                    _config.project.androidHybridPath = $"{opt}";
                 }
 
                 Menu.Status();
@@ -494,7 +544,7 @@ namespace HardHat
                     {
                         list[i] = $".{list[i]}";
                     }
-                    _config.android.filterFiles = list;
+                    _config.project.filterFiles = list;
                 }
 
                 Menu.Status();
@@ -517,19 +567,8 @@ namespace HardHat
             {
                 Section.Header("CONFIGURATION", "EDITOR");
 
-                _colorify.WriteLine($" Open command for Editor.", txtPrimary);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Cancel",82}", txtDanger);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine().Trim();
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    _config.editor.open = $"{opt}";
-                }
+                string opt = Selector.Start(Selector.Editor, "c");
+                _config.editor.selected = $"{opt}";
 
                 Menu.Status();
                 Select();

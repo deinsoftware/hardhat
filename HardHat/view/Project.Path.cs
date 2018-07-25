@@ -20,7 +20,7 @@ namespace HardHat
                 Section.Header("PROJECT", "PATH");
 
                 string developmentPath = _path.Combine(_config.path.development);
-                string workspacePath = _path.Combine(_config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path);
+                string workspacePath = _path.Combine(_config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path);
 
                 _colorify.Write($"{" Path:",-15}", txtMuted);
                 _colorify.WriteLine($"{developmentPath}");
@@ -68,7 +68,7 @@ namespace HardHat
         {
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path);
                 Clipboard.Copy(dirPath);
                 Menu.Start();
             }
@@ -92,7 +92,7 @@ namespace HardHat
         {
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path);
                 Clipboard.Copy(_path.Combine(dirPath, fileName));
                 Menu.Start();
             }

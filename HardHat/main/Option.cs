@@ -11,6 +11,7 @@ namespace HardHat
         public string opt { get; set; }
         public bool status { get; set; }
         public Action action { get; set; }
+        public string variant { get; set; }
     }
 
     public static class Options
@@ -46,7 +47,7 @@ namespace HardHat
             }
         }
 
-        public static bool Valid(string opt)
+        public static bool IsValid(string opt)
         {
             var response = false;
             try
@@ -64,7 +65,7 @@ namespace HardHat
             return response;
         }
 
-        public static void Valid(string opt, bool status)
+        public static void IsValid(string opt, bool status)
         {
             try
             {
@@ -80,7 +81,7 @@ namespace HardHat
             }
         }
 
-        public static Action Action(string opt, string defaultValue = "m")
+        public static Action GetAction(string opt, string defaultValue = "m")
         {
             Action response = Menu.Start;
             try
@@ -100,6 +101,28 @@ namespace HardHat
                 Exceptions.General(Ex);
             }
             return response;
+        }
+
+        public static string GetVariant(string opt)
+        {
+            string variant = "";
+            try
+            {
+                var option = list.FirstOrDefault(x => x.opt == opt);
+                if (option != null)
+                {
+                    variant = option.variant;
+                }
+                else
+                {
+                    Message.Error();
+                }
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+            return variant;
         }
     }
 }

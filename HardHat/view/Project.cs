@@ -17,6 +17,11 @@ namespace HardHat
             opts.Add(new Option { opt = "pf", status = false, action = Project.SelectFile });
             opts.Add(new Option { opt = "po", status = false, action = Project.Open });
             opts.Add(new Option { opt = "pe", status = false, action = Project.Editor });
+            opts.Add(new Option { opt = "pe>a", status = false, action = Project.Editor, variant = "a" });
+            opts.Add(new Option { opt = "pe>c", status = false, action = Project.Editor, variant = "c" });
+            opts.Add(new Option { opt = "pe>s", status = false, action = Project.Editor, variant = "s" });
+            opts.Add(new Option { opt = "pe>w", status = false, action = Project.Editor, variant = "w" });
+            opts.Add(new Option { opt = "pe>x", status = false, action = Project.Editor, variant = "x" });
             opts.Add(new Option { opt = "pi", status = false, action = Adb.Install });
             opts.Add(new Option { opt = "pp", status = false, action = Project.Path });
             opts.Add(new Option { opt = "pp>p", status = false, action = Project.CopyPath });
@@ -33,8 +38,8 @@ namespace HardHat
                 _config.personal.selected.project = "";
                 _config.personal.selected.file = "";
             }
-            Options.Valid("p", true);
-            string selectedFile = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.file);
+            Options.IsValid("p", true);
+            string selectedFile = _path.Combine(dirPath, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path, _config.personal.selected.file);
             if (!File.Exists(selectedFile))
             {
                 _config.personal.selected.path = "";
@@ -45,18 +50,23 @@ namespace HardHat
                 _config.personal.selected.mapping = "";
                 _config.personal.selected.mappingStatus = false;
             }
-            string selectedFileMapping = _path.Combine(dirPath, _config.android.projectPath, _config.android.buildPath, _config.personal.selected.path, _config.personal.selected.mapping);
+            string selectedFileMapping = _path.Combine(dirPath, _config.project.androidPath, _config.project.androidBuildPath, _config.personal.selected.path, _config.personal.selected.mapping);
             _config.personal.selected.mappingStatus = File.Exists(selectedFileMapping);
-            Options.Valid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.Valid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pp>m", _config.personal.selected.mappingStatus);
-            Options.Valid("pp>d", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.Valid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe>a", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe>c", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe>s", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe>w", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pe>x", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pp>m", _config.personal.selected.mappingStatus);
+            Options.IsValid("pp>d", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Options.IsValid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
         }
 
         public static void Start()
@@ -73,7 +83,7 @@ namespace HardHat
 
             if (String.IsNullOrEmpty(_config.personal.selected.project))
             {
-                _colorify.WriteLine($"   [F] Select File", txtStatus(Options.Valid("pf")));
+                _colorify.WriteLine($"   [F] Select File", txtStatus(Options.IsValid("pf")));
             }
             else
             {
@@ -85,9 +95,9 @@ namespace HardHat
 
             _colorify.Write($"{"   [O] Open",-17}", txtPrimary);
             _colorify.Write($"{"[E] Editor",-17}", txtPrimary);
-            _colorify.Write($"{"[I] Install",-17}", txtStatus(Options.Valid("pi")));
-            _colorify.Write($"{"[P] Path",-17}", txtStatus(Options.Valid("pp")));
-            _colorify.WriteLine($"{"[V] Values",-17}", txtStatus(Options.Valid("pv")));
+            _colorify.Write($"{"[I] Install",-17}", txtStatus(Options.IsValid("pi")));
+            _colorify.Write($"{"[P] Path",-17}", txtStatus(Options.IsValid("pp")));
+            _colorify.WriteLine($"{"[V] Values",-17}", txtStatus(Options.IsValid("pv")));
 
             _colorify.BlankLines();
         }
@@ -151,9 +161,9 @@ namespace HardHat
             {
                 Section.Header("PROJECT", "SELECT FILE");
 
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.android.projectPath, _config.android.buildPath);
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidBuildPath);
                 dirPath.Exists("Please review your configuration file or make a build first.");
-                List<string> files = dirPath.Files($"*{_config.android.buildExtension}", "Please make a build first.", SearchOption.AllDirectories);
+                List<string> files = dirPath.Files($"*{_config.project.androidBuildExtension}", "Please make a build first.", SearchOption.AllDirectories);
 
                 if (files.Count < 1)
                 {
@@ -188,7 +198,7 @@ namespace HardHat
                     var sel = files[Convert.ToInt32(opt) - 1];
                     _config.personal.selected.path = _path.Split(_path.GetDirectoryName(sel), dirPath);
                     _config.personal.selected.file = _path.GetFileName(sel);
-                    _config.personal.selected.mapping = _config.personal.selected.file.Replace(_config.android.buildExtension, _config.android.mappingSuffix);
+                    _config.personal.selected.mapping = _config.personal.selected.file.Replace(_config.project.androidBuildExtension, _config.project.androidMappingSuffix);
                     _config.personal.selected.packageName = BuildTools.CmdGetPackage(sel, "name", 1);
                     _config.personal.selected.versionCode = BuildTools.CmdGetPackage(sel, "versionCode", 2);
                     _config.personal.selected.versionName = BuildTools.CmdGetPackage(sel, "versionName", 3);
@@ -225,8 +235,23 @@ namespace HardHat
 
             try
             {
+                EditorLauncher(_config.personal.menu.selectedVariant);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+
+        private static void EditorLauncher(string editor)
+        {
+            _colorify.Clear();
+
+            try
+            {
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
-                CmdEditor(dirPath);
+                CmdEditor(editor, dirPath);
 
                 Menu.Start();
             }
@@ -235,5 +260,6 @@ namespace HardHat
                 Exceptions.General(Ex);
             }
         }
+
     }
 }

@@ -222,19 +222,22 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
 | <kbd>pv</kbd> | Show full information, values, signature and hash about selected file. |
 
-Editor can be configured in Config section:
+##### Editor
 
-| command | editor |
+| combination | action |
 | --- | --- |
-| code | Visual Studio Code. |
-| studio | Android Studio. **\*** |
-| sublime | Sublime Text 3. |
-| wstorm | Web Storm. **\*** |
+| <kbd>pe>a</kbd> | Android Studio. **\*** (open android folder) |
+| <kbd>pe>c</kbd> | Visual Studio Code. |
+| <kbd>pe>s</kbd> | Sublime Text 3. |
+| <kbd>pe>w</kbd> | Web Storm. **\*** |
+| <kbd>pe>x</kbd> | Xcode (pen ios folder) |
 
 **\*** Requires enable `Tools -> Create Command-line Launcher` and works only for Linux / MacOS.
 
 ##### Path
 
+| combination | action |
+| --- | --- |
 | <kbd>pp>p</kbd> | Copy project path to clipboard. |
 | <kbd>pp>f</kbd> | Copy file path to clipboard. |
 | <kbd>pp>m</kbd> | Copy mapping file path to clipboard. |
@@ -266,12 +269,16 @@ Editor can be configured in Config section:
 
 ##### Path Configuration
 
+| combination | action |
+| --- | --- |
 | <kbd>g>pw</kbd> | Web Server path with configurations. |
 | <kbd>g>pl</kbd> | Log path with configurations. |
 | <kbd>g>pe</kbd> | Extension name for configurations. |
 
 ##### Server (Web/Log) Configuration
 
+| combination | action |
+| --- | --- |
 | <kbd>g>sp</kbd> | Protocol. |
 | <kbd>g>si</kbd> | Internal Path inside server configuration. |
 | <kbd>g>sc</kbd> | Configuration file with web server configuration. |
@@ -282,12 +289,29 @@ Editor can be configured in Config section:
 
 ##### FTP Configuration
 
+| combination | action |
+| --- | --- |
 | <kbd>g>fh</kbd> | Host. |
 | <kbd>g>fp</kbd> | Port. |
 | <kbd>g>fa</kbd> | Authentication file path. |
 | <kbd>g>fk</kbd> | Key name inside authentication file. |
 | <kbd>g>fr</kbd> | Remote Path. |
 | <kbd>g>fd</kbd> | Dimension. |
+
+##### Quick Server Configuration
+| combination | option | value |
+| --- | --- | --- | --- |
+| g>f:a | Flavor | Alfa |
+| g>f:b | Flavor | Beta |
+| g>f:m | Flavor | Mntn |
+| g>f:s | Flavor | Stag |
+| g>f:p | Flavor | Prod |
+| g>f:d | Flavor | Desk |
+| g>n:1 | Number | 1 |
+| g>n:2 | Number | 2 |
+| g>n:3 | Number | 3 |
+| g>n:4 | Number | 4 |
+| g>n:5 | Number | 5 |
 
 #### Build
 
@@ -307,6 +331,18 @@ If you have some pre-configured files to be copied to project path, add it on `A
 * gradle.properties
 * keystore/development.properties
 * keystore/production.properties
+
+##### Quick Build Configuration
+| combination | option | value |
+| --- | --- | --- | --- |
+| b>f:a | Flavor | Alfa |
+| b>f:b | Flavor | Beta |
+| b>f:m | Flavor | Mntn |
+| b>f:s | Flavor | Stag |
+| b>f:p | Flavor | Prod |
+| b>f:d | Flavor | Desk |
+| b>m:d | Mode | Debug |
+| b>m:r | Mode | Release |
 
 #### Sonar
 

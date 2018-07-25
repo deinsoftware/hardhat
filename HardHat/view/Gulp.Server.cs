@@ -21,7 +21,18 @@ namespace HardHat
             opts.Add(new Option { opt = "g>si", status = false, action = Gulp.InternalPath });
             opts.Add(new Option { opt = "g>sc", status = false, action = Gulp.ConfigurationFile });
             opts.Add(new Option { opt = "g>sf", status = false, action = Gulp.Flavor });
+            opts.Add(new Option { opt = "g>f:a", status = false, action = Gulp.Quick, variant = "f:a" });
+            opts.Add(new Option { opt = "g>f:b", status = false, action = Gulp.Quick, variant = "f:b" });
+            opts.Add(new Option { opt = "g>f:m", status = false, action = Gulp.Quick, variant = "f:m" });
+            opts.Add(new Option { opt = "g>f:s", status = false, action = Gulp.Quick, variant = "f:s" });
+            opts.Add(new Option { opt = "g>f:p", status = false, action = Gulp.Quick, variant = "f:p" });
+            opts.Add(new Option { opt = "g>f:d", status = false, action = Gulp.Quick, variant = "f:d" });
             opts.Add(new Option { opt = "g>sn", status = false, action = Gulp.ServerNumber });
+            opts.Add(new Option { opt = "g>n:1", status = false, action = Gulp.Quick, variant = "n:1" });
+            opts.Add(new Option { opt = "g>n:2", status = false, action = Gulp.Quick, variant = "n:2" });
+            opts.Add(new Option { opt = "g>n:3", status = false, action = Gulp.Quick, variant = "n:3" });
+            opts.Add(new Option { opt = "g>n:4", status = false, action = Gulp.Quick, variant = "n:4" });
+            opts.Add(new Option { opt = "g>n:5", status = false, action = Gulp.Quick, variant = "n:5" });
             opts.Add(new Option { opt = "g>ss", status = false, action = Gulp.Sync });
             opts.Add(new Option { opt = "g>so", status = false, action = Gulp.Open });
         }
@@ -44,14 +55,25 @@ namespace HardHat
             _config.personal.menu.serverConfiguration = serverConfiguration.ToString();
             _config.personal.menu.serverValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.serverConfiguration);
 
-            Options.Valid("gs", Variables.Valid("gp") && _config.personal.menu.serverValidation);
-            Options.Valid("g>sp", Variables.Valid("gp"));
-            Options.Valid("g>si", Variables.Valid("gp"));
-            Options.Valid("g>sc", Variables.Valid("gp"));
-            Options.Valid("g>sf", Variables.Valid("gp"));
-            Options.Valid("g>sn", Variables.Valid("gp"));
-            Options.Valid("g>ss", Variables.Valid("gp"));
-            Options.Valid("g>so", Variables.Valid("gp"));
+            Options.IsValid("gs", Variables.Valid("gp") && _config.personal.menu.serverValidation);
+            Options.IsValid("g>sp", Variables.Valid("gp"));
+            Options.IsValid("g>si", Variables.Valid("gp"));
+            Options.IsValid("g>sc", Variables.Valid("gp"));
+            Options.IsValid("g>sf", Variables.Valid("gp"));
+            Options.IsValid("g>f:a", Variables.Valid("gp"));
+            Options.IsValid("g>f:b", Variables.Valid("gp"));
+            Options.IsValid("g>f:m", Variables.Valid("gp"));
+            Options.IsValid("g>f:s", Variables.Valid("gp"));
+            Options.IsValid("g>f:p", Variables.Valid("gp"));
+            Options.IsValid("g>f:d", Variables.Valid("gp"));
+            Options.IsValid("g>sn", Variables.Valid("gp"));
+            Options.IsValid("g>n:1", Variables.Valid("gp"));
+            Options.IsValid("g>n:2", Variables.Valid("gp"));
+            Options.IsValid("g>n:3", Variables.Valid("gp"));
+            Options.IsValid("g>n:4", Variables.Valid("gp"));
+            Options.IsValid("g>n:5", Variables.Valid("gp"));
+            Options.IsValid("g>ss", Variables.Valid("gp"));
+            Options.IsValid("g>so", Variables.Valid("gp"));
         }
 
         public static void Protocol()
@@ -286,6 +308,32 @@ namespace HardHat
                     _config.personal.webServer,
                     _config.personal.ipAddress
                 );
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Quick()
+        {
+            try
+            {
+                string[] variant = _config.personal.menu.selectedVariant.Split(':');
+                string option = variant[0];
+                string value = variant[1];
+
+                switch (option)
+                {
+                    case "f":
+                        _config.personal.webServer.flavor = value;
+                        break;
+                    case "n":
+                        _config.personal.webServer.number = value;
+                        break;
+                }
+
                 Menu.Start();
             }
             catch (Exception Ex)
