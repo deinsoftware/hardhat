@@ -25,19 +25,19 @@ namespace HardHat
             Section.Header("INFORMATION");
 
             _colorify.WriteLine(" Required", txtInfo);
-            _colorify.Write($"{" Gradle",-25}", txtPrimary); Version.CmdGradle();
-            _colorify.Write($"{" Gulp",-25}", txtPrimary); Version.CmdGulp();
-            _colorify.Write($"{" Java",-25}", txtPrimary); Version.CmdJava();
-            _colorify.Write($"{" Node",-25}", txtPrimary); Version.CmdNode();
-            _colorify.Write($"{" NPM",-25}", txtPrimary); Version.CmdNPM();
+            _colorify.Write($"{" Gradle",-17}", txtPrimary); Version.CmdGradle();
+            _colorify.Write($"{" Gulp",-17}", txtPrimary); Version.CmdGulp();
+            _colorify.Write($"{" Java",-17}", txtPrimary); Version.CmdJava();
+            _colorify.Write($"{" Node",-17}", txtPrimary); Version.CmdNode();
+            _colorify.Write($"{" NPM",-17}", txtPrimary); Version.CmdNPM();
 
             _colorify.BlankLines();
             _colorify.WriteLine(" Optional", txtInfo);
-            _colorify.Write($"{" Cordova",-25}", txtPrimary); Version.CmdCordova();
-            _colorify.Write($"{" GIT",-25}", txtPrimary); Version.CmdGit();
-            _colorify.Write($"{" NativeScript",-25}", txtPrimary); Version.CmdNativescript();
-            _colorify.Write($"{" TypeScript",-25}", txtPrimary); Version.CmdTypescript();
-            _colorify.Write($"{" SonarScanner",-25}", txtPrimary); Version.CmdSonarScanner();
+            _colorify.Write($"{" Cordova",-17}", txtPrimary); Version.CmdCordova();
+            _colorify.Write($"{" GIT",-17}", txtPrimary); Version.CmdGit();
+            _colorify.Write($"{" NativeScript",-17}", txtPrimary); Version.CmdNativescript();
+            _colorify.Write($"{" TypeScript",-17}", txtPrimary); Version.CmdTypescript();
+            _colorify.Write($"{" SonarScanner",-17}", txtPrimary); Version.CmdSonarScanner();
 
             _colorify.BlankLines();
             _colorify.Write($"{" [R] Readme",-17}", txtInfo);
