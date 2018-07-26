@@ -134,7 +134,7 @@ namespace HardHat
             }
         }
 
-        public static void CmdLogcat(string device, string priority, string pid = "")
+        public static void CmdLogcat(string device, LogcatConfiguration logcat, string pid = "")
         {
             try
             {
@@ -150,9 +150,9 @@ namespace HardHat
                 }
                 cmd.Append(" logcat");
                 cmd.Append($" *:");
-                if (!String.IsNullOrEmpty(priority))
+                if (!String.IsNullOrEmpty(logcat.priority))
                 {
-                    cmd.Append($"{priority.ToUpper()}");
+                    cmd.Append($"{logcat.priority.ToUpper()}");
                 }
                 else
                 {
@@ -164,6 +164,22 @@ namespace HardHat
                 {
                     cmd.Append($" --pid={pid}");
                 }
+
+                if (!String.IsNullOrEmpty(logcat.filter))
+                {
+                    cmd.Append($" | ");
+                    switch (OS.GetCurrent())
+                    {
+                        case "win":
+                            cmd.Append($"findstr ");
+                            break;
+                        case "mac":
+                            cmd.Append($"egrep -i ");
+                            break;
+                    }
+                    cmd.Append($"{logcat.filter}");
+                }
+
                 cmd.ToString().Term(Output.External);
             }
             catch (Exception Ex)

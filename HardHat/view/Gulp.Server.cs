@@ -118,7 +118,7 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
                 string opt = Console.ReadLine().Trim();
                 _config.personal.webServer.internalPath = $"{opt}";
 
@@ -234,7 +234,7 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _colorify.Write($"{" Make your choice: ",-25}", txtInfo);
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
                 string opt = Console.ReadLine().Trim();
 
                 if (!String.IsNullOrEmpty(opt))

@@ -106,6 +106,7 @@ namespace HardHat
             config.personal.logcat = new LogcatConfiguration();
             config.personal.logcat.application = "";
             config.personal.logcat.priority = "V";
+            config.personal.logcat.filter = "";
             config.personal.menu = new MenuConfiguration();
             config.personal.menu.selectedOption = "";
             config.personal.menu.selectedVariant = "";
@@ -280,10 +281,11 @@ namespace HardHat
         public bool wifiStatus { get; set; }
     }
 
-    class LogcatConfiguration
+    public class LogcatConfiguration
     {
         public string application { get; set; }
         public string priority { get; set; }
+        public string filter { get; set; }
     }
 
     public class MenuConfiguration

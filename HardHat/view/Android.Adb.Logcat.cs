@@ -20,6 +20,7 @@ namespace HardHat
             opts.Add(new Option { opt = "al", status = true, action = Adb.Logcat });
             opts.Add(new Option { opt = "al>a", status = true, action = Adb.Application });
             opts.Add(new Option { opt = "al>p", status = true, action = Adb.Priority });
+            opts.Add(new Option { opt = "al>f", status = true, action = Adb.Filter });
             opts.Add(new Option { opt = "al>s", status = true, action = Adb.Show });
         }
 
@@ -42,6 +43,7 @@ namespace HardHat
                 _colorify.Write($"{" [A] Application:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.logcat.application}");
                 string logcatPriority = Selector.Name(Selector.Priority, _config.personal.logcat.priority);
                 _colorify.Write($"{" [P] Priority:",-25}", txtPrimary); _colorify.WriteLine($"{logcatPriority}");
+                _colorify.Write($"{" [F] Filter:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.logcat.filter}");
 
                 _colorify.BlankLines();
                 _colorify.Write($"{" [S] Show",-68}", txtPrimary);
@@ -98,7 +100,7 @@ namespace HardHat
                 }
                 else
                 {
-                    _config.personal.logcat.application = opt;
+                    _config.personal.logcat.application = $"{opt}";
                 }
 
                 Menu.Status();
@@ -131,6 +133,38 @@ namespace HardHat
             }
         }
 
+        public static void Filter()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("LOGCAT", "FILTER");
+
+                Section.SelectedFile();
+                Section.SelectedPackageName();
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($" Write filter.", txtPrimary);
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($"{"[EMPTY] Remove",82}", txtWarning);
+
+                Section.HorizontalRule();
+
+                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
+                string opt = Console.ReadLine().Trim();
+                _config.personal.logcat.filter = $"{opt}";
+
+                Menu.Status();
+                SelectLogcat();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         public static void Show()
         {
             _colorify.Clear();
@@ -149,7 +183,7 @@ namespace HardHat
                             Message.Alert($" There is no app running with {_config.personal.logcat.application} package name.");
                         }
                     }
-                    CmdLogcat(_config.personal.adb.deviceName, _config.personal.logcat.priority, pid);
+                    CmdLogcat(_config.personal.adb.deviceName, _config.personal.logcat, pid);
                 }
                 else
                 {

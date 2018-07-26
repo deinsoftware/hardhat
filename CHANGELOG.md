@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.8.5] - 2018-07-26
+
+**Added:**
+
+* Filter value on logcat.
+
 ## [6.8.4] - 2018-07-25
 
 **Changed:**
