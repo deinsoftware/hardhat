@@ -300,7 +300,7 @@ Choose desired letter combination and let **HardHat** work for you.
 
 ##### Quick Server Configuration
 | combination | option | value |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | g>f:a | Flavor | Alfa |
 | g>f:b | Flavor | Beta |
 | g>f:m | Flavor | Mntn |
@@ -334,7 +334,7 @@ If you have some pre-configured files to be copied to project path, add it on `A
 
 ##### Quick Build Configuration
 | combination | option | value |
-| --- | --- | --- | --- |
+| --- | --- | --- |
 | b>f:a | Flavor | Alfa |
 | b>f:b | Flavor | Beta |
 | b>f:m | Flavor | Mntn |
