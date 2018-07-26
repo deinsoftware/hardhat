@@ -224,13 +224,13 @@ Choose desired letter combination and let **HardHat** work for you.
 
 ##### Editor
 
-| combination | action |
-| --- | --- |
-| <kbd>pe>a</kbd> | Android Studio. **\*** (open android folder) |
-| <kbd>pe>c</kbd> | Visual Studio Code. |
-| <kbd>pe>s</kbd> | Sublime Text 3. |
-| <kbd>pe>w</kbd> | Web Storm. **\*** |
-| <kbd>pe>x</kbd> | Xcode (pen ios folder) |
+| combination | action | path |
+| --- | --- | --- |
+| <kbd>pe>a</kbd> | Android Studio. **\*** | project/android |
+| <kbd>pe>c</kbd> | Visual Studio Code. | project |
+| <kbd>pe>s</kbd> | Sublime Text 3. | project |
+| <kbd>pe>w</kbd> | Web Storm. **\*** | project |
+| <kbd>pe>x</kbd> | Xcode | project/ios |
 
 **\*** Requires enable `Tools -> Create Command-line Launcher` and works only for Linux / MacOS.
 
