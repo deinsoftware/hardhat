@@ -301,17 +301,17 @@ Choose desired letter combination and let **HardHat** work for you.
 ##### Quick Server Configuration
 | combination | option | value |
 | --- | --- | --- |
-| g>f:a | Flavor | Alfa |
-| g>f:b | Flavor | Beta |
-| g>f:m | Flavor | Mntn |
-| g>f:s | Flavor | Stag |
-| g>f:p | Flavor | Prod |
-| g>f:d | Flavor | Desk |
-| g>n:1 | Number | 1 |
-| g>n:2 | Number | 2 |
-| g>n:3 | Number | 3 |
-| g>n:4 | Number | 4 |
-| g>n:5 | Number | 5 |
+| <kbd>g>f:a</kbd> | Flavor | Alfa |
+| <kbd>g>f:b</kbd> | Flavor | Beta |
+| <kbd>g>f:m</kbd> | Flavor | Mntn |
+| <kbd>g>f:s</kbd> | Flavor | Stag |
+| <kbd>g>f:p</kbd> | Flavor | Prod |
+| <kbd>g>f:d</kbd> | Flavor | Desk |
+| <kbd>g>n:1</kbd> | Number | 1 |
+| <kbd>g>n:2</kbd> | Number | 2 |
+| <kbd>g>n:3</kbd> | Number | 3 |
+| <kbd>g>n:4</kbd> | Number | 4 |
+| <kbd>g>n:5</kbd> | Number | 5 |
 
 #### Build
 
@@ -335,14 +335,14 @@ If you have some pre-configured files to be copied to project path, add it on `A
 ##### Quick Build Configuration
 | combination | option | value |
 | --- | --- | --- |
-| b>f:a | Flavor | Alfa |
-| b>f:b | Flavor | Beta |
-| b>f:m | Flavor | Mntn |
-| b>f:s | Flavor | Stag |
-| b>f:p | Flavor | Prod |
-| b>f:d | Flavor | Desk |
-| b>m:d | Mode | Debug |
-| b>m:r | Mode | Release |
+| <kbd>b>f:a</kbd> | Flavor | Alfa |
+| <kbd>b>f:b</kbd> | Flavor | Beta |
+| <kbd>b>f:m</kbd> | Flavor | Mntn |
+| <kbd>b>f:s</kbd> | Flavor | Stag |
+| <kbd>b>f:p</kbd> | Flavor | Prod |
+| <kbd>b>f:d</kbd> | Flavor | Desk |
+| <kbd>b>m:d</kbd> | Mode | Debug |
+| <kbd>b>m:r</kbd> | Mode | Release |
 
 #### Sonar
 
