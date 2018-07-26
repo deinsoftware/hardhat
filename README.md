@@ -60,7 +60,7 @@ What things you need to install?
 
 Windows only
 
-* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (Windows only)
+* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck)
 
 Optional
 
@@ -138,7 +138,7 @@ alias x="exit"
 alias sb="source ~/.bash_profile"
 ```
 
-On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. And omit `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
+On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. Skip `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
 
 With **H**ard**H**at alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
