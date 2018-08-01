@@ -33,11 +33,13 @@ namespace HardHat
 
             _colorify.BlankLines();
             _colorify.WriteLine(" Optional", txtInfo);
+            _colorify.Write($"{" Angular CLI",-17}", txtPrimary); Version.CmdAngular();
             _colorify.Write($"{" Cordova",-17}", txtPrimary); Version.CmdCordova();
             _colorify.Write($"{" GIT",-17}", txtPrimary); Version.CmdGit();
             _colorify.Write($"{" NativeScript",-17}", txtPrimary); Version.CmdNativescript();
             _colorify.Write($"{" TypeScript",-17}", txtPrimary); Version.CmdTypescript();
             _colorify.Write($"{" SonarScanner",-17}", txtPrimary); Version.CmdSonarScanner();
+            _colorify.Write($"{" Yarn",-17}", txtPrimary); Version.CmdYarn();
 
             _colorify.BlankLines();
             _colorify.Write($"{" [R] Readme",-17}", txtInfo);

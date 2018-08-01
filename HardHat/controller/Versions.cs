@@ -83,6 +83,20 @@ namespace HardHat
 
         #region Optional
 
+        public static void CmdAngular()
+        {
+            try
+            {
+                Response result = $"ng -v".Term();
+                string response = Shell.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
+                Shell.Result(response);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         public static void CmdCordova()
         {
             try
@@ -144,6 +158,19 @@ namespace HardHat
                 Response result = $"sonar-scanner -v".Term();
                 string response = Shell.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
                 Shell.Result(response);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void CmdYarn()
+        {
+            try
+            {
+                Response result = $"tns --version".Term();
+                Shell.Result(result.stdout);
             }
             catch (Exception Ex)
             {

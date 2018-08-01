@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.0] - 2018-08-01
+
+**Added:**
+
+* Angular CLI & Yarn version information.
+
 ## [6.8.5] - 2018-07-26
 
 **Added:**
