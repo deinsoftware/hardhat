@@ -12,7 +12,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 ## [6.9.1] - 2018-08-22
 
 **Changed:**
-
+* Upgrade from .Net Core 2.0 to 2.1.
 * Update Colorify Library to 1.0.8.
 
 ## [6.9.0] - 2018-08-01
