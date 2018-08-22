@@ -7,9 +7,9 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/win10-x64": {
-      "HardHat/6.9.1": {
+      "HardHat/6.9.2": {
         "dependencies": {
-          "Colorify": "1.0.8",
+          "Colorify": "2.0.0",
           "Microsoft.NETCore.App": "2.0.9",
           "Newtonsoft.Json": "11.0.2",
           "ToolBox": "1.2.1"
@@ -868,10 +868,7 @@
           }
         }
       },
-      "Colorify/1.0.8": {
-        "dependencies": {
-          "ToolBox": "1.2.1"
-        },
+      "Colorify/2.0.0": {
         "runtime": {
           "Colorify.dll": {}
         }
@@ -887,7 +884,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.9.1": {
+    "HardHat/6.9.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -969,7 +966,7 @@
       "path": "runtime.win-x64.microsoft.netcore.dotnethostresolver/2.0.9",
       "hashPath": "runtime.win-x64.microsoft.netcore.dotnethostresolver.2.0.9.nupkg.sha512"
     },
-    "Colorify/1.0.8": {
+    "Colorify/2.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
