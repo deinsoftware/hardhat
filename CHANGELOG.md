@@ -9,9 +9,21 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.2] - 2018-08-22
+
+**Changed:**
+
+* Update Colorify Library to 2.0.0.
+* Logcat for Application.
+
+**Fixed:**
+
+* Selected file status.
+
 ## [6.9.1] - 2018-08-22
 
 **Changed:**
+
 * Upgrade from .Net Core 2.0 to 2.1.
 * Update Colorify Library to 1.0.8.
 

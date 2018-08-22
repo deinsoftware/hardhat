@@ -104,7 +104,6 @@ namespace HardHat
             config.personal.adb.wifiPort = "";
             config.personal.adb.wifiStatus = false;
             config.personal.logcat = new LogcatConfiguration();
-            config.personal.logcat.application = "";
             config.personal.logcat.priority = "V";
             config.personal.logcat.filter = "";
             config.personal.menu = new MenuConfiguration();
@@ -283,7 +282,6 @@ namespace HardHat
 
     public class LogcatConfiguration
     {
-        public string application { get; set; }
         public string priority { get; set; }
         public string filter { get; set; }
     }

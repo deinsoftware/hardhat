@@ -81,7 +81,7 @@ namespace HardHat
                 _colorify.WriteLine($"{_config.personal.selected.project}");
             }
 
-            if (String.IsNullOrEmpty(_config.personal.selected.project))
+            if (String.IsNullOrEmpty(_config.personal.selected.file))
             {
                 _colorify.WriteLine($"   [F] Select File", txtStatus(Options.IsValid("pf")));
             }
