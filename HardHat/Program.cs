@@ -29,6 +29,7 @@ namespace HardHat
 
                 Menu.Start();
                 _colorify.ResetColor();
+                _colorify.Clear();
             }
             catch (Exception Ex)
             {
