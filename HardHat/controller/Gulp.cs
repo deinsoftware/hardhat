@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Platform;
 using static HardHat.Program;
 
@@ -11,14 +12,24 @@ namespace HardHat
     {
         private static string DirPath()
         {
-            return _path.Combine(Variables.Value("gp"));
+            string path = "";
+            try
+            {
+                path = _path.Combine(Variables.Value("gp"));
+                _fileSystem.DirectoryExists(path);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+            return path;
         }
 
         public static void CmdUglify()
         {
             try
             {
-                $"gulp build".Term(Output.Internal, DirPath());
+                _shell.Term($"gulp build", Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {
@@ -36,7 +47,7 @@ namespace HardHat
                 {
                     cmd.Append($" --ptf {platform}");
                 }
-                cmd.ToString().Term(Output.External, DirPath());
+                _shell.Term(cmd.ToString(), Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -54,7 +65,7 @@ namespace HardHat
                 {
                     cmd.Append($" --ptf {platform}");
                 }
-                cmd.ToString().Term(Output.Internal, DirPath());
+                _shell.Term(cmd.ToString(), Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {
@@ -90,7 +101,7 @@ namespace HardHat
                 cmd.Append($" --sync {(webServer.sync ? "Y" : "N")}");
                 cmd.Append($" --open {(webServer.open ? "Y" : "N")}");
                 cmd.Append($" --os {OS.GetCurrent()}");
-                cmd.ToString().Term(Output.External, DirPath());
+                _shell.Term(cmd.ToString(), Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -116,7 +127,7 @@ namespace HardHat
                 }
                 cmd.Append($" --lcp {path}");
                 cmd.Append($" --rmp {_path.Combine(ftpServer.remotePath, ftpServer.dimension, ftpServer.resourcePath)}");
-                cmd.ToString().Term(Output.External, DirPath());
+                _shell.Term(cmd.ToString(), Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -139,7 +150,7 @@ namespace HardHat
                 {
                     cmd.Append($" --srv {webServer.number}");
                 }
-                cmd.ToString().Term(Output.External, DirPath());
+                _shell.Term(cmd.ToString(), Output.External, DirPath());
             }
             catch (Exception Ex)
             {
@@ -151,7 +162,7 @@ namespace HardHat
         {
             try
             {
-                $"npm i -f".Term(Output.Hidden, DirPath());
+                _shell.Term($"npm i -f", Output.Hidden, DirPath());
             }
             catch (Exception Ex)
             {

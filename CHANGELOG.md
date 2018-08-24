@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.3] - 2018-08-24
+
+**Changed:**
+
+* Update Toolbox Library to 1.3.0.
+
 ## [6.9.2] - 2018-08-22
 
 **Changed:**

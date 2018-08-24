@@ -9,6 +9,7 @@ using ToolBox.Platform;
 using ToolBox.System;
 using ToolBox.Validations;
 using static HardHat.Program;
+using ToolBox.Bridge;
 
 namespace HardHat
 {

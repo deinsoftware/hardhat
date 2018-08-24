@@ -1,5 +1,7 @@
 using System;
 using dein.tools;
+using ToolBox.Bridge;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -10,8 +12,8 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = $"git -C {path} branch".Term();
-                response = Shell.ExtractLine(result.stdout, "*", "* ");
+                Response result = _shell.Term($"git -C {path} branch");
+                response = _shell.ExtractLine(result.stdout, "*", "* ");
                 response = response
                     .Replace("\r", "")
                     .Replace("\n", "");
@@ -27,7 +29,7 @@ namespace HardHat
         {
             try
             {
-                $"git -C {path} reset --hard HEAD".Term(Output.Internal);
+                _shell.Term($"git -C {path} reset --hard HEAD", Output.Internal);
             }
             catch (Exception Ex)
             {
@@ -40,7 +42,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = $"git -C {path} pull".Term(Output.Internal);
+                Response result = _shell.Term($"git -C {path} pull", Output.Internal);
                 response = result.stdout
                     .Replace("\r", "")
                     .Replace("\n", "");
@@ -56,7 +58,7 @@ namespace HardHat
         {
             try
             {
-                $"git -C {path} clean -f -d -x".Term(Output.Internal);
+                _shell.Term($"git -C {path} clean -f -d -x", Output.Internal);
             }
             catch (Exception Ex)
             {
@@ -68,7 +70,7 @@ namespace HardHat
         {
             try
             {
-                $"git -C {path} fetch".Term();
+                _shell.Term($"git -C {path} fetch");
             }
             catch (Exception Ex)
             {
@@ -83,8 +85,8 @@ namespace HardHat
             try
             {
                 string search = "Your branch is behind";
-                Response result = $"git -C {path} status".Term();
-                response = Shell.ExtractLine(result.stdout, search);
+                Response result = _shell.Term($"git -C {path} status");
+                response = _shell.ExtractLine(result.stdout, search);
                 if (String.IsNullOrEmpty(response))
                 {
                     status = true;

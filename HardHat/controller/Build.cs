@@ -1,6 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 using dein.tools;
+using ToolBox.Bridge;
 using static HardHat.Program;
 
 namespace HardHat
@@ -11,7 +12,7 @@ namespace HardHat
         {
             try
             {
-                $"gradle -p {path} clean".Term(Output.External);
+                _shell.Term($"gradle -p {path} clean", Output.External);
                 _config.personal.selected.path = "";
                 _config.personal.selected.file = "";
                 _config.personal.selected.mapping = "";
@@ -26,7 +27,7 @@ namespace HardHat
         {
             try
             {
-                $"gradle -p {path} assemble{conf}".Term(Output.External);
+                _shell.Term($"gradle -p {path} assemble{conf}", Output.External);
             }
             catch (Exception Ex)
             {
@@ -38,7 +39,7 @@ namespace HardHat
         {
             try
             {
-                $"gradle -p {path} --refresh-dependencies".Term(Output.External);
+                _shell.Term($"gradle -p {path} --refresh-dependencies", Output.External);
             }
             catch (Exception Ex)
             {

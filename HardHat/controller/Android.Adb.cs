@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Transform;
 using static HardHat.Program;
@@ -16,7 +17,7 @@ namespace HardHat
             string response = "";
             try
             {
-                Response result = $"adb devices -l".Term();
+                Response result = _shell.Term($"adb devices -l");
                 response = Strings.RemoveWords(result.stdout, $"List of devices attached{Environment.NewLine}", Environment.NewLine);
 
                 if (
@@ -40,7 +41,7 @@ namespace HardHat
 
         public static Response CmdState(string device)
         {
-            Response result = $"adb -s {device} get-state".Term();
+            Response result = _shell.Term($"adb -s {device} get-state");
             if (result.stdout.Contains("not found"))
             {
                 result.code = 0;
@@ -71,8 +72,8 @@ namespace HardHat
                     }
                 }
                 cmd.Append($" install -r {path} 2>&1");
-                result = cmd.ToString().Term(Output.Internal);
-                string status = Shell.ExtractLine(result.stdout, "Success");
+                result = _shell.Term(cmd.ToString(), Output.Internal);
+                string status = _shell.ExtractLine(result.stdout, "Success");
                 if (status.Contains("Success"))
                 {
                     result.code = 0;
@@ -94,7 +95,7 @@ namespace HardHat
             string result = "";
             try
             {
-                Response pid = $"adb shell pidof -s {packagename}".Term();
+                Response pid = _shell.Term($"adb shell pidof -s {packagename}");
                 pid.stdout = pid.stdout
                     .Replace("\r", "")
                     .Replace("\n", "");
@@ -125,7 +126,7 @@ namespace HardHat
                         }
                     }
                     cmd.Append($" shell monkey -p {packagename} 1");
-                    cmd.ToString().Term();
+                    _shell.Term(cmd.ToString());
                 }
             }
             catch (Exception Ex)
@@ -180,7 +181,7 @@ namespace HardHat
                     cmd.Append($"{logcat.filter}");
                 }
 
-                cmd.ToString().Term(Output.External);
+                _shell.Term(cmd.ToString(), Output.External);
             }
             catch (Exception Ex)
             {
@@ -204,8 +205,8 @@ namespace HardHat
                     }
                 }
                 cmd.Append($" tcpip {port} 2>&1");
-                result = cmd.ToString().Term(Output.Internal);
-                string status = Shell.ExtractLine(result.stdout, $"{port}");
+                result = _shell.Term(cmd.ToString(), Output.Internal);
+                string status = _shell.ExtractLine(result.stdout, $"{port}");
                 if (String.IsNullOrEmpty(status) || status.Contains($"{port}"))
                 {
                     result.code = 0;
@@ -227,7 +228,7 @@ namespace HardHat
             bool connected = false;
             try
             {
-                Response result = $"adb connect {ip}:{port}".Term(Output.Internal);
+                Response result = _shell.Term($"adb connect {ip}:{port}", Output.Internal);
                 if (result.stdout.Contains($"connected to {ip}:{port}"))
                 {
                     connected = true;
@@ -249,7 +250,7 @@ namespace HardHat
             bool connected = false;
             try
             {
-                $"adb disconnect {ip}:{port}".Term(Output.Internal);
+                _shell.Term($"adb disconnect {ip}:{port}", Output.Internal);
             }
             catch (Exception Ex)
             {
@@ -262,7 +263,7 @@ namespace HardHat
         {
             try
             {
-                $"adb kill-server".Term(Output.Internal);
+                _shell.Term($"adb kill-server", Output.Internal);
             }
             catch (Exception Ex)
             {
@@ -274,7 +275,7 @@ namespace HardHat
         {
             try
             {
-                $"adb start-server".Term(Output.Internal);
+                _shell.Term($"adb start-server", Output.Internal);
             }
             catch (Exception Ex)
             {
@@ -287,7 +288,7 @@ namespace HardHat
             string result = "";
             try
             {
-                Response response = $"adb devices -l".Term();
+                Response response = _shell.Term($"adb devices -l");
                 result = Strings.RemoveWords(response.stdout, $"List of devices attached{Environment.NewLine}");
             }
             catch (Exception Ex)

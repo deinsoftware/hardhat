@@ -2,8 +2,10 @@
 using Colorify;
 using Colorify.UI;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Files;
 using ToolBox.Log;
+using ToolBox.Notification;
 using ToolBox.Platform;
 using ToolBox.System;
 
@@ -14,8 +16,11 @@ namespace HardHat
     {
         public static Config _config { get; set; }
         public static IFileSystem _fileSystem { get; set; }
+        public static INotificationSystem _notificationSystem { get; set; }
+        public static IBridgeSystem _bridgeSystem { get; set; }
         public static DiskConfigurator _disk { get; set; }
         public static PathsConfigurator _path { get; set; }
+        public static ShellConfigurator _shell { get; set; }
         public static Format _colorify { get; set; }
         public static ILogSystem _logSystem { get; set; }
 
@@ -45,18 +50,22 @@ namespace HardHat
         private static void Factory()
         {
             _fileSystem = FileSystem.Default;
-            _disk = new DiskConfigurator(_fileSystem, new ConsoleNotificationSystem());
+            _notificationSystem = new ConsoleNotificationSystem();
+            _disk = new DiskConfigurator(_fileSystem, _notificationSystem);
             switch (OS.GetCurrent())
             {
                 case "win":
                     _path = new PathsConfigurator(CommandSystem.Win, _fileSystem);
+                    _bridgeSystem = BridgeSystem.Bat;
                     _colorify = new Format(Theme.Dark);
                     break;
                 case "mac":
                     _path = new PathsConfigurator(CommandSystem.Mac, _fileSystem);
+                    _bridgeSystem = BridgeSystem.Bash;
                     _colorify = new Format(Theme.Light);
                     break;
             }
+            _shell = new ShellConfigurator(_bridgeSystem, _notificationSystem);
             _logSystem = new FileLogTxt(_fileSystem, _path.Combine("~"), ".hardhat.log");
         }
 

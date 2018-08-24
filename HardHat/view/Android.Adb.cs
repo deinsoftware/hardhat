@@ -9,6 +9,7 @@ using ToolBox.Platform;
 using ToolBox.System;
 using ToolBox.Validations;
 using static HardHat.Program;
+using ToolBox.Bridge;
 
 namespace HardHat
 {
@@ -137,7 +138,7 @@ namespace HardHat
                 if (CmdDevices())
                 {
                     string list = CmdList();
-                    string[] lines = Shell.SplitLines(list);
+                    string[] lines = _shell.SplitLines(list);
 
                     if (lines.Length >= 1)
                     {
@@ -146,7 +147,7 @@ namespace HardHat
                         {
                             if (!String.IsNullOrEmpty(l))
                             {
-                                _colorify.WriteLine($" {i,2}] {Shell.GetWord(l, 0)}", txtPrimary);
+                                _colorify.WriteLine($" {i,2}] {_shell.GetWord(l, 0)}", txtPrimary);
                                 i++;
                             }
                         }
@@ -163,7 +164,7 @@ namespace HardHat
                     if (!String.IsNullOrEmpty(opt))
                     {
                         Number.IsOnRange(1, Convert.ToInt32(opt), list.Length);
-                        var sel = Shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
+                        var sel = _shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
                         _config.personal.adb.deviceName = sel;
                     }
                     else

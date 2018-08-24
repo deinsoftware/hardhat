@@ -2,6 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Platform;
 using static HardHat.Program;
 
@@ -29,7 +30,8 @@ namespace HardHat
                         cmd.Append($"open .");
                         break;
                 }
-                cmd.ToString().Term(Output.Hidden, dir);
+                _fileSystem.DirectoryExists(dir);
+                _shell.Term(cmd.ToString(), Output.Hidden, dir);
             }
             catch (Exception Ex)
             {
@@ -72,8 +74,8 @@ namespace HardHat
                         dir = _path.Combine(dir, _config.project.iosPath);
                         break;
                 }
-
-                $"{editor}".Term(Output.Hidden, dir);
+                _fileSystem.DirectoryExists(dir);
+                _shell.Term($"{editor}", Output.Hidden, dir);
             }
             catch (Exception Ex)
             {

@@ -1,6 +1,7 @@
 using System;
 using dein.tools;
 using ToolBox.Validations;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -11,7 +12,7 @@ namespace HardHat
             try
             {
                 Web.IsUrl(url);
-                $"{url}".Browse();
+                _shell.Browse($"{url}");
             }
             catch (Exception Ex)
             {

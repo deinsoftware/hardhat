@@ -2,8 +2,10 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Platform;
 using ToolBox.Validations;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -24,7 +26,7 @@ namespace HardHat
                         cmd.Append($"sonar.sh console");
                         break;
                 }
-                cmd.ToString().Term(Output.External);
+                _shell.Term(cmd.ToString(), Output.External);
             }
             catch (Exception Ex)
             {
@@ -36,7 +38,8 @@ namespace HardHat
         {
             try
             {
-                $"sonar-scanner".Term(Output.External, dir);
+                _fileSystem.DirectoryExists(dir);
+                _shell.Term($"sonar-scanner", Output.External, dir);
             }
             catch (Exception Ex)
             {
@@ -49,7 +52,7 @@ namespace HardHat
             try
             {
                 Web.IsUrl(url);
-                $"{url}".Browse();
+                _shell.Browse($"{url}");
             }
             catch (Exception Ex)
             {

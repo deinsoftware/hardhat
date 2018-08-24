@@ -1,7 +1,9 @@
 using System;
 using System.Runtime.InteropServices;
 using dein.tools;
+using ToolBox.Bridge;
 using ToolBox.Transform;
+using static HardHat.Program;
 
 namespace HardHat
 {
@@ -14,9 +16,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"gradle -v".Term();
-                string response = Shell.ExtractLine(result.stdout, "Gradle", "Gradle ");
-                Shell.Result(response);
+                Response result = _shell.Term($"gradle -v");
+                string response = _shell.ExtractLine(result.stdout, "Gradle", "Gradle ");
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -28,9 +30,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"gulp --v".Term();
-                string response = Shell.GetWord(result.stdout, 3);
-                Shell.Result(response);
+                Response result = _shell.Term($"gulp --v");
+                string response = _shell.GetWord(result.stdout, 3);
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -42,9 +44,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"java -version 2>&1".Term();
-                string response = Shell.ExtractLine(result.stdout, "java version", "java version ", "\"");
-                Shell.Result(response);
+                Response result = _shell.Term($"java -version 2>&1");
+                string response = _shell.ExtractLine(result.stdout, "java version", "java version ", "\"");
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -56,9 +58,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"node -v".Term();
+                Response result = _shell.Term($"node -v");
                 string response = Strings.RemoveWords(result.stdout, "v");
-                Shell.Result(response);
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -70,8 +72,8 @@ namespace HardHat
         {
             try
             {
-                Response result = $"npm -v".Term();
-                Shell.Result(result.stdout);
+                Response result = _shell.Term($"npm -v");
+                _shell.Result(result.stdout);
             }
             catch (Exception Ex)
             {
@@ -87,9 +89,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"ng -v".Term();
-                string response = Shell.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
-                Shell.Result(response);
+                Response result = _shell.Term($"ng -v");
+                string response = _shell.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -101,8 +103,8 @@ namespace HardHat
         {
             try
             {
-                Response result = $"cordova -v".Term();
-                Shell.Result(result.stdout);
+                Response result = _shell.Term($"cordova -v");
+                _shell.Result(result.stdout);
             }
             catch (Exception Ex)
             {
@@ -114,9 +116,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"git --version".Term();
-                string response = Shell.GetWord(result.stdout, 2);
-                Shell.Result(response);
+                Response result = _shell.Term($"git --version");
+                string response = _shell.GetWord(result.stdout, 2);
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -128,8 +130,8 @@ namespace HardHat
         {
             try
             {
-                Response result = $"tns --version".Term();
-                Shell.Result(result.stdout);
+                Response result = _shell.Term($"tns --version");
+                _shell.Result(result.stdout);
             }
             catch (Exception Ex)
             {
@@ -141,9 +143,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"tsc -v".Term();
+                Response result = _shell.Term($"tsc -v");
                 string response = Strings.RemoveWords(result.stdout, "Version ");
-                Shell.Result(response);
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -155,9 +157,9 @@ namespace HardHat
         {
             try
             {
-                Response result = $"sonar-scanner -v".Term();
-                string response = Shell.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
-                Shell.Result(response);
+                Response result = _shell.Term($"sonar-scanner -v");
+                string response = _shell.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
+                _shell.Result(response);
             }
             catch (Exception Ex)
             {
@@ -169,8 +171,8 @@ namespace HardHat
         {
             try
             {
-                Response result = $"tns --version".Term();
-                Shell.Result(result.stdout);
+                Response result = _shell.Term($"tns --version");
+                _shell.Result(result.stdout);
             }
             catch (Exception Ex)
             {
