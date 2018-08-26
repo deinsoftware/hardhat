@@ -17,7 +17,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"gradle -v");
-                string response = _shell.ExtractLine(result.stdout, "Gradle", "Gradle ");
+                string response = Strings.ExtractLine(result.stdout, "Gradle", "Gradle ");
                 _shell.Result(response);
             }
             catch (Exception Ex)
@@ -31,7 +31,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"gulp --v");
-                string response = _shell.GetWord(result.stdout, 3);
+                string response = Strings.GetWord(result.stdout, 3);
                 _shell.Result(response);
             }
             catch (Exception Ex)
@@ -45,7 +45,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"java -version 2>&1");
-                string response = _shell.ExtractLine(result.stdout, "java version", "java version ", "\"");
+                string response = Strings.ExtractLine(result.stdout, "java version", "java version ", "\"");
                 _shell.Result(response);
             }
             catch (Exception Ex)
@@ -90,7 +90,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"ng -v");
-                string response = _shell.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
+                string response = Strings.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
                 _shell.Result(response);
             }
             catch (Exception Ex)
@@ -117,7 +117,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"git --version");
-                string response = _shell.GetWord(result.stdout, 2);
+                string response = Strings.GetWord(result.stdout, 2);
                 _shell.Result(response);
             }
             catch (Exception Ex)
@@ -158,7 +158,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"sonar-scanner -v");
-                string response = _shell.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
+                string response = Strings.ExtractLine(result.stdout, "INFO: SonarQube Scanner ", "INFO: SonarQube Scanner ");
                 _shell.Result(response);
             }
             catch (Exception Ex)

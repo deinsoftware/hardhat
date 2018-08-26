@@ -13,7 +13,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-* Update Toolbox Library to 1.3.0.
+* Update Toolbox Library to 1.4.0.
+
+**Fixed:**
+
+* Extra blank space on main menu.
 
 ## [6.9.2] - 2018-08-22
 

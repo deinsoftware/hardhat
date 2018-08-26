@@ -17,10 +17,10 @@ namespace HardHat
             try
             {
                 Response aapt = _shell.Term($"aapt dump badging {path}");
-                string packagename = _shell.ExtractLine(aapt.stdout, "package:");
+                string packagename = Strings.ExtractLine(aapt.stdout, "package:");
                 if (!String.IsNullOrEmpty(packagename))
                 {
-                    packagename = _shell.GetWord(packagename, word);
+                    packagename = Strings.GetWord(packagename, word);
                     packagename = Strings.RemoveWords(packagename, $"{value}=", "'");
                 }
                 result = packagename;
@@ -65,11 +65,11 @@ namespace HardHat
                 {
                     case "win":
                         result = _shell.Term($"sigcheck -h {path}");
-                        result.stdout = _shell.ExtractLine(result.stdout, "SHA256:", "\tSHA256:\t");
+                        result.stdout = Strings.ExtractLine(result.stdout, "SHA256:", "\tSHA256:\t");
                         break;
                     case "mac":
                         result = _shell.Term($"shasum -a 256 {path}");
-                        result.stdout = _shell.GetWord(result.stdout, 0);
+                        result.stdout = Strings.GetWord(result.stdout, 0);
                         break;
                 }
                 result.stdout = result.stdout

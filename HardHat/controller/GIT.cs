@@ -1,6 +1,7 @@
 using System;
 using dein.tools;
 using ToolBox.Bridge;
+using ToolBox.Transform;
 using static HardHat.Program;
 
 namespace HardHat
@@ -13,7 +14,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"git -C {path} branch");
-                response = _shell.ExtractLine(result.stdout, "*", "* ");
+                response = Strings.ExtractLine(result.stdout, "*", "* ");
                 response = response
                     .Replace("\r", "")
                     .Replace("\n", "");
@@ -86,7 +87,7 @@ namespace HardHat
             {
                 string search = "Your branch is behind";
                 Response result = _shell.Term($"git -C {path} status");
-                response = _shell.ExtractLine(result.stdout, search);
+                response = Strings.ExtractLine(result.stdout, search);
                 if (String.IsNullOrEmpty(response))
                 {
                     status = true;

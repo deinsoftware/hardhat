@@ -73,7 +73,7 @@ namespace HardHat
                 }
                 cmd.Append($" install -r {path} 2>&1");
                 result = _shell.Term(cmd.ToString(), Output.Internal);
-                string status = _shell.ExtractLine(result.stdout, "Success");
+                string status = Strings.ExtractLine(result.stdout, "Success");
                 if (status.Contains("Success"))
                 {
                     result.code = 0;
@@ -206,7 +206,7 @@ namespace HardHat
                 }
                 cmd.Append($" tcpip {port} 2>&1");
                 result = _shell.Term(cmd.ToString(), Output.Internal);
-                string status = _shell.ExtractLine(result.stdout, $"{port}");
+                string status = Strings.ExtractLine(result.stdout, $"{port}");
                 if (String.IsNullOrEmpty(status) || status.Contains($"{port}"))
                 {
                     result.code = 0;

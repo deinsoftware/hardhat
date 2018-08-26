@@ -7,7 +7,8 @@ using static Colorify.Colors;
 using dein.tools;
 using ToolBox.Platform;
 using ToolBox.System;
-using ToolBox.Validations;
+using Validations = ToolBox.Validations;
+using Transform = ToolBox.Transform;
 using static HardHat.Program;
 using ToolBox.Bridge;
 
@@ -47,7 +48,6 @@ namespace HardHat
             {
                 _colorify.WriteLine($"{"[W] WiFi Disconnect",-17}", txtPrimary);
             }
-            _colorify.BlankLines();
         }
 
         public static void Install()
@@ -138,7 +138,7 @@ namespace HardHat
                 if (CmdDevices())
                 {
                     string list = CmdList();
-                    string[] lines = _shell.SplitLines(list);
+                    string[] lines = Transform.Strings.SplitLines(list);
 
                     if (lines.Length >= 1)
                     {
@@ -147,7 +147,7 @@ namespace HardHat
                         {
                             if (!String.IsNullOrEmpty(l))
                             {
-                                _colorify.WriteLine($" {i,2}] {_shell.GetWord(l, 0)}", txtPrimary);
+                                _colorify.WriteLine($" {i,2}] {Transform.Strings.GetWord(l, 0)}", txtPrimary);
                                 i++;
                             }
                         }
@@ -163,8 +163,8 @@ namespace HardHat
 
                     if (!String.IsNullOrEmpty(opt))
                     {
-                        Number.IsOnRange(1, Convert.ToInt32(opt), list.Length);
-                        var sel = _shell.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
+                        Validations.Number.IsOnRange(1, Convert.ToInt32(opt), list.Length);
+                        var sel = Transform.Strings.GetWord(lines[Convert.ToInt32(opt) - 1], 0);
                         _config.personal.adb.deviceName = sel;
                     }
                     else

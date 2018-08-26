@@ -94,7 +94,7 @@ namespace HardHat
 
                 Section.HorizontalRule();
 
-                _config.personal.ipAddressBase = Network.RemoveLastOctetIPv4(_config.personal.ipAddress);
+                _config.personal.ipAddressBase = Network.GetOctetsIPv4(_config.personal.ipAddress, 3);
                 _colorify.Write($"{$" {_config.personal.ipAddressBase} ",-25}", txtInfo);
                 string opt = Console.ReadLine().Trim();
 
