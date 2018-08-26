@@ -7,12 +7,12 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/win10-x64": {
-      "HardHat/6.9.2": {
+      "HardHat/6.9.3": {
         "dependencies": {
           "Colorify": "2.0.0",
           "Microsoft.NETCore.App": "2.0.9",
           "Newtonsoft.Json": "11.0.2",
-          "ToolBox": "1.2.1"
+          "ToolBox": "1.4.0"
         },
         "runtime": {
           "HardHat.dll": {}
@@ -873,7 +873,7 @@
           "Colorify.dll": {}
         }
       },
-      "ToolBox/1.2.1": {
+      "ToolBox/1.4.0": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2"
         },
@@ -884,7 +884,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.9.2": {
+    "HardHat/6.9.3": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -971,7 +971,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "ToolBox/1.2.1": {
+    "ToolBox/1.4.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
