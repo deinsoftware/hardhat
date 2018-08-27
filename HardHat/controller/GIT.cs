@@ -15,9 +15,7 @@ namespace HardHat
             {
                 Response result = _shell.Term($"git -C {path} branch");
                 response = Strings.ExtractLine(result.stdout, "*", "* ");
-                response = response
-                    .Replace("\r", "")
-                    .Replace("\n", "");
+                response = Strings.CleanSpecialCharacters(response);
             }
             catch (Exception Ex)
             {
@@ -44,9 +42,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"git -C {path} pull", Output.Internal);
-                response = result.stdout
-                    .Replace("\r", "")
-                    .Replace("\n", "");
+                response = Strings.CleanSpecialCharacters(result.stdout);
             }
             catch (Exception Ex)
             {

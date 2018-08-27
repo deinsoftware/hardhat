@@ -4,6 +4,7 @@ using System.Text;
 using dein.tools;
 using ToolBox.Bridge;
 using ToolBox.Platform;
+using ToolBox.Transform;
 using static HardHat.Program;
 
 namespace HardHat
@@ -27,9 +28,7 @@ namespace HardHat
                         break;
                 }
                 Response result = _shell.Term(cmd.ToString(), Output.Hidden, dir);
-                result.stdout = result.stdout
-                    .Replace("\r", "")
-                    .Replace("\n", "");
+                result.stdout = Strings.CleanSpecialCharacters(result.stdout);
                 connectionStatus = (result.code == 0) && (!String.IsNullOrEmpty(result.stdout) && result.stdout.Contains("Connected"));
             }
             catch (Exception Ex)

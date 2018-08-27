@@ -96,9 +96,7 @@ namespace HardHat
             try
             {
                 Response pid = _shell.Term($"adb shell pidof -s {packagename}");
-                pid.stdout = pid.stdout
-                    .Replace("\r", "")
-                    .Replace("\n", "");
+                pid.stdout = Strings.CleanSpecialCharacters(pid.stdout);
                 result = pid.stdout;
             }
             catch (Exception Ex)

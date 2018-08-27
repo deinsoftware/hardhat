@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.4] - 2018-08-25
+
+**Changed:**
+
+* Use Strings.CleanSpecialCharacters and Warning message when program is not installed.
+
 ## [6.9.3] - 2018-08-24
 
 **Changed:**

@@ -72,9 +72,7 @@ namespace HardHat
                         result.stdout = Strings.GetWord(result.stdout, 0);
                         break;
                 }
-                result.stdout = result.stdout
-                    .Replace("\r", "")
-                    .Replace("\n", "");
+                result.stdout = Strings.CleanSpecialCharacters(result.stdout);
                 if (!String.IsNullOrEmpty(result.stdout))
                 {
                     result.code = 0;
