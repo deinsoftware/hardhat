@@ -1,6 +1,4 @@
 {
-    "editor.letterSpacing": 1,
-    "editor.tabSize": 4,
     "cSpell.words": [
         "Colorify",
         "Configurator",
@@ -26,5 +24,9 @@
         "unversioned",
         "xclip",
         "xcopy"
-    ]
+    ],
+    "editor.tabSize": 4,
+    "[markdown]": {
+        "editor.tabSize": 2,
+    }
 }
