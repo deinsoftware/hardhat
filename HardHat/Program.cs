@@ -73,6 +73,11 @@ namespace HardHat
         {
             _config = Settings.Read();
             _config.personal.hostName = User.GetMachine();
+            ThemeSwitch();
+        }
+
+        public static void ThemeSwitch()
+        {
             if (!String.IsNullOrEmpty(_config.personal.theme))
             {
                 switch (_config.personal.theme)

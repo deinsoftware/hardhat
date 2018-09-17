@@ -586,31 +586,19 @@ namespace HardHat
             {
                 Section.Header("CONFIGURATION", "THEME");
 
-                string defaultColor = "";
+                string consoleColor = "";
                 switch (OS.GetCurrent())
                 {
                     case "win":
-                        defaultColor = "d";
+                        consoleColor = "d";
                         break;
                     case "mac":
-                        defaultColor = "l";
+                        consoleColor = "l";
                         break;
                 }
 
-                _config.personal.theme = Selector.Start(Selector.Theme, defaultColor);
-                switch (_config.personal.theme)
-                {
-                    case "d":
-                        _colorify = new Format(Theme.Dark);
-                        break;
-                    case "l":
-                        _colorify = new Format(Theme.Light);
-                        break;
-                    default:
-                        Message.Error();
-                        break;
-                }
-
+                _config.personal.theme = Selector.Start(Selector.Theme, consoleColor);
+                ThemeSwitch();
                 Menu.Status();
                 Select();
             }
