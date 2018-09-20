@@ -166,7 +166,7 @@ macOS users need add execute permission over some files. Open a terminal on inst
 
 * `chmod +x mac.sh`
 * `chmod +x mac.command`
-* `chmod +x cmd.mac.sh`
+* `chmod +x cmd.sh`
 * `chmod +x HardHat`
 
 ### Run
