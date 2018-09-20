@@ -77,19 +77,8 @@ function fxIsRunning() {
 function fxRun() {
     fxPermission
 osascript <<EOF
-    tell application "Terminal" 
-        do script "source ~/.bash_profile"
-        do script "cd ~/Applications/HardHat/" in window 1
-        do script "clear" in window 1
-        do script "resize -s 31 88" in window 1
-        do script "clear" in window 1
-        do script "./HardHat" in window 1
-        do script "clear" in window 1
-        do script "exit" in window 1
-    end tell
-    tell application "Terminal"
-        set bounds of front window to {22, 44, 650, 535}
-    end tell
+    tell application "Terminal" to do script "source ~/.bash_profile; cd ~/Applications/HardHat/; clear; resize -s 31 88; clear; ./HardHat; clear; exit;"
+    tell application "Terminal" to set bounds of front window to {22, 44, 650, 535}
 EOF
     fxExit
 }
