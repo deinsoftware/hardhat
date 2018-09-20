@@ -50,7 +50,7 @@ function fxUpdate() {
 function fxPermission() {
     chmod +x mac.sh
     chmod +x mac.command
-    chmod +x cmd.mac.sh
+    chmod +x cmd.sh
     chmod +x HardHat
     chmod +x "Hard Hat"
 }
