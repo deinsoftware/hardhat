@@ -25,6 +25,7 @@ namespace HardHat
             Section.Header("INFORMATION");
 
             _colorify.WriteLine(" Required", txtInfo);
+            _colorify.Write($"{" GIT",-17}", txtPrimary); Version.CmdGit();
             _colorify.Write($"{" Gradle",-17}", txtPrimary); Version.CmdGradle();
             _colorify.Write($"{" Gulp",-17}", txtPrimary); Version.CmdGulp();
             _colorify.Write($"{" Java",-17}", txtPrimary); Version.CmdJava();
@@ -35,7 +36,6 @@ namespace HardHat
             _colorify.WriteLine(" Optional", txtInfo);
             _colorify.Write($"{" Angular CLI",-17}", txtPrimary); Version.CmdAngular();
             _colorify.Write($"{" Cordova",-17}", txtPrimary); Version.CmdCordova();
-            _colorify.Write($"{" GIT",-17}", txtPrimary); Version.CmdGit();
             _colorify.Write($"{" NativeScript",-17}", txtPrimary); Version.CmdNativescript();
             _colorify.Write($"{" TypeScript",-17}", txtPrimary); Version.CmdTypescript();
             _colorify.Write($"{" SonarScanner",-17}", txtPrimary); Version.CmdSonarScanner();
