@@ -16,7 +16,7 @@ namespace HardHat
         {
             try
             {
-                Response result = _shell.Term($"gradles -v");
+                Response result = _shell.Term($"gradle -v");
                 string response = Strings.ExtractLine(result.stdout, "Gradle", "Gradle ");
                 _shell.Result(response, "is not Installed");
             }
