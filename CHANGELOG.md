@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.6] - 2018-09-21
+
+**Fixed:**
+
+- Gradle version command and GIT command to required.
+
 ## [6.9.5] - 2018-09-17
 
 **Fixed:**
