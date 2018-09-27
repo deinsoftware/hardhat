@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v2.0": {},
     ".NETCoreApp,Version=v2.0/osx.10.12-x64": {
-      "HardHat/6.9.6": {
+      "HardHat/6.9.7": {
         "dependencies": {
           "Colorify": "2.1.0",
           "Microsoft.NETCore.App": "2.0.9",
@@ -767,7 +767,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.9.6": {
+    "HardHat/6.9.7": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -803,7 +803,7 @@
     "Microsoft.NETCore.Platforms/2.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-gID2fXOUeeLy8EOlYDchQITTwhsTAjZ83M156Yci4XK/kNvc+TNl7O/rf72+Xh0IayfNoDcf57Vevmkg689Faw==",
+      "sha512": "sha512-UTG5VkUu5ImKkvqiNWeD5hGSL4go0FKY6ocgcErpkEEspp9GpAOXrIi13tjS4bwIP7j8s0MebHR9YNRoxbpJpQ==",
       "path": "microsoft.netcore.platforms/2.0.2",
       "hashPath": "microsoft.netcore.platforms.2.0.2.nupkg.sha512"
     },
