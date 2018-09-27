@@ -29,7 +29,7 @@ function fxUpdate() {
     echo " --> Updating... "
     echo ""
     updated="$(git pull)"
-    if [ "${updated}" == "Already up-to-date." ] || [ "${updated}" == "Already up to date." ] ; then
+    if [ "${updated}" == "Already up-to-date." ] || [ "${updated}" == "Already up to date." ] || [ "${updated}" == "Ya está actualizado." ] ; then
         fxRun
     else
         fxGit
