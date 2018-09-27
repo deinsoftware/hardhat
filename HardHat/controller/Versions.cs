@@ -103,7 +103,7 @@ namespace HardHat
         {
             try
             {
-                Response result = _shell.Term($"cordova -v");
+                Response result = _shell.Term($"cordova -v --no-telemetry");
                 _shell.Result(result.stdout, "is not Installed");
             }
             catch (Exception Ex)

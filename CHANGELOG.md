@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.9.7] - 2018-09-26
+
+**Fixed:**
+
+- Cordova version without telemetry.
+
 ## [6.9.6] - 2018-09-21
 
 **Fixed:**
