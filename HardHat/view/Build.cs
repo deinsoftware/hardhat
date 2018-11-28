@@ -27,6 +27,7 @@ namespace HardHat
             opts.Add(new Option { opt = "b>m:r", status = false, action = Build.Quick, variant = "m:r" });
             opts.Add(new Option { opt = "bp", status = false, action = Build.Properties });
             opts.Add(new Option { opt = "bc", status = false, action = Build.Clean });
+            opts.Add(new Option { opt = "bcc", status = false, action = Build.CleanCache });
             opts.Add(new Option { opt = "bg", status = false, action = Build.Gradle });
         }
 
@@ -52,6 +53,7 @@ namespace HardHat
             Options.IsValid("b>m:r", Variables.Valid("gh"));
             Options.IsValid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bcc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
         }
 
@@ -221,6 +223,25 @@ namespace HardHat
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
                 CmdClean(dirPath);
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void CleanCache()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Vpn.Verification();
+
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
+                CmdClean(dirPath, true);
 
                 Menu.Start();
             }

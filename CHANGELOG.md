@@ -15,6 +15,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Update Colorify Library to 2.2.1.
 
+**Added:**
+
+- Hidden option to clean cache with gradle.
+
 ## [6.10.0] - 2018-09-28
 
 **Updated:**

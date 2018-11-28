@@ -8,11 +8,12 @@ namespace HardHat
 {
     public static partial class Build
     {
-        public static void CmdClean(string path, string device = null)
+        public static void CmdClean(string path, bool cleanCache = false)
         {
             try
             {
-                _shell.Term($"gradle -p {path} clean", Output.External);
+                string action = "clean" + (cleanCache ? "BuildCache" : "");
+                _shell.Term($"gradle -p {path} {action}", Output.External);
                 _config.personal.selected.path = "";
                 _config.personal.selected.file = "";
                 _config.personal.selected.mapping = "";

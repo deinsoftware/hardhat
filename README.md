@@ -14,7 +14,7 @@ I don't like repetitive tasks and make a build is one of them... yuck!
 
 Contributions or Beer will be appreciated
 
-> The Code is Dark and Full of Errors!  
+> The Code is Dark and Full of Errors!
 > Console is your friend ... don't be afraid!
 
 ## Menu
@@ -106,7 +106,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 
 On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Build Tool version (recommended use the last one).
 
-> **Where are environment variables?**  
+> **Where are environment variables?**
 > In the System Properties window, click on the Advanced tab, then click the Environment Variables button near the bottom of that tab. In the Environment Variables window, highlight the Path variable in the "System variables" section and click the Edit button.
 
 ### Environment for macOS
@@ -142,12 +142,12 @@ On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool ver
 
 With **H**ard**H**at alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
-> **Where are environment variables?**  
+> **Where are environment variables?**
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
 
 Highly recomend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
 
-> **Recommended terminal configurations on macOS?**  
+> **Recommended terminal configurations on macOS?**
 > Open a terminal window, go to 'Preference > Profiles.
 > Auto close terminal on exit: Inside 'Shell' tab, select "Close if the shell exited cleanly" on "When the shell exits" option.
 > Enable Numpad keys: Inside 'Advance' tab, deselect (turn off) "Allow VT100 application keypad mode" option.
@@ -323,6 +323,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
 | <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>bc</kbd> | Make `clean` project with gradle command line. |
+| <kbd>bcc</kbd> | Make `cleanBuildCache` project with gradle command line. |
 | <kbd>bg</kbd> | Make `build` project with gradle command line. |
 
 If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
