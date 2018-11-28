@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.10.1] - 2018-11-28
+
+**Changed:**
+
+- Update Colorify Library to 2.2.1.
+
 ## [6.10.0] - 2018-09-28
 
 **Updated:**
@@ -77,7 +83,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Filter value on logcat.
+- Filter value on Logcat.
 
 ## [6.8.4] - 2018-07-25
 
@@ -178,7 +184,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Option to copy Package Name to Application on logcat.
+- Option to copy Package Name to Application on Logcat.
 
 **Fixed:**
 
