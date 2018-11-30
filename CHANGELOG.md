@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.10.2] - 2018-11-29
+
+**Fixed:**
+
+- Show progress on same line.
+
 ## [6.10.1] - 2018-11-28
 
 **Changed:**
