@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.10.3] - 2018-12-03
+
+**Fixed:**
+
+- Add % symbol to control show progress on same line.
+
 ## [6.10.2] - 2018-11-29
 
 **Fixed:**

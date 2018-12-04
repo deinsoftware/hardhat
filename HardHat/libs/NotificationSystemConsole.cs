@@ -17,7 +17,7 @@ namespace ToolBox.Notification
         public void StandardOutput(string message)
         {
             var diff = message.Except(_pastMessage).ToArray();
-            if (diff.Length <= 2) //isProgress message
+            if (diff.Length <= 2 && message.Contains("%")) //isProgress message
             {
                 Console.SetCursorPosition(0, Console.CursorTop - 1);
             }
