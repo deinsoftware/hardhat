@@ -1,18 +1,18 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1/osx.10.12-x64",
-    "signature": "00345032468d56333d56a717fe70d720cad03ae5"
+    "signature": "90439d810f28ed25514d5375196f6d923ac586ee"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {},
     ".NETCoreApp,Version=v2.1/osx.10.12-x64": {
-      "HardHat/6.10.3": {
+      "HardHat/6.10.4": {
         "dependencies": {
-          "Colorify": "2.2.1",
+          "Colorify": "2.2.2",
           "Microsoft.NETCore.App": "2.1.4",
-          "Newtonsoft.Json": "11.0.2",
-          "ToolBox": "1.4.3"
+          "Newtonsoft.Json": "12.0.1",
+          "ToolBox": "1.4.4"
         },
         "runtime": {
           "HardHat.dll": {}
@@ -51,11 +51,11 @@
           "Microsoft.NETCore.Platforms": "2.1.1"
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.1": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.2.21924"
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.1.22727"
           }
         }
       },
@@ -776,14 +776,14 @@
           }
         }
       },
-      "Colorify/2.2.1": {
+      "Colorify/2.2.2": {
         "runtime": {
           "Colorify.dll": {}
         }
       },
-      "ToolBox/1.4.3": {
+      "ToolBox/1.4.4": {
         "dependencies": {
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.1"
         },
         "runtime": {
           "ToolBox.dll": {}
@@ -792,7 +792,7 @@
     }
   },
   "libraries": {
-    "HardHat/6.10.3": {
+    "HardHat/6.10.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -846,12 +846,12 @@
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.2": {
+    "Newtonsoft.Json/12.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
-      "path": "newtonsoft.json/11.0.2",
-      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+      "sha512": "sha512-jmVyoEyk0In8r+AObYQyFKVFm7uSRzE0XSHSbEtBJcZDMV6DqJoyB4FLcHwprPVhAh826so0db3DIKXVnpGoPA==",
+      "path": "newtonsoft.json/12.0.1",
+      "hashPath": "newtonsoft.json.12.0.1.nupkg.sha512"
     },
     "runtime.osx-x64.Microsoft.NETCore.App/2.1.4": {
       "type": "package",
@@ -881,12 +881,12 @@
       "path": "runtime.osx-x64.microsoft.netcore.dotnethostresolver/2.1.4",
       "hashPath": "runtime.osx-x64.microsoft.netcore.dotnethostresolver.2.1.4.nupkg.sha512"
     },
-    "Colorify/2.2.1": {
+    "Colorify/2.2.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "ToolBox/1.4.3": {
+    "ToolBox/1.4.4": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
