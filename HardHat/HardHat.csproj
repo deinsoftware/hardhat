@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-    <VersionPrefix>6.10.3</VersionPrefix>
+    <VersionPrefix>6.10.4</VersionPrefix>
     <ProjectGuid>{b407f8af-bade-4c29-a9e6-11547ca64281}</ProjectGuid>
 
     <Authors>Camilo Martinez</Authors>
@@ -37,7 +37,7 @@
     <None Update="icon.ico" CopyToOutputDirectory="PreserveNewest" />
     <None Update="icon.png" CopyToOutputDirectory="PreserveNewest" />
     <!-- Packages -->
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <!-- Projects -->
     <ProjectReference Include="..\..\_devTB\ToolBox\ToolBox.csproj" />
     <ProjectReference Include="..\..\_devCC\Colorify\Colorify.csproj" />

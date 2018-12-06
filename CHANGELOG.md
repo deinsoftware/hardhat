@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.10.4] - 2018-12-06
+
+**Changed:**
+
+- Update Colorify Library to 2.2.1 and Toolbox to 1.4.4.
+
 ## [6.10.3] - 2018-12-03
 
 **Fixed:**
