@@ -6,7 +6,7 @@
 
 **HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
 
-Previously had create the same app making a Batch (for Windows) and a Bash (for macOS)(https://github.com/equiman/hardhatmac/) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
+Previously had create the same app making a Batch (for Windows) and a Bash (for macOS) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
 I don't like repetitive tasks and make a build is one of them... yuck!
 
