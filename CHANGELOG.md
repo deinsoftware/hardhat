@@ -9,11 +9,20 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.11.0] - 2019-01-23
+
+**Updated:**
+
+- Framework to .Net Core version 2.2
+- [Colorify](https://github.com/deinsoftware/colorify) to 2.3.0
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.4.5
+
 ## [6.10.4] - 2018-12-06
 
-**Changed:**
+**Updated:**
 
-- Update Colorify Library to 2.2.1 and Toolbox to 1.4.4.
+- [Colorify](https://github.com/deinsoftware/colorify) to 2.2.1
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.4.4
 
 ## [6.10.3] - 2018-12-03
 
@@ -29,9 +38,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.10.1] - 2018-11-28
 
-**Changed:**
+**Updated:**
 
-- Update Colorify Library to 2.2.1.
+- [Colorify](https://github.com/deinsoftware/colorify) to 2.2.1
 
 **Added:**
 
@@ -41,7 +50,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Updated:**
 
-- To .Net Core version 2.1.0.
+- Framework to .Net Core version 2.1
 
 ## [6.9.7] - 2018-09-26
 
@@ -69,9 +78,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.9.3] - 2018-08-24
 
-**Changed:**
+**Updated:**
 
-- Update Toolbox Library to 1.4.0.
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.4.0.
 
 **Fixed:**
 
@@ -79,9 +88,12 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.9.2] - 2018-08-22
 
+**Updated:**
+
+- [Colorify](https://github.com/deinsoftware/colorify) to 2.0
+
 **Changed:**
 
-- Update Colorify Library to 2.0.0.
 - Logcat for Application.
 
 **Fixed:**
@@ -90,10 +102,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.9.1] - 2018-08-22
 
-**Changed:**
+**Updated:**
 
-- Upgrade from .Net Core 2.0 to 2.1.
-- Update Colorify Library to 1.0.8.
+- Framework to .Net Core version 2.1
+- [Colorify](https://github.com/deinsoftware/colorify) to 1.0.8.
 
 ## [6.9.0] - 2018-08-01
 
@@ -249,9 +261,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Code smells reported by SonarQube.
 
-**Changed:**
+**Updated:**
 
-- Update Newtonsoft.Json library to 11.0.2, ToolBox library to 1.2.1 and Colorify to 1.0.7.
+- Newtonsoft.Json to 11.0.2
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.2.1
+- [Colorify](https://github.com/deinsoftware/colorify) to 1.0.7
 
 ## [6.2.1] - 2018-06-12
 
@@ -269,9 +283,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Compatibility to Gradle 4 build system path folder.
 
-**Changed:**
+**Updated:**
 
-- Updated library references for [ToolBox](https://github.com/deinsoftware/toolbox) 1.2.0 and [Colorify](https://github.com/deinsoftware/colorify) 1.0.6.
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.2.0
+- [Colorify](https://github.com/deinsoftware/colorify) to 1.0.6
 
 ## [6.1.0] - 2018-06-08
 
@@ -281,9 +296,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [6.0.2] - 2018-06-08
 
-**Changed:**
+**Updated:**
 
-- Updated library references for [Colorify](https://github.com/deinsoftware/colorify) 1.0.5.
+- [Colorify](https://github.com/deinsoftware/colorify) to 1.0.5
 
 ## [6.0.1] - 2018-06-08
 
@@ -311,9 +326,10 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Gulp Uglify error when www folder don't exists. [\#21](https://github.com/deinsoftware/hardhat/issues/21)
 
-**Changed:**
+**Updated:**
 
-- Updated library references for [ToolBox](https://github.com/deinsoftware/toolbox) 1.1.4 and [Colorify](https://github.com/deinsoftware/colorify) 1.0.4.
+- [ToolBox](https://github.com/deinsoftware/toolbox) to 1.1.4
+- [Colorify](https://github.com/deinsoftware/colorify) to 1.0.4
 
 ## [5.2.0] - 2018-04-30
 
@@ -345,9 +361,9 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [5.0.1] - 2018-01-04
 
-**Fixed:**
+**Updated:**
 
-- Update [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) library, that solves bug with text on resize window.
+- [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) library, that solves bug with text on resize window.
 
 ## [5.0.0] - 2017-12-28
 

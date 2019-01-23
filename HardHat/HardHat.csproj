@@ -2,7 +2,7 @@
   <PropertyGroup>
     <AssemblyName>HardHat</AssemblyName>
     <PackageId>HardHat</PackageId>
-    <VersionPrefix>6.10.4</VersionPrefix>
+    <VersionPrefix>6.11.0</VersionPrefix>
     <ProjectGuid>{b407f8af-bade-4c29-a9e6-11547ca64281}</ProjectGuid>
 
     <Authors>Camilo Martinez</Authors>
@@ -21,10 +21,10 @@
     <RepositoryUrl>https://github.com/deinsoftware/hardhat</RepositoryUrl>
 
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <RuntimeIdentifiers>win10-x64;osx.10.12-x64</RuntimeIdentifiers>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.1'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.2'">
     <!-- macOS -->
     <None Update="cmd.sh" CopyToOutputDirectory="PreserveNewest" />
     <None Update="mac.command" CopyToOutputDirectory="PreserveNewest" />
