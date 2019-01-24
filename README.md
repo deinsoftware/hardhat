@@ -1,5 +1,6 @@
 # HardHat [ for Win & Mac ]
 
+[![Build Status](https://travis-ci.org/deinsoftware/hardhat.svg?branch=master)](https://travis-ci.org/deinsoftware/hardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
