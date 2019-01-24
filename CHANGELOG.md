@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- RDS option on Flavor list
+- DRC option on Flavor list
 
 ## [6.11.0] - 2019-01-23
 

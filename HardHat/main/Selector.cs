@@ -16,7 +16,7 @@ namespace HardHat
             {"m", "Mntn"},
             {"s", "Stag"},
             {"p", "Prod"},
-            {"r", "Rds"},
+            {"r", "Drc"},
             {"d", "Desk"}
         };
 
