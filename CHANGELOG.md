@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- DRC option on Flavor list
+- DSRC option on Flavor list
 
 ## [6.11.0] - 2019-01-23
 
