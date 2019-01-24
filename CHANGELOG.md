@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.12.0] - 2019-01-24
+
+**Added:**
+
+- RDS option on Flavor list
+
 ## [6.11.0] - 2019-01-23
 
 **Updated:**
