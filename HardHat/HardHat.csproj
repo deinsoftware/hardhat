@@ -22,7 +22,7 @@
 
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <RuntimeIdentifiers>win10-x64;osx.10.12-x64</RuntimeIdentifiers>
+    <RuntimeIdentifiers>win-x64;osx-x64;linux-x64;</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.2'">
     <!-- macOS -->
@@ -41,5 +41,7 @@
     <!-- Projects -->
     <ProjectReference Include="..\..\_devTB\ToolBox\ToolBox.csproj" />
     <ProjectReference Include="..\..\_devCC\Colorify\Colorify.csproj" />
+    <!-- License -->
+    <None Include="..\LICENSE" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
