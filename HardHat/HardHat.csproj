@@ -38,7 +38,7 @@
     <None Update="icon.png" CopyToOutputDirectory="PreserveNewest" />
     <!-- Packages -->
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="dein.Colorify" Version="2.3.0" />
+    <PackageReference Include="dein.Colorify" Version="2.4.0" />
     <PackageReference Include="dein.ToolBox" Version="1.4.5" />
     <!-- License -->
     <None Include="..\LICENSE" CopyToOutputDirectory="PreserveNewest" />
