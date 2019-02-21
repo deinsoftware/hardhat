@@ -70,7 +70,7 @@ namespace HardHat
                         editor = "wstorm .";
                         break;
                     case "x":
-                        editor = "open *.xcodeproj";
+                        editor = "file -f *.xcworkspace && open *.xcworkspace || open *.xcodeproj";
                         dir = _path.Combine(dir, _config.project.iosPath);
                         break;
                 }

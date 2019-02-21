@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [6.13.0] - 2019-02-21
+
+**Added:**
+
+- Xcode editor launch option open first workspace and if not exists open project
+
+**Changed:**
+
+- Internal settings configuration
+
 ## [6.12.0] - 2019-01-24
 
 **Added:**

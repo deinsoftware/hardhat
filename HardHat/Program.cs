@@ -14,7 +14,7 @@ namespace HardHat
 
     static class Program
     {
-        public static Config _config { get; set; }
+        public static MainConfig _config { get; set; }
         public static IFileSystem _fileSystem { get; set; }
         public static INotificationSystem _notificationSystem { get; set; }
         public static IBridgeSystem _bridgeSystem { get; set; }
