@@ -9,7 +9,7 @@ namespace HardHat
 
     public static class Selector
     {
-        public static Dictionary<string, string> Flavor = new Dictionary<string, string>
+        public static IReadOnlyDictionary<string, string> Flavor = new Dictionary<string, string>
         {
             {"a", "Alfa"},
             {"b", "Beta"},
