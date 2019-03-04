@@ -1,28 +1,28 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2/win10-x64",
-    "signature": "701889f8b22655ca0a63672cc84951daca665675"
+    "signature": "24df9796062507d24e2f827434bcc25a17818d05"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {},
     ".NETCoreApp,Version=v2.2/win10-x64": {
-      "HardHat/6.12.0": {
+      "HardHat/6.13.0": {
         "dependencies": {
           "Microsoft.NETCore.App": "2.2.1",
           "Newtonsoft.Json": "12.0.1",
-          "dein.Colorify": "2.3.0",
+          "dein.Colorify": "2.4.0",
           "dein.ToolBox": "1.4.5"
         },
         "runtime": {
           "HardHat.dll": {}
         }
       },
-      "dein.Colorify/2.3.0": {
+      "dein.Colorify/2.4.0": {
         "runtime": {
           "lib/netcoreapp2.2/Colorify.dll": {
-            "assemblyVersion": "2.3.0.0",
-            "fileVersion": "2.3.0.0"
+            "assemblyVersion": "2.4.0.0",
+            "fileVersion": "2.4.0.0"
           }
         }
       },
@@ -900,17 +900,17 @@
     }
   },
   "libraries": {
-    "HardHat/6.12.0": {
+    "HardHat/6.13.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "dein.Colorify/2.3.0": {
+    "dein.Colorify/2.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-YHID6u6KBlh4Cg/BnwCtReKpBrgxaOosy6PDiyUZhLcVt1sAnLqwDyeVY7meeeXtwe2Icf+Jq1JYzz9J8Yklpg==",
-      "path": "dein.colorify/2.3.0",
-      "hashPath": "dein.colorify.2.3.0.nupkg.sha512"
+      "sha512": "sha512-86wffUjBxvJcGFm/XOD28gEK+P7Dqrc4xGhOBFpi//U6Sl8QAyDp8MwFSV1u/fLfHsMFZkm8beFZmtT9khdVMA==",
+      "path": "dein.colorify/2.4.0",
+      "hashPath": "dein.colorify.2.4.0.nupkg.sha512"
     },
     "dein.ToolBox/1.4.5": {
       "type": "package",
