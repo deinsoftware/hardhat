@@ -113,9 +113,9 @@ On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Buil
 ### Environment for macOS
 
 ```bash
-export ANDROID_SDK_ROOT='/usr/local/share/android-sdk'
+export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 export ANDROID_HOME="$ANDROID_SDK_ROOT"
-export ANDROID_NDK_HOME='/usr/local/share/android-ndk'
+export ANDROID_NDK_HOME="$ANDROID_SDK_ROOT/ndk-bundle"
 export ANDROID_BT_VERSION="$(ls -tr $ANDROID_SDK_ROOT/build-tools | sort | tail -1)"
 export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
