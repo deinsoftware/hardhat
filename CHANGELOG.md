@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.0.0] - 2019-06-07
+
+**Removed:**
+
+- FTP option on gulp
+
+**Changed:**
+
+- Gulp was replaced by Task project
+
 ## [6.13.0] - 2019-02-21
 
 **Added:**
