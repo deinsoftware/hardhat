@@ -71,7 +71,6 @@ namespace HardHat
         public SelectedConfiguration selected { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
-        public FtpConfiguration ftpServer { get; set; }
         public BuildConfiguration gradle { get; set; }
         public AdbConfiguration adb { get; set; }
         public LogcatConfiguration logcat { get; set; }
@@ -111,17 +110,6 @@ namespace HardHat
         public bool open { get; set; }
     }
 
-    public class FtpConfiguration
-    {
-        public string host { get; set; }
-        public int port { get; set; }
-        public string authenticationPath { get; set; }
-        public string authenticationKey { get; set; }
-        public string remotePath { get; set; }
-        public string dimension { get; set; }
-        public string resourcePath { get; set; }
-    }
-
     class BuildConfiguration
     {
         public string mode { get; set; }
@@ -152,8 +140,6 @@ namespace HardHat
         public bool sonarValidation { get; set; }
         public string serverConfiguration { get; set; }
         public bool serverValidation { get; set; }
-        public string ftpConfiguration { get; set; }
-        public bool ftpValidation { get; set; }
         public string logConfiguration { get; set; }
         public bool logValidation { get; set; }
         public string buildConfiguration { get; set; }

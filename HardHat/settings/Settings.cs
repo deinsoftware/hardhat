@@ -86,14 +86,6 @@ namespace HardHat
             config.personal.webServer.protocol = "http";
             config.personal.webServer.internalPath = "";
             config.personal.webServer.open = true;
-            config.personal.ftpServer = new FtpConfiguration();
-            config.personal.ftpServer.host = "";
-            config.personal.ftpServer.port = 22;
-            config.personal.ftpServer.authenticationPath = "../FTP/.ftppass";
-            config.personal.ftpServer.authenticationKey = "keyMain";
-            config.personal.ftpServer.remotePath = "/";
-            config.personal.ftpServer.dimension = "";
-            config.personal.ftpServer.resourcePath = "";
             config.personal.gradle = new BuildConfiguration();
             config.personal.gradle.mode = "";
             config.personal.gradle.dimension = "";
@@ -113,8 +105,6 @@ namespace HardHat
             config.personal.menu.sonarConfiguration = "";
             config.personal.menu.serverConfiguration = "";
             config.personal.menu.serverValidation = false;
-            config.personal.menu.ftpConfiguration = "";
-            config.personal.menu.ftpValidation = false;
             config.personal.menu.logConfiguration = "";
             config.personal.menu.logValidation = false;
             config.personal.menu.buildConfiguration = "";
