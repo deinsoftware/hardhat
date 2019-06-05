@@ -30,7 +30,7 @@ namespace HardHat
                 Project.List(ref opts);
                 Vcs.List(ref opts);
                 Sonar.List(ref opts);
-                Gulp.List(ref opts);
+                Task.List(ref opts);
                 Build.List(ref opts);
                 Adb.List(ref opts);
                 Configuration.List(ref opts);

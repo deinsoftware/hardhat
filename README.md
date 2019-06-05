@@ -96,13 +96,13 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
 | `GRADLE_HOME` | D:\Applications\Android\Gradle |
-| `GULP_PROJECT` | D:\Applications\Gulp |
 | `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_74 |
 | `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `SIGCHECK_HOME` | D:\Applications\Sigcheck |
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
+| `TASK_PROJECT` | D:\Applications\Task |
 | `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
 
 On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Build Tool version (recommended use the last one).
@@ -120,10 +120,10 @@ export ANDROID_BT_VERSION="$(ls -tr $ANDROID_SDK_ROOT/build-tools | sort | tail 
 export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
-export GULP_PROJECT="~/Applications/Gulp"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
 export SONAR_QUBE_HOME="~/Applications/Sonar/Qube"
 export SONAR_SCANNER_HOME="~/Applications/Sonar/Scanner"
+export TASK_PROJECT="~/Applications/Task"
 
 export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/sbin:$PATH"
 export PATH="$ANDROID_SDK_ROOT/bin:$PATH"
@@ -260,7 +260,7 @@ Choose desired letter combination and let **HardHat** work for you.
 
 | combination | action |
 | --- | --- |
-| <kbd>g</kbd> | Gulp paths, Server, Log and FTP configuration. |
+| <kbd>g</kbd> | Gulp paths, Server and Log configuration. |
 | <kbd>gw</kbd> | Launch `gulp watch` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
@@ -280,24 +280,12 @@ Choose desired letter combination and let **HardHat** work for you.
 
 | combination | action |
 | --- | --- |
-| <kbd>g>sp</kbd> | Protocol. |
 | <kbd>g>si</kbd> | Internal Path inside server configuration. |
 | <kbd>g>sc</kbd> | Configuration file with web server configuration. |
 | <kbd>g>sf</kbd> | Flavor. |
 | <kbd>g>sn</kbd> | Number. |
 | <kbd>g>ss</kbd> | Sync Browser on save. |
 | <kbd>g>sp</kbd> | Open shortcut in browser at start. |
-
-##### FTP Configuration
-
-| combination | action |
-| --- | --- |
-| <kbd>g>fh</kbd> | Host. |
-| <kbd>g>fp</kbd> | Port. |
-| <kbd>g>fa</kbd> | Authentication file path. |
-| <kbd>g>fk</kbd> | Key name inside authentication file. |
-| <kbd>g>fr</kbd> | Remote Path. |
-| <kbd>g>fd</kbd> | Dimension. |
 
 ##### Quick Server Configuration
 | combination | option | value |
@@ -472,9 +460,7 @@ Applications
 │       │   └── ...
 │       └── WorkspaceN
 │           └── ...
-├── FTP
-│   └── .ftppass
-├── Gulp
+├── Task
 ├── HardHat
 └── Sonar
     ├── Qube

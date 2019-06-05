@@ -12,12 +12,12 @@ using static Colorify.Colors;
 namespace HardHat
 {
 
-    public static partial class Gulp
+    public static partial class Task
     {
 
         public static void LogList(ref List<Option> opts)
         {
-            opts.Add(new Option { opt = "gl", status = false, action = Gulp.Log });
+            opts.Add(new Option { opt = "tl", status = false, action = Task.Log });
         }
 
         public static void LogStatus()
@@ -33,7 +33,7 @@ namespace HardHat
             _config.personal.menu.logConfiguration = logConfiguration.ToString();
             _config.personal.menu.logValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.logConfiguration);
 
-            Options.IsValid("gl", Variables.Valid("gp") && _config.personal.menu.logValidation);
+            Options.IsValid("tl", Variables.Valid("tp") && _config.personal.menu.logValidation);
         }
 
         public static void Log()

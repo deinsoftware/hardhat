@@ -11,7 +11,7 @@ namespace HardHat
         public About about { get; set; }
         public PathConfiguration path { get; set; }
         public ProjectConfiguration project { get; set; }
-        public GulpConfiguration gulp { get; set; }
+        public TaskConfiguration task { get; set; }
         public EditorConfiguration editor { get; set; }
         public VpnConfiguration vpn { get; set; }
         public PersonalConfiguration personal { get; set; }
@@ -46,7 +46,7 @@ namespace HardHat
         public string[] filterFiles { get; set; }
     }
 
-    class GulpConfiguration
+    class TaskConfiguration
     {
         public string webFolder { get; set; }
         public string logFolder { get; set; }
@@ -101,7 +101,6 @@ namespace HardHat
 
     public class WebConfiguration
     {
-        public string protocol { get; set; }
         public string internalPath { get; set; }
         public string file { get; set; }
         public string flavor { get; set; }

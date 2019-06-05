@@ -37,8 +37,8 @@ namespace HardHat
                 opts.Add(new Variable { opt = "sh", name = "SIGCHECK_HOME", verified = false, status = false, value = "" });
                 // VCS
                 opts.Add(new Variable { opt = "gh", name = "GIT_HOME", verified = false, status = false, value = "" });
-                // Gulp
-                opts.Add(new Variable { opt = "gp", name = "GULP_PROJECT", verified = false, status = false, value = "" });
+                // Task
+                opts.Add(new Variable { opt = "tp", name = "TASK_PROJECT", verified = false, status = false, value = "" });
                 // Build
                 opts.Add(new Variable { opt = "bh", name = "GRADLE_HOME", verified = false, status = false, value = "" });
                 opts.Add(new Variable { opt = "bp", name = "ANDROID_PROPERTIES", verified = false, status = false, value = "" });

@@ -49,10 +49,10 @@ namespace HardHat
             config.project.androidHybridPath = "assets/www";
             config.project.filterFiles = new string[] { ".js", ".css" };
 
-            config.gulp = new GulpConfiguration();
-            config.gulp.webFolder = "server";
-            config.gulp.logFolder = "ssh";
-            config.gulp.extension = ".json";
+            config.task = new TaskConfiguration();
+            config.task.webFolder = "config/server";
+            config.task.logFolder = "config/log";
+            config.task.extension = ".json";
 
             config.editor = new EditorConfiguration();
             config.editor.selected = "c";
@@ -83,7 +83,6 @@ namespace HardHat
             config.personal.webServer.flavor = "";
             config.personal.webServer.number = "";
             config.personal.webServer.sync = false;
-            config.personal.webServer.protocol = "http";
             config.personal.webServer.internalPath = "";
             config.personal.webServer.open = true;
             config.personal.gradle = new BuildConfiguration();

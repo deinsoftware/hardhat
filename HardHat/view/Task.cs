@@ -12,69 +12,57 @@ using static Colorify.Colors;
 namespace HardHat
 {
 
-    public static partial class Gulp
+    public static partial class Task
     {
 
         public static void List(ref List<Option> opts)
         {
-            opts.Add(new Option { opt = "g", status = false, action = Gulp.Select });
+            opts.Add(new Option { opt = "t", status = false, action = Task.Select });
             PathList(ref opts);
-            opts.Add(new Option { opt = "gw", status = false, action = Gulp.Watch });
-            opts.Add(new Option { opt = "gm", status = false, action = Gulp.Make });
-            opts.Add(new Option { opt = "gu", status = false, action = Gulp.Uglify });
-            opts.Add(new Option { opt = "gr", status = false, action = Gulp.Revert });
+            opts.Add(new Option { opt = "tw", status = false, action = Task.Watch });
+            opts.Add(new Option { opt = "tm", status = false, action = Task.Make });
+            opts.Add(new Option { opt = "tu", status = false, action = Task.Uglify });
+            opts.Add(new Option { opt = "tr", status = false, action = Task.Revert });
             ServerList(ref opts);
-            FtpList(ref opts);
             LogList(ref opts);
         }
 
         public static void Status()
         {
-            Options.IsValid("g", Variables.Valid("gp"));
+            Options.IsValid("t", Variables.Valid("tp"));
             PathStatus();
-            Options.IsValid("gw", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("gm", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("gu", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("gr", Variables.Valid("gp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("tw", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("tm", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("tu", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("tr", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             ServerStatus();
-            FtpStatus();
             LogStatus();
         }
 
         public static void Start()
         {
 
-            _colorify.WriteLine($" [G] Gulp", txtStatus(Options.IsValid("g")));
-            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("gw")));
-            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.IsValid("gu")));
+            _colorify.WriteLine($" [T] Task", txtStatus(Options.IsValid("t")));
+            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));
+            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.IsValid("tu")));
             if (String.IsNullOrEmpty(_config.personal.menu.serverConfiguration))
             {
-                _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("gs")));
+                _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
             }
             else
             {
-                _colorify.Write($"{"[S] Server: ",-12}", txtStatus(Options.IsValid("gs")));
+                _colorify.Write($"{"[S] Server: ",-12}", txtStatus(Options.IsValid("ts")));
                 Section.Configuration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
             }
-            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("gm")));
-            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("gr")));
-            if (String.IsNullOrEmpty(_config.personal.menu.ftpConfiguration))
-            {
-                _colorify.WriteLine($"{"[F] FTP",-12}", txtStatus(Options.IsValid("gs")));
-            }
-            else
-            {
-                _colorify.Write($"{"[F] FTP: ",-12}", txtStatus(Options.IsValid("gs")));
-                Section.Configuration(_config.personal.menu.ftpValidation, _config.personal.menu.ftpConfiguration);
-            }
+            _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("tm")));
+            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("tr")));
             if (String.IsNullOrEmpty(_config.personal.menu.logConfiguration))
             {
-                _colorify.WriteLine($"{"[L] Log",41}", txtStatus(Options.IsValid("gs")));
+                _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
             }
             else
             {
-                _colorify.Write($"{" ",34}", txtStatus(Options.IsValid("gs")));
-                _colorify.Write($"{"[L] Log: ",-12}", txtStatus(Options.IsValid("gs")));
+                _colorify.Write($"{"[L] Log: ",-12}", txtStatus(Options.IsValid("ts")));
                 Section.Configuration(_config.personal.menu.logValidation, _config.personal.menu.logConfiguration);
             }
 
@@ -87,32 +75,22 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "CONFIGURATION");
+                Section.Header("TASK", "CONFIGURATION");
 
                 _colorify.WriteLine($" [P]", txtMuted);
-                _colorify.Write($"{"   [W] Web Server",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.webFolder}");
-                _colorify.Write($"{"   [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.logFolder}");
-                _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.gulp.extension}");
+                _colorify.Write($"{"   [W] Web Server",-25}", txtPrimary); _colorify.WriteLine($"{_config.task.webFolder}");
+                _colorify.Write($"{"   [L] Log",-25}", txtPrimary); _colorify.WriteLine($"{_config.task.logFolder}");
+                _colorify.Write($"{"   [E] Extension",-25}", txtPrimary); _colorify.WriteLine($"{_config.task.extension}");
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" [S] Server (Web/Log)", txtMuted);
-                _colorify.Write($"{"   [P] Protocol:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.protocol}");
                 _colorify.Write($"{"   [I] Internal Path:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.internalPath}");
                 _colorify.Write($"{"   [C] Configuration:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.file}");
-                string gulpConfiguration = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
-                _colorify.Write($"{"   [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{gulpConfiguration}");
+                string taskConfiguration = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
+                _colorify.Write($"{"   [F] Flavor:",-25}", txtPrimary); _colorify.WriteLine($"{taskConfiguration}");
                 _colorify.Write($"{"   [N] Number:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.number}");
                 _colorify.Write($"{"   [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.sync ? "Yes" : "No")}");
                 _colorify.Write($"{"   [O] Open:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.open ? "Yes" : "No")}");
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($" [F] FTP", txtMuted);
-                _colorify.Write($"{"   [H] Host:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.host}");
-                _colorify.Write($"{"   [P] Port:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.port}");
-                _colorify.Write($"{"   [A] Authentication:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.authenticationPath}");
-                _colorify.Write($"{"   [K] Key:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.authenticationKey}");
-                _colorify.Write($"{"   [R] Remote Path:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.remotePath}");
-                _colorify.Write($"{"   [D] Dimension:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.ftpServer.dimension}");
 
                 _colorify.WriteLine($"{"[EMPTY] Exit",82}", txtDanger);
 
@@ -127,7 +105,7 @@ namespace HardHat
                 }
                 else
                 {
-                    Menu.Route($"g>{opt}", "g");
+                    Menu.Route($"t>{opt}", "t");
                 }
                 Message.Error();
             }
@@ -160,7 +138,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "MAKE");
+                Section.Header("TASK", "MAKE");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
@@ -187,15 +165,15 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "UGLIFY");
+                Section.Header("TASK", "UGLIFY");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidHybridPath);
 
                 string[] dirs = new string[] {
-                    _path.Combine(Variables.Value("gp"),"www"),
-                    _path.Combine(Variables.Value("gp"),"bld"),
+                    _path.Combine(Variables.Value("tp"),"service/www"),
+                    _path.Combine(Variables.Value("tp"),"service/bld"),
                 };
 
                 _colorify.BlankLines();
@@ -243,12 +221,12 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "REVERT");
+                Section.Header("TASK", "REVERT");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidHybridPath);
-                string dirSource = _path.Combine(Variables.Value("gp"), "www");
+                string dirSource = _path.Combine(Variables.Value("tp"), "services/www");
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Reverting...", txtInfo);
                 _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirSource}");
@@ -270,7 +248,7 @@ namespace HardHat
         {
             try
             {
-                string dirPath = _path.Combine(Variables.Value("gp"));
+                string dirPath = _path.Combine(Variables.Value("tp"));
 
                 if (_fileSystem.DirectoryExists(_path.Combine(dirPath, ".git")))
                 {
@@ -279,7 +257,7 @@ namespace HardHat
                     if (!updated)
                     {
                         StringBuilder msg = new StringBuilder();
-                        msg.Append($"There is a new Gulp project version available.");
+                        msg.Append($"There is a new Task project version available.");
                         msg.Append(Environment.NewLine);
                         msg.Append($" Do you want update it?");
                         bool update = Message.Confirmation(msg.ToString());
@@ -302,16 +280,16 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "UPDATE");
+                Section.Header("TASK", "UPDATE");
 
-                string dirPath = _path.Combine(Variables.Value("gp"));
+                string dirPath = _path.Combine(Variables.Value("tp"));
 
                 _colorify.WriteLine($" --> Updating...", txtInfo);
                 Git.CmdPull(dirPath);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Updating Dependencies...", txtInfo);
-                Gulp.CmdInstall();
+                Task.CmdInstall();
 
                 Section.HorizontalRule();
                 Section.Pause();

@@ -96,7 +96,7 @@ namespace HardHat
         {
             Variables.Upgrade();
             Variables.Update();
-            Gulp.Check();
+            Task.Check();
         }
 
         public static void Exit()

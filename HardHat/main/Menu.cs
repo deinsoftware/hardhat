@@ -26,7 +26,7 @@ namespace HardHat
                 Project.Status(dirPath);
                 Vcs.Status(dirPath);
                 Sonar.Status();
-                Gulp.Status();
+                Task.Status();
                 Build.Status();
                 Configuration.Status();
             }
@@ -48,7 +48,7 @@ namespace HardHat
             Status("m");
             Project.Start();
             Vcs.Start();
-            Gulp.Start();
+            Task.Start();
             Build.Start();
             Sonar.Start();
             Adb.Start();

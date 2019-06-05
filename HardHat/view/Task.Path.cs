@@ -12,20 +12,20 @@ using static Colorify.Colors;
 namespace HardHat
 {
 
-    public static partial class Gulp
+    public static partial class Task
     {
         public static void PathList(ref List<Option> opts)
         {
-            opts.Add(new Option { opt = "g>pw", status = true, action = Gulp.PathServer });
-            opts.Add(new Option { opt = "g>pl", status = true, action = Gulp.PathLog });
-            opts.Add(new Option { opt = "g>pe", status = true, action = Gulp.PathExtension });
+            opts.Add(new Option { opt = "t>pw", status = true, action = Task.PathServer });
+            opts.Add(new Option { opt = "t>pl", status = true, action = Task.PathLog });
+            opts.Add(new Option { opt = "t>pe", status = true, action = Task.PathExtension });
         }
 
         public static void PathStatus()
         {
-            Options.IsValid("g>pw", Variables.Valid("gp"));
-            Options.IsValid("g>pl", Variables.Valid("gp"));
-            Options.IsValid("g>pe", Variables.Valid("gp"));
+            Options.IsValid("t>pw", Variables.Valid("tp"));
+            Options.IsValid("t>pl", Variables.Valid("tp"));
+            Options.IsValid("t>pe", Variables.Valid("tp"));
         }
 
         public static void PathServer()
@@ -34,9 +34,9 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "PATH", "WEB SERVER");
+                Section.Header("TASK", "PATH", "WEB SERVER");
 
-                _colorify.WriteLine($" Web Server configuration path inside Gulp path.", txtPrimary);
+                _colorify.WriteLine($" Web Server configuration path inside path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
 
                 _colorify.BlankLines();
@@ -48,7 +48,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.gulp.webFolder = $"{opt}";
+                    _config.task.webFolder = $"{opt}";
                 }
 
                 Menu.Status();
@@ -66,9 +66,9 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "PATH", "LOG");
+                Section.Header("TASK", "PATH", "LOG");
 
-                _colorify.WriteLine($" Log configuration path inside Gulp path.", txtPrimary);
+                _colorify.WriteLine($" Log configuration path inside path.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
 
                 _colorify.BlankLines();
@@ -80,7 +80,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.gulp.logFolder = $"{opt}";
+                    _config.task.logFolder = $"{opt}";
                 }
 
                 Menu.Status();
@@ -98,7 +98,7 @@ namespace HardHat
 
             try
             {
-                Section.Header("GULP", "PATH", "EXTENSION");
+                Section.Header("TASK", "PATH", "EXTENSION");
 
                 _colorify.WriteLine($" File extension inside Server folder.", txtPrimary);
                 _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
@@ -112,7 +112,7 @@ namespace HardHat
                 string opt = Console.ReadLine().Trim();
                 if (!String.IsNullOrEmpty(opt))
                 {
-                    _config.gulp.extension = $".{opt}";
+                    _config.task.extension = $".{opt}";
                 }
 
                 Menu.Status();

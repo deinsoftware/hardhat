@@ -463,7 +463,7 @@ namespace HardHat
             {
                 Section.Header("CONFIGURATION", "ANDROID", "COMPACT");
 
-                _colorify.WriteLine($" Files path inside Selected Project to be compacted with gulp.", txtPrimary);
+                _colorify.WriteLine($" Files path inside Selected Project to be compacted.", txtPrimary);
                 _colorify.WriteLine($" Don't use / (slash character) at start or end.", txtPrimary);
 
                 _colorify.BlankLines();
@@ -495,7 +495,7 @@ namespace HardHat
             {
                 Section.Header("CONFIGURATION", "ANDROID", "FILTER");
 
-                _colorify.WriteLine($" Filter extension name to be proccessed with gulp.", txtPrimary);
+                _colorify.WriteLine($" Filter extension name to be proccessed.", txtPrimary);
                 _colorify.WriteLine($" List separated by , (comma character).", txtPrimary);
                 _colorify.WriteLine($" Don't use . (dot character) at start.", txtPrimary);
 
