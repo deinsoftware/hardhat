@@ -51,7 +51,7 @@ namespace HardHat
             Options.IsValid("b>m", Variables.Valid("gh"));
             Options.IsValid("b>m:d", Variables.Valid("gh"));
             Options.IsValid("b>m:r", Variables.Valid("gh"));
-            Options.IsValid("bp", Variables.Valid("gp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bp", Variables.Valid("tp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bcc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
@@ -219,10 +219,9 @@ namespace HardHat
 
             try
             {
-                Vpn.Verification();
-
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
                 CmdClean(dirPath);
+                CleanGuard();
 
                 Menu.Start();
             }
@@ -238,12 +237,32 @@ namespace HardHat
 
             try
             {
-                Vpn.Verification();
-
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
                 CmdClean(dirPath, true);
+                CleanGuard();
 
                 Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        private static void CleanGuard()
+        {
+            try
+            {
+                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath);
+                string[] files = new string[] { "mapping", "seeds", "unused" };
+
+                foreach (var file in files)
+                {
+                    if (_fileSystem.FileExists(_path.Combine(dirPath, file + ".txt")))
+                    {
+                        _fileSystem.DeleteFile(_path.Combine(dirPath, file + ".txt"));
+                    }
+                }
             }
             catch (Exception Ex)
             {
