@@ -89,7 +89,7 @@ namespace HardHat
         {
             try
             {
-                Response result = _shell.Term($"ng -v");
+                Response result = _shell.Term($"ng version");
                 string response = Strings.ExtractLine(result.stdout, "Angular CLI:", "Angular CLI: ");
                 _shell.Result(response, "is not Installed");
             }
