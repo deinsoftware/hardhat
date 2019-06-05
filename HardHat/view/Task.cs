@@ -21,7 +21,9 @@ namespace HardHat
             PathList(ref opts);
             opts.Add(new Option { opt = "tw", status = false, action = Task.Watch });
             opts.Add(new Option { opt = "tm", status = false, action = Task.Make });
-            opts.Add(new Option { opt = "tu", status = false, action = Task.Uglify });
+            opts.Add(new Option { opt = "to", status = false, action = Task.Obfuscate, variant = "" });
+            opts.Add(new Option { opt = "to-c", status = false, action = Task.Obfuscate, variant = "c" });
+            opts.Add(new Option { opt = "to-l", status = false, action = Task.Obfuscate, variant = "l" });
             opts.Add(new Option { opt = "tr", status = false, action = Task.Revert });
             ServerList(ref opts);
             LogList(ref opts);
@@ -33,7 +35,9 @@ namespace HardHat
             PathStatus();
             Options.IsValid("tw", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("tm", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("tu", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("to", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("to-c", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("to-l", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("tr", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             ServerStatus();
             LogStatus();
@@ -44,7 +48,7 @@ namespace HardHat
 
             _colorify.WriteLine($" [T] Task", txtStatus(Options.IsValid("t")));
             _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));
-            _colorify.Write($"{"[U] Uglify",-17}", txtStatus(Options.IsValid("tu")));
+            _colorify.Write($"{"[O] Obfuscate",-17}", txtStatus(Options.IsValid("to")));
             if (String.IsNullOrEmpty(_config.personal.menu.serverConfiguration))
             {
                 _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
@@ -159,13 +163,13 @@ namespace HardHat
             }
         }
 
-        public static void Uglify()
+        public static void Obfuscate()
         {
             _colorify.Clear();
 
             try
             {
-                Section.Header("TASK", "UGLIFY");
+                Section.Header("TASK", "OBFUSCATE");
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
@@ -195,8 +199,13 @@ namespace HardHat
                 _disk.CopyAll(dirPath, dirs[1], true, filter);
 
                 _colorify.BlankLines();
-                _colorify.WriteLine($" --> Uglifying...", txtInfo);
-                CmdUglify();
+                _colorify.WriteLine($" --> Obfuscate...", txtInfo);
+                string type = "complete";
+                if (_config.personal.menu.selectedVariant == "l")
+                {
+                    type = "lite";
+                }
+                CmdObfuscate(type);
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Replacing...", txtInfo);

@@ -25,11 +25,11 @@ namespace HardHat
             return path;
         }
 
-        public static void CmdUglify()
+        public static void CmdObfuscate(string type)
         {
             try
             {
-                _shell.Term($"gulp dist", Output.Internal, DirPath());
+                _shell.Term($"gulp dist --type {type}", Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {

@@ -11,9 +11,12 @@ namespace HardHat
     {
         public static readonly IReadOnlyDictionary<string, string> Flavor = new Dictionary<string, string>
         {
-            {"a", "Alfa"},
-            {"b", "Beta"},
-            {"p", "Prod"}
+            {"d", "dev"},
+            {"q", "qa"},
+            {"r", "drc"},
+            {"m", "mnto"},
+            {"v", "vsrv"},
+            {"p", "prod"}
         };
 
         public static readonly IReadOnlyDictionary<string, string> Logical = new Dictionary<string, string>
@@ -25,6 +28,7 @@ namespace HardHat
         public static readonly IReadOnlyDictionary<string, string> Mode = new Dictionary<string, string>
         {
             {"d", "Debug"},
+            {"s", "Stag"},
             {"r", "Release"}
         };
 

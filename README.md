@@ -53,7 +53,7 @@ What things you need to install?
 * [Android SDK](https://developer.android.com/studio/index.html#downloads)
 * [Gradle](https://gradle.org/install)
 * [Git](https://git-scm.com/downloads)
-* [Gulp](http://gulpjs.com/) (to Minify and Uglify)
+* [Gulp](http://gulpjs.com/)
 * [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Node.js](https://nodejs.org/en/download/) (with NPM)
 * [SonarQube](https://www.sonarqube.org/)
@@ -256,51 +256,51 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>vr+p</kbd> | Clean and Pull files over selected project. |
 | <kbd>vo</kbd> | Discard, Clean and Pull (x2) files over selected project. |
 
-#### Gulp
+#### Task
 
 | combination | action |
 | --- | --- |
-| <kbd>g</kbd> | Gulp paths, Server and Log configuration. |
-| <kbd>gw</kbd> | Launch `gulp watch` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gm</kbd> | Launch `gulp make` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gu</kbd> | Make a copy of project files (with an additional backup) and launch `gulp build` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>gr</kbd> | Revert original files to selected project. |
-| <kbd>gs</kbd> | Launch `gulp default` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
-| <kbd>gl</kbd> | Launch `gulp log` command over selected project to `GULP_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>t</kbd> | Task paths, Server and Log configuration. |
+| <kbd>tw</kbd> | Launch `gulp watch` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>tm</kbd> | Launch `gulp make` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>to</kbd> | Make a copy of project files (with an additional backup) and launch `gulp dist` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>tr</kbd> | Revert original files to selected project. |
+| <kbd>ts</kbd> | Launch `gulp server` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
+| <kbd>tl</kbd> | Launch `gulp log` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 
 ##### Path Configuration
 
 | combination | action |
 | --- | --- |
-| <kbd>g>pw</kbd> | Web Server path with configurations. |
-| <kbd>g>pl</kbd> | Log path with configurations. |
-| <kbd>g>pe</kbd> | Extension name for configurations. |
+| <kbd>t>pw</kbd> | Web Server path with configurations. |
+| <kbd>t>pl</kbd> | Log path with configurations. |
+| <kbd>t>pe</kbd> | Extension name for configurations. |
 
 ##### Server (Web/Log) Configuration
 
 | combination | action |
 | --- | --- |
-| <kbd>g>si</kbd> | Internal Path inside server configuration. |
-| <kbd>g>sc</kbd> | Configuration file with web server configuration. |
-| <kbd>g>sf</kbd> | Flavor. |
-| <kbd>g>sn</kbd> | Number. |
-| <kbd>g>ss</kbd> | Sync Browser on save. |
-| <kbd>g>sp</kbd> | Open shortcut in browser at start. |
+| <kbd>t>si</kbd> | Internal Path inside server configuration. |
+| <kbd>t>sc</kbd> | Configuration file with web server configuration. |
+| <kbd>t>sf</kbd> | Flavor. |
+| <kbd>t>sn</kbd> | Number. |
+| <kbd>t>ss</kbd> | Sync Browser on save. |
+| <kbd>t>sp</kbd> | Open shortcut in browser at start. |
 
 ##### Quick Server Configuration
 | combination | option | value |
 | --- | --- | --- |
-| <kbd>g>f:a</kbd> | Flavor | Alfa |
-| <kbd>g>f:b</kbd> | Flavor | Beta |
-| <kbd>g>f:m</kbd> | Flavor | Mntn |
-| <kbd>g>f:s</kbd> | Flavor | Stag |
-| <kbd>g>f:p</kbd> | Flavor | Prod |
-| <kbd>g>f:d</kbd> | Flavor | Desk |
-| <kbd>g>n:1</kbd> | Number | 1 |
-| <kbd>g>n:2</kbd> | Number | 2 |
-| <kbd>g>n:3</kbd> | Number | 3 |
-| <kbd>g>n:4</kbd> | Number | 4 |
-| <kbd>g>n:5</kbd> | Number | 5 |
+| <kbd>t>f:d</kbd> | Flavor | dev |
+| <kbd>t>f:q</kbd> | Flavor | qa |
+| <kbd>t>f:r</kbd> | Flavor | drc |
+| <kbd>t>f:m</kbd> | Flavor | mnto |
+| <kbd>t>f:v</kbd> | Flavor | vsrv |
+| <kbd>t>f:p</kbd> | Flavor | prod |
+| <kbd>t>n:1</kbd> | Number | 1 |
+| <kbd>t>n:2</kbd> | Number | 2 |
+| <kbd>t>n:3</kbd> | Number | 3 |
+| <kbd>t>n:4</kbd> | Number | 4 |
+| <kbd>t>n:5</kbd> | Number | 5 |
 
 #### Build
 
@@ -312,7 +312,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
 | <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>bc</kbd> | Make `clean` project with gradle command line. |
-| <kbd>bcc</kbd> | Make `cleanBuildCache` project with gradle command line. |
+| <kbd>bc-c</kbd> | Make `cleanBuildCache` project with gradle command line. |
 | <kbd>bg</kbd> | Make `build` project with gradle command line. |
 
 If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
@@ -325,13 +325,14 @@ If you have some pre-configured files to be copied to project path, add it on `A
 ##### Quick Build Configuration
 | combination | option | value |
 | --- | --- | --- |
-| <kbd>b>f:a</kbd> | Flavor | Alfa |
-| <kbd>b>f:b</kbd> | Flavor | Beta |
-| <kbd>b>f:m</kbd> | Flavor | Mntn |
-| <kbd>b>f:s</kbd> | Flavor | Stag |
-| <kbd>b>f:p</kbd> | Flavor | Prod |
-| <kbd>b>f:d</kbd> | Flavor | Desk |
+| <kbd>t>f:d</kbd> | Flavor | dev |
+| <kbd>t>f:q</kbd> | Flavor | qa |
+| <kbd>t>f:r</kbd> | Flavor | drc |
+| <kbd>t>f:m</kbd> | Flavor | mnto |
+| <kbd>t>f:v</kbd> | Flavor | vsrv |
+| <kbd>t>f:p</kbd> | Flavor | prod |
 | <kbd>b>m:d</kbd> | Mode | Debug |
+| <kbd>b>m:s</kbd> | Mode | Stag |
 | <kbd>b>m:r</kbd> | Mode | Release |
 
 #### Sonar
@@ -387,7 +388,7 @@ Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 | <kbd>ap</kbd> | Android folder path inside project |
 | <kbd>ab</kbd> | Build folder path inside android project. |
 | <kbd>ae</kbd> | Extension name for android application. |
-| <kbd>ac</kbd> | Hybrid folder to be processed with Gulp (Uglify & Minify). |
+| <kbd>ac</kbd> | Hybrid folder to be processed with Tasks (Uglify & Minify). |
 | <kbd>af</kbd> | Filter extension name for files to be processed. |
 
 #### Other Variables
