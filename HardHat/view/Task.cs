@@ -235,7 +235,7 @@ namespace HardHat
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project, _config.project.androidPath, _config.project.androidHybridPath);
-                string dirSource = _path.Combine(Variables.Value("tp"), "services/www");
+                string dirSource = _path.Combine(Variables.Value("tp"), "service/www");
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Reverting...", txtInfo);
                 _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirSource}");
