@@ -319,7 +319,8 @@ namespace HardHat
             {
                 string sourceDimensionPath = _path.Combine(
                     sourcePath,
-                    $"{_config.path.workspace}_{_config.personal.gradle.dimension}");
+                    $"{_config.path.workspace}_{_config.personal.gradle.dimension}"
+                );
                 if (_fileSystem.DirectoryExists(sourceDimensionPath))
                 {
                     sourcePath = sourceDimensionPath;
