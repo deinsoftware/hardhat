@@ -72,23 +72,20 @@ namespace HardHat
 
         public static string Name(IReadOnlyDictionary<string, string> sel, string opt)
         {
+            var result = "";
             try
             {
-                if (String.IsNullOrEmpty(opt))
+                opt = opt.ToLower();
+                if (sel.ContainsKey(opt))
                 {
-                    opt = "";
-                }
-                else
-                {
-                    opt = opt.ToLower();
-                    opt = sel[opt];
+                    result = sel[opt];
                 }
             }
             catch (Exception Ex)
             {
                 Exceptions.General(Ex);
             }
-            return opt;
+            return result;
         }
 
         public static string Start(IReadOnlyDictionary<string, string> sel, string dfl)
