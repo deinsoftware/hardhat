@@ -3,7 +3,6 @@
         "Colorify",
         "Configurator",
         "Equiman",
-        "Loaiza",
         "Logcat",
         "Newtonsoft",
         "Sigcheck",
@@ -17,6 +16,7 @@
         "keystore",
         "libexec",
         "macos",
+        "mnto",
         "pbcopy",
         "qube",
         "sbin",
@@ -24,6 +24,7 @@
         "thumbsup",
         "trac",
         "unversioned",
+        "vsrv",
         "xclip",
         "xcopy"
     ],
