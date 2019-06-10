@@ -298,6 +298,7 @@ namespace HardHat
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Updating Dependencies...", txtInfo);
+                Task.CmdRemove();
                 Task.CmdInstall();
 
                 Section.HorizontalRule();
