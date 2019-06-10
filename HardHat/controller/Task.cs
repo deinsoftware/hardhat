@@ -82,7 +82,8 @@ namespace HardHat
                 {
                     cmd.Append($"sudo ");
                 }
-                cmd.Append($"gulp --path {path}/");
+                cmd.Append($"gulp server");
+                cmd.Append($" --path {path}/");
                 if (!String.IsNullOrEmpty(webServer.internalPath))
                 {
                     cmd.Append($" --internal {webServer.internalPath}");
@@ -90,15 +91,15 @@ namespace HardHat
                 cmd.Append($" --dimension {webServer.file}");
                 if (!String.IsNullOrEmpty(webServer.flavor))
                 {
-                    cmd.Append($" --flavor {webServer.flavor.ToUpper()}");
+                    cmd.Append($" --flavor {Selector.Name(Selector.Flavor, _config.personal.webServer.flavor)}");
                 }
                 if (!String.IsNullOrEmpty(webServer.number))
                 {
                     cmd.Append($" --number {webServer.number}");
                 }
                 cmd.Append($" --host {localIp}");
-                cmd.Append($" --sync {webServer.sync}");
-                cmd.Append($" --open {webServer.open}");
+                cmd.Append($" --sync {webServer.sync.ToString().ToLower()}");
+                cmd.Append($" --browse {webServer.open.ToString().ToLower()}");
                 cmd.Append($" --os {OS.GetCurrent()}");
                 _shell.Term(cmd.ToString(), Output.External, DirPath());
             }
@@ -117,7 +118,7 @@ namespace HardHat
                 cmd.Append($" --dimension {webServer.file}");
                 if (!String.IsNullOrEmpty(webServer.flavor))
                 {
-                    cmd.Append($" --flavor {webServer.flavor.ToUpper()}");
+                    cmd.Append($" --flavor {Selector.Name(Selector.Flavor, _config.personal.webServer.flavor)}");
                 }
                 if (!String.IsNullOrEmpty(webServer.number))
                 {
