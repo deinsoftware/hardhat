@@ -200,10 +200,10 @@ namespace HardHat
 
                 _colorify.BlankLines();
                 _colorify.WriteLine($" --> Obfuscate...", txtInfo);
-                string type = "complete";
-                if (_config.personal.menu.selectedVariant == "l")
+                string type = "lite";
+                if (_config.personal.menu.selectedVariant == "c")
                 {
-                    type = "lite";
+                    type = "complete";
                 }
                 CmdObfuscate(type);
 

@@ -42,7 +42,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                cmd.Append($"gulp watch --path {path}/");
+                cmd.Append($"gulp watch --path {path}");
                 if (!String.IsNullOrEmpty(platform))
                 {
                     cmd.Append($" --os {platform}");
@@ -60,7 +60,7 @@ namespace HardHat
             try
             {
                 StringBuilder cmd = new StringBuilder();
-                cmd.Append($"gulp make --path {path}/");
+                cmd.Append($"gulp make --path {path}");
                 if (!String.IsNullOrEmpty(platform))
                 {
                     cmd.Append($" --os {platform}");
@@ -83,7 +83,7 @@ namespace HardHat
                     cmd.Append($"sudo ");
                 }
                 cmd.Append($"gulp server");
-                cmd.Append($" --path {path}/");
+                cmd.Append($" --path {path}");
                 if (!String.IsNullOrEmpty(webServer.internalPath))
                 {
                     cmd.Append($" --internal {webServer.internalPath}");
