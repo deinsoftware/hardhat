@@ -27,7 +27,7 @@ namespace HardHat
             _colorify.WriteLine(" Required", txtInfo);
             _colorify.Write($"{" GIT",-17}", txtPrimary); Version.CmdGit();
             _colorify.Write($"{" Gradle",-17}", txtPrimary); Version.CmdGradle();
-            _colorify.Write($"{" Gulp",-17}", txtPrimary); Version.CmdGulp();
+            _colorify.Write($"{" Gulp CLI",-17}", txtPrimary); Version.CmdGulp();
             _colorify.Write($"{" Java",-17}", txtPrimary); Version.CmdJava();
             _colorify.Write($"{" Node",-17}", txtPrimary); Version.CmdNode();
             _colorify.Write($"{" NPM",-17}", txtPrimary); Version.CmdNPM();

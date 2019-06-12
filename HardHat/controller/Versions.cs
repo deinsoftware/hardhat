@@ -31,7 +31,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"gulp --v");
-                string response = Strings.GetWord(result.stdout, 3);
+                string response = Strings.ExtractLine(result.stdout, "CLI", "CLI version: "); ;
                 _shell.Result(response, "is not Installed");
             }
             catch (Exception Ex)
