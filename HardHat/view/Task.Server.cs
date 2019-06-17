@@ -44,7 +44,15 @@ namespace HardHat
             {
                 serverConfiguration.Append($"{_config.personal.webServer.file}/");
             }
-            serverConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.webServer.flavor));
+            string flavor = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
+            if (!String.IsNullOrEmpty(flavor))
+            {
+                serverConfiguration.Append(flavor);
+            }
+            else
+            {
+                _config.personal.webServer.flavor = "";
+            }
             serverConfiguration.Append(_config.personal.webServer.number);
             if (!String.IsNullOrEmpty(_config.personal.webServer.internalPath))
             {

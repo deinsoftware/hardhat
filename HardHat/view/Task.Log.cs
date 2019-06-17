@@ -28,7 +28,15 @@ namespace HardHat
             {
                 logConfiguration.Append($"{_config.personal.webServer.file}/");
             }
-            logConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.webServer.flavor));
+            string flavor = Selector.Name(Selector.Flavor, _config.personal.webServer.flavor);
+            if (!String.IsNullOrEmpty(flavor))
+            {
+                logConfiguration.Append(flavor);
+            }
+            else
+            {
+                _config.personal.webServer.flavor = "";
+            }
             logConfiguration.Append(_config.personal.webServer.number);
             _config.personal.menu.logConfiguration = logConfiguration.ToString();
             _config.personal.menu.logValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.logConfiguration);

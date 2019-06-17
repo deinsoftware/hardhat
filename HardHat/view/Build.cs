@@ -38,8 +38,24 @@ namespace HardHat
         {
             StringBuilder buildConfiguration = new StringBuilder();
             buildConfiguration.Append(_config.personal.gradle.dimension ?? "");
-            buildConfiguration.Append(Selector.Name(Selector.Flavor, _config.personal.gradle.flavor));
-            buildConfiguration.Append(Selector.Name(Selector.Mode, _config.personal.gradle.mode));
+            string flavor = Selector.Name(Selector.Flavor, _config.personal.gradle.flavor);
+            if (!String.IsNullOrEmpty(flavor))
+            {
+                buildConfiguration.Append(flavor);
+            }
+            else
+            {
+                _config.personal.gradle.flavor = "";
+            }
+            string mode = Selector.Name(Selector.Mode, _config.personal.gradle.mode);
+            if (!String.IsNullOrEmpty(mode))
+            {
+                buildConfiguration.Append(mode);
+            }
+            else
+            {
+                _config.personal.gradle.mode = "";
+            }
             _config.personal.menu.buildConfiguration = buildConfiguration.ToString();
             _config.personal.menu.buildValidation = !Strings.SomeNullOrEmpty(
                 _config.personal.selected.project,
