@@ -244,17 +244,17 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pp>m</kbd> | Copy mapping file path to clipboard. |
 | <kbd>pp>d</kbd> | Duplicate and rename selected file. |
 
-#### Version Control System
+#### Git
 
 | combination | action |
 | --- | --- |
-| <kbd>v</kbd> | Show current GIT branch. |
-| <kbd>vd</kbd> | Discard files. Launch `reset` command over selected project. |
-| <kbd>vp</kbd> | Pull files. Launch `pull` command over selected project. |
-| <kbd>vc</kbd> | Clean files. Launch `clean` command over selected project and delete unversioned files over selected project. |
-| <kbd>vd+p</kbd> | Discard and Pull files over selected project. |
-| <kbd>vr+p</kbd> | Clean and Pull files over selected project. |
-| <kbd>vo</kbd> | Discard, Clean and Pull (x2) files over selected project. |
+| <kbd>g</kbd> | Show current GIT branch. |
+| <kbd>gd</kbd> | Discard files. Launch `reset` command over selected project. |
+| <kbd>gp</kbd> | Pull files. Launch `pull` command over selected project. |
+| <kbd>gc</kbd> | Clean files. Launch `clean` command over selected project and delete unversioned files over selected project. |
+| <kbd>gd+p</kbd> | Discard and Pull files over selected project. |
+| <kbd>gr+p</kbd> | Clean and Pull files over selected project. |
+| <kbd>go</kbd> | Discard, Clean and Pull (x2) files over selected project. |
 
 #### Task
 

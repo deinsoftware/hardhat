@@ -28,7 +28,7 @@ namespace HardHat
 
                 // Views
                 Project.List(ref opts);
-                Vcs.List(ref opts);
+                Git.List(ref opts);
                 Sonar.List(ref opts);
                 Task.List(ref opts);
                 Build.List(ref opts);

@@ -35,7 +35,7 @@ namespace HardHat
                 opts.Add(new Variable { opt = "ab", name = "ANDROID_BT_VERSION", verified = false, status = false, value = "" });
                 // Project
                 opts.Add(new Variable { opt = "sh", name = "SIGCHECK_HOME", verified = false, status = false, value = "" });
-                // VCS
+                // Git
                 opts.Add(new Variable { opt = "gh", name = "GIT_HOME", verified = false, status = false, value = "" });
                 // Task
                 opts.Add(new Variable { opt = "tp", name = "TASK_PROJECT", verified = false, status = false, value = "" });

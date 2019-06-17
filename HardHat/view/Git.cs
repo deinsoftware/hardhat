@@ -7,17 +7,17 @@ using static Colorify.Colors;
 
 namespace HardHat
 {
-    public static class Vcs
+    public static partial class Git
     {
 
         public static void List(ref List<Option> opts)
         {
-            opts.Add(new Option { opt = "vd", status = false, action = Vcs.Discard });
-            opts.Add(new Option { opt = "vp", status = false, action = Vcs.Pull });
-            opts.Add(new Option { opt = "vr", status = false, action = Vcs.Reset });
-            opts.Add(new Option { opt = "vd+p", status = false, action = Vcs.DiscardPull });
-            opts.Add(new Option { opt = "vr+p", status = false, action = Vcs.ResetPull });
-            opts.Add(new Option { opt = "vo", status = false, action = Vcs.Original });
+            opts.Add(new Option { opt = "gd", status = false, action = Git.Discard });
+            opts.Add(new Option { opt = "gp", status = false, action = Git.Pull });
+            opts.Add(new Option { opt = "gr", status = false, action = Git.Reset });
+            opts.Add(new Option { opt = "gd+p", status = false, action = Git.DiscardPull });
+            opts.Add(new Option { opt = "gr+p", status = false, action = Git.ResetPull });
+            opts.Add(new Option { opt = "go", status = false, action = Git.Original });
         }
 
         public static void Status(string dirPath)
@@ -28,27 +28,27 @@ namespace HardHat
                 string bnc = Git.CmdBranch(dirPath);
                 if (!String.IsNullOrEmpty(bnc))
                 {
-                    _config.personal.menu.currentBranch = $"git://{Git.CmdBranch(dirPath)}";
+                    _config.personal.menu.currentBranch = $"{Git.CmdBranch(dirPath)}";
                 }
             }
-            Options.IsValid("v", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("vo", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("g", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("go", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
         }
 
         public static void Start()
         {
-            if (Options.IsValid("v"))
+            if (Options.IsValid("g"))
             {
-                _colorify.WriteLine($" [V] VCS", txtMuted);
+                _colorify.WriteLine($" [G] Git", txtMuted);
             }
             else
             {
-                _colorify.Write($" [V] VCS: ", txtMuted);
+                _colorify.Write($" [G] Git: ", txtMuted);
                 _colorify.WriteLine($"{_config.personal.menu.currentBranch}");
             }
             _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.IsValid("vp")));
@@ -60,32 +60,32 @@ namespace HardHat
 
         public static void Discard()
         {
-            Vcs.Actions(true, false, false, false);
+            Git.Actions(true, false, false, false);
         }
 
         public static void Pull()
         {
-            Vcs.Actions(false, true, false, false);
+            Git.Actions(false, true, false, false);
         }
 
         public static void Reset()
         {
-            Vcs.Actions(false, false, true, false);
+            Git.Actions(false, false, true, false);
         }
 
         public static void DiscardPull()
         {
-            Vcs.Actions(true, true, false, false);
+            Git.Actions(true, true, false, false);
         }
 
         public static void ResetPull()
         {
-            Vcs.Actions(false, true, true, false);
+            Git.Actions(false, true, true, false);
         }
 
         public static void Original()
         {
-            Vcs.Actions(true, true, true, true);
+            Git.Actions(true, true, true, true);
         }
 
         public static void Actions(bool discard, bool pull, bool reset, bool confirm)

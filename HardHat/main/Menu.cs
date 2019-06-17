@@ -24,7 +24,7 @@ namespace HardHat
 
                 string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
                 Project.Status(dirPath);
-                Vcs.Status(dirPath);
+                Git.Status(dirPath);
                 Sonar.Status();
                 Task.Status();
                 Build.Status();
@@ -47,7 +47,7 @@ namespace HardHat
 
             Status("m");
             Project.Start();
-            Vcs.Start();
+            Git.Start();
             Task.Start();
             Build.Start();
             Sonar.Start();

@@ -6,7 +6,7 @@ using static HardHat.Program;
 
 namespace HardHat
 {
-    static class Git
+    public static partial class Git
     {
         public static string CmdBranch(string path)
         {
