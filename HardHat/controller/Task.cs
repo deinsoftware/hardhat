@@ -29,7 +29,7 @@ namespace HardHat
         {
             try
             {
-                _shell.Term($"gulp dist --type {type}", Output.Internal, DirPath());
+                _shell.Term($"gulp obfuscate --type {type}", Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {

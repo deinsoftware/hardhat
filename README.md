@@ -263,9 +263,9 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>t</kbd> | Task paths, Server and Log configuration. |
 | <kbd>tw</kbd> | Launch `gulp watch` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
 | <kbd>tm</kbd> | Launch `gulp make` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>to</kbd> | Make a copy of project files (with an additional backup) and launch `gulp dist` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Lite type by default. |
-| <kbd>to-l</kbd> | Launch `gulp dist --type lite` command on selected files. |
-| <kbd>to-c</kbd> | Launch `gulp dist --type complete` command on all JS and CSS files. |
+| <kbd>to</kbd> | Make a copy of project files (with an additional backup) and launch `gulp obfuscate` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Lite type by default. |
+| <kbd>to-l</kbd> | Launch `gulp obfuscate --type lite` command on selected files. |
+| <kbd>to-c</kbd> | Launch `gulp obfuscate --type complete` command on all JS and CSS files. |
 | <kbd>tr</kbd> | Revert original files to selected project. |
 | <kbd>ts</kbd> | Launch `gulp server` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
 | <kbd>tl</kbd> | Launch `gulp log` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
