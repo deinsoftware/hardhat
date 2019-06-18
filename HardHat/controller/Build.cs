@@ -12,7 +12,7 @@ namespace HardHat
         {
             try
             {
-                string action = "clean" + (cleanCache ? "BuildCache" : "");
+                string action = "clean" + (cleanCache ? " cleanBuildCache" : "");
                 _shell.Term($"gradle -p {path} {action}", Output.External);
                 _config.personal.selected.path = "";
                 _config.personal.selected.file = "";
