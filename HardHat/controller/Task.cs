@@ -25,16 +25,18 @@ namespace HardHat
             return path;
         }
 
-        public static void CmdObfuscate(string type)
+        public static Response CmdObfuscate(string type)
         {
+            Response result = new Response();
             try
             {
-                _shell.Term($"gulp obfuscate --type {type}", Output.Internal, DirPath());
+                result = _shell.Term($"gulp obfuscate --type {type}", Output.Internal, DirPath());
             }
             catch (Exception Ex)
             {
                 Exceptions.General(Ex);
             }
+            return result;
         }
 
         public static void CmdWatch(string path, string platform = "")

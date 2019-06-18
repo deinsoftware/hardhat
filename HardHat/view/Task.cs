@@ -8,6 +8,7 @@ using dein.tools;
 using static HardHat.Program;
 using ToolBox.Validations;
 using static Colorify.Colors;
+using ToolBox.Bridge;
 
 namespace HardHat
 {
@@ -205,13 +206,16 @@ namespace HardHat
                 {
                     type = "complete";
                 }
-                CmdObfuscate(type);
 
-                _colorify.BlankLines();
-                _colorify.WriteLine($" --> Replacing...", txtInfo);
-                _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
-                _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
-                _disk.CopyAll(dirs[1], dirPath, true);
+                Response result = CmdObfuscate(type);
+                if (result.code == 0)
+                {
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Replacing...", txtInfo);
+                    _colorify.Write($"{" From:",-8}", txtMuted); _colorify.WriteLine($"{dirs[1]}");
+                    _colorify.Write($"{" To:",-8}", txtMuted); _colorify.WriteLine($"{dirPath}");
+                    _disk.CopyAll(dirs[1], dirPath, true);
+                }
 
                 Section.HorizontalRule();
                 Section.Pause();
