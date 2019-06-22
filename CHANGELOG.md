@@ -11,13 +11,19 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 ## [7.0.0] - 2019-06-07
 
-**Removed:**
+**Added:**
 
-- FTP option on gulp
+- Remove mapping files on Gradle clean
 
 **Changed:**
 
-- Gulp was replaced by Task project
+- Rename VSC option to Git
+- Rename Gulp option to task
+- Change Gulp commands and parameters
+
+**Removed:**
+
+- FTP option on gulp
 
 ## [6.13.0] - 2019-02-21
 
