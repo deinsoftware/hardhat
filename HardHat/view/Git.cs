@@ -44,17 +44,17 @@ namespace HardHat
         {
             if (Options.IsValid("g"))
             {
-                _colorify.WriteLine($" [G] Git", txtMuted);
+                _colorify.WriteLine($"{"[G] Git",-12}", txtMuted);
             }
             else
             {
-                _colorify.Write($" [G] Git: ", txtMuted);
+                _colorify.Write($"{"[G] Git: ",-12}", txtMuted);
                 _colorify.WriteLine($"{_config.personal.menu.currentBranch}");
             }
-            _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.IsValid("vp")));
-            _colorify.Write($"{"[D] Discard",-17}", txtStatus(Options.IsValid("vd")));
-            _colorify.Write($"{"[R] Reset",-17}", txtStatus(Options.IsValid("vr")));
-            _colorify.WriteLine($"{"[O] Original",-17}", txtStatus(Options.IsValid("vo")));
+            _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.IsValid("gp")));
+            _colorify.Write($"{"[D] Discard",-17}", txtStatus(Options.IsValid("gd")));
+            _colorify.Write($"{"[R] Reset",-17}", txtStatus(Options.IsValid("gr")));
+            _colorify.WriteLine($"{"[O] Original",-17}", txtStatus(Options.IsValid("go")));
             _colorify.BlankLines();
         }
 
