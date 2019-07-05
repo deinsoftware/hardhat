@@ -6,7 +6,7 @@ set dbg=%1
 :start
 :: Resize
 cls
-mode con:cols=86 lines=32
+mode con:cols=86 lines=31
 if defined dbg (
     goto debug
 ) else (
@@ -20,7 +20,7 @@ cls
 echo ======================================================================================
 echo  UPDATE
 echo ======================================================================================
-echo. 
+echo.
 echo ==^> Updating...
 cd /d %~dp0
 git pull | findstr /irc:"Already up.to.date"
@@ -30,16 +30,16 @@ if %errorlevel% == 0 (
     call color E0
     git config --local core.filemode false
     git reset --hard HEAD
-    echo. 
+    echo.
     git pull
-    echo. 
+    echo.
     echo ======================================================================================
-    echo. 
+    echo.
     echo  HardHat was updated.
-    echo. 
+    echo.
     echo  Refer to CHANGELOG file for details
     echo  or visit https://github.com/deinsoftware/hardhat/
-    echo. 
+    echo.
     echo ======================================================================================
     echo.
     pause
@@ -67,9 +67,9 @@ cls
 echo ======================================================================================
 echo  ERROR
 echo ======================================================================================
-echo. 
+echo.
 echo  HardHat is already running.
-echo. 
+echo.
 echo ======================================================================================
 echo.
 pause
