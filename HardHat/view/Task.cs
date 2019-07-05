@@ -53,7 +53,7 @@ namespace HardHat
             }
             else
             {
-                _colorify.Write($"{"[T] Task: ",-12}", txtStatus(Options.IsValid("t")));
+                _colorify.Write($"{" [T] Task: ",-12}", txtStatus(Options.IsValid("t")));
                 Section.Configuration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
             }
             _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));

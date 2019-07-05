@@ -44,11 +44,11 @@ namespace HardHat
         {
             if (Options.IsValid("g"))
             {
-                _colorify.WriteLine($"{"[G] Git",-12}", txtMuted);
+                _colorify.WriteLine($"{" [G] Git",-12}", txtMuted);
             }
             else
             {
-                _colorify.Write($"{"[G] Git: ",-12}", txtMuted);
+                _colorify.Write($"{" [G] Git: ",-12}", txtMuted);
                 _colorify.WriteLine($"{_config.personal.menu.currentBranch}");
             }
             _colorify.Write($"{"   [P] Pull",-17}", txtStatus(Options.IsValid("gp")));
