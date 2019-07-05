@@ -1,6 +1,4 @@
 using System;
-using System.Runtime.InteropServices;
-using System.Text;
 using dein.tools;
 using ToolBox.Bridge;
 using ToolBox.Platform;

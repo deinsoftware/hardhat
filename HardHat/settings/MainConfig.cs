@@ -1,9 +1,3 @@
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using ToolBox.Platform;
-using static HardHat.Program;
-
 namespace HardHat
 {
     class MainConfig
