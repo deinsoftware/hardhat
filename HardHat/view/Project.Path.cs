@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using ToolBox.Validations;
 using dein.tools;
 using static HardHat.Program;
-using static dein.tools.Paths;
 using static Colorify.Colors;
 
 namespace HardHat

@@ -1,12 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using Validation = ToolBox.Validations.Strings;
-using Transform = ToolBox.Transform.Strings;
 using dein.tools;
 using static HardHat.Program;
-using ToolBox.Validations;
 using static Colorify.Colors;
 
 namespace HardHat

@@ -5,10 +5,8 @@ using System.Text;
 using dein.tools;
 using ToolBox.Validations;
 using static HardHat.Program;
-using Colorify;
 using static Colorify.Colors;
 using ToolBox.Platform;
-using Colorify.UI;
 
 namespace HardHat
 {

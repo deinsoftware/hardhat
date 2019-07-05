@@ -1,14 +1,15 @@
 using System;
-using System.Runtime.InteropServices;
 using dein.tools;
 using static HardHat.Program;
 
-namespace HardHat 
+namespace HardHat
 {
-    public static partial class Vpn {
+    public static partial class Vpn
+    {
 
 
-        public static void Verification() {
+        public static void Verification()
+        {
             try
             {
                 if (
@@ -21,7 +22,8 @@ namespace HardHat
                     Message.Alert(" Please connect your VPN and try again.");
                 }
             }
-            catch (Exception Ex){
+            catch (Exception Ex)
+            {
                 Exceptions.General(Ex);
             }
         }

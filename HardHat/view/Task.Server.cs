@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 using Validation = ToolBox.Validations.Strings;
 using Transform = ToolBox.Transform.Strings;
@@ -32,14 +31,13 @@ namespace HardHat
             opts.Add(new Option { opt = "t>n:3", status = false, action = Task.Quick, variant = "n:3" });
             opts.Add(new Option { opt = "t>n:4", status = false, action = Task.Quick, variant = "n:4" });
             opts.Add(new Option { opt = "t>n:5", status = false, action = Task.Quick, variant = "n:5" });
-            opts.Add(new Option { opt = "t>ss", status = false, action = Task.Sync });
+            opts.Add(new Option { opt = "t>ss", status = false, action = Task.ServerSync });
             opts.Add(new Option { opt = "t>so", status = false, action = Task.Open });
         }
 
         public static void ServerStatus()
         {
             StringBuilder serverConfiguration = new StringBuilder();
-            serverConfiguration.Append("https://");
             if (!String.IsNullOrEmpty(_config.personal.webServer.file))
             {
                 serverConfiguration.Append($"{_config.personal.webServer.file}/");
@@ -236,7 +234,7 @@ namespace HardHat
             }
         }
 
-        public static void Sync()
+        public static void ServerSync()
         {
             _colorify.Clear();
 
