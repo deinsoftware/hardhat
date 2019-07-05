@@ -85,6 +85,8 @@ namespace HardHat
             config.personal.webServer.sync = false;
             config.personal.webServer.internalPath = "";
             config.personal.webServer.open = true;
+            config.personal.testServer = new TestConfiguration();
+            config.personal.testServer.sync = false;
             config.personal.gradle = new BuildConfiguration();
             config.personal.gradle.mode = "";
             config.personal.gradle.dimension = "";
@@ -104,8 +106,6 @@ namespace HardHat
             config.personal.menu.sonarConfiguration = "";
             config.personal.menu.serverConfiguration = "";
             config.personal.menu.serverValidation = false;
-            config.personal.menu.logConfiguration = "";
-            config.personal.menu.logValidation = false;
             config.personal.menu.buildConfiguration = "";
             config.personal.theme = "";
             config.personal.log = false;
