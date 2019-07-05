@@ -261,14 +261,17 @@ Choose desired letter combination and let **HardHat** work for you.
 | combination | action |
 | --- | --- |
 | <kbd>t</kbd> | Task paths, Server and Log configuration. |
-| <kbd>tw</kbd> | Launch `gulp watch` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>tm</kbd> | Launch `gulp make` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
-| <kbd>to</kbd> | Make a copy of project files (with an additional backup) and launch `gulp obfuscate` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Lite type by default. |
+| <kbd>tw</kbd> | Launch `gulp watch` command over selected project to `TASK_PROJECT`. |
+| <kbd>tm</kbd> | Launch `gulp make` command over selected project to `TASK_PROJECT`. |
+| <kbd>to</kbd> | Make a copy of project files (with an additional backup) and launch `gulp obfuscate` command over selected project to `TASK_PROJECT`. Lite type by default. |
 | <kbd>to-l</kbd> | Launch `gulp obfuscate --type lite` command on selected files. |
 | <kbd>to-c</kbd> | Launch `gulp obfuscate --type complete` command on all JS and CSS files. |
 | <kbd>tr</kbd> | Revert original files to selected project. |
-| <kbd>ts</kbd> | Launch `gulp server` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). Start server according to previous configuration. |
-| <kbd>tl</kbd> | Launch `gulp log` command over selected project to `TASK_PROJECT` (_see [Environment Variables](#environment-variables) section_). |
+| <kbd>tt</kbd> | Launch `gulp test` command over selected project to `TASK_PROJECT`. Start server according to previous configuration. |
+| <kbd>ts</kbd> | Launch `gulp server` command over selected project to `TASK_PROJECT`. Start server according to previous configuration. |
+| <kbd>tl</kbd> | Launch `gulp log` command over selected project to `TASK_PROJECT`. |
+
+_See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT` configuration.
 
 ##### Path Configuration
 
@@ -303,6 +306,12 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>t>n:3</kbd> | Number | 3 |
 | <kbd>t>n:4</kbd> | Number | 4 |
 | <kbd>t>n:5</kbd> | Number | 5 |
+
+##### Test Server Configuration
+
+| combination | action |
+| --- | --- |
+| <kbd>t>ts</kbd> | Sync Browser on save. |
 
 #### Build
 

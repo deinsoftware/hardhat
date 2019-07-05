@@ -71,6 +71,7 @@ namespace HardHat
         public SelectedConfiguration selected { get; set; }
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
+        public TestConfiguration testServer { get; set; }
         public BuildConfiguration gradle { get; set; }
         public AdbConfiguration adb { get; set; }
         public LogcatConfiguration logcat { get; set; }
@@ -109,6 +110,11 @@ namespace HardHat
         public bool open { get; set; }
     }
 
+    public class TestConfiguration
+    {
+        public bool sync { get; set; }
+    }
+
     class BuildConfiguration
     {
         public string mode { get; set; }
@@ -139,8 +145,6 @@ namespace HardHat
         public bool sonarValidation { get; set; }
         public string serverConfiguration { get; set; }
         public bool serverValidation { get; set; }
-        public string logConfiguration { get; set; }
-        public bool logValidation { get; set; }
         public string buildConfiguration { get; set; }
         public bool buildValidation { get; set; }
     }

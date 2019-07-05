@@ -134,6 +134,22 @@ namespace HardHat
             }
         }
 
+        public static void CmdTest(string path, TestConfiguration testServer)
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append($"gulp test");
+                cmd.Append($" --path {path}");
+                cmd.Append($" --sync {testServer.sync.ToString().ToLower()}");
+                _shell.Term(cmd.ToString(), Output.External, DirPath());
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         public static void CmdRemove()
         {
             try

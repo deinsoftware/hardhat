@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Validation = ToolBox.Validations.Strings;
-using Transform = ToolBox.Transform.Strings;
 using dein.tools;
 using static HardHat.Program;
-using ToolBox.Validations;
 using static Colorify.Colors;
 using ToolBox.Bridge;
 
@@ -26,8 +24,10 @@ namespace HardHat
             opts.Add(new Option { opt = "to-c", status = false, action = Task.Obfuscate, variant = "c" });
             opts.Add(new Option { opt = "to-l", status = false, action = Task.Obfuscate, variant = "l" });
             opts.Add(new Option { opt = "tr", status = false, action = Task.Revert });
+            opts.Add(new Option { opt = "tt", status = false, action = Task.Test });
             ServerList(ref opts);
             LogList(ref opts);
+            TestList(ref opts);
         }
 
         public static void Status()
@@ -41,35 +41,28 @@ namespace HardHat
             Options.IsValid("to-l", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("tr", Variables.Valid("tp") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             ServerStatus();
-            LogStatus();
+            TestStatus();
         }
 
         public static void Start()
         {
 
-            _colorify.WriteLine($" [T] Task", txtStatus(Options.IsValid("t")));
-            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));
-            _colorify.Write($"{"[O] Obfuscate",-17}", txtStatus(Options.IsValid("to")));
             if (String.IsNullOrEmpty(_config.personal.menu.serverConfiguration))
             {
-                _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
+                _colorify.WriteLine($"{"[T] Task",-12}", txtStatus(Options.IsValid("t")));
             }
             else
             {
-                _colorify.Write($"{"[S] Server: ",-12}", txtStatus(Options.IsValid("ts")));
+                _colorify.Write($"{"[T] Task: ",-12}", txtStatus(Options.IsValid("t")));
                 Section.Configuration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
             }
+            _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));
+            _colorify.Write($"{"[O] Obfuscate",-17}", txtStatus(Options.IsValid("to")));
+            _colorify.Write($"{"[T] Test",-17}", txtStatus(Options.IsValid("to")));
+            _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
             _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("tm")));
-            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("tr")));
-            if (String.IsNullOrEmpty(_config.personal.menu.logConfiguration))
-            {
-                _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
-            }
-            else
-            {
-                _colorify.Write($"{"[L] Log: ",-12}", txtStatus(Options.IsValid("ts")));
-                Section.Configuration(_config.personal.menu.logValidation, _config.personal.menu.logConfiguration);
-            }
+            _colorify.Write($"{"[R] Revert",-34}", txtStatus(Options.IsValid("tr")));
+            _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
 
             _colorify.BlankLines();
         }
@@ -96,6 +89,10 @@ namespace HardHat
                 _colorify.Write($"{"   [N] Number:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.webServer.number}");
                 _colorify.Write($"{"   [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.sync ? "Yes" : "No")}");
                 _colorify.Write($"{"   [O] Open:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.webServer.open ? "Yes" : "No")}");
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($" [T] Test", txtMuted);
+                _colorify.Write($"{"   [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.testServer.sync ? "Yes" : "No")}");
 
                 _colorify.WriteLine($"{"[EMPTY] Exit",82}", txtDanger);
 
