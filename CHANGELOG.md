@@ -13,17 +13,19 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Remove mapping files on Gradle clean
+- Remove mapping files on Gradle clean command
+- Test Task
 
 **Changed:**
 
 - Rename VSC option to Git
 - Rename Gulp option to task
 - Change Gulp commands and parameters
+- Main menu redesign
 
 **Removed:**
 
-- FTP option on gulp
+- Unused FTP option on gulp
 
 ## [6.13.0] - 2019-02-21
 
