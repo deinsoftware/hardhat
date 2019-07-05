@@ -75,7 +75,7 @@ namespace HardHat
             Options.IsValid("b>m:d", Variables.Valid("git"));
             Options.IsValid("b>m:s", Variables.Valid("git"));
             Options.IsValid("b>m:r", Variables.Valid("git"));
-            Options.IsValid("bp", Variables.Valid("android_properties") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bp", Variables.Valid("task_project") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc-c", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bg", Variables.Valid("git") && _config.personal.menu.buildValidation);
@@ -92,7 +92,7 @@ namespace HardHat
                 _colorify.Write($" [B] Build: ", txtStatus(Options.IsValid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
-            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("android_properties")));
+            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("bp")));
             _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.IsValid("bc")));
             _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.IsValid("bg")));
             _colorify.BlankLines();

@@ -57,14 +57,14 @@ namespace HardHat
                 _colorify.Write($" [S] Sonar: ", txtStatus(Options.IsValid("s")));
                 Section.Configuration(_config.personal.menu.sonarValidation, _config.personal.menu.sonarConfiguration);
             }
-            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.IsValid("sonar_qube")));
+            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.IsValid("sq")));
             if (String.IsNullOrEmpty(_config.personal.sonar.internalPath))
             {
-                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.IsValid("sonar_scanner")));
+                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.IsValid("ss")));
             }
             else
             {
-                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.IsValid("sonar_scanner")));
+                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.IsValid("ss")));
                 _colorify.Write($"{_config.personal.sonar.internalPath,-21}", txtDefault);
             }
             _colorify.WriteLine($"{"[B] Browse",-17}", txtStatus(Options.IsValid("sb")));
