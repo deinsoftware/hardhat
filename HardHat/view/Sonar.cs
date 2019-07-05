@@ -40,9 +40,9 @@ namespace HardHat
             _config.personal.menu.sonarConfiguration = sonarConfiguration.ToString();
 
             _config.personal.menu.sonarValidation = !Strings.SomeNullOrEmpty(_config.personal.sonar.protocol, _config.personal.sonar.domain, _config.personal.menu.sonarConfiguration);
-            Options.IsValid("s", Variables.Valid("sq"));
-            Options.IsValid("sq", Variables.Valid("sq"));
-            Options.IsValid("ss", Variables.Valid("ss") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("s", Variables.Valid("sonar_qube"));
+            Options.IsValid("sq", Variables.Valid("sonar_qube"));
+            Options.IsValid("ss", Variables.Valid("sonar_scanner") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("sb", _config.personal.menu.sonarValidation);
         }
 
@@ -57,14 +57,14 @@ namespace HardHat
                 _colorify.Write($" [S] Sonar: ", txtStatus(Options.IsValid("s")));
                 Section.Configuration(_config.personal.menu.sonarValidation, _config.personal.menu.sonarConfiguration);
             }
-            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.IsValid("sq")));
+            _colorify.Write($"{"   [Q] Qube",-17}", txtStatus(Options.IsValid("sonar_qube")));
             if (String.IsNullOrEmpty(_config.personal.sonar.internalPath))
             {
-                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.IsValid("ss")));
+                _colorify.Write($"{"[S] Scanner",-17}", txtStatus(Options.IsValid("sonar_scanner")));
             }
             else
             {
-                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.IsValid("ss")));
+                _colorify.Write($"{"[S] Scanner: ",-13}", txtStatus(Options.IsValid("sonar_scanner")));
                 _colorify.Write($"{_config.personal.sonar.internalPath,-21}", txtDefault);
             }
             _colorify.WriteLine($"{"[B] Browse",-17}", txtStatus(Options.IsValid("sb")));

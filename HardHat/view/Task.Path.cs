@@ -18,9 +18,9 @@ namespace HardHat
 
         public static void PathStatus()
         {
-            Options.IsValid("t>pw", Variables.Valid("tp"));
-            Options.IsValid("t>pl", Variables.Valid("tp"));
-            Options.IsValid("t>pe", Variables.Valid("tp"));
+            Options.IsValid("t>pw", Variables.Valid("task_project"));
+            Options.IsValid("t>pl", Variables.Valid("task_project"));
+            Options.IsValid("t>pe", Variables.Valid("task_project"));
         }
 
         public static void PathServer()

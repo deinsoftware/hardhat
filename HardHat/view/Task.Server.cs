@@ -60,25 +60,25 @@ namespace HardHat
             _config.personal.menu.serverConfiguration = serverConfiguration.ToString();
             _config.personal.menu.serverValidation = !Validation.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.webServer.file, _config.personal.menu.serverConfiguration);
 
-            Options.IsValid("ts", Variables.Valid("tp") && _config.personal.menu.serverValidation);
-            Options.IsValid("t>sp", Variables.Valid("tp"));
-            Options.IsValid("t>si", Variables.Valid("tp"));
-            Options.IsValid("t>sc", Variables.Valid("tp"));
-            Options.IsValid("t>sf", Variables.Valid("tp"));
-            Options.IsValid("t>f:d", Variables.Valid("tp"));
-            Options.IsValid("t>f:q", Variables.Valid("tp"));
-            Options.IsValid("t>f:r", Variables.Valid("tp"));
-            Options.IsValid("t>f:m", Variables.Valid("tp"));
-            Options.IsValid("t>f:v", Variables.Valid("tp"));
-            Options.IsValid("t>f:p", Variables.Valid("tp"));
-            Options.IsValid("t>sn", Variables.Valid("tp"));
-            Options.IsValid("t>n:1", Variables.Valid("tp"));
-            Options.IsValid("t>n:2", Variables.Valid("tp"));
-            Options.IsValid("t>n:3", Variables.Valid("tp"));
-            Options.IsValid("t>n:4", Variables.Valid("tp"));
-            Options.IsValid("t>n:5", Variables.Valid("tp"));
-            Options.IsValid("t>ss", Variables.Valid("tp"));
-            Options.IsValid("t>so", Variables.Valid("tp"));
+            Options.IsValid("ts", Variables.Valid("task_project") && _config.personal.menu.serverValidation);
+            Options.IsValid("t>sp", Variables.Valid("task_project"));
+            Options.IsValid("t>si", Variables.Valid("task_project"));
+            Options.IsValid("t>sc", Variables.Valid("task_project"));
+            Options.IsValid("t>sf", Variables.Valid("task_project"));
+            Options.IsValid("t>f:d", Variables.Valid("task_project"));
+            Options.IsValid("t>f:q", Variables.Valid("task_project"));
+            Options.IsValid("t>f:r", Variables.Valid("task_project"));
+            Options.IsValid("t>f:m", Variables.Valid("task_project"));
+            Options.IsValid("t>f:v", Variables.Valid("task_project"));
+            Options.IsValid("t>f:p", Variables.Valid("task_project"));
+            Options.IsValid("t>sn", Variables.Valid("task_project"));
+            Options.IsValid("t>n:1", Variables.Valid("task_project"));
+            Options.IsValid("t>n:2", Variables.Valid("task_project"));
+            Options.IsValid("t>n:3", Variables.Valid("task_project"));
+            Options.IsValid("t>n:4", Variables.Valid("task_project"));
+            Options.IsValid("t>n:5", Variables.Valid("task_project"));
+            Options.IsValid("t>ss", Variables.Valid("task_project"));
+            Options.IsValid("t>so", Variables.Valid("task_project"));
         }
 
         public static void InternalPath()
@@ -124,7 +124,7 @@ namespace HardHat
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
                 _colorify.BlankLines();
-                string dirPath = _path.Combine(Variables.Value("tp"), _config.task.webFolder);
+                string dirPath = _path.Combine(Variables.Value("task_project"), _config.task.webFolder);
                 dirPath.Exists("Please review your configuration file.");
                 List<string> files = dirPath.Files($"*{_config.task.extension}");
 

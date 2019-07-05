@@ -14,7 +14,7 @@ namespace HardHat
             string path = "";
             try
             {
-                path = _path.Combine(Variables.Value("tp"));
+                path = _path.Combine(Variables.Value("task_project"));
                 _fileSystem.DirectoryExists(path);
             }
             catch (Exception Ex)

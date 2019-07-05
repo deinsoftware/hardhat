@@ -62,23 +62,23 @@ namespace HardHat
                 _config.personal.gradle.mode,
                 _config.personal.gradle.flavor,
                 _config.personal.menu.buildConfiguration);
-            Options.IsValid("b", Variables.Valid("gh"));
-            Options.IsValid("b>d", Variables.Valid("gh"));
-            Options.IsValid("b>f", Variables.Valid("gh"));
-            Options.IsValid("b>f:d", Variables.Valid("gh"));
-            Options.IsValid("b>f:q", Variables.Valid("gh"));
-            Options.IsValid("b>f:r", Variables.Valid("gh"));
-            Options.IsValid("b>f:m", Variables.Valid("gh"));
-            Options.IsValid("b>f:v", Variables.Valid("gh"));
-            Options.IsValid("b>f:p", Variables.Valid("gh"));
-            Options.IsValid("b>m", Variables.Valid("gh"));
-            Options.IsValid("b>m:d", Variables.Valid("gh"));
-            Options.IsValid("b>m:s", Variables.Valid("gh"));
-            Options.IsValid("b>m:r", Variables.Valid("gh"));
-            Options.IsValid("bp", Variables.Valid("tp") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("bc", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("bc-c", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
-            Options.IsValid("bg", Variables.Valid("gh") && _config.personal.menu.buildValidation);
+            Options.IsValid("b", Variables.Valid("git"));
+            Options.IsValid("b>d", Variables.Valid("git"));
+            Options.IsValid("b>f", Variables.Valid("git"));
+            Options.IsValid("b>f:d", Variables.Valid("git"));
+            Options.IsValid("b>f:q", Variables.Valid("git"));
+            Options.IsValid("b>f:r", Variables.Valid("git"));
+            Options.IsValid("b>f:m", Variables.Valid("git"));
+            Options.IsValid("b>f:v", Variables.Valid("git"));
+            Options.IsValid("b>f:p", Variables.Valid("git"));
+            Options.IsValid("b>m", Variables.Valid("git"));
+            Options.IsValid("b>m:d", Variables.Valid("git"));
+            Options.IsValid("b>m:s", Variables.Valid("git"));
+            Options.IsValid("b>m:r", Variables.Valid("git"));
+            Options.IsValid("bp", Variables.Valid("android_properties") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bc", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bc-c", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("bg", Variables.Valid("git") && _config.personal.menu.buildValidation);
         }
 
         public static void Start()
@@ -92,7 +92,7 @@ namespace HardHat
                 _colorify.Write($" [B] Build: ", txtStatus(Options.IsValid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
-            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("bp")));
+            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("android_properties")));
             _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.IsValid("bc")));
             _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.IsValid("bg")));
             _colorify.BlankLines();
@@ -325,7 +325,7 @@ namespace HardHat
 
         private static string propertiesSource()
         {
-            string sourcePath = _path.Combine(Variables.Value("bp"));
+            string sourcePath = _path.Combine(Variables.Value("android_properties"));
             string bussinessPath = _path.Combine(sourcePath, _config.path.workspace);
             if (String.IsNullOrEmpty(_config.personal.gradle.dimension))
             {

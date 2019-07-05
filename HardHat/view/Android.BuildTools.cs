@@ -32,7 +32,7 @@ namespace HardHat
                 _colorify.WriteLine($" --> Signer Verify...", txtInfo);
                 CmdSignerVerify(dirPath);
 
-                if ((OS.IsWin() && Variables.Valid("sh")) || OS.IsMac())
+                if ((OS.IsWin() && Variables.Valid("signcheck")) || OS.IsMac())
                 {
                     Response result = CmdSha(dirPath);
                     if (result.code == 0)
@@ -61,9 +61,9 @@ namespace HardHat
         {
             try
             {
-                string currentVersion = Variables.Value("ab");
+                string currentVersion = Variables.Value("android_buildtools");
                 string lastVersion = "";
-                string dirPath = _path.Combine(Variables.Value("ah"), "build-tools");
+                string dirPath = _path.Combine(Variables.Value("android_home"), "build-tools");
 
                 if (_fileSystem.DirectoryExists(dirPath))
                 {

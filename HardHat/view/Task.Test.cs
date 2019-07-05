@@ -16,8 +16,8 @@ namespace HardHat
 
         public static void TestStatus()
         {
-            Options.IsValid("tt", Variables.Valid("tp"));
-            Options.IsValid("t>ts", Variables.Valid("tp"));
+            Options.IsValid("tt", Variables.Valid("task_project"));
+            Options.IsValid("t>ts", Variables.Valid("task_project"));
         }
 
         public static void TestSync()

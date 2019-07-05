@@ -27,25 +27,25 @@ namespace HardHat
             try
             {
                 // Java
-                opts.Add(new Variable { opt = "jh", name = "JAVA_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "java", name = "JAVA_HOME", verified = false, status = false, value = "" });
                 // Android
-                opts.Add(new Variable { opt = "ar", name = "ANDROID_SDK_ROOT", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "ah", name = "ANDROID_HOME", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "an", name = "ANDROID_NDK_HOME", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "ab", name = "ANDROID_BT_VERSION", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "android_root", name = "ANDROID_SDK_ROOT", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "android_home", name = "ANDROID_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "android_ndk", name = "ANDROID_NDK_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "android_buildtools", name = "ANDROID_BT_VERSION", verified = false, status = false, value = "" });
                 // Project
-                opts.Add(new Variable { opt = "sh", name = "SIGCHECK_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "signcheck", name = "SIGCHECK_HOME", verified = false, status = false, value = "" });
                 // Git
-                opts.Add(new Variable { opt = "gh", name = "GIT_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "git", name = "GIT_HOME", verified = false, status = false, value = "" });
                 // Task
-                opts.Add(new Variable { opt = "tp", name = "TASK_PROJECT", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "task_project", name = "TASK_PROJECT", verified = false, status = false, value = "" });
                 // Build
-                opts.Add(new Variable { opt = "bh", name = "GRADLE_HOME", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "bp", name = "ANDROID_PROPERTIES", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "bv", name = "VPN_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "gradle", name = "GRADLE_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "android_properties", name = "ANDROID_PROPERTIES", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "vpn", name = "VPN_HOME", verified = false, status = false, value = "" });
                 // Sonar
-                opts.Add(new Variable { opt = "sq", name = "SONAR_QUBE_HOME", verified = false, status = false, value = "" });
-                opts.Add(new Variable { opt = "ss", name = "SONAR_SCANNER_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "sonar_qube", name = "SONAR_QUBE_HOME", verified = false, status = false, value = "" });
+                opts.Add(new Variable { opt = "sonar_scanner", name = "SONAR_SCANNER_HOME", verified = false, status = false, value = "" });
 
                 list = opts;
             }

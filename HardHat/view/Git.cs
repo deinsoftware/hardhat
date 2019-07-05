@@ -31,13 +31,13 @@ namespace HardHat
                     _config.personal.menu.currentBranch = $"{Git.CmdBranch(dirPath)}";
                 }
             }
-            Options.IsValid("g", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("gd", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("gp", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("gr", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("gd+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("gr+p", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
-            Options.IsValid("go", Variables.Valid("gh") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("g", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gd", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gp", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gr", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gd+p", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("gr+p", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
+            Options.IsValid("go", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.menu.currentBranch));
         }
 
         public static void Start()
