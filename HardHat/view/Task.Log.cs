@@ -14,6 +14,11 @@ namespace HardHat
             opts.Add(new Option { opt = "tl", status = false, action = Task.Log });
         }
 
+        public static void LogStatus()
+        {
+            Options.IsValid("tl", Variables.Valid("task_project") && _config.personal.menu.serverValidation);
+        }
+
         public static void Log()
         {
             _colorify.Clear();

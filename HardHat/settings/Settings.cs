@@ -83,7 +83,7 @@ namespace HardHat
             config.personal.webServer.flavor = "";
             config.personal.webServer.number = "";
             config.personal.webServer.sync = false;
-            config.personal.webServer.internalPath = "";
+            config.personal.webServer.internalPath = "web";
             config.personal.webServer.open = true;
             config.personal.testServer = new TestConfiguration();
             config.personal.testServer.sync = false;

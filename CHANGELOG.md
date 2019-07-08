@@ -9,7 +9,13 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
-## [7.0.0] - 2019-06-07
+## [7.0.1] - 2019-07-08
+
+**Fixed:**
+
+- Task log validations permissions
+
+## [7.0.0] - 2019-07-05
 
 **Added:**
 

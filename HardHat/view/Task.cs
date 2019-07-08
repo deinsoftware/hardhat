@@ -41,6 +41,7 @@ namespace HardHat
             Options.IsValid("to-l", Variables.Valid("task_project") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("tr", Variables.Valid("task_project") && !Validation.SomeNullOrEmpty(_config.personal.selected.project));
             ServerStatus();
+            LogStatus();
             TestStatus();
         }
 
