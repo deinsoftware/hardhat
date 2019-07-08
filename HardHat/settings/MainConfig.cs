@@ -107,6 +107,7 @@ namespace HardHat
     public class TestConfiguration
     {
         public bool sync { get; set; }
+        public string coveragePath { get; set; }
     }
 
     class BuildConfiguration

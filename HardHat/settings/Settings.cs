@@ -87,6 +87,7 @@ namespace HardHat
             config.personal.webServer.open = true;
             config.personal.testServer = new TestConfiguration();
             config.personal.testServer.sync = false;
+            config.personal.testServer.coveragePath = "coverage/review";
             config.personal.gradle = new BuildConfiguration();
             config.personal.gradle.mode = "";
             config.personal.gradle.dimension = "";

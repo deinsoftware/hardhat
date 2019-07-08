@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.1.0] - 2019-07-08
+
+**Added:**
+
+- Test Coverage option. Open coverage report URL in browser
+
 ## [7.0.1] - 2019-07-08
 
 **Fixed:**

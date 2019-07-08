@@ -24,7 +24,6 @@ namespace HardHat
             opts.Add(new Option { opt = "to-c", status = false, action = Task.Obfuscate, variant = "c" });
             opts.Add(new Option { opt = "to-l", status = false, action = Task.Obfuscate, variant = "l" });
             opts.Add(new Option { opt = "tr", status = false, action = Task.Revert });
-            opts.Add(new Option { opt = "tt", status = false, action = Task.Test });
             ServerList(ref opts);
             LogList(ref opts);
             TestList(ref opts);
@@ -62,7 +61,8 @@ namespace HardHat
             _colorify.Write($"{"[T] Test",-17}", txtStatus(Options.IsValid("to")));
             _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
             _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("tm")));
-            _colorify.Write($"{"[R] Revert",-34}", txtStatus(Options.IsValid("tr")));
+            _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("tr")));
+            _colorify.Write($"{"[C] Coverage",-17}", txtStatus(Options.IsValid("to")));
             _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
 
             _colorify.BlankLines();
@@ -94,6 +94,7 @@ namespace HardHat
                 _colorify.BlankLines();
                 _colorify.WriteLine($" [T] Test", txtMuted);
                 _colorify.Write($"{"   [S] Sync:",-25}", txtPrimary); _colorify.WriteLine($"{(_config.personal.testServer.sync ? "Yes" : "No")}");
+                _colorify.Write($"{"   [C] Coverage Path:",-25}", txtPrimary); _colorify.WriteLine($"{_config.personal.testServer.coveragePath}");
 
                 _colorify.WriteLine($"{"[EMPTY] Exit",82}", txtDanger);
 

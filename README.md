@@ -312,6 +312,7 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | combination | action |
 | --- | --- |
 | <kbd>t>ts</kbd> | Sync Browser on save. |
+| <kbd>t>tc</kbd> | Coverage Path inside server configuration. |
 
 #### Build
 
