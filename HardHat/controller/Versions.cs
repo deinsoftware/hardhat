@@ -44,7 +44,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"java -version 2>&1");
-                string response = Strings.ExtractLine(result.stdout, "java version", "java version ", "\"");
+                string response = Strings.ExtractLine(result.stdout, "version", "version ", "\"");
                 _shell.Result(response, "is not Installed");
             }
             catch (Exception Ex)
