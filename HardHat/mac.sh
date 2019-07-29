@@ -4,6 +4,7 @@ function fxStart() {
     #Resize
     clear
     resize -s 31 88
+    clear
 osascript <<EOF
     tell application "Terminal" to set bounds of front window to {22, 44, 650, 505}
 EOF
