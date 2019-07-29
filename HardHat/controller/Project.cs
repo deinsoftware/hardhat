@@ -81,5 +81,17 @@ namespace HardHat
                 Exceptions.General(Ex);
             }
         }
+
+        public static void CmdCompress(string path, string fileName)
+        {
+            try
+            {
+                _shell.Term($"zip {fileName}.zip *.*", Output.Internal, path);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
     }
 }

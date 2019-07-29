@@ -24,10 +24,7 @@ namespace HardHat
             opts.Add(new Option { opt = "pe>x", status = false, action = Project.Editor, variant = "x" });
             opts.Add(new Option { opt = "pi", status = false, action = Adb.Install });
             opts.Add(new Option { opt = "pp", status = false, action = Project.Path });
-            opts.Add(new Option { opt = "pp>p", status = false, action = Project.CopyPath });
-            opts.Add(new Option { opt = "pp>f", status = false, action = Project.CopyFilePath });
-            opts.Add(new Option { opt = "pp>m", status = false, action = Project.CopyMappingPath });
-            opts.Add(new Option { opt = "pp>d", status = false, action = Project.Duplicate });
+            Project.PathList(ref opts);
             opts.Add(new Option { opt = "pv", status = false, action = BuildTools.Values });
         }
 
@@ -62,10 +59,7 @@ namespace HardHat
             Options.IsValid("pe>x", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("pi", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Options.IsValid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.IsValid("pp>p", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.IsValid("pp>f", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
-            Options.IsValid("pp>m", _config.personal.selected.mappingStatus);
-            Options.IsValid("pp>d", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+            Project.PathStatus();
             Options.IsValid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
         }
 

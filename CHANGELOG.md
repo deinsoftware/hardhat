@@ -9,6 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.0] - 2019-07-29
+
+**Added:**
+
+- Compress file on Path options
+
+**Fixed:**
+
+- Java version
+- Init resize message on start
+
 ## [7.1.0] - 2019-07-08
 
 **Added:**

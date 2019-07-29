@@ -243,6 +243,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pp>f</kbd> | Copy file path to clipboard. |
 | <kbd>pp>m</kbd> | Copy mapping file path to clipboard. |
 | <kbd>pp>d</kbd> | Duplicate and rename selected file. |
+| <kbd>pp>c</kbd> | Compress selected file. |
 
 #### Git
 
