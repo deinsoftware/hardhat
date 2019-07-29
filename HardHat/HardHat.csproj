@@ -39,7 +39,7 @@
     <!-- Packages -->
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="dein.Colorify" Version="2.4.0" />
-    <PackageReference Include="dein.ToolBox" Version="1.4.5" />
+    <PackageReference Include="dein.ToolBox" Version="1.5.2" />
     <!-- License -->
     <None Include="..\LICENSE" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
