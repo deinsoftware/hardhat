@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.1] - 2019-07-29
+
+**Fixed:**
+
+- Compress file on Path options
+
 ## [7.2.0] - 2019-07-29
 
 **Added:**

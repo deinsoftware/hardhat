@@ -229,7 +229,8 @@ namespace HardHat
                     _config.path.project,
                     _config.personal.selected.project,
                     _config.project.androidPath,
-                    _config.project.androidBuildPath
+                    _config.project.androidBuildPath,
+                    _config.personal.selected.path
                 );
 
                 string fileName = _path.GetFileNameWithoutExtension(
