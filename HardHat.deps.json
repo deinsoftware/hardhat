@@ -7,7 +7,7 @@
   "targets": {
     ".NETCoreApp,Version=v2.2": {},
     ".NETCoreApp,Version=v2.2/win10-x64": {
-      "HardHat/7.2.1": {
+      "HardHat/7.2.2": {
         "dependencies": {
           "Microsoft.NETCore.App": "2.2.6",
           "Newtonsoft.Json": "12.0.2",
@@ -900,7 +900,7 @@
     }
   },
   "libraries": {
-    "HardHat/7.2.1": {
+    "HardHat/7.2.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
