@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.2] - 2019-08-01
+
+**Changed:**
+
+- Server number from input to list
+
 ## [7.2.1] - 2019-07-29
 
 **Fixed:**

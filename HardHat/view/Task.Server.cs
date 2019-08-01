@@ -207,23 +207,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
-                _colorify.BlankLines();
-                _colorify.WriteLine($" Write a server number:", txtPrimary);
-                _colorify.Write($" 1", txtPrimary); _colorify.WriteLine($" (Default)", txtInfo);
-
-                _colorify.BlankLines();
-                _colorify.WriteLine($"{"[EMPTY] Default",82}", txtInfo);
-
-                Section.HorizontalRule();
-
-                _colorify.Write($"{" Write your choice: ",-25}", txtInfo);
-                string opt = Console.ReadLine().Trim();
-
-                if (!String.IsNullOrEmpty(opt))
-                {
-                    Number.IsNumber(opt);
-                }
-                _config.personal.webServer.number = opt;
+                _config.personal.webServer.number = Selector.Start(Selector.Number, "1");
 
                 Menu.Status();
                 Select();

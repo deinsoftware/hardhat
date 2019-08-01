@@ -19,6 +19,15 @@ namespace HardHat
             {"p", "prod"}
         };
 
+        public static readonly IReadOnlyDictionary<string, string> Number = new Dictionary<string, string>
+        {
+            {"1", "1"},
+            {"2", "2"},
+            {"3", "3"},
+            {"4", "4"},
+            {"5", "5"},
+        };
+
         public static readonly IReadOnlyDictionary<string, string> Logical = new Dictionary<string, string>
         {
             {"y", "Yes"},
