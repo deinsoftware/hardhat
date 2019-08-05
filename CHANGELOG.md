@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.3] - 2019-08-02
+
+**Fixed:**
+
+- Default value on flavors
+
 ## [7.2.2] - 2019-08-01
 
 **Changed:**

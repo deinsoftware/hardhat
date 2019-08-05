@@ -186,7 +186,7 @@ namespace HardHat
                 Section.SelectedProject();
                 Section.CurrentConfiguration(_config.personal.menu.serverValidation, _config.personal.menu.serverConfiguration);
 
-                _config.personal.webServer.flavor = Selector.Start(Selector.Flavor, "a");
+                _config.personal.webServer.flavor = Selector.Start(Selector.Flavor, "d");
 
                 Menu.Status();
                 Select();
