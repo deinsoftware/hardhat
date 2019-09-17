@@ -63,8 +63,8 @@ What things you need to install?
 
 It's recommended install it using a Package Manager. See instructions below.
 
-* [Brew and SDK Man (on MacOS)](https://github.com/deinsoftware/hardhat/Docs/Prerequisites/mac.md)
-* [Chocolatey (on Windows)](https://github.com/deinsoftware/hardhat/Docs/Prerequisites/win.md)
+* [Brew and SDK Man (on MacOS)](https://github.com/deinsoftware/hardhat/blob/naster/Docs/Prerequisites/mac.md)
+* [Chocolatey (on Windows)](https://github.com/deinsoftware/hardhat/blob/naster/Docs/Prerequisites/win.md)
 
 ### Installing
 
