@@ -50,22 +50,21 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install?
 
+* [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Android SDK](https://developer.android.com/studio/index.html#downloads)
 * [Gradle](https://gradle.org/install)
 * [Git](https://git-scm.com/downloads)
 * [Gulp](http://gulpjs.com/)
-* [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Node.js](https://nodejs.org/en/download/) (with NPM)
 * [SonarQube](https://www.sonarqube.org/)
 * [SonarScanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)
+* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (only on Windows)
+* [.Net Core](https://www.microsoft.com/net/download/core#/runtime) (optional)
 
-Windows only
+It's recommended install it using a Package Manager. See instructions below.
 
-* [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck)
-
-Optional
-
-* [.Net Core](https://www.microsoft.com/net/download/core#/runtime)
+* [Brew and SDK Man (on MacOS)](https://github.com/deinsoftware/hardhat/Docs/Prerequisites/mac.md)
+* [Chocolatey (on Windows)](https://github.com/deinsoftware/hardhat/Docs/Prerequisites/win.md)
 
 ### Installing
 
@@ -88,18 +87,19 @@ Please verify that you have been configured all correctly. Paths in descriptions
 
 | var | description |
 | --- | --- |
-| `ANDROID_SDK_ROOT` | D:\Applications\Android\SDK |
+| `ANDROID_SDK_ROOT` | Cwhere NDK:\Android\android-sdk |
 | `ANDROID_HOME` | %ANDROID_SDK_ROOT% |
 | `ANDROID_NDK_HOME` | %ANDROID_SDK_ROOT%\ndk-bundle |
-| `ANDROID_BT_VERSION` | 27.0.3 |
+| `ANDROID_BT_VERSION` | 28.0.3 |
 | `ANDROID_PROPERTIES` | D:\Applications\Android\Properties |
+| `CHOCO_HOME` | C:\ProgramData\chocolatey |
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
-| `GRADLE_HOME` | D:\Applications\Android\Gradle |
-| `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_74 |
-| `NPM_HOME` | C:\Users\\%username%\AppData\Roaming\npm |
+| `GRADLE_HOME` | %CHOCO_HOME% |
+| `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_221 |
+| `NPM_HOME` | C:\Program Files\nodejs |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
-| `SIGCHECK_HOME` | D:\Applications\Sigcheck |
+| `SIGCHECK_HOME` | %CHOCO_HOME% |
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
 | `TASK_PROJECT` | D:\Applications\Task |
