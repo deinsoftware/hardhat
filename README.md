@@ -61,10 +61,9 @@ What things you need to install?
 * [Sigcheck](https://docs.microsoft.com/en-us/sysinternals/downloads/sigcheck) (only on Windows)
 * [.Net Core](https://www.microsoft.com/net/download/core#/runtime) (optional)
 
-It's recommended install it using a Package Manager. See instructions below.
+It's recommended install it using a Package Manager.
 
-
-| OS | Path |
+| OS | Instructions |
 | --- | --- |
 | win | [Chocolatey](https://github.com/deinsoftware/hardhat/blob/master/Docs/Prerequisites/win.md) |
 | mac | [Brew and SDK Man](https://github.com/deinsoftware/hardhat/blob/master/Docs/Prerequisites/mac.md) |
