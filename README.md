@@ -89,7 +89,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 
 | var | description |
 | --- | --- |
-| `ANDROID_SDK_ROOT` | Cwhere NDK:\Android\android-sdk |
+| `ANDROID_SDK_ROOT` | C:\Android\android-sdk |
 | `ANDROID_HOME` | %ANDROID_SDK_ROOT% |
 | `ANDROID_NDK_HOME` | %ANDROID_SDK_ROOT%\ndk-bundle |
 | `ANDROID_BT_VERSION` | 28.0.3 |
