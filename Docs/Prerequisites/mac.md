@@ -53,7 +53,7 @@ sdk use java 8.0.222.hs-adpt
 sdk default java 8.0.222.hs-adpt
 ```
 
-### Android
+### Android SDK
 
 ```bash
 brew cask install android-sdk
@@ -102,7 +102,31 @@ nvm alias default stable
 nvm use default
 ```
 
-## NPM Packages
+### MySQL
+
+```bash
+brew install mysql@5.6
+```
+
+Add this environment variables to `~/.bash_profile` and/or `~/.zshrc` file:
+
+```bash
+export MYSQL_HOME="/usr/local/opt/mysql@5.6"
+export PATH="$MYSQL_HOME/bin:$PATH"
+export LDFLAGS="-L$MYSQL_HOME/lib"
+export CPPFLAGS="-I$MYSQL_HOME/include"
+```
+
+Initialize and start server
+
+```bash
+mysqld --initialize --explicit_defaults_for_timestamp
+mysql.server start
+```
+
+## Packages
+
+### NPM
 
 ```bash
 npm i -g npm
@@ -110,7 +134,7 @@ npm i -g gulp
 npm i -g eslint
 ```
 
-## Android SDK
+### Android
 
 ```bash
 sdkmanager "emulator"
@@ -157,4 +181,25 @@ brew cask install sourcetree
 
 ```bash
 brew cask install google-chrome
+```
+
+### MySQL 
+
+```bash
+brew cask install mysqlworkbench
+```
+
+## Configuration
+
+### SonarQube
+
+Run this script on MySQL:
+
+```sql
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE USER 'sonarqube' IDENTIFIED BY 'sonarqube';
+GRANT ALL ON sonar.* TO 'sonarqube'@'%' IDENTIFIED BY 'sonarqube';
+GRANT ALL ON sonar.* TO 'sonarqube'@'localhost' IDENTIFIED BY 'sonarqube';
+FLUSH PRIVILEGES;
 ```

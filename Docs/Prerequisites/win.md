@@ -22,17 +22,20 @@ choco install git.install
 choco install git-lfs.install
 choco install nodejs-lts
 choco install sigcheck --ignore-checksums
+choco install mysql --version 5.6.19
 ```
 
-## NPM Packages
+## Packages
+
+### NPM
 
 ```bash
 npm i -g npm
-npm i -g gulp 
+npm i -g gulp
 npm i -g eslint
 ```
 
-## Android SDK
+### Android
 
 ```bash
 sdkmanager "emulator"
@@ -53,7 +56,7 @@ sdkmanager "tools"
 ### Useful Commands
 
 ```bash
-sdkmanager --list 
+sdkmanager --list
 sdkmanager --update
 ```
 
@@ -66,4 +69,20 @@ choco install vscode
 choco install androidstudio
 choco install sourcetree
 choco install googlechrome
+choco install mysql.workbench
+```
+
+## Configuration
+
+### SonarQube
+
+Run this script on MySQL:
+
+```sql
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+CREATE USER 'sonarqube' IDENTIFIED BY 'sonarqube';
+GRANT ALL ON sonar.* TO 'sonarqube'@'%' IDENTIFIED BY 'sonarqube';
+GRANT ALL ON sonar.* TO 'sonarqube'@'localhost' IDENTIFIED BY 'sonarqube';
+FLUSH PRIVILEGES;
 ```
