@@ -22,7 +22,7 @@ choco install git.install
 choco install git-lfs.install
 choco install nodejs-lts
 choco install sigcheck --ignore-checksums
-choco install mysql --version 5.6.27
+choco install mysql --version 5.7.18
 ```
 
 ## Packages
