@@ -98,14 +98,16 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `CODE_HOME` | C:\Program Files\Microsoft VS Code |
 | `GIT_HOME` | C:\Program Files\Git |
 | `GRADLE_HOME` | %CHOCO_HOME% |
+| `LFS_HOME` | C:\Program Files\Git LFS |
 | `JAVA_HOME` | C:\Program Files\Java\jdk1.8.0_221 |
+| `MYSQL_HOME` | C:\tools\mysql\mysql-5.7.18-winx64 |
 | `NPM_HOME` | C:\Program Files\nodejs |
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `SIGCHECK_HOME` | %CHOCO_HOME% |
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
 | `TASK_PROJECT` | D:\Applications\Task |
-| `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin<br>C:\ProgramData\Oracle\Java\javapath;<br>C:\Program Files (x86)\nodejs\; |
+| `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\platform-tools\bin;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%JAVA_HOME%\bin;<br>%LFS_HOME%\bin;<br>%MYSQL_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath; |
 
 On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Build Tool version (recommended use the last one).
 
