@@ -107,7 +107,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
 | `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
 | `TASK_PROJECT` | D:\Applications\Task |
-| `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\platform-tools\bin;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%JAVA_HOME%\bin;<br>%LFS_HOME%\bin;<br>%MYSQL_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64<br>%SONAR_SCANNER_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath; |
+| `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\platform-tools\bin;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%JAVA_HOME%\bin;<br>%LFS_HOME%\bin;<br>%MYSQL_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64;<br>%SONAR_SCANNER_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath; |
 
 On Windows need replace `ANDROID_BT_VERSION` manually with your Android SDK Build Tool version (recommended use the last one).
 
