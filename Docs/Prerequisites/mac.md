@@ -111,8 +111,6 @@ brew install mysql@5.6
 Add this environment variables to `~/.bash_profile` and/or `~/.zshrc` file:
 
 ```bash
-export MYSQL_HOME="/usr/local/opt/mysql@5.6"
-export PATH="$MYSQL_HOME/bin:$PATH"
 export LDFLAGS="-L$MYSQL_HOME/lib"
 export CPPFLAGS="-I$MYSQL_HOME/include"
 ```
