@@ -105,7 +105,7 @@ Please verify that you have been configured all correctly. Paths in descriptions
 | `VPN_HOME` | C:\Program Files (x86)\CheckPoint\Endpoint Connect |
 | `SIGCHECK_HOME` | %CHOCO_HOME% |
 | `SONAR_QUBE_HOME` | D:\Applications\Sonar\Qube |
-| `SONAR_SCANNER_HOME` | D:\Applications\Sonar\Scanner |
+| `SONAR_SCANNER_HOME` | %CHOCO_HOME%\lib\sonarqube-scanner.portable\tools\sonar-scanner-3.3.0.1492-windows |
 | `TASK_PROJECT` | D:\Applications\Task |
 | `PATH` | %ANDROID_SDK_ROOT%\build-tools\\%ANDROID_BT_VERSION%;<br>%ANDROID_SDK_ROOT%\platform-tools;<br>%ANDROID_SDK_ROOT%\platform-tools\bin;<br>%ANDROID_SDK_ROOT%\tools;<br>%CODE_HOME%\bin;<br>%GIT_HOME%\cmd;<br>%GRADLE_HOME%\bin;<br>%JAVA_HOME%\bin;<br>%LFS_HOME%\bin;<br>%MYSQL_HOME%\bin;<br>%NPM_HOME%;<br>%SIGCHECK_HOME%\bin;<br>%SONAR_QUBE_HOME%\bin\windows-x86-64;<br>%SONAR_SCANNER_HOME%\bin;<br>C:\ProgramData\Oracle\Java\javapath; |
 

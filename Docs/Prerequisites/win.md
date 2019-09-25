@@ -24,6 +24,7 @@ choco install nodejs-lts
 choco install sigcheck --ignore-checksums
 choco install mysql --version 5.7.18
 choco install vcredist2013
+choco install sonarqube-scanner.portable
 ```
 
 ## Packages
