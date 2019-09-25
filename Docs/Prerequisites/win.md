@@ -104,4 +104,4 @@ sonar.jdbc.username=sonarqube
 sonar.jdbc.password=sonarqube
 sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
 sonar.web.port=9000
-```refresnv
+```
