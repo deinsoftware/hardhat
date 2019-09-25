@@ -23,6 +23,7 @@ choco install git-lfs.install
 choco install nodejs-lts
 choco install sigcheck --ignore-checksums
 choco install mysql --version 5.7.18
+choco install vcredist2013
 ```
 
 ## Packages
@@ -74,6 +75,15 @@ choco install mysql.workbench
 
 ## Configuration
 
+### MySQL
+
+Initialize and start server
+
+```bash
+mysqld --install
+mysqld --initialize --explicit_defaults_for_timestamp
+```
+
 ### SonarQube
 
 Run this script on MySQL:
@@ -94,4 +104,4 @@ sonar.jdbc.username=sonarqube
 sonar.jdbc.password=sonarqube
 sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
 sonar.web.port=9000
-```
+```refresnv
