@@ -81,7 +81,7 @@ Initialize and start server
 
 ```bash
 mysqld --install
-mysqld --initialize --explicit_defaults_for_timestamp
+mysqld --initialize-insecure --explicit_defaults_for_timestamp
 ```
 
 ### SonarQube
