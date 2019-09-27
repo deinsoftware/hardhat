@@ -118,7 +118,7 @@ export CPPFLAGS="-I$MYSQL_HOME/include"
 Initialize and start server
 
 ```bash
-mysqld --initialize --explicit_defaults_for_timestamp
+mysqld --initialize-insecure --explicit_defaults_for_timestamp
 mysql.server start
 ```
 
