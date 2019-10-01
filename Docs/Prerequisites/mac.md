@@ -122,7 +122,6 @@ Initialize and start server
 
 ```bash
 initdb /usr/local/var/postgres -E utf8
-pg_ctl -D /usr/local/var/postgres -l logfile start
 createuser -s postgres
 brew services start postgresql
 ```
@@ -201,7 +200,7 @@ With pgAdmin create the `sonarqube` user with `sonarqube` password with all priv
 Run this script to create the DataBase:
 
 ```sql
-CREATE DATABASE sonar WITH ENCODING 'UTF8' OWNER sonar TEMPLATE=template0;
+CREATE DATABASE sonar WITH ENCODING 'UTF8' OWNER sonarqube TEMPLATE=template0;
 ```
 
 Configure this values on `sonar.properties` file:
