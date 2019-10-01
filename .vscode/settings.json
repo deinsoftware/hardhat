@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
+        "CPPFLAGS",
         "Colorify",
         "Configurator",
         "Equiman",
+        "LDFLAGS",
         "Logcat",
         "Newtonsoft",
         "Sigcheck",
@@ -18,6 +20,7 @@
         "macos",
         "mnto",
         "pbcopy",
+        "postgresql",
         "qube",
         "sbin",
         "shasum",

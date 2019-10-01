@@ -125,7 +125,7 @@ export ANDROID_PROPERTIES="~/Applications/Android/Properties"
 export GIT_HOME="/usr/local/bin/git"
 export GRADLE_HOME="/usr/local/bin/gradle"
 export JAVA_HOME="$(/usr/libexec/java_home -v 1.8)"
-export MYSQL_HOME="/usr/local/opt/mysql@5.6"
+export POSTGRESQL_HOME="/usr/local/opt/postgresql"
 export SONAR_QUBE_HOME="~/Applications/Sonar/Qube"
 export SONAR_SCANNER_HOME="~/Applications/Sonar/Scanner"
 export TASK_PROJECT="~/Applications/Task"
@@ -136,23 +136,26 @@ export PATH="$ANDROID_SDK_ROOT/build-tools/$ANDROID_BT_VERSION:$PATH"
 export PATH="$ANDROID_SDK_ROOT/platform-tools:$PATH"
 export PATH="$ANDROID_SDK_ROOT/tools:$PATH"
 export PATH="$ANDROID_NDK_HOME/:$PATH"
-export PATH="$MYSQL_HOME/bin:$PATH"
 export PATH="$SONAR_QUBE_HOME/bin/macosx-universal-64:$PATH"
 export PATH="$SONAR_SCANNER_HOME/bin:$PATH"
+
+export PATH="$POSTGRESQL_HOME/bin:$PATH"
+export LDFLAGS="-L$POSTGRESQL_HOME/lib"
+export CPPFLAGS="-I$POSTGRESQL_HOME/include"
 
 alias hh="sh ~/Applications/HardHat/mac.sh"
 alias x="exit"
 alias sb="source ~/.bash_profile"
 ```
 
-On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. Skip `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with sdkman](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
+On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. Skip `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with SDKMan](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
 
 With **H**ard**H**at alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
 > **Where are environment variables?**
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
 
-Highly recomend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
+Highly recommend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
 
 > **Recommended terminal configurations on macOS?**
 > Open a terminal window, go to 'Preference > Profiles.
@@ -398,7 +401,6 @@ Choose <kbd>c</kbd> _Configuration_ option on main menu and set the values.
 | <kbd>mw</kbd> | Choose workspace folder inside development path. |
 | <kbd>mp</kbd> | Projects folder name inside workspace folder path. |
 | <kbd>mf</kbd> | Filter name for project listing. |
-
 
 #### Android Path
 
