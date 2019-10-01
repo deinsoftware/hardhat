@@ -121,11 +121,10 @@ export CPPFLAGS="-I$POSTGRESQL_HOME/include"
 Initialize and start server
 
 ```bash
-brew services start postgresql
 initdb /usr/local/var/postgres -E utf8
 pg_ctl -D /usr/local/var/postgres -l logfile start
 createuser -s postgres
-
+brew services start postgresql
 ```
 
 ## Packages
