@@ -102,24 +102,30 @@ nvm alias default stable
 nvm use default
 ```
 
-### MySQL
+### PostgreSQL
 
 ```bash
-brew install mysql@5.6
+brew install postgresql
 ```
 
 Add this environment variables to `~/.bash_profile` and/or `~/.zshrc` file:
 
 ```bash
-export LDFLAGS="-L$MYSQL_HOME/lib"
-export CPPFLAGS="-I$MYSQL_HOME/include"
+export POSTGRESQL_HOME="/usr/local/opt/postgresql"
+
+export PATH="$POSTGRESQL_HOME/bin:$PATH"
+export LDFLAGS="-L$POSTGRESQL_HOME/lib"
+export CPPFLAGS="-I$POSTGRESQL_HOME/include"
 ```
 
 Initialize and start server
 
 ```bash
-mysqld --initialize-insecure --explicit_defaults_for_timestamp
-mysql.server start
+brew services start postgresql
+initdb /usr/local/var/postgres -E utf8
+pg_ctl -D /usr/local/var/postgres -l logfile start
+createuser -s postgres
+
 ```
 
 ## Packages
@@ -181,25 +187,22 @@ brew cask install sourcetree
 brew cask install google-chrome
 ```
 
-### MySQL Workbench
+### pgAdmin
 
 ```bash
-brew cask install mysqlworkbench
+brew cask install pgadmin4
 ```
 
 ## Configuration
 
 ### SonarQube
 
-Run this script on MySQL:
+With pgAdmin create the `sonarqube` user with `sonarqube` password with all privilegies. 
+
+Run this script to create the DataBase:
 
 ```sql
-CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-CREATE USER 'sonarqube' IDENTIFIED BY 'sonarqube';
-GRANT ALL ON sonar.* TO 'sonarqube'@'%' IDENTIFIED BY 'sonarqube';
-GRANT ALL ON sonar.* TO 'sonarqube'@'localhost' IDENTIFIED BY 'sonarqube';
-FLUSH PRIVILEGES;
+CREATE DATABASE sonar WITH ENCODING 'UTF8' OWNER sonar TEMPLATE=template0;
 ```
 
 Configure this values on `sonar.properties` file:
@@ -207,6 +210,6 @@ Configure this values on `sonar.properties` file:
 ```txt
 sonar.jdbc.username=sonarqube
 sonar.jdbc.password=sonarqube
-sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false
+sonar.jdbc.url=jdbc:postgresql://localhost/sonar
 sonar.web.port=9000
 ```
