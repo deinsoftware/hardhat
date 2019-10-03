@@ -9,6 +9,16 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.4] - 2019-10-03
+
+**Updated:**
+
+- Framework to .Net Core version 3.0
+
+**Changed:**
+
+- `resize` command on MacOS bash launcher
+
 ## [7.2.3] - 2019-08-02
 
 **Fixed:**
