@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.2.5] - 2019-10-18
+
+**Fixed:**
+
+- Adb get-state command to use multiple devices at time
+
 ## [7.2.4] - 2019-10-03
 
 **Updated:**

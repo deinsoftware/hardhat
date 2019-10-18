@@ -43,14 +43,14 @@ namespace HardHat
             Response result = _shell.Term($"adb -s {device} get-state");
             if (result.stdout.Contains("not found"))
             {
-                result.code = 0;
-            }
-            else
-            {
                 result.code = 1;
                 Message.Error(
                     msg: $" Device '{device}' not found."
                 );
+            }
+            else
+            {
+                result.code = 0;
             }
             return result;
         }
