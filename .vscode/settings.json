@@ -8,6 +8,7 @@
         "Logcat",
         "Newtonsoft",
         "Sigcheck",
+        "Xcode",
         "aapt",
         "apksigner",
         "chmod",
