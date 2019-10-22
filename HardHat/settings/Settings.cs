@@ -74,7 +74,7 @@ namespace HardHat
             config.personal.selected.mapping = "";
             config.personal.selected.mappingStatus = false;
             config.personal.sonar = new SonarConfiguration();
-            config.personal.sonar.protocol = "https";
+            config.personal.sonar.protocol = "http";
             config.personal.sonar.domain = "localhost";
             config.personal.sonar.port = "9000";
             config.personal.sonar.internalPath = "";
