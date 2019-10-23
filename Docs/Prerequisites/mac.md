@@ -195,7 +195,7 @@ brew cask install pgadmin4
 
 ### SonarQube
 
-With pgAdmin create the `sonarqube` user with `sonarqube` password with all privilegies. 
+With pgAdmin create the `sonarqube` user with `sonarqube` password with all privilegies.
 
 Run this script to create the DataBase:
 
