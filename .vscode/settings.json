@@ -22,6 +22,7 @@
         "mnto",
         "pbcopy",
         "postgresql",
+        "psql",
         "qube",
         "sbin",
         "shasum",

@@ -211,3 +211,15 @@ sonar.jdbc.password=sonarqube
 sonar.jdbc.url=jdbc:postgresql://localhost/sonar
 sonar.web.port=9000
 ```
+
+Export database:
+
+```bash
+pg_dump -U sonarqube -h localhost sonar >> backup_sonar.sql
+```
+
+Import database:
+
+```bash
+psql -U sonarqube sonar < backup_sonar.sql
+```
