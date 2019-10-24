@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.3.0] - 2019-10-24
+
+**Added:**
+
+- Server number options 6, 7 and 8
+
 ## [7.2.5] - 2019-10-18
 
 **Fixed:**
