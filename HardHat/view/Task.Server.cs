@@ -31,6 +31,9 @@ namespace HardHat
             opts.Add(new Option { opt = "t>n:3", status = false, action = Task.Quick, variant = "n:3" });
             opts.Add(new Option { opt = "t>n:4", status = false, action = Task.Quick, variant = "n:4" });
             opts.Add(new Option { opt = "t>n:5", status = false, action = Task.Quick, variant = "n:5" });
+            opts.Add(new Option { opt = "t>n:6", status = false, action = Task.Quick, variant = "n:6" });
+            opts.Add(new Option { opt = "t>n:7", status = false, action = Task.Quick, variant = "n:7" });
+            opts.Add(new Option { opt = "t>n:8", status = false, action = Task.Quick, variant = "n:8" });
             opts.Add(new Option { opt = "t>ss", status = false, action = Task.ServerSync });
             opts.Add(new Option { opt = "t>so", status = false, action = Task.Open });
         }
@@ -77,6 +80,9 @@ namespace HardHat
             Options.IsValid("t>n:3", Variables.Valid("task_project"));
             Options.IsValid("t>n:4", Variables.Valid("task_project"));
             Options.IsValid("t>n:5", Variables.Valid("task_project"));
+            Options.IsValid("t>n:6", Variables.Valid("task_project"));
+            Options.IsValid("t>n:7", Variables.Valid("task_project"));
+            Options.IsValid("t>n:8", Variables.Valid("task_project"));
             Options.IsValid("t>ss", Variables.Valid("task_project"));
             Options.IsValid("t>so", Variables.Valid("task_project"));
         }
