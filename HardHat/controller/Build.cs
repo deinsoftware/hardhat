@@ -27,7 +27,7 @@ namespace HardHat
         {
             try
             {
-                _shell.Term($"gradle -p {path} assemble{conf}", Output.External);
+                _shell.Term($"gradle -p {path} {conf}", Output.External);
             }
             catch (Exception Ex)
             {

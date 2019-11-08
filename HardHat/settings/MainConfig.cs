@@ -66,7 +66,7 @@ namespace HardHat
         public SonarConfiguration sonar { get; set; }
         public WebConfiguration webServer { get; set; }
         public TestConfiguration testServer { get; set; }
-        public BuildConfiguration gradle { get; set; }
+        public BuildConfiguration build { get; set; }
         public AdbConfiguration adb { get; set; }
         public LogcatConfiguration logcat { get; set; }
         public MenuConfiguration menu { get; set; }
@@ -112,9 +112,10 @@ namespace HardHat
 
     class BuildConfiguration
     {
-        public string mode { get; set; }
+        public string type { get; set; }
         public string dimension { get; set; }
         public string flavor { get; set; }
+        public string mode { get; set; }
     }
 
     class AdbConfiguration

@@ -227,6 +227,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>p</kbd> | Select a project inside `path.dir/bsn/prd` path (_see [Setup > Path Variables](#path-variables) section_) that starts with `flt` folder name. This project required to have an `android.prj` folder inside. |
 | <kbd>pf</kbd> | Select an APK file generated inside selected project on `android.bld` path with `android.ext` extension name (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>po</kbd> | Open selected project in File Explorer. |
+| <kbd>po-b</kbd> | Open Android build path from selected project in File Explorer. |
 | <kbd>pe</kbd> | Open selected project on Editor. (_see [Usage > Configuration > Other Variable](#other-variables) section_). |
 | <kbd>pi</kbd> | Install selected file on an Android device. |
 | <kbd>pp</kbd> | Show path and full path about selected file. Copy this paths to clipboard. |
@@ -333,6 +334,7 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | combination | action |
 | --- | --- |
 | <kbd>b</kbd> | Configure your build type, flavor and dimensions. |
+| <kbd>b>t</kbd> | Type shortcut inside build configuration. This value can be empty. |
 | <kbd>b>d</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
 | <kbd>b>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
 | <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
@@ -351,6 +353,8 @@ If you have some pre-configured files to be copied to project path, add it on `A
 ##### Quick Build Configuration
 | combination | option | value |
 | --- | --- | --- |
+| <kbd>b>t:a</kbd> | Type | assemble |
+| <kbd>b>t:b</kbd> | Type | bundle |
 | <kbd>b>f:d</kbd> | Flavor | dev |
 | <kbd>b>f:q</kbd> | Flavor | qa |
 | <kbd>b>f:r</kbd> | Flavor | drc |

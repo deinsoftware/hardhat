@@ -88,10 +88,11 @@ namespace HardHat
             config.personal.testServer = new TestConfiguration();
             config.personal.testServer.sync = false;
             config.personal.testServer.coveragePath = "coverage/review";
-            config.personal.gradle = new BuildConfiguration();
-            config.personal.gradle.mode = "";
-            config.personal.gradle.dimension = "";
-            config.personal.gradle.flavor = "";
+            config.personal.build = new BuildConfiguration();
+            config.personal.build.type = "a";
+            config.personal.build.dimension = "";
+            config.personal.build.flavor = "";
+            config.personal.build.mode = "";
             config.personal.adb = new AdbConfiguration();
             config.personal.adb.deviceName = "";
             config.personal.adb.wifiIpAddress = "";
