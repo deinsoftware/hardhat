@@ -316,9 +316,10 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | <kbd>t>n:3</kbd> | Number | 3 |
 | <kbd>t>n:4</kbd> | Number | 4 |
 | <kbd>t>n:5</kbd> | Number | 5 |
-| <kbd>t>n:6</kbd> | Number | 6 |
-| <kbd>t>n:7</kbd> | Number | 7 |
 | <kbd>t>n:8</kbd> | Number | 8 |
+| <kbd>t>n:8</kbd> | Number | 9 |
+| <kbd>t>n:8</kbd> | Number | 10 |
+| <kbd>t>n:8</kbd> | Number | 11 |
 
 ##### Test Server Configuration
 
