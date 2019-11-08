@@ -29,6 +29,9 @@ namespace HardHat
             {"6", "6"},
             {"7", "7"},
             {"8", "8"},
+            {"9", "9"},
+            {"10", "10"},
+            {"11", "11"},
         };
 
         public static readonly IReadOnlyDictionary<string, string> Logical = new Dictionary<string, string>
