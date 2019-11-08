@@ -9,6 +9,14 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.4.0] - 2019-11-09
+
+**Added:**
+
+- Server number options 9, 10 and 11
+- Open Android build path on File Explorer
+- Build Type option: Assemble (APK) and Bundle (AAB)
+
 ## [7.3.0] - 2019-10-24
 
 **Added:**
