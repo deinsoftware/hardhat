@@ -16,6 +16,7 @@ namespace HardHat
             opts.Add(new Option { opt = "p", status = true, action = Project.Select });
             opts.Add(new Option { opt = "pf", status = false, action = Project.SelectFile });
             opts.Add(new Option { opt = "po", status = false, action = Project.Open });
+            opts.Add(new Option { opt = "po-b", status = false, action = Project.Open, variant = "b" });
             opts.Add(new Option { opt = "pe", status = false, action = Project.Editor });
             opts.Add(new Option { opt = "pe>a", status = false, action = Project.Editor, variant = "a" });
             opts.Add(new Option { opt = "pe>c", status = false, action = Project.Editor, variant = "c" });
@@ -51,6 +52,7 @@ namespace HardHat
             _config.personal.selected.mappingStatus = File.Exists(selectedFileMapping);
             Options.IsValid("pf", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("po", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
+            Options.IsValid("po-b", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("pe", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("pe>a", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("pe>c", !Strings.SomeNullOrEmpty(_config.personal.selected.project));
@@ -212,7 +214,20 @@ namespace HardHat
 
             try
             {
-                string dirPath = _path.Combine(_config.path.development, _config.path.workspace, _config.path.project, _config.personal.selected.project);
+                string dirPath = _path.Combine(
+                    _config.path.development,
+                    _config.path.workspace,
+                    _config.path.project,
+                    _config.personal.selected.project
+                );
+                if (_config.personal.menu.selectedVariant == "b")
+                {
+                    dirPath = _path.Combine(
+                        dirPath,
+                        _config.project.androidPath,
+                        _config.project.androidBuildPath
+                    );
+                }
                 CmdOpen(dirPath);
 
                 Menu.Start();
