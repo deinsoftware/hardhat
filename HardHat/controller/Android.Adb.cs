@@ -226,14 +226,7 @@ namespace HardHat
             try
             {
                 Response result = _shell.Term($"adb connect {ip}:{port}", Output.Internal);
-                if (result.stdout.Contains($"connected to {ip}:{port}"))
-                {
-                    connected = true;
-                }
-                else
-                {
-                    connected = false;
-                }
+                connected = result.stdout.Contains($"connected to {ip}:{port}");
             }
             catch (Exception Ex)
             {
