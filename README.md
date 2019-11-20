@@ -338,6 +338,7 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | <kbd>b>d</kbd> | Dimension shortcut inside build configuration. This value can be empty. |
 | <kbd>b>f</kbd> | Flavor shortcut inside build configuration. This value can be empty. |
 | <kbd>b>m</kbd> | Mode shortcut inside build configuration. This value can be empty. |
+| <kbd>bi</kbd> | Install NPM packages configured on packages.json. |
 | <kbd>bp</kbd> | Copy pre-configured files inside `ANDROID_PROPERTIES` (_see [Environment Variables](#environment-variables) section_) folder and copy inside `android.prj` folder in selected project (_see [Setup > Android Variables](#android-variables) section_). |
 | <kbd>bc</kbd> | Make `clean` project with gradle command line. |
 | <kbd>bc-c</kbd> | Make `cleanBuildCache` project with gradle command line. |

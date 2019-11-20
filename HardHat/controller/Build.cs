@@ -7,6 +7,31 @@ namespace HardHat
 {
     public static partial class Build
     {
+        public static void CmdRemove(string path)
+        {
+            try
+            {
+                _shell.Term($"npm r", Output.Internal, path);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void CmdInstall(string path)
+        {
+            try
+            {
+                _shell.Term($"npm i -f", Output.Internal, path);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+
         public static void CmdClean(string path, bool cleanCache = false)
         {
             try

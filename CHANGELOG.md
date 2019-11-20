@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.5.0] - 2019-11-19
+
+**Added:**
+
+- Build initialize option to install npm packages on current project.
+
 ## [7.4.0] - 2019-11-09
 
 **Added:**

@@ -30,6 +30,7 @@ namespace HardHat
             opts.Add(new Option { opt = "b>m:d", status = false, action = Build.Quick, variant = "m:d" });
             opts.Add(new Option { opt = "b>m:s", status = false, action = Build.Quick, variant = "m:s" });
             opts.Add(new Option { opt = "b>m:r", status = false, action = Build.Quick, variant = "m:r" });
+            opts.Add(new Option { opt = "bi", status = false, action = Build.Init });
             opts.Add(new Option { opt = "bp", status = false, action = Build.Properties });
             opts.Add(new Option { opt = "bc", status = false, action = Build.Clean, variant = "" });
             opts.Add(new Option { opt = "bc-c", status = false, action = Build.Clean, variant = "c" });
@@ -90,6 +91,7 @@ namespace HardHat
             Options.IsValid("b>m:d", Variables.Valid("git"));
             Options.IsValid("b>m:s", Variables.Valid("git"));
             Options.IsValid("b>m:r", Variables.Valid("git"));
+            Options.IsValid("bi", Variables.Valid("task_project") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bp", Variables.Valid("task_project") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
             Options.IsValid("bc-c", Variables.Valid("git") && !Strings.SomeNullOrEmpty(_config.personal.selected.project));
@@ -107,6 +109,7 @@ namespace HardHat
                 _colorify.Write($" [B] Build: ", txtStatus(Options.IsValid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
+            _colorify.Write($"{"   [I] Init",-17}", txtStatus(Options.IsValid("bi")));
             _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("bp")));
             _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.IsValid("bc")));
             _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.IsValid("bg")));
@@ -314,6 +317,36 @@ namespace HardHat
                         _fileSystem.DeleteFile(_path.Combine(dirPath, file + ".txt"));
                     }
                 }
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Init()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("BUILD CONFIGURATION", "INIT");
+
+                string dirPath = _path.Combine(
+                    _config.path.development,
+                    _config.path.workspace,
+                    _config.path.project,
+                    _config.personal.selected.project
+                );
+
+                _colorify.WriteLine($" --> Updating Dependencies...", txtInfo);
+                Build.CmdRemove(dirPath);
+                Build.CmdInstall(dirPath);
+
+                Section.HorizontalRule();
+                Section.Pause();
 
                 Menu.Start();
             }
