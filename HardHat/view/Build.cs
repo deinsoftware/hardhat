@@ -40,7 +40,6 @@ namespace HardHat
         public static void Status()
         {
             StringBuilder buildConfiguration = new StringBuilder();
-            buildConfiguration.Append(_config.personal.build.dimension ?? "");
             string type = Selector.Name(Selector.Type, _config.personal.build.type);
             if (!String.IsNullOrEmpty(type))
             {
@@ -50,6 +49,7 @@ namespace HardHat
             {
                 _config.personal.build.type = "";
             }
+            buildConfiguration.Append(_config.personal.build.dimension ?? "");
             string flavor = Selector.Name(Selector.Flavor, _config.personal.build.flavor);
             if (!String.IsNullOrEmpty(flavor))
             {

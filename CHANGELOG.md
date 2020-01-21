@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.5.1] - 2020-01-21
+
+**Fixed:**
+
+- Flavor on build configuration.
+
 ## [7.5.0] - 2019-11-19
 
 **Added:**
