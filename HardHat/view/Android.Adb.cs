@@ -19,6 +19,7 @@ namespace HardHat
             opts.Add(new Option { opt = "ad", status = true, action = Adb.Devices });
             WirelessList(ref opts);
             LogcatList(ref opts);
+            opts.Add(new Option { opt = "as", status = true, action = Adb.Show });
         }
 
         public static void Start()
@@ -35,14 +36,13 @@ namespace HardHat
             _colorify.Write($"{"   [D] Devices",-17}", txtPrimary);
             _colorify.Write($"{"[R] Restart",-17}", txtPrimary);
             _colorify.Write($"{"[L] Logcat",-17}", txtPrimary);
-            if (!_config.personal.adb.wifiStatus)
-            {
-                _colorify.WriteLine($"{"[W] WiFi Connect",-17}", txtPrimary);
-            }
-            else
-            {
-                _colorify.WriteLine($"{"[W] WiFi Disconnect",-17}", txtPrimary);
-            }
+
+
+
+            _colorify.Write($" [W] Wifi ", txtPrimary);
+            string wifiStatus = (!_config.personal.adb.wifiStatus ? "" : "(#)");
+            _colorify.Write($"{$"{wifiStatus}",-7}", txtSuccess);
+            _colorify.WriteLine($"{"[S] Show",-17}", txtPrimary);
         }
 
         public static void Install()
@@ -171,6 +171,36 @@ namespace HardHat
                 {
                     _config.personal.adb.deviceName = "";
                     Message.Alert(" No device found.");
+                }
+
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
+        public static void Show()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                Section.Header("SHOW DEVICE");
+                Section.SelectedFile();
+
+                _colorify.BlankLines();
+                _colorify.WriteLine($" --> Checking devices...", txtInfo);
+                if (CmdDevices())
+                {
+                    _colorify.BlankLines();
+                    _colorify.WriteLine($" --> Loading Device...", txtInfo);
+                    CmdShow(_config.personal.adb.deviceName);
+                }
+                else
+                {
+                    Message.Alert(" No device/emulators found");
                 }
 
                 Menu.Start();

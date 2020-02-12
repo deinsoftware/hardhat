@@ -287,5 +287,28 @@ namespace HardHat
             }
             return result;
         }
+
+        public static void CmdShow(string device)
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                cmd.Append("scrcpy");
+                if (!String.IsNullOrEmpty(device))
+                {
+                    Response result = new Response();
+                    result = CmdState(device);
+                    if (result.code == 0)
+                    {
+                        cmd.Append($" -s {device}  2>&1");
+                    }
+                }
+                _shell.Term(cmd.ToString(), Output.External);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
     }
 }

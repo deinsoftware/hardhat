@@ -39,6 +39,7 @@ namespace HardHat
             _colorify.Write($"{" NativeScript",-17}", txtPrimary); Version.CmdNativescript();
             _colorify.Write($"{" TypeScript",-17}", txtPrimary); Version.CmdTypescript();
             _colorify.Write($"{" SonarScanner",-17}", txtPrimary); Version.CmdSonarScanner();
+            _colorify.Write($"{" Scrcpy",-17}", txtPrimary); Version.CmdScrcpy();
             _colorify.Write($"{" Yarn",-17}", txtPrimary); Version.CmdYarn();
 
             _colorify.BlankLines();

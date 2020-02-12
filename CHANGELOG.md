@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.6.0] - 2020-02-12
+
+**Added:**
+
+- [Scrcpy](https://github.com/Genymobile/scrcpy) support to show mobile device over ADB.
+
 ## [7.5.1] - 2020-01-21
 
 **Fixed:**

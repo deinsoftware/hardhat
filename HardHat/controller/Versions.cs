@@ -152,6 +152,20 @@ namespace HardHat
             }
         }
 
+        public static void CmdScrcpy()
+        {
+            try
+            {
+                Response result = _shell.Term($"scrcpy -v 2>&1");
+                string response = Strings.ExtractLine(result.stdout, "scrcpy", "scrcpy ");
+                _shell.Result(response, "is not Installed");
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+
         public static void CmdSonarScanner()
         {
             try

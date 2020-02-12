@@ -388,6 +388,10 @@ If you have some pre-configured files to be copied to project path, add it on `A
 | <kbd>ar</kbd> | Kill and Restart ADB server. |
 | <kbd>ad</kbd> | Make ADB launch logcat. |
 | <kbd>aw</kbd> | Make a ADB device dis/connection over Wifi. |
+| <kbd>aw>i</kbd> | IP shortcut inside wireless configuration. |
+| <kbd>aw>p</kbd> | Port shortcut inside wireless configuration. |
+| <kbd>aw>c</kbd> | Connect IP shortcut inside wireless configuration. |
+| <kbd>as</kbd> | Show device via ADB. |
 
 #### Extra
 
