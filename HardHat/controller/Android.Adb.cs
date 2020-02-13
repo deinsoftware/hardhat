@@ -299,7 +299,7 @@ namespace HardHat
                     Response result = CmdState(device);
                     if (result.code == 0)
                     {
-                        cmd.Append($" -s {device}  2>&1");
+                        cmd.Append($" -s {device}");
                     }
                 }
                 _shell.Term(cmd.ToString(), Output.External);
