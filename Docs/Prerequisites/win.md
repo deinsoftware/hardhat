@@ -69,6 +69,7 @@ sdkmanager --update
 ```bash
 choco install vscode
 choco install androidstudio
+choco install scrcpy
 choco install sourcetree
 choco install googlechrome
 choco install mysql.workbench

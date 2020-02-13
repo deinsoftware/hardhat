@@ -173,6 +173,12 @@ brew cask install intel-haxm
 
 On first run go to `Tools -> Create Command-line Launcher`. And you can use `studio` command from command line. Example: `studio .` open IDE on current folder.
 
+### Scrcpy
+
+```bash
+brew install scrcpy
+```
+
 ### Source Tree
 
 ```bash
