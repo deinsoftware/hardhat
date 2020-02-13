@@ -296,8 +296,7 @@ namespace HardHat
                 cmd.Append("scrcpy");
                 if (!String.IsNullOrEmpty(device))
                 {
-                    Response result = new Response();
-                    result = CmdState(device);
+                    Response result = CmdState(device);
                     if (result.code == 0)
                     {
                         cmd.Append($" -s {device}  2>&1");

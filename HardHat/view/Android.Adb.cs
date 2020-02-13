@@ -19,7 +19,7 @@ namespace HardHat
             opts.Add(new Option { opt = "ad", status = true, action = Adb.Devices });
             WirelessList(ref opts);
             LogcatList(ref opts);
-            opts.Add(new Option { opt = "as", status = true, action = Adb.Show });
+            opts.Add(new Option { opt = "as", status = true, action = Adb.ShowDevice });
         }
 
         public static void Start()
@@ -36,8 +36,6 @@ namespace HardHat
             _colorify.Write($"{"   [D] Devices",-17}", txtPrimary);
             _colorify.Write($"{"[R] Restart",-17}", txtPrimary);
             _colorify.Write($"{"[L] Logcat",-17}", txtPrimary);
-
-
 
             _colorify.Write($" [W] Wifi ", txtPrimary);
             string wifiStatus = (!_config.personal.adb.wifiStatus ? "" : "(#)");
@@ -181,7 +179,7 @@ namespace HardHat
             }
         }
 
-        public static void Show()
+        public static void ShowDevice()
         {
             _colorify.Clear();
 
