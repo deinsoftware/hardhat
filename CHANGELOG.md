@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- `aw>c` shortcut validation when not defined IP for mobile.
+- `aw>c` shortcut validation when not defined IP for mobile. [\#26](https://github.com/deinsoftware/hardhat/issues/26)
 
 ## [7.6.0] - 2020-02-12
 
