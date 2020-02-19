@@ -28,6 +28,7 @@ namespace HardHat
                 Sonar.Status();
                 Task.Status();
                 Build.Status();
+                Adb.Status();
                 Configuration.Status();
             }
             catch (Exception Ex)

@@ -22,6 +22,11 @@ namespace HardHat
             opts.Add(new Option { opt = "as", status = true, action = Adb.ShowDevice });
         }
 
+        public static void Status()
+        {
+            WirelessStatus();
+        }
+
         public static void Start()
         {
             if (String.IsNullOrEmpty(_config.personal.adb.deviceName))

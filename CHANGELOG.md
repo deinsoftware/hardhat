@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.6.1] - 2020-02-19
+
+**Fixed:**
+
+- `aw>c` shortcut validation when not defined IP for mobile.
+
 ## [7.6.0] - 2020-02-12
 
 **Added:**

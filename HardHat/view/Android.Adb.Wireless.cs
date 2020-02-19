@@ -21,6 +21,11 @@ namespace HardHat
             opts.Add(new Option { opt = "aw>c", status = true, action = Adb.Connect });
         }
 
+        public static void WirelessStatus()
+        {
+            Options.IsValid("aw>c", !Strings.SomeNullOrEmpty(_config.personal.adb.wifiIpAddress));
+        }
+
 
         public static void Wireless()
         {

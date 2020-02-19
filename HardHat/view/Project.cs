@@ -63,6 +63,7 @@ namespace HardHat
             Options.IsValid("pp", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
             Project.PathStatus();
             Options.IsValid("pv", !Strings.SomeNullOrEmpty(_config.personal.selected.project, _config.personal.selected.file));
+
         }
 
         public static void Start()
