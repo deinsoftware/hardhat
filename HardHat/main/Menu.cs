@@ -59,7 +59,7 @@ namespace HardHat
             Section.HorizontalRule();
 
             _colorify.Write($" Previous: ", txtInfo);
-            _colorify.Write($"{_config.personal.menu.previousOption,-4}", txtMuted);
+            _colorify.Write($"{_config.personal.menu.previousOption,-21}", txtMuted);
 
             _colorify.Write($" {" Make your choice: "}", txtInfo);
             string opt = Console.ReadLine().Trim();

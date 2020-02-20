@@ -109,8 +109,8 @@ namespace HardHat
                 _colorify.Write($" [B] Build: ", txtStatus(Options.IsValid("b")));
                 Section.Configuration(_config.personal.menu.buildValidation, _config.personal.menu.buildConfiguration);
             }
-            _colorify.Write($"{"   [I] Init",-17}", txtStatus(Options.IsValid("bi")));
-            _colorify.Write($"{"   [P] Prop",-17}", txtStatus(Options.IsValid("bp")));
+            _colorify.Write($"{"   [I] Init",-14}", txtStatus(Options.IsValid("bi")));
+            _colorify.Write($"{"   [P] Prop",-20}", txtStatus(Options.IsValid("bp")));
             _colorify.Write($"{"[C] Clean",-17}", txtStatus(Options.IsValid("bc")));
             _colorify.WriteLine($"{"[G] Gradle",-17}", txtStatus(Options.IsValid("bg")));
             _colorify.BlankLines();
