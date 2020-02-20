@@ -40,7 +40,7 @@ namespace HardHat
             }
             _colorify.Write($"{"   [D] Devices",-17}", txtPrimary);
             _colorify.Write($"{"[R] Restart",-17}", txtPrimary);
-            _colorify.Write($"{"[L] Logcat",-17}", txtPrimary);
+            _colorify.Write($"{"[L] Logcat",-16}", txtPrimary);
 
             _colorify.Write($" [W] Wifi ", txtPrimary);
             string wifiStatus = (!_config.personal.adb.wifiStatus ? "" : "(#)");
