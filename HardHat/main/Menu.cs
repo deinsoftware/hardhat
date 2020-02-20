@@ -58,7 +58,10 @@ namespace HardHat
 
             Section.HorizontalRule();
 
-            _colorify.Write($"{" Make your choice:",-25}", txtInfo);
+            _colorify.Write($" Previous: ", txtInfo);
+            _colorify.Write($"{_config.personal.menu.previousOption,-4}", txtMuted);
+
+            _colorify.Write($" {" Make your choice: "}", txtInfo);
             string opt = Console.ReadLine().Trim();
             _colorify.Clear();
             Route(opt);
@@ -71,6 +74,11 @@ namespace HardHat
             {
                 if (Options.IsValid(_config.personal.menu.selectedOption))
                 {
+                    if (_config.personal.menu.selectedOption != "m")
+                    {
+                        _config.personal.menu.previousOption = _config.personal.menu.selectedOption;
+                    }
+
                     Action act = Options.GetAction(_config.personal.menu.selectedOption, main);
                     _config.personal.menu.selectedVariant = Options.GetVariant(_config.personal.menu.selectedOption);
                     _config.personal.menu.selectedOption = main;

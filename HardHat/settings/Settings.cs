@@ -102,6 +102,7 @@ namespace HardHat
             config.personal.logcat.priority = "V";
             config.personal.logcat.filter = "";
             config.personal.menu = new MenuConfiguration();
+            config.personal.menu.previousOption = "";
             config.personal.menu.selectedOption = "";
             config.personal.menu.selectedVariant = "";
             config.personal.menu.currentBranch = "";

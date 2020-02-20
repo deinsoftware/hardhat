@@ -134,6 +134,7 @@ namespace HardHat
 
     public class MenuConfiguration
     {
+        public string previousOption { get; set; }
         public string selectedOption { get; set; }
         public string selectedVariant { get; set; }
         public string currentBranch { get; set; }
