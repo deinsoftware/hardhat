@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.7.1] - 2020-02-24
+
+**Fixed:**
+
+- WiFi disconnect automatically when no found devices
+
 ## [7.7.0] - 2020-02-20
 
 **Added:**

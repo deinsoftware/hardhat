@@ -173,6 +173,7 @@ namespace HardHat
                 else
                 {
                     _config.personal.adb.deviceName = "";
+                    _config.personal.adb.wifiStatus = false;
                     Message.Alert(" No device found.");
                 }
 

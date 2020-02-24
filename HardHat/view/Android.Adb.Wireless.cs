@@ -223,6 +223,7 @@ namespace HardHat
                 }
             }
         }
+
         public static void Disconnect()
         {
             _colorify.Clear();
