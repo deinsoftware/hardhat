@@ -35,6 +35,13 @@ namespace HardHat
             {
                 Exceptions.General(Ex);
             }
+            finally
+            {
+                if (!dev)
+                {
+                    _config.personal.adb.wifiStatus = false;
+                }
+            }
             return dev;
         }
 
