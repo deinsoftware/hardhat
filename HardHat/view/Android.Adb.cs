@@ -44,7 +44,7 @@ namespace HardHat
 
             _colorify.Write($" [W] Wifi ", txtPrimary);
             string wifiStatus = (!_config.personal.adb.wifiStatus ? "" : "(#)");
-            _colorify.Write($"{$"{wifiStatus}",-7}", txtSuccess);
+            _colorify.Write($"{$"{wifiStatus}",-8}", txtSuccess);
             _colorify.WriteLine($"{"[S] Show",-17}", txtPrimary);
         }
 
