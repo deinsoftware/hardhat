@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.8.0] - 2020-03-03
+
+**Added:**
+
+- Repeat previous command with `!` shortcut.
+
 ## [7.7.1] - 2020-02-24
 
 **Fixed:**
@@ -31,7 +37,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- [Scrcpy](https://github.com/Genymobile/scrcpy) support to show mobile device over ADB.
+- [Scrcpy](https://github.com/Genymobile/scrcpy) support to show mobile devices over ADB.
 
 ## [7.5.1] - 2020-01-21
 
@@ -73,7 +79,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-- `resize` command on MacOS bash launcher
+- `resize` command on macOS bash launcher
 
 ## [7.2.3] - 2019-08-02
 

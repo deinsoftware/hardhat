@@ -7,7 +7,7 @@
 
 **HardHat** was created to simplify and automate tasks related to Android development with help of [ToolBox](https://github.com/deinsoftware/toolbox) and [Colorify](https://github.com/deinsoftware/colorify) libraries.
 
-Previously had create the same app making a Batch (for Windows) and a Bash (for macOS) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
+Previously had created the same app making a Batch (for Windows) and a Bash (for macOS) scripts to make the task, maintain both of them is a hard task to do, but now with .Net Core can use and share the same code on both Operating Systems.
 
 I don't like repetitive tasks and make a build is one of them... yuck!
 
@@ -48,7 +48,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install?
+What things do you need to install?
 
 * [Java](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Android SDK](https://developer.android.com/studio/index.html#downloads)
@@ -243,7 +243,7 @@ Choose desired letter combination and let **HardHat** work for you.
 | <kbd>pe>w</kbd> | Web Storm. **\*** | project |
 | <kbd>pe>x</kbd> | Xcode | project/ios |
 
-**\*** Requires enable `Tools -> Create Command-line Launcher` and works only for Linux / MacOS.
+**\*** Requires enable `Tools -> Create Command-line Launcher` and works only for Linux / macOS.
 
 ##### Path
 
@@ -401,6 +401,7 @@ If you have some pre-configured files to be copied to project path, add it on `A
 | <kbd>i</kbd> | Show information about commands version. |
 | <kbd>e</kbd> | Show information about environmental variables. |
 | <kbd>x</kbd> | Exit application, save progress and close terminal window. |
+| <kbd>!</kbd> | Repeat previous option. |
 
 ### Configuration
 

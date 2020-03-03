@@ -72,9 +72,14 @@ namespace HardHat
             _config.personal.menu.selectedOption = sel?.ToLower();
             if (!String.IsNullOrEmpty(_config.personal.menu.selectedOption))
             {
+                if (_config.personal.menu.selectedOption == "!")
+                {
+                    _config.personal.menu.selectedOption = _config.personal.menu.previousOption;
+                }
+
                 if (Options.IsValid(_config.personal.menu.selectedOption))
                 {
-                    if (_config.personal.menu.selectedOption != "m")
+                    if (_config.personal.menu.selectedOption != "m" || _config.personal.menu.selectedOption != "!")
                     {
                         _config.personal.menu.previousOption = _config.personal.menu.selectedOption;
                     }

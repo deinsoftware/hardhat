@@ -1,4 +1,4 @@
-# MacOS
+# macOS
 
 ## Package Manager
 
