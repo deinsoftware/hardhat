@@ -534,9 +534,9 @@ See also the list of [contributors](https://github.com/deinsoftware/hardhat/cont
 
 If this project help you reduce time to develop, you can give me a cup of coffee.
 
-[![Donate](https://img.shields.io/badge/paypal-donate-blue)]("https://paypal.me/equiman/3")
-[![Donate](https://img.shields.io/badge/patreon-donate-red)]("https://patreon.com/equiman")
-[![Donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)]("https://buymeacoff.ee/equiman")
+[![Donate](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/equiman/3)
+[![Donate](https://img.shields.io/badge/patreon-donate-red)](https://patreon.com/equiman)
+[![Donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://buymeacoff.ee/equiman)
 
 No sponsors yet! Will you be the first?
 
