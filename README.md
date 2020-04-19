@@ -13,8 +13,6 @@ I don't like repetitive tasks and make a build is one of them... yuck!
 
 ![Why we need automation?](automation.png "Be a Geek!")
 
-Contributions or Beer will be appreciated
-
 > The Code is Dark and Full of Errors!
 > Console is your friend ... don't be afraid!
 
