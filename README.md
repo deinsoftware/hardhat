@@ -1,9 +1,11 @@
 # HardHat [ for Win & Mac ]
 
-[![Build Status](https://travis-ci.org/deinsoftware/hardhat.svg?branch=master)](https://travis-ci.org/deinsoftware/hardhat)
+[![build](https://github.com/deinsoftware/hardhat/workflows/build/badge.svg?branch=master)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Abuild)
+[![release](https://github.com/deinsoftware/hardhat/workflows/release/badge.svg)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Arelease)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
+[![License](https://img.shields.io/github/license/deinsoftware/hardhat)](LICENSE)
 
 ![HardHat](.github/social/preview.png "HardHat")
 
