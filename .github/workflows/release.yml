@@ -1,0 +1,65 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+env:
+  dotnet: 3.1.201
+  version: 7.8.0
+
+jobs:
+  win:
+    runs-on: ubuntu-latest
+    name: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup .Net Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.dotnet }}
+      - name: publish
+        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/win/" -c release -r win10-x64
+      - name: branch
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: win
+          FOLDER: ${{ env.workspace }}/Dist/win
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  mac:
+    runs-on: ubuntu-latest
+    name: build
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup .Net Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: ${{ env.dotnet }}
+      - name: publish
+        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/mac/" -c release -r osx.10.12-x64
+      - name: branch
+        uses: s0/git-publish-subdir-action@master
+        env:
+          REPO: self
+          BRANCH: mac
+          FOLDER: ${{ env.workspace }}/Dist/mac
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  tweet:
+    runs-on: ubuntu-latest
+    name: message
+    needs: [win, mac]
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup Twitter
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: "${{ env.version }} 🐛🛠\n
+          \n
+          Hard Hat - C# .NET Core Console with Android Building Tools [ for Win+Mac ]\n
+          https://github.com/deinsoftware/hardhat"
+          consumer-key: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
