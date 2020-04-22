@@ -19,6 +19,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.dotnet }}
+      - name: set environment
+        run: echo ::set-env name=workspace::$GITHUB_WORKSPACE
       - name: publish
         run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/" -c release -r win10-x64
       - name: branch
@@ -37,6 +39,8 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.dotnet }}
+      - name: set environment
+        run: echo ::set-env name=workspace::$GITHUB_WORKSPACE
       - name: publish
         run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/" -c release -r osx.10.12-x64
       - name: branch
