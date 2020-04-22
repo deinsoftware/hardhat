@@ -73,7 +73,7 @@ It's recommended install it using a Package Manager.
 
 ### Installing
 
-Follow this steps to install on your local machine
+Follow these steps to install on your local machine
 
 Clone **HardHat** from GitHub on *recommended* path. Using this command on terminal:
 
@@ -151,14 +151,14 @@ alias x="exit"
 alias sb="source ~/.bash_profile"
 ```
 
-On macOS `ANDROID_BT_VERSION` automatically take last Android SDK Build Tool version. But you can modify it and choose the version that you want. Skip `GRADLE_HOME` and `JAVA_HOME` if you [install this libraries with SDKMan](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
+On macOS `ANDROID_BT_VERSION` automatically take the last Android SDK Build Tool version. But you can modify it and choose the version that you want. Skip `GRADLE_HOME` and `JAVA_HOME` if you [install these libraries with SDKMan](https://medium.com/@equiman/setup-macos-for-development-5eb1f1506ca5).
 
 With **H**ard**H**at alias, you can open it the application directly from a terminal window using the command `hh` and <kbd>RETURN</kbd> key.
 
 > **Where are environment variables?**
 > First, one thing to recognize about OS X is that it is built on Unix. This is where the .bash_profile comes in. When you start the Terminal app in OS X you get a bash shell by default. The bash shell comes from Unix and when it loads it runs the .bash_profile script. You can modify this script for your user to change your settings. This file is located at: `~/.bash_profile`
 
-Highly recommend auto close option in combination with e**x**it alias. It can be an useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
+Highly recommend auto-close option in combination with e**x**it alias. It can be a useful combination to finish and close those unused terminals. Even to exit **HardHat** and close automatically his terminal window.
 
 > **Recommended terminal configurations on macOS?**
 > Open a terminal window, go to 'Preference > Profiles.
@@ -171,7 +171,7 @@ Highly recommend auto close option in combination with e**x**it alias. It can be
 
 ## Usage
 
-Keep calm, you are almost done. Review this final steps and enjoy the life, no more tedious and repetitive tasks stealing your precious time.
+Keep calm, you are almost done. Review these final steps and enjoy life, no more tedious and repetitive tasks stealing your precious time.
 
 ### Permissions
 
@@ -213,7 +213,7 @@ Open **star menu** and over the Android section you will can see the link. Remem
 
 Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **Hard Hat** (with blank space between) and add execute permission with `chmod +x "Hard Hat"` command.
 
-Copy the picture in `icon.png` file  to the Clipboard. One way to do this is to open the picture in Preview, choose `Edit > Select All`, then choose `Edit > Copy` or press `Command-C`.
+Copy the `icon.png` content on the Clipboard. One way to do this is to open the picture in Preview, choose `Edit > Select All`, then choose `Edit > Copy` or press `Command-C`.
 
 Select **Hard Hat** (alias shortcut) file, then choose `File > Get Info`. At the top of the Info window, click the picture of the icon to select it, then choose `Edit > Paste` or press `Command-V`.
 
@@ -221,7 +221,7 @@ Just drag and drop **Hard Hat** (alias shortcut) to your Dock or Desktop.
 
 ### Keyboard Shortcuts
 
-Choose desired letter combination and let **HardHat** work for you.
+Choose the desired letter combination and let **HardHat** work for you.
 
 #### Project
 
@@ -307,6 +307,7 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | <kbd>t>sp</kbd> | Open shortcut in browser at start. |
 
 ##### Quick Server Configuration
+
 | combination | option | value |
 | --- | --- | --- |
 | <kbd>t>f:d</kbd> | Flavor | dev |
@@ -347,7 +348,7 @@ _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT`
 | <kbd>bc-c</kbd> | Make `cleanBuildCache` project with gradle command line. |
 | <kbd>bg</kbd> | Make `build` project with gradle command line. |
 
-If you have some pre-configured files to be copied to project path, add it on `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
+If you have some pre-configured files to be copied to the project path, add it on the `ANDROID_PROPERTIES` path (_see [Environment Variables](#environment-variables) section_) inside a Business folder. Files like:
 
 * local.properties
 * gradle.properties
@@ -355,6 +356,7 @@ If you have some pre-configured files to be copied to project path, add it on `A
 * keystore/production.properties
 
 ##### Quick Build Configuration
+
 | combination | option | value |
 | --- | --- | --- |
 | <kbd>b>t:a</kbd> | Type | assemble |

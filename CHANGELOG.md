@@ -13,7 +13,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Repeat previous command with `!` shortcut.
+- Repeat the previous command with `!` shortcut.
 
 ## [7.7.1] - 2020-02-24
 
@@ -43,13 +43,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Flavor on build configuration.
+- The flavor on the build configuration.
 
 ## [7.5.0] - 2019-11-19
 
 **Added:**
 
-- Build initialize option to install npm packages on current project.
+- Build an initialize option to install npm packages on the current project.
 
 ## [7.4.0] - 2019-11-09
 
@@ -69,13 +69,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Adb get-state command to use multiple devices at time
+- Adb get-state command to use multiple devices at the same time
 
 ## [7.2.4] - 2019-10-03
 
 **Updated:**
 
-- Framework to .Net Core version 3.0
+- The framework to .Net Core version 3.0
 
 **Changed:**
 
@@ -85,7 +85,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Default value on flavors
+- The default value on flavors
 
 ## [7.2.2] - 2019-08-01
 
@@ -114,7 +114,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Test Coverage option. Open coverage report URL in browser
+- Test Coverage option. Open coverage report URL in the browser
 
 ## [7.0.1] - 2019-07-08
 
@@ -144,11 +144,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Xcode editor launch option open first workspace and if not exists open project
+- Xcode editor launch option open
 
 **Changed:**
 
-- Internal settings configuration
+- The internal settings configuration
 
 ## [6.12.0] - 2019-01-24
 
@@ -175,13 +175,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Add % symbol to control show progress on same line.
+- Add % symbol to control show progress on the same line.
 
 ## [6.10.2] - 2018-11-29
 
 **Fixed:**
 
-- Show progress on same line.
+- Show progress on the same line.
 
 ## [6.10.1] - 2018-11-28
 
@@ -191,13 +191,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Hidden option to clean cache with gradle.
+- Hidden option to clean cache with Gradle.
 
 ## [6.10.0] - 2018-09-28
 
 **Updated:**
 
-- Framework to .Net Core version 2.1
+- The framework to .Net Core version 2.1
 
 ## [6.9.7] - 2018-09-26
 
@@ -221,7 +221,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-- Use Strings.CleanSpecialCharacters and Warning message when program is not installed.
+- Use Strings.CleanSpecialCharacters and Warning message when the program is not installed.
 
 ## [6.9.3] - 2018-08-24
 
@@ -231,7 +231,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Extra blank space on main menu.
+- Extra blank space on the main menu.
 
 ## [6.9.2] - 2018-08-22
 
@@ -274,7 +274,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Quick access to gulp server and build configurations.
+- Quick access to the gulp server and build configurations.
 
 ## [6.8.3] - 2018-07-24
 
@@ -286,7 +286,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Avoid return main menu on error, now return to previous menu.
+- Avoid return main menu on error, now return to the previous menu.
 
 ## [6.8.1] - 2018-07-23
 
@@ -296,13 +296,13 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Readme and Change Log options on information option.
+- Readme and Change Log options on the information section.
 
 ## [6.8.0] - 2018-07-23
 
 **Added:**
 
-- Project menu option to open selected project in File Explorer or open in Editor.
+- Project menu option to open the selected project in File Explorer or open in Editor.
 - Configuration option to change Editor command.
 
 **Changed:**
@@ -314,7 +314,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 **Changed:**
 
 - Build menu reorder.
-- Properties options to short name.
+- Properties options to a short name.
 
 ## [6.7.3] - 2018-07-16
 
@@ -375,7 +375,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- Mapping status on selected file.
+- Mapping status on the selected file.
 - Duplicate mapping when exists.
 
 **Fixed:**
@@ -396,11 +396,11 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Removed:**
 
-- Clean before build. Now yow can have different builds on same project.
+- Clean before the build. Now yow can have different builds on the same project.
 
 **Changed:**
 
-- Clean need to be launched manually and also clean selected file.
+- Clean need to be launched manually and also clean the selected file.
 
 ## [6.2.2] - 2018-06-14
 
@@ -418,7 +418,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Selected path by default on config file.
+- Selected path by default on the config file.
 
 ## [6.2.0] - 2018-06-12
 
@@ -494,7 +494,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- ADB option to change listening port on device connected to USB.
+- ADB option to change the listening port on a device connected to USB.
 
 **Fixed:**
 
@@ -504,7 +504,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-- Sonar Scanner run in external terminal window.
+- Sonar Scanner run in an external terminal window.
 
 ## [5.0.1] - 2018-01-04
 
@@ -522,7 +522,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Added:**
 
-- VPN connection verification on Gulp log option.
+- VPN connection verification on the Gulp log option.
 - Install dependencies on Gulp Update.
 
 **Fixed:**
@@ -545,7 +545,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Space between label and selected values on main menu.
+- Space between the label and selected values on the main menu.
 
 ## [4.2.0] - 2017-11-22
 
@@ -557,7 +557,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Add white theme for mac. [\#14](https://github.com/deinsoftware/hardhat/issues/14)
+- Add the White theme for mac. [\#14](https://github.com/deinsoftware/hardhat/issues/14)
 
 ## [4.1.6] - 2017-11-23
 
@@ -602,14 +602,14 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Changed:**
 
-- Build Tools update message now only works as alert.
+- Build Tools update message now only works as an alert.
 
 ## [4.1.0] - 2017-11-08
 
 **Added:**
 
 - Update notification for Gulp project. [\#3](https://github.com/deinsoftware/hardhat/issues/3)
-- Open parameter on Gulp server configuration.
+- The open parameter on the Gulp server configuration.
 
 **Fixed:**
 
@@ -632,8 +632,8 @@ Security    to invite users to upgrade in case of vulnerabilities.
 **Change:**
 
 - Command to clone (install) project different on each Operating System. Decreasing installed project size by half.
-- Whole configuration file, menu and his status validations.
-- Update verification don't need restart when download new version.
+- The whole configuration file, menu and his status validations.
+- Update verification don't need restart when download a new version.
 
 **Fixed:**
 
@@ -654,7 +654,7 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 - Environment variable from `ANDROID_TEMPLATE` to `ANDROID_PROPERTIES`.
 - Path from `Applications/Android/Studio` to `Applications/Android/Properties`.
-- Reorder Android Debug Bridge menu.
+- Reorder the Android Debug Bridge menu.
 
 ## [3.1.0] - 2017-08-25
 
@@ -671,41 +671,41 @@ Security    to invite users to upgrade in case of vulnerabilities.
 
 **Fixed:**
 
-- Loop on device detection when ADB server is not running.
-- Path index on Uglify process.
+- The loop on device detection when the ADB server is not running.
+- Path index on the Uglify process.
 - Start menu on macOS.
 
 ## [3.0.4] - 2017-08-18
 
 **Removed:**
 
-- Auto update from c#.
+- Auto-update from c#.
 
 **Fixed:**
 
 - Duplicate file option.
-- Auto update moved to batch/bash files in order to avoid deadlock.
+- Auto-update moved to batch/bash files in order to avoid deadlock.
 
 ## [3.0.3] - 2017-08-17
 
 **Removed:**
 
-- Made a project copy to `bkp` folder is unnecessary on Gulp Uglify process, with `www` folder can be restored to original state.
+- Made a project copy to the `bkp` folder is unnecessary on the Gulp Uglify process, with `www` folder can be restored to the original state.
 
 **Added:**
 
-- Launch app on device when installation was success.
+- Launch the app on the device when install successfully.
 
 **Fixed:**
 
-- Auto update loop.
-- When no detect devices, clean selected device.
+- Auto-update loop.
+- When no detect devices, clean selected devices.
 
 ## [3.0.2] - 2017-08-14
 
 **Fixed:**
 
-- Auto update with total revert.
+- Auto-update with the total revert.
 
 **Changed:**
 
@@ -716,29 +716,29 @@ Security    to invite users to upgrade in case of vulnerabilities.
 **Fixed:**
 
 - Batch/Bash exit code 0 to external window command.
-- Auto update with stash validation.
+- Auto-update with stash validation.
 
 **Changed:**
 
-- Default setting file values at fresh start.
+- Default setting file values at a fresh start.
 
 ## [3.0.0] - 2017-08-09
 
-One code to rule theme all... with .Net Core can share same code for multiple Operating Systems.
+One code to rule theme all... with .Net Core can share the same code for multiple Operating Systems.
 
 This version are merging [HardHat [for Windows]](https://github.com/deinsoftware/hardhatwin/) and [HardHat [for macOS])](https://github.com/deinsoftware/hardhatwin/) projects.
 
 **Added:**
 
-- Configuration, Info and Environment option from main menu.
+- Configuration, Info and Environment option from the main menu.
 - Current GIT branch information.
 
 **Changed:**
 
-- Mobile IP Address base from current IP Address.
+- Mobile IP Address base from the current IP Address.
 
 **Removed:**
 
 - Networks configuration list.
-- Subversion as option for Version Control System.
+- Subversion as an option for the Version Control System.
 - Apache Server options.

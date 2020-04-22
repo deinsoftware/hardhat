@@ -1,5 +1,5 @@
 {
-    "cSpell.words": [
+    "cSpell.userWords": [
         "CPPFLAGS",
         "Colorify",
         "Configurator",
@@ -36,9 +36,21 @@
         "xclip",
         "xcopy"
     ],
+    "grammarly.userWords": [
+        "Adb",
+        "Logcat",
+        "chmod"
+    ],
     "editor.tabSize": 4,
     "[markdown]": {
         "editor.tabSize": 2,
         "editor.formatOnSave": false,
-    }
+    },
+    "cSpell.words": [
+        "DSRC",
+        "Numpad",
+        "XKCD",
+        "sonarqube",
+        "winx"
+    ]
 }
