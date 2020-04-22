@@ -12,7 +12,7 @@ env:
 jobs:
   win:
     runs-on: ubuntu-latest
-    name: build
+    name: build win
     steps:
       - uses: actions/checkout@v2
       - name: setup .Net Core
@@ -20,17 +20,17 @@ jobs:
         with:
           dotnet-version: ${{ env.dotnet }}
       - name: publish
-        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/win/" -c release -r win10-x64
+        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/" -c release -r win10-x64
       - name: branch
         uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
           BRANCH: win
-          FOLDER: ${{ env.workspace }}/Dist/win
+          FOLDER: ${{ env.workspace }}/Dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   mac:
     runs-on: ubuntu-latest
-    name: build
+    name: build mac
     steps:
       - uses: actions/checkout@v2
       - name: setup .Net Core
@@ -38,17 +38,17 @@ jobs:
         with:
           dotnet-version: ${{ env.dotnet }}
       - name: publish
-        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/mac/" -c release -r osx.10.12-x64
+        run: dotnet publish HardHat/HardHat.csproj -o "${{ env.workspace }}/Dist/" -c release -r osx.10.12-x64
       - name: branch
         uses: s0/git-publish-subdir-action@master
         env:
           REPO: self
           BRANCH: mac
-          FOLDER: ${{ env.workspace }}/Dist/mac
+          FOLDER: ${{ env.workspace }}/Dist
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   tweet:
     runs-on: ubuntu-latest
-    name: message
+    name: tweet
     needs: [win, mac]
     steps:
       - uses: actions/checkout@v2
