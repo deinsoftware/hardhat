@@ -9,11 +9,17 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.8.1] - 2020-04-24
+
+**Updated:**
+
+- [Colorify](https://github.com/deinsoftware/colorify) to 2.5.1 and fixes extra break line on Windows
+
 ## [7.8.0] - 2020-03-03
 
 **Added:**
 
-- Repeat the previous command with `!` shortcut.
+- Repeat the previous command with `!` shortcut
 
 ## [7.7.1] - 2020-02-24
 
