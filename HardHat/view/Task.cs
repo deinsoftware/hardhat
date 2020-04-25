@@ -59,11 +59,12 @@ namespace HardHat
             _colorify.Write($"{"   [W] Watch",-17}", txtStatus(Options.IsValid("tw")));
             _colorify.Write($"{"[O] Obfuscate",-17}", txtStatus(Options.IsValid("to")));
             _colorify.Write($"{"[T] Test",-17}", txtStatus(Options.IsValid("to")));
-            _colorify.WriteLine($"{"[S] Server",-12}", txtStatus(Options.IsValid("ts")));
+            _colorify.Write($"{"[S] Server",-17}", txtStatus(Options.IsValid("ts")));
+            _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
             _colorify.Write($"{"   [M] Make",-17}", txtStatus(Options.IsValid("tm")));
             _colorify.Write($"{"[R] Revert",-17}", txtStatus(Options.IsValid("tr")));
             _colorify.Write($"{"[C] Coverage",-17}", txtStatus(Options.IsValid("to")));
-            _colorify.WriteLine($"{"[L] Log",-12}", txtStatus(Options.IsValid("ts")));
+            _colorify.WriteLine($"{"[K] Kill",-12}", txtPrimary);
 
             _colorify.BlankLines();
         }

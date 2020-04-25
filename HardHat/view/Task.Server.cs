@@ -39,6 +39,7 @@ namespace HardHat
             opts.Add(new Option { opt = "t>n:11", status = false, action = Task.Quick, variant = "n:11" });
             opts.Add(new Option { opt = "t>ss", status = false, action = Task.ServerSync });
             opts.Add(new Option { opt = "t>so", status = false, action = Task.Open });
+            opts.Add(new Option { opt = "tk", status = true, action = Task.Kill });
         }
 
         public static void ServerStatus()
@@ -312,6 +313,20 @@ namespace HardHat
                         break;
                 }
 
+                Menu.Start();
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
+        public static void Kill()
+        {
+            _colorify.Clear();
+
+            try
+            {
+                CmdKill();
                 Menu.Start();
             }
             catch (Exception Ex)

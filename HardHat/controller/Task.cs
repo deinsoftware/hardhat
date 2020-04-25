@@ -172,5 +172,28 @@ namespace HardHat
                 Exceptions.General(Ex);
             }
         }
+
+        public static void CmdKill()
+        {
+            try
+            {
+                StringBuilder cmd = new StringBuilder();
+                switch (OS.GetCurrent())
+                {
+                    case "win":
+                        cmd.Append("taskkill /f /im gulp*");
+                        break;
+                    case "mac":
+                        cmd.Append("sudo ");
+                        cmd.Append("pkill -f gulp");
+                        break;
+                }
+                _shell.Term(cmd.ToString(), Output.Hidden);
+            }
+            catch (Exception Ex)
+            {
+                Exceptions.General(Ex);
+            }
+        }
     }
 }
