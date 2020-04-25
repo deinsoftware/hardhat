@@ -9,6 +9,12 @@ Fixed       for any bug fixes.
 Security    to invite users to upgrade in case of vulnerabilities.
 -->
 
+## [7.9.0] - 2020-04-24
+
+**Added:**
+
+- Task to kill all gulp process running
+
 ## [7.8.1] - 2020-04-24
 
 **Updated:**

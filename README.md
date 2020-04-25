@@ -283,6 +283,7 @@ Choose the desired letter combination and let **HardHat** work for you.
 | <kbd>tr</kbd> | Revert original files to selected project. |
 | <kbd>tt</kbd> | Launch `gulp test` command over selected project to `TASK_PROJECT`. Start server according to previous configuration. |
 | <kbd>ts</kbd> | Launch `gulp server` command over selected project to `TASK_PROJECT`. Start server according to previous configuration. |
+| <kbd>tk</kbd> | Run `kill gulp` command. |
 | <kbd>tl</kbd> | Launch `gulp log` command over selected project to `TASK_PROJECT`. |
 
 _See [Environment Variables](#environment-variables) section_ for `TASK_PROJECT` configuration.

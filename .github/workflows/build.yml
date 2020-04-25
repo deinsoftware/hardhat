@@ -8,7 +8,7 @@ on:
 
 env:
   dotnet: 3.1.201
-  version: 7.8.1
+  version: 7.9.0
   key: dein:hardhat
   organization: dein
   name: HardHat
