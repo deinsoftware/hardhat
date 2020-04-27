@@ -15,7 +15,7 @@
     <PackageTags>dotnet;core;win-x64;osx-x64</PackageTags>
     <PackageIconUrl>https://github.com/deinsoftware/hardhat/blob/master/icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/deinsoftware/hardhat</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/deinsoftware/hardhat/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/deinsoftware/hardhat/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/deinsoftware/hardhat</RepositoryUrl>
@@ -38,9 +38,9 @@
     <None Update="icon.png" CopyToOutputDirectory="PreserveNewest" />
     <!-- Packages -->
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="dein.Colorify" Version="2.5.1" />
-    <PackageReference Include="dein.ToolBox" Version="1.6.3"/>
+    <PackageReference Include="dein.Colorify" Version="2.5.2" />
+    <PackageReference Include="dein.ToolBox" Version="1.6.4"/>
     <!-- License -->
-    <None Include="..\LICENSE" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\LICENSE.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

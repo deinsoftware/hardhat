@@ -5,7 +5,7 @@
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
 [![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
-[![License](https://img.shields.io/github/license/deinsoftware/hardhat)](LICENSE)
+[![License](https://img.shields.io/github/license/deinsoftware/hardhat)](LICENSE.md)
 
 ![HardHat](.github/social/preview.png "HardHat")
 
@@ -547,7 +547,7 @@ No sponsors yet! Will you be the first?
 
 ### License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.
 
 ### Acknowledgments
 
