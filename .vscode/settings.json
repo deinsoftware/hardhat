@@ -42,10 +42,18 @@
         "Logcat",
         "chmod"
     ],
+    "grammarly.diagnostics": {
+        "[markdown]": {
+            "ignore": [
+                "inlineCode",
+                "code"
+            ]
+        }
+    },
     "editor.tabSize": 4,
     "[markdown]": {
         "editor.tabSize": 2,
-        "editor.formatOnSave": false,
+        "editor.formatOnSave": false
     },
     "cSpell.words": [
         "DSRC",
