@@ -1,11 +1,11 @@
 # HardHat [ for Win & Mac ]
 
-[![build](https://github.com/deinsoftware/hardhat/workflows/build/badge.svg?branch=master)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Abuild)
-[![release](https://github.com/deinsoftware/hardhat/workflows/release/badge.svg)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Arelease)
-[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
-[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
-[![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
-[![License](https://img.shields.io/github/license/deinsoftware/hardhat)](LICENSE.md)
+[![github-actions-build](https://github.com/deinsoftware/hardhat/workflows/build/badge.svg?branch=master)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Abuild)
+[![github-actions-release](https://github.com/deinsoftware/hardhat/workflows/release/badge.svg)](https://github.com/deinsoftware/hardhat/actions?query=workflow%3Arelease)
+[![sonar-reliability](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
+[![sonar-security](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=security_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
+[![sonar-maintainability](https://sonarcloud.io/api/project_badges/measure?project=dein%3Ahardhat&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=dein%3Ahardhat)
+[![license](https://img.shields.io/github/license/deinsoftware/hardhat)](LICENSE.md)
 
 ![HardHat](.github/social/preview.png "HardHat")
 
@@ -539,9 +539,9 @@ See also the list of [contributors](https://github.com/deinsoftware/hardhat/cont
 
 If this project help you reduce time to develop, you can give me a cup of coffee.
 
-[![Donate](https://img.shields.io/badge/paypal-donate-blue)](https://paypal.me/equiman/3)
-[![Donate](https://img.shields.io/badge/patreon-donate-red)](https://patreon.com/equiman)
-[![Donate](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-orange)](https://buymeacoff.ee/equiman)
+[![paypal](https://img.shields.io/badge/-PayPal-gray?style=flat&labelColor=00457C&logo=paypal&logoColor=white&link=https://paypal.me/equiman/3)](https://paypal.me/equiman/3)
+[![patreon](https://img.shields.io/badge/-Patreon-gray?style=flat&labelColor=052d49&logo=patreon&logoColor=F96854&link=https://patreon.com/equiman)](https://patreon.com/equiman)
+[![buymeacoffe](https://img.shields.io/badge/-Buy%20Me%20A%20Coffee-gray?style=flat&labelColor=FF813F&logo=buy-me-a-coffee&logoColor=white&link=https://buymeacoff.ee/equiman)](https://buymeacoff.ee/equiman)
 
 No sponsors yet! Will you be the first?
 
