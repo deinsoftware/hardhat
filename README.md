@@ -215,7 +215,7 @@ Copy the `icon.png` content on the Clipboard. One way to do this is to open the 
 
 Select `mac.command` file, then choose `File > Get Info`. At the top of the Info window, click the picture of the icon to select it, then choose `Edit > Paste` or press `Command-V`.
 
-Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **Hard Hat** (with blank space between) and add execute permission with `chmod +x "Hard Hat"` command.
+Select `mac.command` file, then choose `File > Make Alias` or press `Command-L` name it as **Hard Hat** (with blank space between).
 
 Just drag and drop **Hard Hat** (alias shortcut) to your Dock or Desktop.
 
